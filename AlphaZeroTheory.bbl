@@ -1,0 +1,44 @@
+\begin{thebibliography}{1}
+
+\bibitem{elo1978rating}
+Arpad~E. Elo.
+\newblock {\em The Rating of Chessplayers, Past and Present}.
+\newblock Arco Pub., New York, 1978.
+
+\bibitem{ioffe2015batch}
+Sergey Ioffe and Christian Szegedy.
+\newblock Batch normalization: Accelerating deep network training by reducing
+  internal covariate shift.
+\newblock In {\em International conference on machine learning}, pages
+  448--456. PMLR, 2015.
+
+\bibitem{silver2018general}
+David Silver, Thomas Hubert, Julian Schrittwieser, Ioannis Antonoglou, Matthew
+  Lai, Arthur Guez, Marc Lanctot, Laurent Sifre, Dharshan Kumaran, Thore
+  Graepel, et~al.
+\newblock A general reinforcement learning algorithm that masters chess, shogi,
+  and go through self-play.
+\newblock {\em Science}, 362(6419):1140--1144, 2018.
+
+\bibitem{silver2017mastering}
+David Silver, Julian Schrittwieser, Karen Simonyan, Ioannis Antonoglou, Aja
+  Huang, Arthur Guez, Thomas Hubert, Lucas Baker, Matthew Lai, Adrian Bolton,
+  et~al.
+\newblock Mastering the game of go without human knowledge.
+\newblock {\em nature}, 550(7676):354--359, 2017.
+
+\bibitem{vectorization_2021}
+{Wikipedia contributors}.
+\newblock Vectorization (mathematics) --- {Wikipedia}{,} the free encyclopedia.
+\newblock
+  \url{https://en.wikipedia.org/w/index.php?title=Vectorization_(mathematics)&oldid=1057421500},
+  2021.
+\newblock [Online; accessed 17-March-2022].
+
+\bibitem{zhang2018artificial}
+Zhihua Zhang.
+\newblock Artificial neural network.
+\newblock In {\em Multivariate time series analysis in climate and
+  environmental research}, pages 1--35. Springer, 2018.
+
+\end{thebibliography}
