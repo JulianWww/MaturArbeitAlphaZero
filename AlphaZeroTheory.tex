@@ -29,8 +29,8 @@
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
 
-\setcounter{secnumdepth}{4}
-\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
 \lstset { %
     language=C++,
     backgroundcolor=\color{black!5}, % set backgroundcolor
@@ -42,6 +42,11 @@
 \titleformat{\paragraph}
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 \titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\titleformat{\subparagraph}
+{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+\titlespacing*{\subparagraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 \newcommand{\imgRef}[1]{(fig \ref{#1} on page \pageref{#1})}
@@ -84,6 +89,41 @@
 
 \urlstyle{same}
 
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0.29,0}
+\definecolor{codeLightGray}{rgb}{0.9,0.9,0.9}
+
+\lstset{ 
+  backgroundcolor=\color{codeLightGray},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  %frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=C++,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  %title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+\newcommand{\incFile}[2]{\label{code:#2}\lstinputlisting[language=#1]{code/#2}\newpage}
+\newcommand{\incDemo}[2]{\label{demo:#2}\lstinputlisting[language=#1]{Matura-AlphaZero-demos/#2}\newpage}
+
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -95,7 +135,7 @@
 \tableofcontents
 \newpage
 
-Alpha Zero is an algorithm published in 2018 by Google Deepmind as the generalization of AlphaGo Zero, an algorithm that learned to play the game of Go using only the rules of the game. In the generalized version, the same principles were applied to Chess and Shogi. Unlike previous algorithms such as StockFish or Elmo that use hand-crafted evaluation functions along with alpha-beta searches over a large search space, Alpha Zero uses no human knowledge. Rather, it generates all information through self-play. It has been shown to achieve superhuman performance in Chess, Shogi and Go. In this project the AI will be trained to play connect4. The entire algorithm is implemented in C++ to increase efficiency during the Monte Carlo Tree Search (MCTS). Furthermore, to allow for better performance when playing, all computations are handled via a server (my desktop). A secondary server has also been added to allow for easy re-routing of the main server and handle things like elo-ratings (see \sectionref{sec:Evaluation:elo-rating}) for all agents. Additionally, I have added a short introduction on how neural networks work and how they are trained in \sectionref{NN}. 
+Alpha Zero is an algorithm published in 2018 by Google Deepmind as the generalization of AlphaGo Zero, an algorithm that learned to play the game of Go using only the rules of the game. In the generalized version, the same principles were applied to Chess and Shogi. Unlike previous algorithms such as StockFish or Elmo that use hand-crafted evaluation functions along with alpha-beta searches over a large search space, Alpha Zero uses no human knowledge. Rather, it generates all information through self-play. It has been shown to achieve superhuman performance in Chess, Shogi and Go. In this project the AI will be trained to play connect4. The entire algorithm is implemented in C++ to increase efficiency during the Monte Carlo Tree Search (MCTS). Furthermore, to allow for better performance when playing, all computations are handled via a server. A secondary server has also been added to allow for easy re-routing of the main server and handle things like elo-ratings (see \sectionref{sec:Evaluation:elo-rating}) for all agents. This server only handles routing and data storage while the other one handles the AI. Additionally, I have added a short introduction on how neural networks work and how they are trained in \sectionref{NN}. 
 
 \section{Methods}
 \label{Methods}
@@ -104,13 +144,13 @@ The agent (computer player) runs a certain amount of simulation games using its 
 \subsection{Reinforcement Learning}
 When training neural networks, there are three major possible situations: Supervised learning, unsupervised learning, and reinforcement learning. The first uses predetermined data with known in- and outputs the network is trained to predict. An example of supervised learning is the recognition of handwriting as the data is defined by humans. This method consists of creating a large database of examples, and the neural network is then trained to predict a given output for all examples. 
 
-Unsupervised learning or self-organization is used when there is no previous available data and the neural network has to create those classifications itself. An example of unsupervised learning is image generation (DCGAN (Deep Constitutional Generative Adversarial neural networks)) as the output of the network is not defined by the programmer and the input is random noise. Image generation consists of two networks. The first network \(\theta_g\) is used to generate images. The second network \(\theta_c\) is the critic network used to evaluate how good  \(\theta_g\) is. The algorithm consists of generating images with \(\theta_g\) and using  \(\theta_c\) to try and distinguish them from some example outputs.
+Unsupervised learning or self-organization is used when there is no previous available data and the neural network has to create those classifications itself. An example of unsupervised learning is Vector quantization. The algorythems sorts points in n-dimensional space into a predetermined amount of groups. Every group is defined by its centroid point. Training happens by selecting a sample point at random, and moving the closest centroid point towards the sample point by a fraction of the distance betwean them. The sample point is selected from the input data \cite{wiki:Vector_quantization}. An example of both supervised and unsupervised learning can be seen in the demo\footnote{demo is at \url{https://github.com/JulianWww/Matura-AlphaZero-demos}}.
 
-These two methods represent the extreme ends of the spectrum. Reinforcement leaning on the other hand can be thought of as an intermediate form. It uses a predetermined environment which gives positive, neutral and negative feedback. The neural network is then discouraged from taking actions leading to negative feedback and encouraged to take actions leading to positive feedback. The feedback is determined by the environment the agent learns to interact with. In this case, losing a game would be bad and result in negative feedback whereas winning a game leads to positive feedback. Ties lead to neutral feedback. The agents learning is set up in such a way, that it is encouraged to take actions leading to positive feedback and discouraged from taking actions that lead to negative feedback. However actions, can lead to a loss that only occurs many game steps in the future. A common approach to solve this problem is to have the feedback propagate backwards to previous actions. In Alpha Zero, this is handled by the memory (see \sectionref{sec:memory}). When the game reaches an end state and a winner is determined, the feedback is propagated backwards up the game. If the player won, the feedback is positive. If he lost, it is negative. More specifically, if a player takes an action \(a_s\) at a state \(s\), that leads to a win, the reward for that state is defined as \(R(s,a_s) = 1\). On the other hand, if the action leads to a loss, the reward will be \(R(s, a_s) = -1\). If the game ends in a tie, the reward is \(R(s,a_s) = 0\). Every agent \(p\) will try to maximize \(\sum_{s\in g\cap p} R(s, a_s)\). \(g\cap p\) is the set of all states in which the player \(p\) takes an action. Let's look at a tic tac toe example of the following game:
+These two methods represent the extreme ends of the spectrum. Reinforcement leaning on the other hand can be thought of as an intermediate form. It uses a predetermined environment which gives positive, neutral and negative feedback. The neural network is then discouraged from taking actions leading to negative feedback and encouraged to take actions leading to positive feedback. The feedback is determined by the environment the agent learns to interact with. In this case, losing a game would be bad and result in negative feedback whereas winning a game leads to positive feedback. Ties lead to neutral feedback. The agents learning is set up in such a way, that it is encouraged to take actions leading to positive feedback and discouraged from taking actions that lead to negative feedback. However actions, can lead to a loss that only occurs many game steps in the future. A common approach to solve this problem is to have the feedback propagate backwards to previous actions. In Alpha Zero, this is handled by the memory (see \sectionref{sec:memory}). When the game reaches an end state and a winner is determined, the feedback is propagated backwards up the game. If the player won, the feedback is positive. If he lost, it is negative. More specifically, if a player takes an action \(a_s\) at a state \(s\), that leads to a win, the reward for that state is defined as \(R(s,a_s) = 1\). On the other hand, if the action leads to a loss, the reward will be \(R(s, a_s) = -1\). If the game ends in a tie, the reward is \(R(s,a_s) = 0\). Let \(g\) be the set of states traversed in anny given game. Every agent \(p\) will try to maximize \(\sum_{s\in g\cap \mathbb P} R(s, a_s)\). Where \(\mathbb{P}\) is the set of all state player \(p\) can traverse. Let's look at a tic tac toe example of the following game:
 \begin{center}
 \tickTackToe{}{}{}{}{}{}{}{}{player X} \to \tickTackToe{X}{}{}{}{}{}{}{}{player O} \to \tickTackToe{X}{O}{}{}{}{}{}{}{player X} \to \tickTackToe{X}{O}{}{}{X}{}{}{}{player O} \to \tickTackToe{X}{O}{}{O}{X}{}{}{}{player X} \to \tickTackToe{X}{O}{}{O}{X}{}{}{X}{}
 \end{center}
-Since player \(X\) won the game, the reward for every state \(s\in g\cap X\) is \(R(s, a_s) = 1\) and the reward for every state \(s\in g\cap O\) is \(R(s, a_s) = -1\). The reward for the entire game is:
+Since player \(X\) won the game, the reward for every state \(s\in g\cap \mathbb X\) is \(R(s, a_s) = 1\) and the reward for every state \(s\in g\cap \mathbb O\) is \(R(s, a_s) = -1\). Where \(\mathbb X\) is the set of all state with player X at turn and \(\mathbb O\) for player O. The reward for the entire game is:
 \begin{center}
 \tickTackToe{}{}{}{}{}{}{}{}{} \rewardArrow{1} \tickTackToe{X}{}{}{}{}{}{}{}{} \rewardArrow{-1} \tickTackToe{X}{O}{}{}{}{}{}{}{} \rewardArrow{1} \tickTackToe{X}{O}{}{}{X}{}{}{}{} \rewardArrow{-1} \tickTackToe{X}{O}{}{O}{X}{}{}{}{} \rewardArrow{1} \tickTackToe{X}{O}{}{O}{X}{}{}{X}{}
 \end{center}
@@ -137,45 +177,13 @@ Board games consist of placing stones of different types on a board with a certa
 \right]
 \] 
 Internally, the game board is represented by a flat vector. The conversion from a game state \(s  \in \mathbb G\) to vector is defined as \(vec(T_s(s))\). Where \(T_s(s):\mathbb G \to \mathbb R^{\cdots}\) is the board's 3-dimensional board tensor. The \(vec\) function is defined in \sectionref{sec:ref:vectorization:tensor}.
-\[
-vec
-\left(\left[ 
-\begin{bmatrix}
-a_{111} & \cdots & a_{11o} \\
-\vdots & \ddots & \vdots \\
-a_{1n1} & \cdots & a_{1no} \\
-\end{bmatrix}
-\cdots
-\begin{bmatrix}
-a_{m11} & \cdots &  a_{m1o} \\
-\vdots   & \ddots & \vdots   \\
-a_{mn1} & \cdots & a_{mno}  \\
-\end{bmatrix}
-\right]\right) = \left(\begin{matrix}
-a_{111}      \\
-\vdots        \\
-a_{11o}      \\
-\vdots        \\
-a_{1n1}      \\
-\vdots        \\
-a_{1no}      \\
-\vdots        \\
-a_{m11}     \\
-\vdots        \\
-a_{m1o}     \\
-\vdots        \\
- a_{mn1}    \\
-\vdots        \\
- a_{mno}    \\
-\end{matrix}\right)
-\]
 This operation for the tic tac toe board from before would look like this:
 \[
 vec\left(T_s\left(\ticTacToe{}{X}{O}{O}{X}{}{O}{}{X}\right)\right) = 
 [0\,1\,0\,0\,1\,0\,0\,0\,1\,0 \,0 \,1\,1\,0\,0\,1\,0\,0]^T
 \]
 \subsubsection{Actions}
-Actions are numbers used to identify changes to the game. Every game has a set of all possible actions \(\mathbb{A}_{possible} \subset \mathbb{N}_0\). In connect4, the set of all possible actions for the current player is \(\mathbb{A}_{possible} = [0, 41]\). There is no need to have actions for the player, that is not at turn as these will never be taken. Every number is associated with a position on the game board. The mapping \(a\) to game fields is the following:
+Actions are numbers used to identify changes to the game. Every game has a set of all possible actions \(\mathbb{A}_{possible} \subset \mathbb{N}_0\). This set represents the sum of actions  a certain player can take at anny valid game state.  In connect4 there is no need to distinguish betwean colors as the action represents where to place the next stone. The color is determined by which player is at turn when the action is taken. In connect4, the set of all possible actions for the current player is \(\mathbb{A}_{possible} = [0, 41]\). There is no need to have actions for the player, that is not at turn as these will never be taken. Every number is associated with a position on the game board. The mapping \(a\) to game fields is the following:
 \begin{center}
 \begin{tabular}{| c | c | c | c | c | c | c |}
  \hline
@@ -196,7 +204,7 @@ Let \(\mathbb{A}(s)\) be the set of all legal actions for a given state  \(s \in
  6 & 7 & 8 \\\hline
 \end{tabular} & \tickTackToe{X}{O}{}{}{}{}{}{}{State \(s\)}
 \end{tabular}\end{center}
-In this example player \(X\) is allowed to place a stone in anny empy field \(\mathbb A(s) = \left\{ 2, 3, 4, 5, 6, 7, 8 \right\}\). Therefor \(\mathcal A(a, s)\) is valid if \(a \in \mathbb A(s)\) and otherwise invalid.
+In this example player \(X\) is allowed to place a stone in anny empy field \(\mathbb A(s) = \left\{ 2, 3, 4, 5, 6, 7, 8 \right\}\). Therefor \(\mathcal A(a, s)\) is valid if \(a \in \mathbb A(s)\) and otherwise invalid. Therefor \(\mathcal A(0, s)\) and \(\mathcal A(1, s)\) are invalid while  \(\mathcal A(2, s),\,\dots,\,\mathcal A(8, x)\) are valid
 
 \subsection{MCTS}
 A Monte Carlo tree search (MCTS) is a tree search algorithm that can be used to find sequences of actions leading to a desirable outcome. This is done by procedurally generating a directed graph of possible successor states to the current state or root state. 
@@ -336,7 +344,7 @@ All neural network layers are linear functions. Thus, given two activation funct
 f(x) = f_1(f_2(x)) = a(cx + d) + b = acx + ad + b = ex + g
 \end{equation}
 where \(a\),  \(b\), \(c\), \(d\), \(e\) and \(g \in \mathbb R\). In order to represent non linear functions, a non linear activation function \(f_a\) is added between two neural network layers. Thus, \(f(x)\) becomes \(f(x) = f_1(f_a(f_2(x)))\). In this neural network, three different activation functions are used: \(tanh\), \(softmax\), and \(LeakyReLU\). These functions are defined as follows:
-\subparagraph{tanh:}\(\mathbb{R}\to \mathbb{R}\)
+\subparagraph*{tanh:}\(\mathbb{R}\to \mathbb{R}\)
 
 \begin{center}
 \includesvg[width=0.9\columnwidth]{images/tanh}
@@ -348,7 +356,7 @@ tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}
 \end{equation}\begin{equation} \label{eq:NN:tanh_derivative}
 \frac{d}{dx}tanh(x) = sech(x)^2
 \end{equation}
-\subparagraph{softmax:} \(\mathbb{R}^n\to \mathbb{R}^n\)\\
+\subparagraph*{softmax:} \(\mathbb{R}^n\to \mathbb{R}^n\)\\
 \indent For a given input vector \(v \in \mathbb{R}^n\). The output vector \(o \in \mathbb{R}^n\) at every position \(i \in [1, n]\) is:
 \begin{equation} \label{eq:NN:softmax}
 o_i = softmax(v)_i = \frac{e^{v_i}}{\sum_{j \in v} e^j}
@@ -399,7 +407,7 @@ softmax'(v)_{ij} = \left\{
 \end{array}
 \right.
 \end{equation}
-\subparagraph{LeakyReLU:}\(\mathbb{R} \to \mathbb{R}\)
+\subparagraph*{LeakyReLU:}\(\mathbb{R} \to \mathbb{R}\)
 \begin{center}
 \includesvg[width=0.9\columnwidth]{images/LeakyReLU}
 \captionof{figure}{LeakyReLU with \(c = 0.3\)}
@@ -632,8 +640,6 @@ r_a = r_b - ln\left(\frac{1-s_a}{s_a}\right) \cdot 400
 \label{fig:eloInv}
 \end{center}
 Since a ranking of all the agents already exists (see \sectionref{sec:modelEvaluation}), an agent's elo-rating can be computed by playing against an older version and then using equation \ref{eq:elo_back} to determine its elo-rating. 
-%\subsection{elo implementation}
-%The elo-rating of all agents is handled by a secondary server. This server stores the elo values computed by the AI server. The Elo server stores an identity value for every agent. This value is the AI version for the AI and a negative number for human players. The system can request the elo-rating of a certain player, set a player's elo-rating, update the elo-rating of a player and give new clients a unique key which unfortunately does not work for IOS clients. The computer's elo-ratings are predetermined and fixed. They are computed by having each player play against the previous player and using equation \ref{eq:elo_back} to set their elo-rating. Human players have a starting rating. They then play the agent with the closest rating to their own or they can request a specific version (except on IOS where the player will always play the best version). After every game, the player's rating is adjusted in accordance with equation \ref{eq:elo_update}.
 \subsubsection{Relativity of the Elo-rating}
 The only problem is that elo is a relative rating. The rating of any other agent depends on its performance against other agents and their elo-ratings. Therefore, one must give the system a base rating for at least one predefined agent. In this case, there are no previously known elo-rated agents , so I defined the untrained agent's elo-rating as 100. All other elo-ratings are relative to that.
 
@@ -676,9 +682,7 @@ This will require a further 4 bytes identifying the agent. The second action \(a
 r = \text{min}(\left\{x \in\mathbb E | x \geq e \right\})
 \end{equation}
 where \(\mathbb E\) is the set of the elo-ratings of all agents. The last action \(a=-2\) will access the custom data part of the server. This subsection will require an integer describing how many bytes the request consists of. The request is encoded using the python pickle library and consists of either a tuple containing a string, and a list of strings; or a tuple containing a string, a list of strings, and any other data type. In the first case, the system will return the value of the saved data associated with that request. In the second case, the value of the associated the variable will be set to whatever the third value is.\\\\
-%\subsubsection{Variable Association}\\
 The first two variables of the tuple are a string \(f\) and a list of strings \(k\). \(f\) tells the server in which file the variable is stored. Therefore, the server will load the json file with the name \(f\). \(k\) is the list of keys used to index the dictionary \(f\). \\\\
-%For example \(f = \text{example.json}\). In this case, the server would open the "example.json" file shown in \listingref{listing:dataAssociation}. Assuming that \(k = \text{["address", "city"]}\), than the server would first search for key "address" in the outer most directory. At that key, there is another ditionary, whitch is than searched for the key "city".  At that key, there is a string ("New York"), which would than be sent to the client.
 For example, with \(f = \text{example.json}\), the server would decode the json file "example.json" shown in \listingref{listing:dataAssociation}. Assuming that \(k =\) ["address", "city"], the server would first search for key "address" in the outer most directory. At that key, there is another dictionary, which is then searched for the key "city".  At that key, there is a string ("New York"), which would  be returned to the client.
 
 \begin{listing}[H]
@@ -778,16 +782,6 @@ This client version uses the python socket library for communication and Tkinter
 \subsubsection{iOS Client}\label{sec:iosClient}
 The iOS version does the same thing as the Desktop version with a few differences. Firstly, it renders the board using the pythonista scene library. Secondly, it dose not create or store accounts. The player will always play against the best AI version. Thirdly, it does not have the possiblity to replay games. Lastly, the Client will request its actual source code from the web server to allow for easier updating.
 
-\section{Implementation}
-The Implementation of the algorithm consists of three parts. Namely the MCTS, neural network, Game Memory and a bunch of synchronization code. In addition there is some code used to call these components. 
-\subsection{Game}
-There are two parts to game management. The first is the Game object and the second is the Game State object. The Game State is a representation of a given possible state of the game. This class uses an  int player \(\in \{1, -1\}\). Player represents witch player is going to take an action next. A Boolean value done is true if the game is at an endgame state and false otherwise. A three int tuple val represents winning information about the game. The first int is 1 if the last action taken ended in defeat, -1 if it ended in a win and 0 if it ended in a draw. The second and third integer's are the points for the other player and the last player respectively. In order to handle changes to the game state by taking actions the game state has a \textbf{takeAction(int)}
-\begin{lstlisting}
-for (int i=0; i<iterations;i++)
-{
-do something else
-}
-\end{lstlisting}
 
 \section{Further definitions}
 \subsection{Set Exclusion}
@@ -917,7 +911,22 @@ Let \(vec(T)\) be defined as:
 \begin{equation}
 vec(T) = T_0 \frown T_1 \frown \dots \frown T_n
 \end{equation}
-Where \(\frown\) is defined defined in \sectionref{sec:ref:vectorConcatination}. For those who are familiar with python's numpy library, \(vec\) is equivilent to numpy.flatten.
+Where \(\frown\) is defined defined in \sectionref{sec:ref:vectorConcatination}. For those who are familiar with python's numpy library, \(vec\) is equivilent to numpy.flatten. For example consider the following 3 d-Tesnor vectorization:
+\[
+vec
+\left(\left[ 
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+\begin{bmatrix}
+e & f \\
+g & h\\
+\end{bmatrix}
+\right]\right) = \left(\begin{matrix}
+a \\ b \\ c \\d \\ e \\ f \\ g \\h
+\end{matrix}\right)
+\]
 
 \subsection{Vector Concatination}\label{sec:ref:vectorConcatination}
 Vector Concatination of two vectors \(v\) and \(u\) of dimensions \(n_v\) and  \(n_u\), denoted \(v\frown u\), is the \(n_v + n_u\) dimensional vector obtained by placing both vectors one on top of the other.
@@ -934,11 +943,134 @@ u_{n_u}\\
 \right)
 \end{equation}
 
-\bibliographystyle{unstr}
+\bibliographystyle{plain}
 \bibliography{bibliography}
 
 \section*{Acknowledgements}
 \begin{itemize}
 \item Leonie Scheck, Frederik Ott, Nico Steiner, Wolfgang Wandhoven for aiding in evaluating the AI against human players and providing feedback.
 \end{itemize}
+
+\newpage\section{Code}
+\subsection{AlphaZeroPytorch}
+\subsubsection{AlphaZeroPytorch.h}							\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.h}
+\subsubsection{AlphaZeroPytorch.cpp}						\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.cpp}
+\subsubsection{cmake.sh}												\incFile{sh}{AlphaZeroPytorch/cmake.sh}
+\subsubsection{CMakeLists.txt}										\incFile{python}{AlphaZeroPytorch/CMakeLists.txt}
+\subsubsection{convertToJceFormat.cpp}					\incFile{C++}{AlphaZeroPytorch/convertToJceFormat.cpp}
+%\incFile{C++}{AlphaZeroPytorch/detect_cuda_compute_capabilities.cpp}
+%\incFile{C++}{AlphaZeroPytorch/detect_cuda_version.cc}
+\subsubsection{doEloRaiting.cpp}									\incFile{C++}{AlphaZeroPytorch/doEloRaiting.cpp}
+\subsubsection{makeFiles.hpp}										\incFile{C++}{AlphaZeroPytorch/makeFiles.hpp}
+\subsubsection{Replay.cpp}											\incFile{C++}{AlphaZeroPytorch/Replay.cpp}
+\subsubsection{runServer.cpp}										\incFile{C++}{AlphaZeroPytorch/runServer.cpp}
+\subsubsection{showLoss.cpp}										\incFile{C++}{AlphaZeroPytorch/showLoss.cpp}
+\subsubsection{test.cpp}												\incFile{C++}{AlphaZeroPytorch/test.cpp}
+\subsubsection{include}													% AlphaZeroPytorch/include
+\paragraph{config.hpp}													\incFile{C++}{AlphaZeroPytorch/include/config.hpp}
+\paragraph{config.cpp}													\incFile{C++}{AlphaZeroPytorch/include/config.cpp}
+\paragraph{io.hpp}															\incFile{C++}{AlphaZeroPytorch/include/io.hpp}
+\paragraph{log.hpp}														\incFile{C++}{AlphaZeroPytorch/include/log.hpp}
+\paragraph{log.cpp}														\incFile{C++}{AlphaZeroPytorch/include/log.cpp}
+\paragraph{timer.hpp}													\incFile{C++}{AlphaZeroPytorch/include/timer.hpp}
+\paragraph{ai}																	% AlphaZeroPytorch/include/ai
+\subparagraph{agent.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.hpp}
+\subparagraph{agent.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.cpp}
+\subparagraph{MCTS.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.hpp}
+\subparagraph{MCTS.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.cpp}
+\subparagraph{memory.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.hpp}
+\subparagraph{memory.cpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.cpp}
+\subparagraph{model.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/model.hpp}
+\subparagraph{modelSynchronizer.hpp}						\incFile{C++}{AlphaZeroPytorch/include/ai/modelSynchronizer.hpp}
+\subparagraph{modelWorker.hpp}								\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.hpp}
+\subparagraph{modelWorker.cpp}									\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.cpp}
+\subparagraph{playGame.hpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.hpp}
+\subparagraph{playGame.cpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.cpp}
+\subparagraph{utils.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/utils.hpp}
+\paragraph{game}															% AlphaZeroPytorch/include/game
+\subparagraph{game.hpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.hpp}
+\subparagraph{game.cpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.cpp}
+\paragraph{jce}																% AlphaZeroPytorch/include/jce
+\subparagraph{load.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/load.hpp}
+\subparagraph{save.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/save.hpp}
+\subparagraph{string.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/string.hpp}
+\subparagraph{vector.hpp}											\incFile{C++}{AlphaZeroPytorch/include/jce/vector.hpp}
+\paragraph{server}															% AlphaZeroPytorch/include/server
+\subparagraph{eloClient.hpp}										\incFile{C++}{AlphaZeroPytorch/include/Server/eloClient.hpp}
+\subparagraph{server.hpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.hpp}
+\subparagraph{server.cpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.cpp}
+\paragraph{test}																% AlphaZeroPytorch/include/test
+\subparagraph{testSuit.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.hpp}	
+\subparagraph{testSuit.cpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.cpp}
+\subparagraph{testUtils.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testUtils.hpp}
+
+\subsection{Clients}														% Clients/ConsoleClient
+\subsubsection{ConsoleClient}
+\paragraph{ConsoleClient.h}											\incFile{C++}{Clients/ConsoleClient/ConsoleClient.h}
+\paragraph{ConsoleClient.cpp}										\incFile{C++}{Clients/ConsoleClient/ConsoleClient.cpp}
+\paragraph{include}														% clients/consoleClient/include
+\subparagraph{agent.hpp}												\incFile{C++}{Clients/ConsoleClient/include/agent.hpp}
+\subparagraph{game.hpp}												\incFile{C++}{Clients/ConsoleClient/include/game.hpp}
+\subparagraph{modifications.hpp}								\incFile{C++}{Clients/ConsoleClient/include/modifications.hpp}
+\paragraph{scr}																% Clients/ConsoleClient/src
+\subparagraph{game.cpp}												\incFile{C++}{Clients/ConsoleClient/scr/game.cpp}
+\subsubsection{iosClient}												% Clients/iosClient
+\paragraph{caller.py}														\incFile{python}{Clients/iosClient/caller.py}
+\paragraph{connect4IOS.py}											\incFile{python}{Clients/iosClient/connect4IOS.py}
+\subsubsection{pyClient}												% Clients/pyClient
+\paragraph{Client.py}														\incFile{python}{Clients/pyClient/Client.py}
+\paragraph{game.py}														\incFile{python}{Clients/pyClient/game.py}
+\paragraph{gameSaver.py}												\incFile{python}{Clients/pyClient/gameSaver.py}
+\paragraph{GUI.py}															\incFile{python}{Clients/pyClient/GUI.py}
+\paragraph{main.py}														\incFile{python}{Clients/pyClient/main.py}
+\paragraph{test.py}														\incFile{python}{Clients/pyClient/test.py}
+\paragraph{winStates.json}											\incFile{python}{Clients/pyClient/winStates.json}
+
+\subsection{elo}																% /elo
+\subsubsection{agent.py}												\incFile{python}{elo/agent.py}
+\subsubsection{renderElo.py}										\incFile{python}{elo/renderElo.py}
+\subsubsection{score.py}												\incFile{python}{elo/score.py}
+\subsubsection{server.py}												\incFile{python}{elo/server.py}
+
+\subsection{game}															% games/connect4
+\subsubsection{connect4}
+\paragraph{config.hpp}													\incFile{C++}{games/connect4/config.hpp}
+\paragraph{game.hpp}													\incFile{C++}{games/connect4/game.hpp}
+\paragraph{game.cpp}													\incFile{C++}{games/connect4/game.cpp}
+\subsubsection{othello}													% games/othello
+\paragraph{config.hpp}													\incFile{C++}{games/othello/config.hpp}
+\paragraph{game.hpp}													\incFile{C++}{games/othello/game.hpp}
+\paragraph{game.cpp}													\incFile{C++}{games/othello/game.cpp}
+
+% /
+\subsection{CMakeLists.txt}											\incFile{python}{CMakeLists.txt}
+\subsection{README.md}												\incFile{python}{README.md}
+\subsection{serch.sh}														\incFile{sh}{serch.sh}
+
+\section{Demos}
+\subsection{Matura-AlphaZero-demos}
+\subsubsection{CMakeLists.txt}										\incDemo{python}{CMakeLists.txt}
+%\subsubsection{LICENSE}											\incDemo{python}{LICENSE}
+\subsubsection{main.cpp}												\incDemo{c++}{main.cpp}
+\subsubsection{README.md}										\incDemo{python}{README.md}
+\subsubsection{supervised.cpp}									\incDemo{c++}{supervised.cpp}
+\subsubsection{include}													% demo/include
+\paragraph{point.hpp}													\incDemo{c++}{include/point.hpp}
+\paragraph{utils.hpp}														\incDemo{c++}{include/utils.hpp}
+\subsubsection{scr}														% demo/scr
+\paragraph{point.cpp}													\incDemo{c++}{scr/point.cpp}
+\subsubsection{supervised}											% demo/supervised
+\paragraph{include}														% demo/supervised/include
+\subparagraph{config.hpp}											\incDemo{c++}{supervised/include/config.hpp}
+\subparagraph{model.hpp}											\incDemo{c++}{supervised/include/model.hpp}
+\paragraph{src}																% demo/supervised/src
+\subparagraph{model.cpp}												\incDemo{c++}{supervised/src/model.cpp}
+\subsubsection{unsupervised}										% demo/unsupervised
+\paragraph{include}														% demo/unsupervised/include
+\subparagraph{cluster.hpp}											\incDemo{c++}{unsupervised/include/cluster.hpp}
+\subparagraph{config.hpp}											\incDemo{c++}{unsupervised/include/config.hpp}
+\subparagraph{group.hpp}												\incDemo{c++}{unsupervised/include/group.hpp}
+\paragraph{src}																% demo/unsupervised/src
+\subparagraph{cluster.cpp}											\incDemo{c++}{unsupervised/src/cluster.cpp}
+\subparagraph{group.cpp}												\incDemo{c++}{unsupervised/src/group.cpp}
 \end{document}
