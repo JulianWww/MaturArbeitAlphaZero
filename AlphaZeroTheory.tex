@@ -49,7 +49,8 @@
 \titlespacing*{\subparagraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
-\newcommand{\imgRef}[1]{(fig \ref{#1} on page \pageref{#1})}
+\newcommand{\imgRef}[1]{(\imgRefInline{#1})}
+\newcommand{\imgRefInline}[1]{fig \ref{#1} on page \pageref{#1}}
 \newcommand{\equationref}[1]{equation \ref{#1} on page \pageref{#1}}
 \newcommand{\sectionref}[1]{section \ref{#1} on page \pageref{#1}}
 \newcommand{\listingref}[1]{listing \ref{#1} on page \pageref{#1}}
@@ -204,30 +205,43 @@ Let \(\mathbb{A}(s)\) be the set of all legal actions for a given state  \(s \in
  6 & 7 & 8 \\\hline
 \end{tabular} & \tickTackToe{X}{O}{}{}{}{}{}{}{State \(s\)}
 \end{tabular}\end{center}
-In this example player \(X\) is allowed to place a stone in anny empy field \(\mathbb A(s) = \left\{ 2, 3, 4, 5, 6, 7, 8 \right\}\). Therefor \(\mathcal A(a, s)\) is valid if \(a \in \mathbb A(s)\) and otherwise invalid. Therefor \(\mathcal A(0, s)\) and \(\mathcal A(1, s)\) are invalid while  \(\mathcal A(2, s),\,\dots,\,\mathcal A(8, x)\) are valid
+In this example player \(X\) is allowed to place a stone in anny empy field \(\mathbb A(s) = \left\{ 2, 3, 4, 5, 6, 7, 8 \right\}\). Therefor \(\mathcal A(s, a)\) is valid if \(a \in \mathbb A(s)\) and otherwise invalid. Therefor \(\mathcal A(s, 0)\) and \(\mathcal A(s, 1)\) are invalid while  \(\mathcal A(s, 2),\,\dots,\,\mathcal A(s, 8)\) are valid.
 
 \subsection{MCTS}
 A Monte Carlo tree search (MCTS) is a tree search algorithm that can be used to find sequences of actions leading to a desirable outcome. This is done by procedurally generating a directed graph of possible successor states to the current state or root state. 
-
+\subsubsection{Structure}
 This graph consists of nodes that are used to simulate possible sequences of states starting from a root state and edges that connect nodes. The set of all possible nodes \(\mathbb{M}_{possible} = \{\mathcal{N}(s)~|~ s \in \mathbb{G}\}\), where \(\mathcal{N}:\mathbb{G}\to\mathbb{M}_{possible}\) is a bijective function that maps a game state to a node. \(\mathcal{S}~:~\mathbb{M}_{possible}\to\mathbb{G} = \mathcal{N}^{-1}\) is the inverse of \(\mathcal{N}\). The set of all allowed actions for a certain node \(n\in\mathbb{M}_{possible}\) is \(\mathbb{A}(n) = \mathbb{A}(\mathcal{S}(n))\) . The set of all nodes in an MCTS at any given time is \(\mathbb{M} \subseteq \mathbb{M}_{possible}\). Every node \(n \in \mathbb{M}\) has a set of edges \(\mathbb{E}(n)\) that connect it to other nodes, the set of all possible edges is \(\mathbb{E}_{possible}\). \(\mathcal{E}:~\mathbb{M}\times \mathbb{A}_{possible} \to \mathbb{E}_{possible}\) is a bijective function used to map nodes and actions to edges. Furthermore for \(\mathcal{E}(n, a)\) to be valid \(a\) must be an element of \(\mathbb{A}(n)\).  The function \(\mathcal{N}_{to}~:~\mathbb{E}\to\mathbb{M}\) maps an edge to the node it is pointing to while \(\mathcal{N}_{from}~:~\mathbb{E}\to\mathbb{M}\) is used to find the node an edge is pointing from.
 There are, however, two different kinds of nodes, that can be distinguished by the set of their edges. The first are the expanded nodes \(\mathbb{M}_{expanded}\subseteq\mathbb{M}\). For expanded nodes \( n\in \mathbb{M}_{expanded}\) the set of edges \(\mathbb{E}(n) = \{\mathcal{E}(n,a)~|~ a\in \mathbb{A}(n)\} \neq \emptyset\). The second category are the leaf nodes \(\mathbb{M}_{leaf} \subseteq \mathbb{M}\). Leaf nodes are unexpanded nodes. This means that they do not yet have any connections to other nodes. Thus \(\mathbb{E}(n) = \emptyset\) for all \(n \in \mathbb{M}_{leaf}\).
 
-MCTS simulations consist of four phases: selection, evaluation, expansion, and back propagation. Every simulation starts from the MCTS's root node \(n_0 \in \mathbb{M}\). The selection phase of the MCTS is used to select a leaf node \(n_L \in \mathbb{M}_{leaf}\). This is done by using a selection function \(\sigma~:~\mathbb{M}\to\mathbb{M}\). This function is used to find node \(n_{t+1}\) from node \(n_t\) for \(t\in [0,L[\). \(n_{t+1}\) is selected by \(\sigma\).
+\begin{figure}[h]
+	\centering
+	\includesvg[width=0.4\columnwidth]{images/MCTSDefsExample}
+	\caption{A vary simple MCST example}
+	\label{fig:MCTSDefs}
+\end{figure}
+Consider the example MCST in \imgRefInline{fig:MCTSDefs}. The set \(\mathbb M\) of every node in the MCTS is \(\mathbb M = \{n_1,\, n_2\}\). Node \(n_0\) has one edge \(e_1\) pointing to \(n_1\). Therefor \(\mathbb E(n_0) = \{e_1\}\) and because \(n_1\) has no edges leaving it, \(\mathbb E(n_1) = \emptyset\). This means that \(\mathbb M_{expanded} = \{n_0\}\) and \(\mathbb M_{leaf} = \{n_1\}\). Furthermore \(\mathcal N_{to}(e_1) = n_1\) and \(\mathcal N_{from}(e_1) = n_0\). If we assume that \(e_1\) is associated with action \(a_e \in \mathbb A(n_0)\), than \(\mathcal E(n_0, a_e) = e_1\)
+
+\subsubsection{Quick Overview}
+MCTS simulations consist of four phases: selection, evaluation, expansion, and back propagation. Every simulation starts from the MCTS's root node \(n_0 \in \mathbb{M}\). The selection phase of the MCTS is used to select a leaf node \(n_L \in \mathbb{M}_{leaf}\). This is done by using a selection function \(\sigma~:~\mathbb{M}\to\mathbb{M}\) defined in \equationref{eq:sigma}. This function is used to find node \(n_{t+1}\) from node \(n_t\) for \(t\in [0,L[\). \(n_{t+1}\) is selected by \(\sigma\).
 \begin{equation}
 \sigma(n_t) = n_{t+1}
 \end{equation}
- This means that \(n_1 = \sigma(n_0)\), \(n_2 =  \sigma(n_1)\) \dots. When a leaf node is found, that leaf node is evaluated. In Alpha Zero this is achieved using the neural network described in section \ref{NN}. The neural network evaluates the leaf node using its evaluation function \(\theta~:~\mathbb{M}\to \mathbb{R}\times\mathbb{R}^{|\mathbb{A}_{possible}|}\). The neural network's first output is an estimation of the expected reward. The expected reward can be thought of as the probability of winning minus the probability of loosing games starting at \(n_L\). The neural network's second output is the action policy \(p\in\mathbb{R}^{|\mathbb{A}_{possible}|}\) that represents the advantagiousness of the actions in \(\mathbb{A}_{possible}\). \(n_L\) is now expanded. Expansion works by creating nodes \(\mathbb{M}_{new} = \{\mathcal{N}(\mathcal{A}(\mathcal{S}(n_L), a)) | a \in \mathbb{A}(n_L)\}\) unless these nodes already exist. These new nodes are added to the MCTS. Furthermore, \(n_L\)'s edges are redefined as \(\mathbb{E}(n_L) = \{\mathcal{E}(n_L, a) | a \in \mathbb{A}(n_L)\}\). By definition \(\mathcal{N}_{to}(\mathcal{E}(n_L, a) = \mathcal{N}(\mathcal{A}(\mathcal{S}(n_L), a))\) for \(a\in\mathbb{A}(n_L)\). This can lead to \(n_L\) being moved from \(\mathbb{M}_{leaf}\) to \(\mathbb{M}_{expanded}\). During back propagation the expected reward of \(n_L\) is used to update the expected reward of all nodes traversed during selection. This effectively improves the estimation of the expected reward. This four step simulation is carried out a certain amount of times. The estimation error for all estimations of the expected reward will converge to \(0\) as the amount of simulations increases. The advantageousness of all actions \(a  \in \mathbb{A}(n_0)\) will also be given by the expected rewards of all successor states to \(n_0\). \imgRef{MCTS-simulation}
+ This means that \(n_1 = \sigma(n_0)\), \(n_2 =  \sigma(n_1)\) \dots. When a leaf node is found, that leaf node is evaluated. In Alpha Zero this is achieved using the neural network described in section \ref{NN}. The neural network evaluates the leaf node using its evaluation function \(\theta~:~\mathbb{M}\to \mathbb{R}\times\mathbb{R}^{|\mathbb{A}_{possible}|}\). The neural network's first output is an estimation of the expected reward. The neural network's second output is the action policy \(p\in\mathbb{R}^{|\mathbb{A}_{possible}|}\) that represents the advantagiousness of the actions in \(\mathbb{A}_{possible}\). \(n_L\) is now expanded. Expansion works by creating nodes \(\mathbb{M}_{new} = \{\mathcal{N}(\mathcal{A}(\mathcal{S}(n_L), a)) | a \in \mathbb{A}(n_L)\}\) unless these nodes already exist and then redefineing \(\mathbb M = \mathbb M \cup \mathbb M_{new}\). Furthermore, \(n_L\)'s edges are redefined as \(\mathbb{E}(n_L) = \{\mathcal{E}(n_L, a) | a \in \mathbb{A}(n_L)\}\). By definition \(\mathcal{N}_{to}(\mathcal{E}(n_L, a) = \mathcal{N}(\mathcal{A}(\mathcal{S}(n_L), a))\) for \(a\in\mathbb{A}(n_L)\). This leads to \(n_L\) being moved from \(\mathbb{M}_{leaf}\) to \(\mathbb{M}_{expanded}\). During back propagation the expected reward of \(n_L\) is used to update the expected reward of all nodes traversed during selection. This effectively improves the estimation of the expected reward. This four step simulation is carried out a certain amount of times. The estimation error for all estimations of the expected reward will converge to \(0\) as the amount of simulations increases.
 
 \subsubsection{Evaluation Basis}
 The MCTS's goal is to find good estimations of the reward for a certain action at a certain state. This reward estimation is \(Q~:~\mathbb{E}_{possible}\to \mathbb{R}\). To define \(Q\), the functions \(W~:~\mathbb{E}\to\mathbb{R}\) and \(N~:~\mathbb{E}\to\mathbb{N}_0\) are required. \(N(e)\) is the amount of times an edge \(e\in\mathbb{E}_{possible}\) has been traversed. This means how many times \(\sigma\) has chosen to follow the edge \(e\) to a new node. \(W(e)\) is the sum of the reward computations from all \(N(e)\) times the edge has been evaluated. Therefore the expected reward \(Q\) is defined as:
 \begin{equation}
 Q(e) = \frac{W(e)}{N(e)}
 \end{equation}
-The fourth and last of these functions is \(P~:~\mathbb{E}\to\mathbb{R}\). \(P\) is the policy function, it's the neural network's preliminary estimation of \(P(e) \approx \frac{N(e)}{\sum_{i\in\mathbb{E}(\mathcal{N}_{from}(e))}N(i)}\). This function is used to guide the search to more promising edges before a lot of time is spent on simulation.
+The fourth and last of these functions is \(P~:~\mathbb{E}\to\mathbb{R}\). \(P\) is the policy function, it's the neural network's preliminary estimation of: 
+\begin{equation}\label{eq:MCTS:P}
+	P(e) \approx \frac{N(e)}{\sum_{i\in\mathbb{E}(\mathcal{N}_{from}(e))}N(i)}
+\end{equation}
+This function is used to guide the search to more promising edges before a lot of time is spent on simulation.
 
 \subsubsection{Leaf Selection} \label{sec:Methods:MCTS:Leaf_selection}
 MCTS's evaluation starts by simulating future moves within the tree. This is done by selecting an edge and then following that edge to a new node. From there, the next edge and node are selected. This is repeated until a leaf node is reached. To select an edge and thus a node from the current node \(n\in \mathbb{M}\) the function \(\sigma\) is used. To define \(\sigma\) we must first define the edge evaluation function \(v~:~\mathbb{E}\to\mathbb{R}\). \(v\) is defined as follows:
-\begin{equation}
+\begin{equation}\label{eq:sigma}
 v(e) = Q(e) + c_{puct}P(e)\cdot\frac{\sqrt{\Sigma_{b\in\mathbb{E}(\mathcal{N}_{from}(e))}N(b)}}{1+N(e)}
 \end{equation}
 Where \(c_{puct}\in \mathbb{R}^+\) is the exploration constant used to define how important exploration is. The smaller \(c_{puct}\) is, more important \(Q\) and less important exploration and \(P\). \(\sigma\), for a given node \(n\in\mathbb{M}\), is then defined as:
@@ -252,7 +266,7 @@ P(e) = \pi(e)
 \[
 \pi(\mathcal{E}(n_L, a)) = p_{a+1}
 \]
-where \(a\) is the edges action \(a \in \mathbb{A}(n_L)\). \(\mathbb{M}_{new}\) is then added to \(\mathbb{M}\).
+where \(a\) is the edges action \(a \in \mathbb{A}(n_L)\). \(\mathbb M\) and \(\mathbb E(n_L\) are then redefined as \(\mathbb M = \mathbb M \cup \mathbb M_{new}\) and \(\mathbb E(n_L) = \{\mathcal E(n_L, a)\;|\;a\in\mathbb A(n_L)\}\). \(M_{expanded}\) and \(M_{leaf}\) also change according to there definition.
 
 \subsubsection{Backfill}
 The value \(v\) is used to update the reward prediction for all nodes \(n_{[0, L]}\) traversed during the edge selection. Assuming that \(\rho~:~\mathbb{E}_{possible}\to\{1,\,-1\}\) is the player taking an action at an edge \(e\in\mathbb{E}_{possible}\), \(W\) and \(N\) are updated as follows for all nodes \(n_t\) with \(t\in [0,L]\):
@@ -260,6 +274,7 @@ The value \(v\) is used to update the reward prediction for all nodes \(n_{[0, L
 N(n_t) + 1 &\Rightarrow N(n_t)\\
 W(n_t) + v \cdot \rho(n_t) \cdot \rho(n_L) &\Rightarrow W(n_t)\\
 \end{align*}
+See \imgRefInline{MCTS-simulation} for example Simulation.
 
 %-------------------------------------------------------------------------
 \subsection{Neural Network}
