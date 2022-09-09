@@ -15,7 +15,8 @@ def elo(x):
 def elo_back(x):
     return 0 - np.log((1-x)/x)*400
 
-x = np.arange(0, 1, 0.01)
-plt.plot(x, elo_back(x))
+x = np.arange(-2000, 2000, 10)
+plt.plot(x, elo(x))
+plt.xlabel(r"$r_{a}$")
 plt.savefig("fig.svg")
 plt.show()

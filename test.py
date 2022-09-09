@@ -8,18 +8,31 @@ def leakyReLU(x):
     out[neg] = x[neg] * 0.3
     return out
 
+def dleakyReLU(x):
+    out = np.ones_like(x)
+    neg = np.where(x<0)
+    out[neg] = 0.3
+    return out
+
+def tanh(x):
+    return (np.e**x - np.e**(-x))/(np.e**x + np.e**(-x))
+
+def sech(x):
+    return (2*np.e**x)/(np.e**(2*x)+1)
+
 def softmax(x):
     x = 2.0**x
     return x / 128.0
 
 # Select length of axes and the space between tick labels
-xmin, xmax, ymin, ymax = -5, 5, -2, 5
+xmin, xmax, ymin, ymax = -3, 3, -1, 1
 ticks_frequency = 1
 
 # Plot points
 fig, ax = plt.subplots(figsize=(xmax - xmin, ymax - ymin))
 x = np.arange(xmin-1, xmax+1, 0.1)
-plt.plot(x, (leakyReLU(x)))# gaussian_filter1d   , sigma=1
+plt.plot(x, (leakyReLU(x)))
+plt.plot(x, (dleakyReLU(x)))# gaussian_filter1d   , sigma=1
 
 # Set identical scales for both axes
 ax.set(xlim=(xmin-0.5, xmax+0.5), ylim=(ymin-0.5, ymax+0.5))

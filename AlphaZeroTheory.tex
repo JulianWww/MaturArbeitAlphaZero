@@ -49,12 +49,12 @@
 \titlespacing*{\subparagraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
-\newcommand{\imgRef}[1]{(\imgRefInline{#1})}
-\newcommand{\imgRefInline}[1]{fig \ref{#1} on page \pageref{#1}}
+\newcommand{\imgRef}[1]{(fig \ref{#1} on page \pageref{#1})}
 \newcommand{\equationref}[1]{equation \ref{#1} on page \pageref{#1}}
 \newcommand{\sectionref}[1]{section \ref{#1} on page \pageref{#1}}
 \newcommand{\listingref}[1]{listing \ref{#1} on page \pageref{#1}}
 \newcommand{\source}[1]{\caption*{Source: {#1}} }
+\newcommand{\quckeq}[1]{(\ref{#1})}
 
 \newcommand{\tickTackToe}[9]{
 \begin{tabular}{p{7px}|p{7px}|p{7px}}
@@ -136,7 +136,7 @@
 \tableofcontents
 \newpage
 
-Alpha Zero is an algorithm published in 2018 by Google Deepmind as the generalization of AlphaGo Zero, an algorithm that learned to play the game of Go using only the rules of the game. In the generalized version, the same principles were applied to Chess and Shogi. Unlike previous algorithms such as StockFish or Elmo that use hand-crafted evaluation functions along with alpha-beta searches over a large search space, Alpha Zero uses no human knowledge. Rather, it generates all information through self-play. It has been shown to achieve superhuman performance in Chess, Shogi and Go. In this project the AI will be trained to play connect4. The entire algorithm is implemented in C++ to increase efficiency during the Monte Carlo Tree Search (MCTS). Furthermore, to allow for better performance when playing, all computations are handled via a server. A secondary server has also been added to allow for easy re-routing of the main server and handle things like elo-ratings (see \sectionref{sec:Evaluation:elo-rating}) for all agents. This server only handles routing and data storage while the other one handles the AI. Additionally, I have added a short introduction on how neural networks work and how they are trained in \sectionref{NN}. 
+Alpha Zero is an algorithm published in 2018 by Google Deepmind as the generalization of AlphaGo Zero, an algorithm that learned to play the game of Go using only the rules of the game. In the generalized version, the same principles were applied to Chess and Shogi. Unlike previous algorithms such as StockFish or Elmo that use hand-crafted evaluation functions along with alpha-beta searches over a large search space, Alpha Zero uses no human knowledge. Rather, it generates all information through self-play. It has been shown to achieve superhuman performance in Chess, Shogi and Go. In this project the AI will be trained to play connect4. The entire algorithm is implemented in C++ to increase efficiency during the Monte Carlo Tree Search (MCTS). Furthermore, to allow for better performance when playing, all computations are handled via a server (my desktop). A secondary server has also been added to allow for easy re-routing of the main server and handle things like elo-ratings (see \sectionref{sec:Evaluation:elo-rating}) for all agents. Additionally, I have added a short introduction on how neural networks work and how they are trained in \sectionref{NN}. 
 
 \section{Methods}
 \label{Methods}
@@ -147,11 +147,11 @@ When training neural networks, there are three major possible situations: Superv
 
 Unsupervised learning or self-organization is used when there is no previous available data and the neural network has to create those classifications itself. An example of unsupervised learning is Vector quantization. The algorythems sorts points in n-dimensional space into a predetermined amount of groups. Every group is defined by its centroid point. Training happens by selecting a sample point at random, and moving the closest centroid point towards the sample point by a fraction of the distance betwean them. The sample point is selected from the input data \cite{wiki:Vector_quantization}. An example of both supervised and unsupervised learning can be seen in the demo\footnote{demo is at \url{https://github.com/JulianWww/Matura-AlphaZero-demos}}.
 
-These two methods represent the extreme ends of the spectrum. Reinforcement leaning on the other hand can be thought of as an intermediate form. It uses a predetermined environment which gives positive, neutral and negative feedback. The neural network is then discouraged from taking actions leading to negative feedback and encouraged to take actions leading to positive feedback. The feedback is determined by the environment the agent learns to interact with. In this case, losing a game would be bad and result in negative feedback whereas winning a game leads to positive feedback. Ties lead to neutral feedback. The agents learning is set up in such a way, that it is encouraged to take actions leading to positive feedback and discouraged from taking actions that lead to negative feedback. However actions, can lead to a loss that only occurs many game steps in the future. A common approach to solve this problem is to have the feedback propagate backwards to previous actions. In Alpha Zero, this is handled by the memory (see \sectionref{sec:memory}). When the game reaches an end state and a winner is determined, the feedback is propagated backwards up the game. If the player won, the feedback is positive. If he lost, it is negative. More specifically, if a player takes an action \(a_s\) at a state \(s\), that leads to a win, the reward for that state is defined as \(R(s,a_s) = 1\). On the other hand, if the action leads to a loss, the reward will be \(R(s, a_s) = -1\). If the game ends in a tie, the reward is \(R(s,a_s) = 0\). Let \(g\) be the set of states traversed in anny given game. Every agent \(p\) will try to maximize \(\sum_{s\in g\cap \mathbb P} R(s, a_s)\). Where \(\mathbb{P}\) is the set of all state player \(p\) can traverse. Let's look at a tic tac toe example of the following game:
+These two methods represent the extreme ends of the spectrum. Reinforcement leaning on the other hand can be thought of as an intermediate form. It uses a predetermined environment which gives positive, neutral and negative feedback. The neural network is then discouraged from taking actions leading to negative feedback and encouraged to take actions leading to positive feedback. The feedback is determined by the environment the agent learns to interact with. In this case, losing a game would be bad and result in negative feedback whereas winning a game leads to positive feedback. Ties lead to neutral feedback. The agents learning is set up in such a way, that it is encouraged to take actions leading to positive feedback and discouraged from taking actions that lead to negative feedback. However actions, can lead to a loss that only occurs many game steps in the future. A common approach to solve this problem is to have the feedback propagate backwards to previous actions. In Alpha Zero, this is handled by the memory (see \sectionref{sec:memory}). When the game reaches an end state and a winner is determined, the feedback is propagated backwards up the game. If the player won, the feedback is positive. If he lost, it is negative. More specifically, if a player takes an action \(a_s\) at a state \(s\), that leads to a win, the reward for that state is defined as \(R(s,a_s) = 1\). On the other hand, if the action leads to a loss, the reward will be \(R(s, a_s) = -1\). If the game ends in a tie, the reward is \(R(s,a_s) = 0\). Every agent \(p\) will try to maximize \(\sum_{s\in g\cap p} R(s, a_s)\). \(g\cap p\) is the set of all states in which the player \(p\) takes an action. Let's look at a tic tac toe example of the following game:
 \begin{center}
 \tickTackToe{}{}{}{}{}{}{}{}{player X} \to \tickTackToe{X}{}{}{}{}{}{}{}{player O} \to \tickTackToe{X}{O}{}{}{}{}{}{}{player X} \to \tickTackToe{X}{O}{}{}{X}{}{}{}{player O} \to \tickTackToe{X}{O}{}{O}{X}{}{}{}{player X} \to \tickTackToe{X}{O}{}{O}{X}{}{}{X}{}
 \end{center}
-Since player \(X\) won the game, the reward for every state \(s\in g\cap \mathbb X\) is \(R(s, a_s) = 1\) and the reward for every state \(s\in g\cap \mathbb O\) is \(R(s, a_s) = -1\). Where \(\mathbb X\) is the set of all state with player X at turn and \(\mathbb O\) for player O. The reward for the entire game is:
+Since player \(X\) won the game, the reward for every state \(s\in g\cap X\) is \(R(s, a_s) = 1\) and the reward for every state \(s\in g\cap O\) is \(R(s, a_s) = -1\). The reward for the entire game is:
 \begin{center}
 \tickTackToe{}{}{}{}{}{}{}{}{} \rewardArrow{1} \tickTackToe{X}{}{}{}{}{}{}{}{} \rewardArrow{-1} \tickTackToe{X}{O}{}{}{}{}{}{}{} \rewardArrow{1} \tickTackToe{X}{O}{}{}{X}{}{}{}{} \rewardArrow{-1} \tickTackToe{X}{O}{}{O}{X}{}{}{}{} \rewardArrow{1} \tickTackToe{X}{O}{}{O}{X}{}{}{X}{}
 \end{center}
@@ -160,7 +160,15 @@ The important thing to keep in mind is that reinforcement learning algorithms en
 \subsection{Game}
 The game is the environment, that is used to train the AI. The game consists of constant unchanging game states. Every game state consists of a game board and a player. An end game state is a state at which the game is done. This means that one player won or the game ended in a tie. For connect4 this means four stones in a line or a full game board.
 Let \(\mathbb{G}\) be the set of all legal game states.
-Let \(\mathbb{G}_{done}\) be the set of all game states for which the game is done. 
+Let \(\mathbb{G}_{done}\) be the set of all game states for which the game is done. At every gamestate one player is at turn. This means that that player will take an action next. Let \(\phi(s)~:~\mathbb{G}\to\{1,-1\}\) be the function mapping states to players. In the tick-tack-toe example from earlyer we could say that:
+\begin{align}
+\phi(s) = \left\{\begin{matrix}
+1 & s \in g\cap X\\
+-1 & s \in g\cap O
+\end{matrix}\right.
+\end{align}
+More generally \(\phi(s) = 1\) if the first player (the player that starts the game) is at turn and \(\phi(s) = -1\) if the other player is a turn.
+
 \subsubsection{Game Board}
 Board games consist of placing stones of different types on a board with a certain amount of fields. Many games, like Go, Chess and Connect4, arrange their fields in a rectangular pattern. These games have two distinct stones. We can represent these game boards as stack of binary layers. Every layer is associated with one kind of stone. Each layer contains a one, where the board has a stone of the appropriate type and zeros everywhere else. For instance, the following tic tac toe game board can be represented by the following binary plane stack.\[
 \ticTacToe{}{X}{O}{O}{X}{}{O}{}{X}\to
@@ -178,13 +186,45 @@ Board games consist of placing stones of different types on a board with a certa
 \right]
 \] 
 Internally, the game board is represented by a flat vector. The conversion from a game state \(s  \in \mathbb G\) to vector is defined as \(vec(T_s(s))\). Where \(T_s(s):\mathbb G \to \mathbb R^{\cdots}\) is the board's 3-dimensional board tensor. The \(vec\) function is defined in \sectionref{sec:ref:vectorization:tensor}.
+\begin{equation}
+vec
+\left(\left[ 
+\begin{bmatrix}
+a_{111} & \cdots & a_{11o} \\
+\vdots & \ddots & \vdots \\
+a_{1n1} & \cdots & a_{1no} \\
+\end{bmatrix}
+\cdots
+\begin{bmatrix}
+a_{m11} & \cdots &  a_{m1o} \\
+\vdots   & \ddots & \vdots   \\
+a_{mn1} & \cdots & a_{mno}  \\
+\end{bmatrix}
+\right]\right) = \left(\begin{matrix}
+a_{111}      \\
+\vdots        \\
+a_{11o}      \\
+\vdots        \\
+a_{1n1}      \\
+\vdots        \\
+a_{1no}      \\
+\vdots        \\
+a_{m11}     \\
+\vdots        \\
+a_{m1o}     \\
+\vdots        \\
+ a_{mn1}    \\
+\vdots        \\
+ a_{mno}    \\
+\end{matrix}\right)
+\end{equation}
 This operation for the tic tac toe board from before would look like this:
-\[
+\begin{equation}
 vec\left(T_s\left(\ticTacToe{}{X}{O}{O}{X}{}{O}{}{X}\right)\right) = 
 [0\,1\,0\,0\,1\,0\,0\,0\,1\,0 \,0 \,1\,1\,0\,0\,1\,0\,0]^T
-\]
+\end{equation}
 \subsubsection{Actions}
-Actions are numbers used to identify changes to the game. Every game has a set of all possible actions \(\mathbb{A}_{possible} \subset \mathbb{N}_0\). This set represents the sum of actions  a certain player can take at anny valid game state.  In connect4 there is no need to distinguish betwean colors as the action represents where to place the next stone. The color is determined by which player is at turn when the action is taken. In connect4, the set of all possible actions for the current player is \(\mathbb{A}_{possible} = [0, 41]\). There is no need to have actions for the player, that is not at turn as these will never be taken. Every number is associated with a position on the game board. The mapping \(a\) to game fields is the following:
+Actions are numbers used to identify changes to the game. Every game has a set of all possible actions \(\mathbb{A}_{possible} \subset \mathbb{N}_0\). In connect4, the set of all possible actions for the current player is \(\mathbb{A}_{possible} = [0, 41]\). There is no need to have actions for the player, that is not at turn as these will never be taken. Every number is associated with a position on the game board. The mapping \(a\) to game fields is the following:
 \begin{center}
 \begin{tabular}{| c | c | c | c | c | c | c |}
  \hline
@@ -205,76 +245,130 @@ Let \(\mathbb{A}(s)\) be the set of all legal actions for a given state  \(s \in
  6 & 7 & 8 \\\hline
 \end{tabular} & \tickTackToe{X}{O}{}{}{}{}{}{}{State \(s\)}
 \end{tabular}\end{center}
-In this example player \(X\) is allowed to place a stone in anny empy field \(\mathbb A(s) = \left\{ 2, 3, 4, 5, 6, 7, 8 \right\}\). Therefor \(\mathcal A(s, a)\) is valid if \(a \in \mathbb A(s)\) and otherwise invalid. Therefor \(\mathcal A(s, 0)\) and \(\mathcal A(s, 1)\) are invalid while  \(\mathcal A(s, 2),\,\dots,\,\mathcal A(s, 8)\) are valid.
+In this example player \(X\) is allowed to place a stone in anny empy field \(\mathbb A(s) = \left\{ 2, 3, 4, 5, 6, 7, 8 \right\}\). Therefor \(\mathcal A(a, s)\) is valid if \(a \in \mathbb A(s)\) and otherwise invalid.
 
 \subsection{MCTS}
-A Monte Carlo tree search (MCTS) is a tree search algorithm that can be used to find sequences of actions leading to a desirable outcome. This is done by procedurally generating a directed graph of possible successor states to the current state or root state. 
-\subsubsection{Structure}
-This graph consists of nodes that are used to simulate possible sequences of states starting from a root state and edges that connect nodes. The set of all possible nodes \(\mathbb{M}_{possible} = \{\mathcal{N}(s)~|~ s \in \mathbb{G}\}\), where \(\mathcal{N}:\mathbb{G}\to\mathbb{M}_{possible}\) is a bijective function that maps a game state to a node. \(\mathcal{S}~:~\mathbb{M}_{possible}\to\mathbb{G} = \mathcal{N}^{-1}\) is the inverse of \(\mathcal{N}\). The set of all allowed actions for a certain node \(n\in\mathbb{M}_{possible}\) is \(\mathbb{A}(n) = \mathbb{A}(\mathcal{S}(n))\) . The set of all nodes in an MCTS at any given time is \(\mathbb{M} \subseteq \mathbb{M}_{possible}\). Every node \(n \in \mathbb{M}\) has a set of edges \(\mathbb{E}(n)\) that connect it to other nodes, the set of all possible edges is \(\mathbb{E}_{possible}\). \(\mathcal{E}:~\mathbb{M}\times \mathbb{A}_{possible} \to \mathbb{E}_{possible}\) is a bijective function used to map nodes and actions to edges. Furthermore for \(\mathcal{E}(n, a)\) to be valid \(a\) must be an element of \(\mathbb{A}(n)\).  The function \(\mathcal{N}_{to}~:~\mathbb{E}\to\mathbb{M}\) maps an edge to the node it is pointing to while \(\mathcal{N}_{from}~:~\mathbb{E}\to\mathbb{M}\) is used to find the node an edge is pointing from.
-There are, however, two different kinds of nodes, that can be distinguished by the set of their edges. The first are the expanded nodes \(\mathbb{M}_{expanded}\subseteq\mathbb{M}\). For expanded nodes \( n\in \mathbb{M}_{expanded}\) the set of edges \(\mathbb{E}(n) = \{\mathcal{E}(n,a)~|~ a\in \mathbb{A}(n)\} \neq \emptyset\). The second category are the leaf nodes \(\mathbb{M}_{leaf} \subseteq \mathbb{M}\). Leaf nodes are unexpanded nodes. This means that they do not yet have any connections to other nodes. Thus \(\mathbb{E}(n) = \emptyset\) for all \(n \in \mathbb{M}_{leaf}\).
+A Monte Carlo tree search (MCTS) is a tree search algorithm that can be used to find sequences of actions leading to a desirable outcome. This is done by procedurally generating a directed graph of possible successor states to the current state or root state. In Alpha Zero it is used to improve the neural networks prediction.
 
-\begin{figure}[h]
-	\centering
-	\includesvg[width=0.4\columnwidth]{images/MCTSDefsExample}
-	\caption{A vary simple MCST example}
-	\label{fig:MCTSDefs}
+A MCTS changes during simulation. MCTS simulation consists of three phases \nameref{sec:Methods:MCTS:Leaf_selection}, \nameref{sec:Methods:MCTS:Node Evaluation and Expansion} and \nameref{sec:Methods:MCTS:Backfill}.
+
+This graph consists of nodes and edges. The edges represent connections betwean nodes while the nodes represent game states. Let \(\mathbb{M}_{possible} = \{\mathcal{N}(s)~|~ s \in \mathbb{G}\}\) be the set of all possible nodes , where \(\mathcal{N}:\mathbb{G}\to\mathbb{M}_{possible}\) is a bijective function that maps a game state to a node. \(\mathcal{S}~:~\mathbb{M}_{possible}\to\mathbb{G} = \mathcal{N}^{-1}\) is the inverse of \(\mathcal{N}\). For notational simplicity, the set of all allowed actions for any node \(n\in\mathbb{M}_{possible}\) is \(\mathbb{A}(n) = \mathbb{A}(\mathcal{S}(n))\). The ammount of nodes and structure of the MCTS is changed by the algorythem itself during simulation. Therefor Let \(l\) be the index of the current simulation step. Let \(\mathbb L = \mathbb [0, S]\) be the set of all \(l\), where \(S\) is a constant defined in the algorythems configuration file (\sectionref{code:config}). At the first step of the simulation, the Tree contains only the root node \(n_0\). The root node is the node is the starting point of the simulation. Let \(\mathbb{M}_l \subseteq \mathbb{M}_{possible}\) be the set of all nodes in the tree at step \(l\in\mathbb L\).
+
+ Every node \(n_l \in \mathbb{M}_l\) has a set of edges \(\mathbb{E}_l(n_l)\) at step \(l\) that connect it to other nodes. Let \(\mathbb{E}_l\) be the set of all edges in the current graph. \(\mathcal{E}_l:~\mathbb{M}_l\times \mathbb{A}_{possible} \to \mathbb{E}_l\) is a bijective function used to map nodes and actions to edges. Furthermore for \(\mathcal{E}_l(n_l, a)\) to be valid \(a\) must be an element of \(\mathbb{A}(n_l)\).  The function \(\mathcal{N}_{to_l}~:~\mathbb{E}_{l}\to\mathbb{M}_l\) maps an edge to the node it is pointing to while \(\mathcal{N}_{from_l}~:~\mathbb{E}_{l}\to\mathbb{M}_l\) is used to find the node an edge is pointing from.
+Furthermore it is usefull to distingush expanded nodes from leaf nodes. Leaf nodes are nodes that don't have edges leading out of them. Let \(\mathbb{M}_{leaf_l} \subseteq \mathbb{M}_l\) be the set of leafnodes. For every node \(n_l\in \mathbb{M}_{leaf_l}\), the following is true by definition \(\mathbb{E}_l(n_l) = \emptyset\). Expanded nodes are have edges leading out of them. Let \(\mathbb{M}_{expanded_l} \subseteq \mathbb{M}_l\) be the set of expanded nodes. For every node \(n_l\in \mathbb{M}_{leaf_l}\), the following is true by definition \(\mathbb{E}_l(n_l) \neq \emptyset\).
+
+\begin{figure}[H]
+  \centering
+  \includesvg[height=.25\textheight]{images/mctsExample}
+  \captionsetup{width=.9\linewidth}
+  \caption{In the following small MCTS tree represents a possible graph at step \(l\), where \(n_?\) are nodes, \(e_?\) are edges connecting the nodes and \(A_?\) are actions associated with the edge they are next to. The questionmark represents the indices. The set of all nodes \(\mathbb M_l = \{n_1, n_2, \dots, n_8\}\) and \(\mathbb E_l = \{e_1, e_2, \dots, e_5\}\). We can also see that \(\mathbb E_l(n_1) = \{e_1, e_2, e_3\}\), \(\mathbb E_l(n_2) = \{e_4, e_5\}\), \(\mathbb E_l(n_3) = \emptyset\) and so forth. Because \(e_1\) represents action \(A_1\) taken at node \(n_1\), \(\mathcal E_l(n_1, A_1) = e_1\). By the same logic \(\mathcal E_l(n_2, A_2) = e_2\) and so forth. Becuase edge \(e_1\) connects node \(n_1\) to \(n_3\), \(\mathcal N_{from_l}(e_1) = n_1\) and \(\mathcal N_{to_l}(e_1) = n_3\). The same logic applies to all other nodes. The set of all expanded nodes \(\mathbb M_{expanded_l} = \{n_1, n_2, n_4\}\) because they have at least one edge leading away from them. On the other hand, the set of all leaf nodes \(\mathbb M_{leaf_l}  = \{n_3, n_5, n_6, n_7, n_8\}\). Finally \(\mathbb M = \mathbb M_{expanded} \cup \mathbb M_{leaf}\)
+(see \sectionref{mctsExampleFullData} for all data)}
+	\label{fig:mcts:example}
 \end{figure}
-Consider the example MCST in \imgRefInline{fig:MCTSDefs}. The set \(\mathbb M\) of every node in the MCTS is \(\mathbb M = \{n_1,\, n_2\}\). Node \(n_0\) has one edge \(e_1\) pointing to \(n_1\). Therefor \(\mathbb E(n_0) = \{e_1\}\) and because \(n_1\) has no edges leaving it, \(\mathbb E(n_1) = \emptyset\). This means that \(\mathbb M_{expanded} = \{n_0\}\) and \(\mathbb M_{leaf} = \{n_1\}\). Furthermore \(\mathcal N_{to}(e_1) = n_1\) and \(\mathcal N_{from}(e_1) = n_0\). If we assume that \(e_1\) is associated with action \(a_e \in \mathbb A(n_0)\), than \(\mathcal E(n_0, a_e) = e_1\)
-
-\subsubsection{Quick Overview}
-MCTS simulations consist of four phases: selection, evaluation, expansion, and back propagation. Every simulation starts from the MCTS's root node \(n_0 \in \mathbb{M}\). The selection phase of the MCTS is used to select a leaf node \(n_L \in \mathbb{M}_{leaf}\). This is done by using a selection function \(\sigma~:~\mathbb{M}\to\mathbb{M}\) defined in \equationref{eq:sigma}. This function is used to find node \(n_{t+1}\) from node \(n_t\) for \(t\in [0,L[\). \(n_{t+1}\) is selected by \(\sigma\).
-\begin{equation}
-\sigma(n_t) = n_{t+1}
-\end{equation}
- This means that \(n_1 = \sigma(n_0)\), \(n_2 =  \sigma(n_1)\) \dots. When a leaf node is found, that leaf node is evaluated. In Alpha Zero this is achieved using the neural network described in section \ref{NN}. The neural network evaluates the leaf node using its evaluation function \(\theta~:~\mathbb{M}\to \mathbb{R}\times\mathbb{R}^{|\mathbb{A}_{possible}|}\). The neural network's first output is an estimation of the expected reward. The neural network's second output is the action policy \(p\in\mathbb{R}^{|\mathbb{A}_{possible}|}\) that represents the advantagiousness of the actions in \(\mathbb{A}_{possible}\). \(n_L\) is now expanded. Expansion works by creating nodes \(\mathbb{M}_{new} = \{\mathcal{N}(\mathcal{A}(\mathcal{S}(n_L), a)) | a \in \mathbb{A}(n_L)\}\) unless these nodes already exist and then redefineing \(\mathbb M = \mathbb M \cup \mathbb M_{new}\). Furthermore, \(n_L\)'s edges are redefined as \(\mathbb{E}(n_L) = \{\mathcal{E}(n_L, a) | a \in \mathbb{A}(n_L)\}\). By definition \(\mathcal{N}_{to}(\mathcal{E}(n_L, a) = \mathcal{N}(\mathcal{A}(\mathcal{S}(n_L), a))\) for \(a\in\mathbb{A}(n_L)\). This leads to \(n_L\) being moved from \(\mathbb{M}_{leaf}\) to \(\mathbb{M}_{expanded}\). During back propagation the expected reward of \(n_L\) is used to update the expected reward of all nodes traversed during selection. This effectively improves the estimation of the expected reward. This four step simulation is carried out a certain amount of times. The estimation error for all estimations of the expected reward will converge to \(0\) as the amount of simulations increases.
 
 \subsubsection{Evaluation Basis}
-The MCTS's goal is to find good estimations of the reward for a certain action at a certain state. This reward estimation is \(Q~:~\mathbb{E}_{possible}\to \mathbb{R}\). To define \(Q\), the functions \(W~:~\mathbb{E}\to\mathbb{R}\) and \(N~:~\mathbb{E}\to\mathbb{N}_0\) are required. \(N(e)\) is the amount of times an edge \(e\in\mathbb{E}_{possible}\) has been traversed. This means how many times \(\sigma\) has chosen to follow the edge \(e\) to a new node. \(W(e)\) is the sum of the reward computations from all \(N(e)\) times the edge has been evaluated. Therefore the expected reward \(Q\) is defined as:
+The MCTS's goal is to find a good estimations of the reward for a certain action at a certain state. This reward estimation is \(Q_l~:~\mathbb{E}_{l}\to \mathbb{R}\). To define \(Q_l\), the functions \(W_l~:~\mathbb{E}_{l}\to\mathbb{R}\) and \(N_l~:~\mathbb{E}_{l}\to\mathbb{N}_0\) are required. \(N_l(e_l)\) is the amount of times an edge \(e_l\in\mathbb{E}_{l}\) has been traversed. This means how many times \(\sigma\) (\equationref{eq:sigma}) has chosen to follow the edge \(e_l\) to a new node. \(W_l(e_l)\) is the sum of the reward computations from all \(N(e_l)\) times the edge has been evaluated. With these two functions \(Q_l\) is defined as:
 \begin{equation}
-Q(e) = \frac{W(e)}{N(e)}
+Q_l(e_l) = 
+\begin{cases}
+0 & N_l(e_l) = 0\\
+\frac{W(e_l)}{N(e_l)} &
+\end{cases}
 \end{equation}
-The fourth and last of these functions is \(P~:~\mathbb{E}\to\mathbb{R}\). \(P\) is the policy function, it's the neural network's preliminary estimation of: 
-\begin{equation}\label{eq:MCTS:P}
-	P(e) \approx \frac{N(e)}{\sum_{i\in\mathbb{E}(\mathcal{N}_{from}(e))}N(i)}
-\end{equation}
-This function is used to guide the search to more promising edges before a lot of time is spent on simulation.
+The fourth and last of these functions is \(P_l~:~\mathbb{E}_{l}\to\mathbb{R}\). \(P_l\) is the policy function, it's the neural network's preliminary estimation of how valuable the action is. To see what \(P_l(e_l)\) is trained to aproximate see \equationref{eq:NN:policy_computation}.
+This function is used to guide the search to more promising edges.
 
 \subsubsection{Leaf Selection} \label{sec:Methods:MCTS:Leaf_selection}
-MCTS's evaluation starts by simulating future moves within the tree. This is done by selecting an edge and then following that edge to a new node. From there, the next edge and node are selected. This is repeated until a leaf node is reached. To select an edge and thus a node from the current node \(n\in \mathbb{M}\) the function \(\sigma\) is used. To define \(\sigma\) we must first define the edge evaluation function \(v~:~\mathbb{E}\to\mathbb{R}\). \(v\) is defined as follows:
-\begin{equation}\label{eq:sigma}
-v(e) = Q(e) + c_{puct}P(e)\cdot\frac{\sqrt{\Sigma_{b\in\mathbb{E}(\mathcal{N}_{from}(e))}N(b)}}{1+N(e)}
-\end{equation}
-Where \(c_{puct}\in \mathbb{R}^+\) is the exploration constant used to define how important exploration is. The smaller \(c_{puct}\) is, more important \(Q\) and less important exploration and \(P\). \(\sigma\), for a given node \(n\in\mathbb{M}\), is then defined as:
+MCTS's evaluation starts by simulating future moves within the tree. This is done by selecting an edge and then following that edge to a new node. From there, the next edge and node are selected. This is repeated until a leaf node is reached. To select an edge and thus a node from the current node \(n\in \mathbb{M}_l\) the function \(\sigma_l\) is used. To define \(\sigma_l\) we must first define the edge evaluation function \(v_l~:~\mathbb{E}_{l}\to\mathbb{R}\). \(v_l\) is defined as follows:
 \begin{equation}
-\sigma(n) = \mathcal{N}_{to}(\text{argmax}(\mathbb{E}(n)))
+v_l(e) = Q_l(e) + c_{puct}P_l(e)\cdot\frac{\sqrt{\Sigma_{b\in\mathbb{E}(\mathcal{N}_{from_l}(e))}N_l(b)}}{1+N_l(e)}
 \end{equation}
-argmax returns the edge \(e\) with the largest \(v(e)\).
-\(\sigma\) is run, until its output is a leaf-node \(N_L\in\mathbb{M}_{leaf}\).
-
+Where \(c_{puct}\in \mathbb{R}^+\) is the exploration constant used to define how important exploration is. The smaller \(c_{puct}\) is, more important \(Q\) and less important exploration and \(P\). \(\sigma_l\), for a given node \(n\in\mathbb{M}_l\), is then defined as:
+\begin{equation}\label{eq:sigma}
+\sigma_l(n) = \mathcal{N}_{to_l}(\text{argmax}_l(\mathbb{E}_l(n)))
+\end{equation}
+\(\text{argmax}_l\) returns the edge \(e \in\mathbb E_l\) with the largest \(v_l(e)\).
+\(\sigma_l\) is run, until its output is a leaf-node \(n_{L_l}\in\mathbb{M}_{leaf_l}\).
 \subsubsection{Node Evaluation and Expansion}
-When a leaf node \(n_L\in\mathbb{M}_{leaf}\) is reached, that is not an end game node \(\mathcal{S}(n_L)\not\in\mathbb{G}_{done}\), the node is passed to the neural network. The neural network (see section \ref{NN}) is used to predict the node's policy \(p\) and its value \(v\). \(\theta(n_L) = (v, p)\). \(p\) is used to create new nodes \(\mathbb{M}_{new} = \left\{\mathcal{N}(\mathcal{A}(\mathcal{S}(n_L), a))~:~a\in\mathbb{A}(n_L)\right\}\). The initial function outputs of the three edge functions for the edges \(e\in\mathbb{E}(n_L)\), connecting \(n_L\) to \(\mathbb{M}_{new}\), are.
-\[
-N(e) = 0
-\]
-\[
-W(e) = 0
-\]
-\[
-P(e) = \pi(e)
-\]
-\(\pi(e)\) is the of the policy of the edge. It's defined as:
-\[
-\pi(\mathcal{E}(n_L, a)) = p_{a+1}
-\]
-where \(a\) is the edges action \(a \in \mathbb{A}(n_L)\). \(\mathbb M\) and \(\mathbb E(n_L\) are then redefined as \(\mathbb M = \mathbb M \cup \mathbb M_{new}\) and \(\mathbb E(n_L) = \{\mathcal E(n_L, a)\;|\;a\in\mathbb A(n_L)\}\). \(M_{expanded}\) and \(M_{leaf}\) also change according to there definition.
+\label{sec:Methods:MCTS:Node Evaluation and Expansion}
+When a leaf node \(n_{L_l}\) is reached, there are two possible cases. Ether \(\mathcal S(n_{L_l})\) is an end game state or not.
+\paragraph{end game state \(\mathcal S(n_{L_l}) \in \mathbb G_{done}\)}
+In this case the tree is not changed but backfill is still performed. The value \(v_l \mathbb R_{-1,1}\) \quckeq{set:Rab} of \(n_{L_l}\) is defined as if the curren player \(\phi(\mathcal S(n_{L_l}))\):
+\begin{equation}
+v_l = \left\{\begin{matrix}
+1 &  \text{lost}\\
+0 & \text{tied}\\
+-1 & \text{won}
+\end{matrix}\right.
+\end{equation}
+This is done because the players alternate taking turns.
+\paragraph{not end game state \(\mathcal S(n_{L_l}) \not\in \mathbb G_{done}\)}
+In this case the nodes state is passed to the neural network (\sectionref{NN}). The neural networks prediction function outputs a policy vector \(\pi_l \in \mathbb R_{0,1}^{|\mathbb A|}\) \quckeq{set:Rab} and a scalar \(v_l \in \mathbb R_{-1,1}\) \quckeq{set:Rab}. The scalar \(v_l\) is the neural networks estimation of the expected reward at \(n_{L_l}\). \(\pi_l\) is the estimation of the advantageousness of every action in \(\mathbb A\). After evaluation, the leaf node is expanded.
+Let \(\mathbb E_{new}\) be the next set of all edges leading away from \(n_{L_l}\). This set contains one edge for every action in \(\mathbb A(n_{L_l})\).
+Let \(\mathbb M_{new}\) be the set of nodes, that can be reached in one game step from \(n_{L_l}\).
+The various Tree sets and functions are then updated as follows for step \(l+1\).
+\begin{align}
+\mathbb M_{l+1}   =& \mathbb M_l \cup \mathbb M_{new} \\
+\mathbb E_{l_+1}  =& \mathbb E_l  \cup \mathbb E_{new} \\
+%
+\mathbb E_{l+1}(n) &= 
+\left\{
+\begin{matrix}
+\mathbb E_{new} & n = N_{L_l}\\
+\mathbb E_l(n)
+\end{matrix}
+\right.\\
+%
+\mathcal E_{l+1}(n, a) &=
+\left\{
+\begin{matrix}
+\mathcal E_l (n, a) & n\neq n_{L_l}\\
+e &
+\end{matrix}
+\right.
+\end{align}
+Where \(e \in\mathbb E_{new}\) is the edge associated with action \(a\) at node \(n_{L_l}\).
+\begin{align}
+\mathcal N_{to_{l+1}}(e) = 
+\left\{
+\begin{matrix}
+\mathcal N_{to_l} (e) & e \in \mathbb E_l\\
+n &
+\end{matrix}
+\right.
+\end{align}
+Where \(n\in\mathbb M_{new}\) is the node, that edge \(e\) is pointing to.
+\begin{align}
+\mathcal N_{from_{l+1}}(e) &= 
+\left\{
+\begin{matrix}
+\mathcal N_{from_l} (e) & e \in\mathbb E_l\\
+n _{L_l}&
+\end{matrix}
+\right.\\
+\mathbb M_{expanded_{l+1}} &= \left\{n\in\mathbb M_{l+1}~:~\mathbb E_{l+1}(n) \neq \emptyset\right\}\\
+\mathbb M_{leaf_{l+1}} &= \left\{n\in\mathbb M_{l+1}~:~\mathbb E_{l+1}(n) = \emptyset\right\}\\
+P_{l+1}(\mathcal E_{l+1}(n, a)) &= 
+\left\{
+\begin{matrix}
+P_l (\mathcal E_{l+1}(n, a)) & e \in\mathbb E_l\\
+\pi_{l_a}&
+\end{matrix}
+\right.
+\end{align}
+
+
+
 
 \subsubsection{Backfill}
-The value \(v\) is used to update the reward prediction for all nodes \(n_{[0, L]}\) traversed during the edge selection. Assuming that \(\rho~:~\mathbb{E}_{possible}\to\{1,\,-1\}\) is the player taking an action at an edge \(e\in\mathbb{E}_{possible}\), \(W\) and \(N\) are updated as follows for all nodes \(n_t\) with \(t\in [0,L]\):
-\begin{align*}
+\label{sec:Methods:MCTS:Backfill}
+Let \(\mathbb E_{traversed}_l\) be the set of all edges traversed during leaf selection.
+The value \(v_l\) is used to update the reward prediction for all nodes \(n_{[0, L]_l}\) traversed during the edge selection. 
+\begin{align}
 N(n_t) + 1 &\Rightarrow N(n_t)\\
-W(n_t) + v \cdot \rho(n_t) \cdot \rho(n_L) &\Rightarrow W(n_t)\\
-\end{align*}
-See \imgRefInline{MCTS-simulation} for example Simulation.
+W(n_t) + v \cdot \rho(n_t) \cdot \rho(n_L) &\Rightarrow W(n_t)
+\end{align}
+Wher \(\Rightarrow\) is defined in \sectionref{sec:assignmentOperator}.
 
 %-------------------------------------------------------------------------
 \subsection{Neural Network}
@@ -295,9 +389,9 @@ Convolutional layers are commonly used for image processing. They perform the sa
 where \(<>_I\) is the Tensor inner product defined in \equationref{eq:defs:Inner_product_3d}.
 The convolutional operation \(\Lambda~:~\mathbb{R}^{i\times j \times l}\to\mathbb{R}^{i-m+1 \times j-n+1 \times |\mathbb{K}|}\) is an element wise opperation. Given that  \(I \in \mathbb{R}^{i\times j\times l}\) is the layer input, every element of \(\Lambda(I)_{abc}\) with \(a \in [1, i-m+1]\), \(b \in [1, j-n+1]\) and \(c \in [1, |\mathbb{K}|]\) is defined as:
 \begin{equation}\label{eq:NN:convolutional_opperation}
-\Lambda(I)_{abc} = \xi_{k_c}(I[[a, a+m[,[b, b+n[,[1,|\mathbb{K}|]])
+\Lambda(I)_{abc} = \xi_{k_c}(\left<I\right>_{S_{m\times n,\,ab}})
 \end{equation}
-The submatrix indexing operation \(I[...]\) is defined in \sectionref{sec:Ref:submatrix}.
+The submatrix indexing operation \(\left<\right>_s\) is defined in \sectionref{sec:Ref:submatrix}.
 For example given the following input tensor \(I \in\mathbb{R}^{4\times4\times1}\): % matrix slice
 \[
 I = \left[
@@ -353,12 +447,12 @@ The same is done for \(\Lambda(I)_{121}\), \(\Lambda(I)_{211}\) and \(\Lambda(I)
 \end{bmatrix}
 \]
 \paragraph{Activation Function}
-All neural network layers are linear functions. Thus, given two activation functions \(f_1(x) = ax + b\) and \(f_2(x) = cx + d\), the chained function \(f(x) = f_1(f_2(x))\) is also linear because:
+All neural network layers are linear functions. Thus, given two layer evaluation functions \(f_1(x) = ax + b\) and \(f_2(x) = cx + d\), the chained function \(f(x) = f_1(f_2(x))\) is also linear because:
 \begin{equation}
 \label{eq:proofOfLinearity}
 f(x) = f_1(f_2(x)) = a(cx + d) + b = acx + ad + b = ex + g
 \end{equation}
-where \(a\),  \(b\), \(c\), \(d\), \(e\) and \(g \in \mathbb R\). In order to represent non linear functions, a non linear activation function \(f_a\) is added between two neural network layers. Thus, \(f(x)\) becomes \(f(x) = f_1(f_a(f_2(x)))\). In this neural network, three different activation functions are used: \(tanh\), \(softmax\), and \(LeakyReLU\). These functions are defined as follows:
+where \(a\),  \(b\), \(c\), \(d\), \(e\) and \(g \in \mathbb R\). In order to represent non linear functions, a non linear activation function \(f_a\) is added between two neural network layers. Thus, the chained function becomes \(c(x) = f_1(f_a(f_2(x)))\). In this neural network, three different activation functions are used: \(tanh\), \(softmax\), and \(LeakyReLU\). These functions are defined as follows:
 \subparagraph*{tanh:}\(\mathbb{R}\to \mathbb{R}\)
 
 \begin{center}
@@ -371,6 +465,7 @@ tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}
 \end{equation}\begin{equation} \label{eq:NN:tanh_derivative}
 \frac{d}{dx}tanh(x) = sech(x)^2
 \end{equation}
+see \sectionref{sec:proof:tanhd/dx} for proof.
 \subparagraph*{softmax:} \(\mathbb{R}^n\to \mathbb{R}^n\)\\
 \indent For a given input vector \(v \in \mathbb{R}^n\). The output vector \(o \in \mathbb{R}^n\) at every position \(i \in [1, n]\) is:
 \begin{equation} \label{eq:NN:softmax}
@@ -401,18 +496,13 @@ o_i = softmax(v)_i = \frac{e^{v_i}}{\sum_{j \in v} e^j}
 
 Because the function's in- and outputs are n dimensional vectors, the derivative is an \(n\times n\) dimensional matrix. When taking its derivative, \(\frac{d}{dv_j}softmax(v)_i\), there are two possible cases. 
 \\\indent case \(j = i\):
-\begin{align*}
-\frac{d}{dv_j}\left[\frac{e^{v_i}}{\sum_{b\in v} e^{b}}\right]
-&= \frac{\sum_{b \in v}e^b \cdot e^{v_i}-e^{v_i}\cdot e^{v_j}}{(\sum_{b \in v}e^b)^2}\\
-&= \frac{e^{v_i}}{\sum_{b\in v}e^b}\cdot \frac{\left(\sum_{b \in v} e^b - e^{v_j}\right)}{\sum_{b \in v} e^b}\\
-&= softmax(v)_i\cdot (1 - softmax(v)_j)\\
-\end{align*}
+\begin{equation}
+\frac{d}{dv_j}\left[\frac{e^{v_i}}{\sum_{b\in v} e^{b}}\right] = softmax(v)_i\cdot (1 - softmax(v)_j)\\
+\end{equation}
 \\\indent case \(j \neq i\):
-\begin{align*}
-\frac{d}{dv_j}\left[\frac{e^{v_i}}{\sum_{b\in v} e^{b}}\right] 
-&= -\frac{e^{v_j}\cdot e^{v_i}}{\left(\sum_{b \in v}e^b\right)^2} \\
-&= -softmax(v)_i\cdot softmax(v)_j \\
-\end{align*}
+\begin{equation}
+\frac{d}{dv_j}\left[\frac{e^{v_i}}{\sum_{b\in v} e^{b}}\right] = -softmax(v)_i\cdot softmax(v)_j \\
+\end{equation}
 Therefore, the derivative of the softmax function is:
 \begin{equation}\label{eq:NN:softmax_derivative}
 softmax'(v)_{ij} = \left\{
@@ -487,7 +577,7 @@ This process is repeated until the foremost layer of the neural network is reach
 
 \subsubsection{Network used by AlphaZero}
 The neural network in Alpha Zero is used to estimate the value \(v\) and policy \(p\) for any game state or node \(n\). \(v\) is the neural network's estimation of the state's expected reward. The policy \(p \in\mathbb{R}^{|\mathbb{A}|}\) of a game state \(n\) represents the advantageousness of every action \(a\in\mathbb{A}\), as estimated by the neural network.
-\paragraph{Neural Network input}
+\paragraph{Neural Network input}\label{sec:neuralNetworkInput}
 The neural network input is a game state or node \(n\) represented by two \mbox{7 x 6} binary images stacked on top of each other. One image \(X\) represents the stones belonging to the current player. While the second image \(Y\) represents the stones belonging to the other player. In both images, the pixel values are one where a stone belonging to the player they represent is located and zero if the field is empty or a stone belonging to the other player is located there. \(X\) and \(Y\) are then stacked on top of each other in the third dimension to form the input tensor \(i_n = [X, Y] \in \mathbb{R}^{7 \times 6 \times 2}\).
 Consider the following Connect4 board \imgRef{fig:connect4ImageOne}.
 
@@ -566,9 +656,9 @@ The policy head consists of the following modules:
 \item A convolutional layer consisting of 2 filters with a kernel size of 1 x 1
 \item A fully connected layer of size 1
 \end{enumerate}
-The output of the policy head \(p_{pre}\) is then masked with the allowed actions to form \(p_{masked}\) in such a way that \(p_{masked}\) is \(-1000\) for all non-allowed actions. Finally, \(p_{masked}\) is passed throught the softmax function to form \(p\):
+The output of the policy head \(p_{pre}\) is then masked with the allowed actions to form \(p_{masked}\) in such a way that \(p_{masked}\) is \(-1000\) for all non-allowed actions. Finally, \(p_{masked}\) is passed throught the softmax function to form \(\pi\):
 \begin{equation}\label{eq:nn:policyDefinition}
-p = \text{softmax}(p_{masked})
+\pi = \text{softmax}(p_{masked})
 \end{equation}
 
 \paragraph{Training}\label{sec:Methods:NN:A0:Training}
@@ -883,7 +973,7 @@ Let the Inner product \(\left<A, B\right>_I : \mathbb{R}^{m \times \dots}, \math
 \label{sec:Ref:submatrix}
 Let \(m = m_{ijk}\) be an \(m\times n\times o\) dimensional tensor.\\
 Let \(<>_{S\,x\times y,\,ab}\) be the matrix slicing opperator. \(x\times y\) is the size of the submatrix the operation should output. \(ab\) is the top left position of the submatrix within the outer matrix.  For the operation to be defined, the following must be true: \(x \in \mathbb [0, m[\), \(y \in \mathbb [0, n[\), \(a  \in [1, m-x]\) and \(b \in [1, n-y]\). The submatrix \(<m>_{S\,x\times y,\,ab}\) is defined as:
-\[
+\begin{equation}
 <m>_{S\,x\times y,\,ab} = 
 \left[
 \begin{matrix}
@@ -891,7 +981,7 @@ Let \(<>_{S\,x\times y,\,ab}\) be the matrix slicing opperator. \(x\times y\) is
 \vdots &  \ddots & \vdots\\
 [m_{a(b+y)1},\dots,m_{abo}] & \dots & [m_{(a+x)b1},\dots,m_{(a+x)(b+y)o}]\\
 \end{matrix}\right]
-\]
+\end{equation}
 
 \subsection{Vectorization}  \label{sec:ref:vectorization}
 The vectorization of an \(m \times n\) matrix \(A\), denoted \(\text{vec}(A)\), is the \(mn \times 1\) column vector obtained by stacking the columns of the matrix A on top of one another: 
@@ -926,22 +1016,7 @@ Let \(vec(T)\) be defined as:
 \begin{equation}
 vec(T) = T_0 \frown T_1 \frown \dots \frown T_n
 \end{equation}
-Where \(\frown\) is defined defined in \sectionref{sec:ref:vectorConcatination}. For those who are familiar with python's numpy library, \(vec\) is equivilent to numpy.flatten. For example consider the following 3 d-Tesnor vectorization:
-\[
-vec
-\left(\left[ 
-\begin{bmatrix}
-a & b \\
-c & d
-\end{bmatrix}
-\begin{bmatrix}
-e & f \\
-g & h\\
-\end{bmatrix}
-\right]\right) = \left(\begin{matrix}
-a \\ b \\ c \\d \\ e \\ f \\ g \\h
-\end{matrix}\right)
-\]
+Where \(\frown\) is defined defined in \sectionref{sec:ref:vectorConcatination}. For those who are familiar with python's numpy library, \(vec\) is equivilent to numpy.flatten.
 
 \subsection{Vector Concatination}\label{sec:ref:vectorConcatination}
 Vector Concatination of two vectors \(v\) and \(u\) of dimensions \(n_v\) and  \(n_u\), denoted \(v\frown u\), is the \(n_v + n_u\) dimensional vector obtained by placing both vectors one on top of the other.
@@ -958,6 +1033,24 @@ u_{n_u}\\
 \right)
 \end{equation}
 
+\subsection{Future Assignment Operator}
+\label{sec:assignmentOperator}
+The future assignemtn operator, denoted \(\Rightarrow\), is in the explenation of iterative algorythems to represent assigning an value to a variable for the next iteration. The operation implies the existance of an index \(i\). Let \(x\) represent any variable and \(v\) be any possible value of \(x\). On the \(i\)\textsuperscript{th} use of the future assignment operator on \(x\). 
+\begin{equation}
+v \Rightarrow x
+\end{equation}
+is equivilent to
+\begin{equation}
+v = x_{i+1}
+\end{equation}
+Furthermore any variable refered to, that the uses the future assignment operator, will automatically refer to the last set one. This means that if an algorythem uses \(x\) and the initial value of \(x = x_0 = z\), where \(z\) is a possible value of  \(x\). Than that algorythem uses this operation on \(x\), \(v \Rightarrow x\). Than from that  point forward in the logical operations all referances to \(x = x_1 = v\).\\
+The reason for this is that using indecies in the MCTS is more confusing than helpfull.
+\subsection{Sets}
+Let
+\begin{equation}\label{set:Rab}
+\mathbb R_{a, b} = \{x \in \mathbb R~:~ a\leq x \leq b\}
+\end{equation}
+
 \bibliographystyle{plain}
 \bibliography{bibliography}
 
@@ -966,126 +1059,232 @@ u_{n_u}\\
 \item Leonie Scheck, Frederik Ott, Nico Steiner, Wolfgang Wandhoven for aiding in evaluating the AI against human players and providing feedback.
 \end{itemize}
 
-\newpage\section{Code}
-\subsection{AlphaZeroPytorch}
-\subsubsection{AlphaZeroPytorch.h}							\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.h}
-\subsubsection{AlphaZeroPytorch.cpp}						\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.cpp}
-\subsubsection{cmake.sh}												\incFile{sh}{AlphaZeroPytorch/cmake.sh}
-\subsubsection{CMakeLists.txt}										\incFile{python}{AlphaZeroPytorch/CMakeLists.txt}
-\subsubsection{convertToJceFormat.cpp}					\incFile{C++}{AlphaZeroPytorch/convertToJceFormat.cpp}
-%\incFile{C++}{AlphaZeroPytorch/detect_cuda_compute_capabilities.cpp}
-%\incFile{C++}{AlphaZeroPytorch/detect_cuda_version.cc}
-\subsubsection{doEloRaiting.cpp}									\incFile{C++}{AlphaZeroPytorch/doEloRaiting.cpp}
-\subsubsection{makeFiles.hpp}										\incFile{C++}{AlphaZeroPytorch/makeFiles.hpp}
-\subsubsection{Replay.cpp}											\incFile{C++}{AlphaZeroPytorch/Replay.cpp}
-\subsubsection{runServer.cpp}										\incFile{C++}{AlphaZeroPytorch/runServer.cpp}
-\subsubsection{showLoss.cpp}										\incFile{C++}{AlphaZeroPytorch/showLoss.cpp}
-\subsubsection{test.cpp}												\incFile{C++}{AlphaZeroPytorch/test.cpp}
-\subsubsection{include}													% AlphaZeroPytorch/include
-\paragraph{config.hpp}													\incFile{C++}{AlphaZeroPytorch/include/config.hpp}
-\paragraph{config.cpp}													\incFile{C++}{AlphaZeroPytorch/include/config.cpp}
-\paragraph{io.hpp}															\incFile{C++}{AlphaZeroPytorch/include/io.hpp}
-\paragraph{log.hpp}														\incFile{C++}{AlphaZeroPytorch/include/log.hpp}
-\paragraph{log.cpp}														\incFile{C++}{AlphaZeroPytorch/include/log.cpp}
-\paragraph{timer.hpp}													\incFile{C++}{AlphaZeroPytorch/include/timer.hpp}
-\paragraph{ai}																	% AlphaZeroPytorch/include/ai
-\subparagraph{agent.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.hpp}
-\subparagraph{agent.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.cpp}
-\subparagraph{MCTS.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.hpp}
-\subparagraph{MCTS.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.cpp}
-\subparagraph{memory.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.hpp}
-\subparagraph{memory.cpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.cpp}
-\subparagraph{model.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/model.hpp}
-\subparagraph{modelSynchronizer.hpp}						\incFile{C++}{AlphaZeroPytorch/include/ai/modelSynchronizer.hpp}
-\subparagraph{modelWorker.hpp}								\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.hpp}
-\subparagraph{modelWorker.cpp}									\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.cpp}
-\subparagraph{playGame.hpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.hpp}
-\subparagraph{playGame.cpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.cpp}
-\subparagraph{utils.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/utils.hpp}
-\paragraph{game}															% AlphaZeroPytorch/include/game
-\subparagraph{game.hpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.hpp}
-\subparagraph{game.cpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.cpp}
-\paragraph{jce}																% AlphaZeroPytorch/include/jce
-\subparagraph{load.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/load.hpp}
-\subparagraph{save.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/save.hpp}
-\subparagraph{string.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/string.hpp}
-\subparagraph{vector.hpp}											\incFile{C++}{AlphaZeroPytorch/include/jce/vector.hpp}
-\paragraph{server}															% AlphaZeroPytorch/include/server
-\subparagraph{eloClient.hpp}										\incFile{C++}{AlphaZeroPytorch/include/Server/eloClient.hpp}
-\subparagraph{server.hpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.hpp}
-\subparagraph{server.cpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.cpp}
-\paragraph{test}																% AlphaZeroPytorch/include/test
-\subparagraph{testSuit.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.hpp}	
-\subparagraph{testSuit.cpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.cpp}
-\subparagraph{testUtils.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testUtils.hpp}
+%\newpage\section{Code}
+%\subsection{AlphaZeroPytorch}
+%\subsubsection{AlphaZeroPytorch.h}							\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.h}
+%\subsubsection{AlphaZeroPytorch.cpp}						\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.cpp}
+%\subsubsection{cmake.sh}												\incFile{sh}{AlphaZeroPytorch/cmake.sh}
+%\subsubsection{CMakeLists.txt}										\incFile{python}{AlphaZeroPytorch/CMakeLists.txt}
+%\subsubsection{convertToJceFormat.cpp}					\incFile{C++}{AlphaZeroPytorch/convertToJceFormat.cpp}
+%%\incFile{C++}{AlphaZeroPytorch/detect_cuda_compute_capabilities.cpp}
+%%\incFile{C++}{AlphaZeroPytorch/detect_cuda_version.cc}
+%\subsubsection{doEloRaiting.cpp}									\incFile{C++}{AlphaZeroPytorch/doEloRaiting.cpp}
+%\subsubsection{makeFiles.hpp}										\incFile{C++}{AlphaZeroPytorch/makeFiles.hpp}
+%\subsubsection{Replay.cpp}											\incFile{C++}{AlphaZeroPytorch/Replay.cpp}
+%\subsubsection{runServer.cpp}										\incFile{C++}{AlphaZeroPytorch/runServer.cpp}
+%\subsubsection{showLoss.cpp}										\incFile{C++}{AlphaZeroPytorch/showLoss.cpp}
+%\subsubsection{test.cpp}												\incFile{C++}{AlphaZeroPytorch/test.cpp}
+%\subsubsection{include}													% AlphaZeroPytorch/include
+%\paragraph{config.hpp}													\incFile{C++}{AlphaZeroPytorch/include/config.hpp} \label{code:config}
+%\paragraph{config.cpp}													\incFile{C++}{AlphaZeroPytorch/include/config.cpp}
+%\paragraph{io.hpp}															\incFile{C++}{AlphaZeroPytorch/include/io.hpp}
+%\paragraph{log.hpp}														\incFile{C++}{AlphaZeroPytorch/include/log.hpp}
+%\paragraph{log.cpp}														\incFile{C++}{AlphaZeroPytorch/include/log.cpp}
+%\paragraph{timer.hpp}													\incFile{C++}{AlphaZeroPytorch/include/timer.hpp}
+%\paragraph{ai}																	% AlphaZeroPytorch/include/ai
+%\subparagraph{agent.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.hpp}
+%\subparagraph{agent.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.cpp}
+%\subparagraph{MCTS.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.hpp}
+%\subparagraph{MCTS.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.cpp}
+%\subparagraph{memory.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.hpp}
+%\subparagraph{memory.cpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.cpp}
+%\subparagraph{model.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/model.hpp}
+%\subparagraph{modelSynchronizer.hpp}						\incFile{C++}{AlphaZeroPytorch/include/ai/modelSynchronizer.hpp}
+%\subparagraph{modelWorker.hpp}								\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.hpp}
+%\subparagraph{modelWorker.cpp}									\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.cpp}
+%\subparagraph{playGame.hpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.hpp}
+%\subparagraph{playGame.cpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.cpp}
+%\subparagraph{utils.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/utils.hpp}
+%\paragraph{game}															% AlphaZeroPytorch/include/game
+%\subparagraph{game.hpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.hpp}
+%\subparagraph{game.cpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.cpp}
+%\paragraph{jce}																% AlphaZeroPytorch/include/jce
+%\subparagraph{load.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/load.hpp}
+%\subparagraph{save.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/save.hpp}
+%\subparagraph{string.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/string.hpp}
+%\subparagraph{vector.hpp}											\incFile{C++}{AlphaZeroPytorch/include/jce/vector.hpp}
+%\paragraph{server}															% AlphaZeroPytorch/include/server
+%\subparagraph{eloClient.hpp}										\incFile{C++}{AlphaZeroPytorch/include/Server/eloClient.hpp}
+%\subparagraph{server.hpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.hpp}
+%\subparagraph{server.cpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.cpp}
+%\paragraph{test}																% AlphaZeroPytorch/include/test
+%\subparagraph{testSuit.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.hpp}	
+%\subparagraph{testSuit.cpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.cpp}
+%\subparagraph{testUtils.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testUtils.hpp}
+%
+%\subsection{Clients}														% Clients/ConsoleClient
+%\subsubsection{ConsoleClient}
+%\paragraph{ConsoleClient.h}											\incFile{C++}{Clients/ConsoleClient/ConsoleClient.h}
+%\paragraph{ConsoleClient.cpp}										\incFile{C++}{Clients/ConsoleClient/ConsoleClient.cpp}
+%\paragraph{include}														% clients/consoleClient/include
+%\subparagraph{agent.hpp}												\incFile{C++}{Clients/ConsoleClient/include/agent.hpp}
+%\subparagraph{game.hpp}												\incFile{C++}{Clients/ConsoleClient/include/game.hpp}
+%\subparagraph{modifications.hpp}								\incFile{C++}{Clients/ConsoleClient/include/modifications.hpp}
+%\paragraph{scr}																% Clients/ConsoleClient/src
+%\subparagraph{game.cpp}												\incFile{C++}{Clients/ConsoleClient/scr/game.cpp}
+%\subsubsection{iosClient}												% Clients/iosClient
+%\paragraph{caller.py}														\incFile{python}{Clients/iosClient/caller.py}
+%\paragraph{connect4IOS.py}											\incFile{python}{Clients/iosClient/connect4IOS.py}
+%\subsubsection{pyClient}												% Clients/pyClient
+%\paragraph{Client.py}														\incFile{python}{Clients/pyClient/Client.py}
+%\paragraph{game.py}														\incFile{python}{Clients/pyClient/game.py}
+%\paragraph{gameSaver.py}												\incFile{python}{Clients/pyClient/gameSaver.py}
+%\paragraph{GUI.py}															\incFile{python}{Clients/pyClient/GUI.py}
+%\paragraph{main.py}														\incFile{python}{Clients/pyClient/main.py}
+%\paragraph{test.py}														\incFile{python}{Clients/pyClient/test.py}
+%\paragraph{winStates.json}											\incFile{python}{Clients/pyClient/winStates.json}
+%
+%\subsection{elo}																% /elo
+%\subsubsection{agent.py}												\incFile{python}{elo/agent.py}
+%\subsubsection{renderElo.py}										\incFile{python}{elo/renderElo.py}
+%\subsubsection{score.py}												\incFile{python}{elo/score.py}
+%\subsubsection{server.py}												\incFile{python}{elo/server.py}
+%
+%\subsection{game}															% games/connect4
+%\subsubsection{connect4}
+%\paragraph{config.hpp}													\incFile{C++}{games/connect4/config.hpp}
+%\paragraph{game.hpp}													\incFile{C++}{games/connect4/game.hpp}
+%\paragraph{game.cpp}													\incFile{C++}{games/connect4/game.cpp}
+%\subsubsection{othello}													% games/othello
+%\paragraph{config.hpp}													\incFile{C++}{games/othello/config.hpp}
+%\paragraph{game.hpp}													\incFile{C++}{games/othello/game.hpp}
+%\paragraph{game.cpp}													\incFile{C++}{games/othello/game.cpp}
+%
+%% /
+%\subsection{CMakeLists.txt}											\incFile{python}{CMakeLists.txt}
+%\subsection{README.md}												\incFile{python}{README.md}
+%\subsection{serch.sh}														\incFile{sh}{serch.sh}
+%
+%\section{Demos}
+%\subsection{Matura-AlphaZero-demos}
+%\subsubsection{CMakeLists.txt}										\incDemo{python}{CMakeLists.txt}
+%%\subsubsection{LICENSE}											\incDemo{python}{LICENSE}
+%\subsubsection{main.cpp}												\incDemo{c++}{main.cpp}
+%\subsubsection{README.md}										\incDemo{python}{README.md}
+%\subsubsection{supervised.cpp}									\incDemo{c++}{supervised.cpp}
+%\subsubsection{include}													% demo/include
+%\paragraph{point.hpp}													\incDemo{c++}{include/point.hpp}
+%\paragraph{utils.hpp}														\incDemo{c++}{include/utils.hpp}
+%\subsubsection{scr}														% demo/scr
+%\paragraph{point.cpp}													\incDemo{c++}{scr/point.cpp}
+%\subsubsection{supervised}											% demo/supervised
+%\paragraph{include}														% demo/supervised/include
+%\subparagraph{config.hpp}											\incDemo{c++}{supervised/include/config.hpp}
+%\subparagraph{model.hpp}											\incDemo{c++}{supervised/include/model.hpp}
+%\paragraph{src}																% demo/supervised/src
+%\subparagraph{model.cpp}												\incDemo{c++}{supervised/src/model.cpp}
+%\subsubsection{unsupervised}										% demo/unsupervised
+%\paragraph{include}														% demo/unsupervised/include
+%\subparagraph{cluster.hpp}											\incDemo{c++}{unsupervised/include/cluster.hpp}
+%\subparagraph{config.hpp}											\incDemo{c++}{unsupervised/include/config.hpp}
+%\subparagraph{group.hpp}												\incDemo{c++}{unsupervised/include/group.hpp}
+%\paragraph{src}																% demo/unsupervised/src
+%%\subparagraph{cluster.cpp}											\incDemo{c++}{unsupervised/src/cluster.cpp}
+%%\subparagraph{group.cpp}												\incDemo{c++}{unsupervised/src/group.cpp}
+%
+\section{Examples}
+\subsection{Mcts}\label{mctsExampleFullData}
+The full set of data as seen by the computer in the mcts example \imgRef{fig:mcts:example}. The node sets are as follows defined by the amount of edged leaving each node.
+\begin{align}
+ \mathbb M 										&= \{n_1, n_2, n_3, n_4, n_5, n_6, n_7, n_8\}\\
+ \mathbb M_{leaf} 						&= \{n_3, n_5, n_6, n_7, n_8\}\\
+ \mathbb M_{expanded} 	&= \{n_1, n_2, n_4\}
+\end{align}
+The edge sets for every node are as follows.
+\begin{align}
+ \mathbb E(n_1) &= \{e_1, e_2, e_3\}\\
+ \mathbb E(n_2) &= \{e_4, e_5\}\\
+ \mathbb E(n_3) &= \emptyset\\
+ \mathbb E(n_4) &= \{e_6, e_7, e_8\}\\
+ \mathbb E(n_5) &= \emptyset\\
+ \mathbb E(n_6) &= \emptyset\\
+ \mathbb E(n_7) &= \emptyset\\
+ \mathbb E(n_8) &= \emptyset
+\end{align}
+The edge by action and node function \(\mathcal E\) looks af follows:
+\begin{align}
+   \mathcal E(n_1, A_1) &= e_1\\
+	\mathcal E(n_1, A_2) &= e_2\\
+	\mathcal E(n_1, A_3) &= e_3\\
+	\mathcal E(n_2, A_4) &= e_4\\
+	\mathcal E(n_2, A_5) &= e_5\\
+	\mathcal E(n_4, A_6) &= e_6\\
+	\mathcal E(n_4, A_7) &= e_7\\
+	\mathcal E(n_4, A_8) &= e_8
+\end{align}
+The node an edge points from function \(\mathcal N_{from}\) looks af follows:
+\begin{align}
+	\mathcal N_{from} (e_1) &= n_1\\
+	\mathcal N_{from} (e_2) &= n_1\\
+	\mathcal N_{from} (e_3) &= n_1\\
+	\mathcal N_{from} (e_4) &= n_2\\
+	\mathcal N_{from} (e_5) &= n_2\\
+	\mathcal N_{from} (e_6) &= n_4\\
+	\mathcal N_{from} (e_7) &= n_4\\
+	\mathcal N_{from} (e_8) &= n_4
+\end{align}
+The node an edge points to function \(\mathcal N_{to}\) looks af follows:
+\begin{align}
+	\mathcal N_{to} (e_1) &= n_3\\
+	\mathcal N_{to} (e_2) &= n_2\\
+	\mathcal N_{to} (e_3) &= n_4\\
+	\mathcal N_{to} (e_4) &= n_5\\
+	\mathcal N_{to} (e_5) &= n_6\\
+	\mathcal N_{to} (e_6) &= n_6\\
+	\mathcal N_{to} (e_7) &= n_7\\
+	\mathcal N_{to} (e_8) &= n_8
+\end{align}
 
-\subsection{Clients}														% Clients/ConsoleClient
-\subsubsection{ConsoleClient}
-\paragraph{ConsoleClient.h}											\incFile{C++}{Clients/ConsoleClient/ConsoleClient.h}
-\paragraph{ConsoleClient.cpp}										\incFile{C++}{Clients/ConsoleClient/ConsoleClient.cpp}
-\paragraph{include}														% clients/consoleClient/include
-\subparagraph{agent.hpp}												\incFile{C++}{Clients/ConsoleClient/include/agent.hpp}
-\subparagraph{game.hpp}												\incFile{C++}{Clients/ConsoleClient/include/game.hpp}
-\subparagraph{modifications.hpp}								\incFile{C++}{Clients/ConsoleClient/include/modifications.hpp}
-\paragraph{scr}																% Clients/ConsoleClient/src
-\subparagraph{game.cpp}												\incFile{C++}{Clients/ConsoleClient/scr/game.cpp}
-\subsubsection{iosClient}												% Clients/iosClient
-\paragraph{caller.py}														\incFile{python}{Clients/iosClient/caller.py}
-\paragraph{connect4IOS.py}											\incFile{python}{Clients/iosClient/connect4IOS.py}
-\subsubsection{pyClient}												% Clients/pyClient
-\paragraph{Client.py}														\incFile{python}{Clients/pyClient/Client.py}
-\paragraph{game.py}														\incFile{python}{Clients/pyClient/game.py}
-\paragraph{gameSaver.py}												\incFile{python}{Clients/pyClient/gameSaver.py}
-\paragraph{GUI.py}															\incFile{python}{Clients/pyClient/GUI.py}
-\paragraph{main.py}														\incFile{python}{Clients/pyClient/main.py}
-\paragraph{test.py}														\incFile{python}{Clients/pyClient/test.py}
-\paragraph{winStates.json}											\incFile{python}{Clients/pyClient/winStates.json}
+\section{Proofs}
+\subsection{tanh derivative} \label{sec:proof:tanhd/dx}
+\(tanh~:~\mathbb R~\to~\mathbb R\) is defined as:
+\begin{equation}
+tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}
+\end{equation}
+\begin{align}
+\begin{split}
+\frac{d}{dx}\left[ \frac{e^x-e^{-x}}{e^x+e^{-x}}\right] &= \frac{ 
+													(e^x+e^{-x})\frac{d}{dx}\left[e^x-e^{-x}\right]
+												- (e^x-e^{-x}) \frac{d}{dx}\left[e^x+e^{-x}\right]}
+											{(e^x+e^{-x})^2}\\
+&= \frac{(e^x+e^{-x})^2 - (e^x-e^{-x})^2}{(e^x+e^{-x})^2}\\
+&= \frac{e^{2x} + 2e^xe^{-x} + e^{-2x} - e^{2x} + 2e^xe^{-x} -e^{-x}}{(e^x+e^{-2x})^2}\\
+&= \frac{4}{(e^x+e^{-x})^2}
+\end{split}
+\label{eq:tanhDerivativeEnd}
+\end{align}
+because
+\begin{equation}\label{eq:sech}
+sech(x) := \frac{2}{e^x+e^{-x}}
+\end{equation}
+using (\ref{eq:tanhDerivativeEnd}) and (\ref{eq:sech}) we can see, that
+\begin{equation}
+\frac{d}{dx}\left[tanh(x)\right] = sech(x)^2
+\end{equation}
 
-\subsection{elo}																% /elo
-\subsubsection{agent.py}												\incFile{python}{elo/agent.py}
-\subsubsection{renderElo.py}										\incFile{python}{elo/renderElo.py}
-\subsubsection{score.py}												\incFile{python}{elo/score.py}
-\subsubsection{server.py}												\incFile{python}{elo/server.py}
+\subsection{Softmax Derivative}
+The Softmax \(s~:~\mathbb R^n~\to~\mathbb R^n\), \(n\in\mathbb N\), is defined as
+\begin{equation} \label{eq:proof:softmax}
+s(v)_i := \frac{e^{v_i}}{\sum_{j \in v} e^j}
+\end{equation}
+for all \(i \in [1,n]\). Due to the multidimensional natur of this function we are taking the derivative \(\frac{d}{dv_j}s(v)_i\), with \(i \in [1,n]\) and \(j \in [1,n]\). 
+\subparagraph*{case \(i \neq j\)}
+\begin{align}
+\begin{split}
+\frac{d}{dv_j}\left[\frac{e^{v_i}}{\sum_{a \in v} e^a}\right] &= -\frac{\frac{d}{dx}\left[\sum_{a \in v} e^a\right]e^{v_i}}{(\sum_{a \in v} e^a)^2}\\
+&= -\frac{e^{v_j} e^{v_i}}{(\sum_{a \in v} e^a)^2}\\
+&= -s(v)_j s(v)_i
+\end{split}
+\end{align}
+\subparagraph*{case \(i = j\)}
+\begin{align}
+\begin{split}
+\frac{d}{dv_j}\left[\frac{e^{v_i}}{\sum_{a \in v} e^a}\right] 
+&= \frac{\frac{d}{dx}\left[e^{v_i}\right]\sum_{a \in v} e^a - e^{v_i}\frac{d}{dx}\left[\sum_{a \in v} e^a\right]}{(\sum_{a \in v} e^a)^2}\\
+&= \frac{e^{v_i}\sum_{a \in v} e^a - e^{v_i}e^{v_j}}{(\sum_{a \in v} e^a)^2}\\
+&= s(v)_i - s(v)_i s(v)_j\\
+&= s(v)_i (1 - s(v)_j)
+\end{split}
+\end{align}
 
-\subsection{game}															% games/connect4
-\subsubsection{connect4}
-\paragraph{config.hpp}													\incFile{C++}{games/connect4/config.hpp}
-\paragraph{game.hpp}													\incFile{C++}{games/connect4/game.hpp}
-\paragraph{game.cpp}													\incFile{C++}{games/connect4/game.cpp}
-\subsubsection{othello}													% games/othello
-\paragraph{config.hpp}													\incFile{C++}{games/othello/config.hpp}
-\paragraph{game.hpp}													\incFile{C++}{games/othello/game.hpp}
-\paragraph{game.cpp}													\incFile{C++}{games/othello/game.cpp}
-
-% /
-\subsection{CMakeLists.txt}											\incFile{python}{CMakeLists.txt}
-\subsection{README.md}												\incFile{python}{README.md}
-\subsection{serch.sh}														\incFile{sh}{serch.sh}
-
-\section{Demos}
-\subsection{Matura-AlphaZero-demos}
-\subsubsection{CMakeLists.txt}										\incDemo{python}{CMakeLists.txt}
-%\subsubsection{LICENSE}											\incDemo{python}{LICENSE}
-\subsubsection{main.cpp}												\incDemo{c++}{main.cpp}
-\subsubsection{README.md}										\incDemo{python}{README.md}
-\subsubsection{supervised.cpp}									\incDemo{c++}{supervised.cpp}
-\subsubsection{include}													% demo/include
-\paragraph{point.hpp}													\incDemo{c++}{include/point.hpp}
-\paragraph{utils.hpp}														\incDemo{c++}{include/utils.hpp}
-\subsubsection{scr}														% demo/scr
-\paragraph{point.cpp}													\incDemo{c++}{scr/point.cpp}
-\subsubsection{supervised}											% demo/supervised
-\paragraph{include}														% demo/supervised/include
-\subparagraph{config.hpp}											\incDemo{c++}{supervised/include/config.hpp}
-\subparagraph{model.hpp}											\incDemo{c++}{supervised/include/model.hpp}
-\paragraph{src}																% demo/supervised/src
-\subparagraph{model.cpp}												\incDemo{c++}{supervised/src/model.cpp}
-\subsubsection{unsupervised}										% demo/unsupervised
-\paragraph{include}														% demo/unsupervised/include
-\subparagraph{cluster.hpp}											\incDemo{c++}{unsupervised/include/cluster.hpp}
-\subparagraph{config.hpp}											\incDemo{c++}{unsupervised/include/config.hpp}
-\subparagraph{group.hpp}												\incDemo{c++}{unsupervised/include/group.hpp}
-\paragraph{src}																% demo/unsupervised/src
-\subparagraph{cluster.cpp}											\incDemo{c++}{unsupervised/src/cluster.cpp}
-\subparagraph{group.cpp}												\incDemo{c++}{unsupervised/src/group.cpp}
 \end{document}

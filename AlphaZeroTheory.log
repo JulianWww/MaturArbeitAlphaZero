@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2022.2.4)  25 MAR 2022 11:14
+This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2022.2.4)  6 SEP 2022 12:40
  system commands enabled.
 **AlphaZeroTheory.tex
 (./AlphaZeroTheory.tex
@@ -424,29 +424,166 @@ Package: subcaption 2020/01/22 v1.3d Sub-captions (AR)
 \c@subfigure=\count198
 \c@subtable=\count199
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/rotating.sty
-Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count266
+\float@exts=\toks25
+\float@box=\box51
+\@float@everytoks=\toks26
+\@floatcapt=\box52
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count267
+\lst@gtempboxa=\box53
+\lst@token=\toks27
+\lst@length=\count268
+\lst@currlwidth=\dimen169
+\lst@column=\count269
+\lst@pos=\count270
+\lst@lostspace=\dimen170
+\lst@width=\dimen171
+\lst@newlines=\count271
+\lst@lineno=\count272
+\lst@maxwidth=\dimen172
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
+\c@lstnumber=\count273
+\lst@skipnumbers=\count274
+\lst@framebox=\box54
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2019/09/10 1.8c listings configuration
+))
+Package: listings 2019/09/10 1.8c (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/minted/minted.sty
+Package: minted 2017/07/19 v2.5 Yet another Pygments shim for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/fvextra/fvextra.sty
+Package: fvextra 2019/02/04 v1.4 fvextra - extensions and patches for fancyvrb
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\c@r@tfl@t=\count266
-\rotFPtop=\skip57
-\rotFPbot=\skip58
-\rot@float@box=\box51
-\rot@mess@toks=\toks25
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count275
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2020/01/13 v3.5 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count276
+\FV@InFile=\read2
+\FV@TabBox=\box55
+\c@FancyVerbLine=\count277
+\FV@StepNumber=\count278
+\FV@OutFile=\write3
+)
+(/usr/share/texlive/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbat
+im
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+))
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count279
+\output=\toks28
+\linenoprevgraf=\count280
+\linenumbersep=\dimen173
+\linenumberwidth=\dimen174
+\c@linenumber=\count281
+\c@pagewiselinenumber=\count282
+\c@LN@truepage=\count283
+\c@internallinenumber=\count284
+\c@internallinenumbers=\count285
+\quotelinenumbersep=\dimen175
+\bframerule=\dimen176
+\bframesep=\dimen177
+\bframebox=\box56
+LaTeX Info: Redefining \\ on input line 3056.
+)
+\c@FV@TrueTabGroupLevel=\count286
+\c@FV@TrueTabCounter=\count287
+\FV@TabBox@Group=\box57
+\FV@TmpLength=\skip57
+\c@FV@HighlightLinesStart=\count288
+\c@FV@HighlightLinesStop=\count289
+\FV@LoopCount=\count290
+\FV@NCharsBox=\box58
+\FV@BreakIndent=\dimen178
+\FV@BreakIndentNChars=\count291
+\FV@BreakSymbolSepLeft=\dimen179
+\FV@BreakSymbolSepLeftNChars=\count292
+\FV@BreakSymbolSepRight=\dimen180
+\FV@BreakSymbolSepRightNChars=\count293
+\FV@BreakSymbolIndentLeft=\dimen181
+\FV@BreakSymbolIndentLeftNChars=\count294
+\FV@BreakSymbolIndentRight=\dimen182
+\FV@BreakSymbolIndentRightNChars=\count295
+\c@FancyVerbLineBreakLast=\count296
+\FV@LineBox=\box59
+\FV@LineIndentBox=\box60
+\FV@LineWidth=\dimen183
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count297
+\calc@Bcount=\count298
+\calc@Adimen=\dimen184
+\calc@Bdimen=\dimen185
+\calc@Askip=\skip58
+\calc@Bskip=\skip59
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count299
+\calc@Cskip=\skip60
+)
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
+\integerpart=\count300
+\decimalpart=\count301
+)
+Package: xstring 2019/02/06 v1.83 String manipulations (CT)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip61
+\fb@frw=\dimen186
+\fb@frh=\dimen187
+\FrameRule=\dimen188
+\FrameSep=\dimen189
+)
+\minted@appexistsfile=\read3
+\minted@bgbox=\box61
+\minted@code=\write4
+\c@minted@FancyVerbLineTemp=\count302
+\c@minted@pygmentizecounter=\count303
+\@float@every@listing=\toks29
+\c@listing=\count304
+)
+runsystem(mkdir -p _minted-AlphaZeroTheory)...executed
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/rotating.sty
+Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
+\c@r@tfl@t=\count305
+\rotFPtop=\skip62
+\rotFPbot=\skip63
+\rot@float@box=\box62
+\rot@mess@toks=\toks30
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-\pgfutil@everybye=\toks26
-\pgfutil@tempdima=\dimen169
-\pgfutil@tempdimb=\dimen170
+\pgfutil@everybye=\toks31
+\pgfutil@tempdima=\dimen190
+\pgfutil@tempdimb=\dimen191
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
 ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box52
+\pgfutil@abb=\box63
 (/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
@@ -462,33 +599,33 @@ Package: pgf 2020/01/08 v3.1.5b (3.1.5b)
 Package: pgfsys 2020/01/08 v3.1.5b (3.1.5b)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks27
-\pgfkeys@temptoks=\toks28
+\pgfkeys@pathtoks=\toks32
+\pgfkeys@temptoks=\toks33
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
 ex
-\pgfkeys@tmptoks=\toks29
+\pgfkeys@tmptoks=\toks34
 ))
-\pgf@x=\dimen171
-\pgf@y=\dimen172
-\pgf@xa=\dimen173
-\pgf@ya=\dimen174
-\pgf@xb=\dimen175
-\pgf@yb=\dimen176
-\pgf@xc=\dimen177
-\pgf@yc=\dimen178
-\pgf@xd=\dimen179
-\pgf@yd=\dimen180
-\w@pgf@writea=\write3
-\r@pgf@reada=\read2
-\c@pgf@counta=\count267
-\c@pgf@countb=\count268
-\c@pgf@countc=\count269
-\c@pgf@countd=\count270
-\t@pgf@toka=\toks30
-\t@pgf@tokb=\toks31
-\t@pgf@tokc=\toks32
-\pgf@sys@id@count=\count271
+\pgf@x=\dimen192
+\pgf@y=\dimen193
+\pgf@xa=\dimen194
+\pgf@ya=\dimen195
+\pgf@xb=\dimen196
+\pgf@yb=\dimen197
+\pgf@xc=\dimen198
+\pgf@yc=\dimen199
+\pgf@xd=\dimen256
+\pgf@yd=\dimen257
+\w@pgf@writea=\write5
+\r@pgf@reada=\read4
+\c@pgf@counta=\count306
+\c@pgf@countb=\count307
+\c@pgf@countc=\count308
+\c@pgf@countd=\count309
+\t@pgf@toka=\toks35
+\t@pgf@tokb=\toks36
+\t@pgf@tokc=\toks37
+\pgf@sys@id@count=\count310
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2020/01/08 v3.1.5b (3.1.5b)
 )
@@ -504,8 +641,8 @@ File: pgfsys-common-pdf.def 2020/01/08 v3.1.5b (3.1.5b)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
 tex
 File: pgfsyssoftpath.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfsyssoftpath@smallbuffer@items=\count272
-\pgfsyssoftpath@bigbuffer@items=\count273
+\pgfsyssoftpath@smallbuffer@items=\count311
+\pgfsyssoftpath@bigbuffer@items=\count312
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
 tex
@@ -518,12 +655,12 @@ Package: pgfcore 2020/01/08 v3.1.5b (3.1.5b)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen181
-\pgfmath@count=\count274
-\pgfmath@box=\box53
-\pgfmath@toks=\toks33
-\pgfmath@stack@operand=\toks34
-\pgfmath@stack@operation=\toks35
+\pgfmath@dimen=\dimen258
+\pgfmath@count=\count313
+\pgfmath@box=\box64
+\pgfmath@toks=\toks38
+\pgfmath@stack@operand=\toks39
+\pgfmath@stack@operation=\toks40
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
@@ -543,58 +680,58 @@ tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
 thmetics.code.tex)))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count275
+\c@pgfmathroundto@lastzeros=\count314
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
 x
 File: pgfcorepoints.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgf@picminx=\dimen182
-\pgf@picmaxx=\dimen183
-\pgf@picminy=\dimen184
-\pgf@picmaxy=\dimen185
-\pgf@pathminx=\dimen186
-\pgf@pathmaxx=\dimen187
-\pgf@pathminy=\dimen188
-\pgf@pathmaxy=\dimen189
-\pgf@xx=\dimen190
-\pgf@xy=\dimen191
-\pgf@yx=\dimen192
-\pgf@yy=\dimen193
-\pgf@zx=\dimen194
-\pgf@zy=\dimen195
+\pgf@picminx=\dimen259
+\pgf@picmaxx=\dimen260
+\pgf@picminy=\dimen261
+\pgf@picmaxy=\dimen262
+\pgf@pathminx=\dimen263
+\pgf@pathmaxx=\dimen264
+\pgf@pathminy=\dimen265
+\pgf@pathmaxy=\dimen266
+\pgf@xx=\dimen267
+\pgf@xy=\dimen268
+\pgf@yx=\dimen269
+\pgf@yy=\dimen270
+\pgf@zx=\dimen271
+\pgf@zy=\dimen272
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
 code.tex
 File: pgfcorepathconstruct.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgf@path@lastx=\dimen196
-\pgf@path@lasty=\dimen197
+\pgf@path@lastx=\dimen273
+\pgf@path@lasty=\dimen274
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
 .tex
 File: pgfcorepathusage.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgf@shorten@end@additional=\dimen198
-\pgf@shorten@start@additional=\dimen199
+\pgf@shorten@end@additional=\dimen275
+\pgf@shorten@start@additional=\dimen276
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
 x
 File: pgfcorescopes.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfpic=\box54
-\pgf@hbox=\box55
-\pgf@layerbox@main=\box56
-\pgf@picture@serial@count=\count276
+\pgfpic=\box65
+\pgf@hbox=\box66
+\pgf@layerbox@main=\box67
+\pgf@picture@serial@count=\count315
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
 ode.tex
 File: pgfcoregraphicstate.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgflinewidth=\dimen256
+\pgflinewidth=\dimen277
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
 s.code.tex
 File: pgfcoretransformations.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgf@pt@x=\dimen257
-\pgf@pt@y=\dimen258
-\pgf@pt@temp=\dimen259
+\pgf@pt@x=\dimen278
+\pgf@pt@y=\dimen279
+\pgf@pt@temp=\dimen280
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2020/01/08 v3.1.5b (3.1.5b)
@@ -610,13 +747,13 @@ File: pgfcorepathprocessing.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
 x
 File: pgfcorearrows.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfarrowsep=\dimen260
+\pgfarrowsep=\dimen281
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgf@max=\dimen261
-\pgf@sys@shading@range@num=\count277
-\pgf@shadingcount=\count278
+\pgf@max=\dimen282
+\pgf@sys@shading@range@num=\count316
+\pgf@shadingcount=\count317
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2020/01/08 v3.1.5b (3.1.5b)
@@ -624,7 +761,7 @@ File: pgfcoreimage.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
 tex
 File: pgfcoreexternal.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfexternal@startupbox=\box57
+\pgfexternal@startupbox=\box68
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
 x
@@ -643,15 +780,15 @@ File: pgfcorerdf.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 )))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfnodeparttextbox=\box58
+\pgfnodeparttextbox=\box69
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
 .sty
 Package: pgfcomp-version-0-65 2020/01/08 v3.1.5b (3.1.5b)
-\pgf@nodesepstart=\dimen262
-\pgf@nodesepend=\dimen263
+\pgf@nodesepstart=\dimen283
+\pgf@nodesepend=\dimen284
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
 .sty
@@ -665,10 +802,10 @@ Package: pgfcomp-version-1-18 2020/01/08 v3.1.5b (3.1.5b)
 Package: pgffor 2020/01/08 v3.1.5b (3.1.5b)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
-\pgffor@iter=\dimen264
-\pgffor@skip=\dimen265
-\pgffor@stack=\toks36
-\pgffor@toks=\toks37
+\pgffor@iter=\dimen285
+\pgffor@skip=\dimen286
+\pgffor@stack=\toks41
+\pgffor@toks=\toks42
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2020/01/08 v3.1.5b (3.1.5b)
@@ -676,91 +813,97 @@ Package: tikz 2020/01/08 v3.1.5b (3.1.5b)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
 .code.tex
 File: pgflibraryplothandlers.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgf@plot@mark@count=\count279
-\pgfplotmarksize=\dimen266
+\pgf@plot@mark@count=\count318
+\pgfplotmarksize=\dimen287
 )
-\tikz@lastx=\dimen267
-\tikz@lasty=\dimen268
-\tikz@lastxsaved=\dimen269
-\tikz@lastysaved=\dimen270
-\tikz@lastmovetox=\dimen271
-\tikz@lastmovetoy=\dimen272
-\tikzleveldistance=\dimen273
-\tikzsiblingdistance=\dimen274
-\tikz@figbox=\box59
-\tikz@figbox@bg=\box60
-\tikz@tempbox=\box61
-\tikz@tempbox@bg=\box62
-\tikztreelevel=\count280
-\tikznumberofchildren=\count281
-\tikznumberofcurrentchild=\count282
-\tikz@fig@count=\count283
+\tikz@lastx=\dimen288
+\tikz@lasty=\dimen289
+\tikz@lastxsaved=\dimen290
+\tikz@lastysaved=\dimen291
+\tikz@lastmovetox=\dimen292
+\tikz@lastmovetoy=\dimen293
+\tikzleveldistance=\dimen294
+\tikzsiblingdistance=\dimen295
+\tikz@figbox=\box70
+\tikz@figbox@bg=\box71
+\tikz@tempbox=\box72
+\tikz@tempbox@bg=\box73
+\tikztreelevel=\count319
+\tikznumberofchildren=\count320
+\tikznumberofcurrentchild=\count321
+\tikz@fig@count=\count322
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2020/01/08 v3.1.5b (3.1.5b)
-\pgfmatrixcurrentrow=\count284
-\pgfmatrixcurrentcolumn=\count285
-\pgf@matrix@numberofcolumns=\count286
+\pgfmatrixcurrentrow=\count323
+\pgfmatrixcurrentcolumn=\count324
+\pgf@matrix@numberofcolumns=\count325
 )
-\tikz@expandcount=\count287
+\tikz@expandcount=\count326
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 )))
-Package hyperref Info: Option `colorlinks' set `true' on input line 71.
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/09/10 1.8c listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/09/10 1.8c listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 89.
+runsystem(which pygmentize && touch AlphaZeroTheory.aex)...executed
+runsystem(rm AlphaZeroTheory.aex)...executed
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count288
-\l__pdf_internal_box=\box63
+\l__kernel_color_stack_int=\count327
+\l__pdf_internal_box=\box74
 )
-(./AlphaZeroTheory.aux
-
-LaTeX Warning: Label `eq:NN:ReLU' multiply defined.
-
-)
+(./AlphaZeroTheory.aux)
 \openout1 = AlphaZeroTheory.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 75.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 75
-.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 128.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 12
+8.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count289
-\scratchdimen=\dimen275
-\scratchbox=\box64
-\nofMPsegments=\count290
-\nofMParguments=\count291
-\everyMPshowfont=\toks38
-\MPscratchCnt=\count292
-\MPscratchDim=\dimen276
-\MPnumerator=\count293
-\makeMPintoPDFobject=\count294
-\everyMPtoPDFconversion=\toks39
+\scratchcounter=\count328
+\scratchdimen=\dimen296
+\scratchbox=\box75
+\nofMPsegments=\count329
+\nofMParguments=\count330
+\everyMPshowfont=\toks43
+\MPscratchCnt=\count331
+\MPscratchDim=\dimen297
+\MPnumerator=\count332
+\makeMPintoPDFobject=\count333
+\everyMPtoPDFconversion=\toks44
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
@@ -771,11 +914,13 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box65
-Package hyperref Info: Link coloring ON on input line 75.
+\AtBeginShipoutBox=\box76
+Package hyperref Info: Link coloring ON on input line 128.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -786,255 +931,324 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count295
+\c@section@level=\count334
 )
-LaTeX Info: Redefining \ref on input line 75.
-LaTeX Info: Redefining \pageref on input line 75.
-LaTeX Info: Redefining \nameref on input line 75.
+LaTeX Info: Redefining \ref on input line 128.
+LaTeX Info: Redefining \pageref on input line 128.
+LaTeX Info: Redefining \nameref on input line 128.
 
 (./AlphaZeroTheory.out) (./AlphaZeroTheory.out)
-\@outlinefile=\write4
+\@outlinefile=\write6
 
-\openout4 = AlphaZeroTheory.out
+\openout6 = AlphaZeroTheory.out
+\c@lstlisting=\count335
 
 ABD: EveryShipout initializing macros
-LaTeX Font Info:    Trying to load font information for U+msa on input line 77.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 130.
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 77.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 130.
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./AlphaZeroTheory.toc [2]
 )
-(./AlphaZeroTheory.toc [1
+\tf@toc=\write7
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-[2])
-\tf@toc=\write5
-
-\openout5 = AlphaZeroTheory.toc
- [3]
-Underfull \hbox (badness 10000) in paragraph at lines 90--92
-
- []
-
-[4]
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 99--99
+\openout7 = AlphaZeroTheory.toc
+ [3] [4]
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 99--99
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 99--99
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 99--99
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 99--99
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 99--99
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 99--99
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 99--99
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 99--99
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 99--99
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 99--99
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 99--99
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 99--99
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 99--99
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 99--99
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
 []|\TU/lmr/m/n/12 X| 
  []
 
 [5]
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 103--103
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 103--103
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 103--103
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 103--103
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 103--103
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 103--103
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 103--103
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 103--103
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 103--103
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 103--103
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 103--103
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 103--103
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 103--103
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 103--103
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 103--103
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
 []|\TU/lmr/m/n/12 X| 
  []
 
 [6]
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 113--113
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 174--174
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 113--113
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 174--174
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 113--113
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 174--174
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 113--113
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 174--174
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 113--113
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 174--174
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 113--113
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 174--174
+[]|\TU/lmr/m/n/12 X| 
+ []
+
+[7]
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 223--223
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 X| 
- []
-
-
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 223--223
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 223--223
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 223--223
 []|\TU/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 223--223
 []|\TU/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 223--223
 []|\TU/lmr/m/n/12 X| 
  []
 
-[7] [8] [9] [10] [11] [12] [13]
+[8]
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 246--246
+[]|\TU/lmr/m/n/12 X| 
+ []
+
+
+Overfull \hbox (2.11783pt too wide) in paragraph at lines 246--246
+[]|\TU/lmr/m/n/12 O| 
+ []
+
+
+LaTeX Warning: Reference `code:config' on page 9 undefined on input line 255.
+
+
+LaTeX Warning: Reference `code:config' on page 9 undefined on input line 255.
+
+[9]
+Package svg Info: Last page of `./svg-inkscape/mctsExample_svg-tex.pdf' is 1 on 
+input line 262.
+ (./svg-inkscape/mctsExample_svg-tex.pdf_tex
+<./svg-inkscape/mctsExample_svg-tex.pdf, id=389, page=1, 384.8662pt x 342.18704p
+t>
+File: ./svg-inkscape/mctsExample_svg-tex.pdf Graphic file (type pdf)
+<use ./svg-inkscape/mctsExample_svg-tex.pdf, page 1>
+Package luatex.def Info: ./svg-inkscape/mctsExample_svg-tex.pdf , page1 used on 
+input line 56.
+(luatex.def)             Requested size: 154.23842pt x 137.13345pt.
+) [10] [11<./svg-inkscape/mctsExample_svg-tex.pdf>]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 295.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 295.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 295.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\in' on input line 295.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 295.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 305.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 305.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 305.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\not' on input line 305.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\in' on input line 305.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 305.
+
+[12] [13] [14] [15]
 Package svg Info: Last page of `./svg-inkscape/tanh_svg-tex.pdf' is 1 on input l
-ine 311.
+ine 458.
  (./svg-inkscape/tanh_svg-tex.pdf_tex
-<./svg-inkscape/tanh_svg-tex.pdf, id=369, page=1, 433.62pt x 144.54pt>
+<./svg-inkscape/tanh_svg-tex.pdf, id=467, page=1, 433.62pt x 144.54pt>
 File: ./svg-inkscape/tanh_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/tanh_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/tanh_svg-tex.pdf , page1 used on input l
@@ -1043,28 +1257,14 @@ ine 56.
 )
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 312.
+(caption)                particular \caption on input line 459.
 See the caption package documentation for explanation.
 
-Package svg Info: Last page of `./svg-inkscape/softmax_svg-tex.pdf' is 1 on inpu
-t line 322.
-(./svg-inkscape/softmax_svg-tex.pdf_tex
-<./svg-inkscape/softmax_svg-tex.pdf, id=371, page=1, 505.89pt x 72.27pt>
-File: ./svg-inkscape/softmax_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/softmax_svg-tex.pdf, page 1>
-Package luatex.def Info: ./svg-inkscape/softmax_svg-tex.pdf , page1 used on inpu
-t line 56.
-(luatex.def)             Requested size: 350.99762pt x 50.14313pt.
-)
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 323.
-See the caption package documentation for explanation.
-
+[16<./svg-inkscape/tanh_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/softmaxx_svg-tex.pdf' is 1 on inp
-ut line 333.
-(./svg-inkscape/softmaxx_svg-tex.pdf_tex
-<./svg-inkscape/softmaxx_svg-tex.pdf, id=373, page=1, 320.22081pt x 301.39346pt>
+ut line 477.
+ (./svg-inkscape/softmaxx_svg-tex.pdf_tex
+<./svg-inkscape/softmaxx_svg-tex.pdf, id=513, page=1, 320.22081pt x 301.39346pt>
 
 File: ./svg-inkscape/softmaxx_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/softmaxx_svg-tex.pdf, page 1>
@@ -1073,10 +1273,9 @@ ut line 56.
 (luatex.def)             Requested size: 145.6974pt x 137.12962pt.
 )
 Package svg Info: Last page of `./svg-inkscape/softmaxy_svg-tex.pdf' is 1 on inp
-ut line 339.
-
+ut line 483.
 (./svg-inkscape/softmaxy_svg-tex.pdf_tex
-<./svg-inkscape/softmaxy_svg-tex.pdf, id=375, page=1, 320.22081pt x 301.39346pt>
+<./svg-inkscape/softmaxy_svg-tex.pdf, id=515, page=1, 320.22081pt x 301.39346pt>
 
 File: ./svg-inkscape/softmaxy_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/softmaxy_svg-tex.pdf, page 1>
@@ -1085,22 +1284,22 @@ ut line 56.
 (luatex.def)             Requested size: 145.6974pt x 137.12962pt.
 )
 Package svg Info: Last page of `./svg-inkscape/softmaxscale_svg-tex.pdf' is 1 on
- input line 345.
+ input line 489.
 
 (./svg-inkscape/softmaxscale_svg-tex.pdf_tex
-<./svg-inkscape/softmaxscale_svg-tex.pdf, id=377, page=1, 44.86574pt x 276.82434
+<./svg-inkscape/softmaxscale_svg-tex.pdf, id=517, page=1, 44.86574pt x 276.82434
 pt>
 File: ./svg-inkscape/softmaxscale_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/softmaxscale_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/softmaxscale_svg-tex.pdf , page1 used on
  input line 56.
 (luatex.def)             Requested size: 22.22296pt x 137.11507pt.
-) [14<./svg-inkscape/tanh_svg-tex.pdf><./svg-inkscape/softmax_svg-tex.pdf>]
+) [17<./svg-inkscape/softmaxx_svg-tex.pdf><./svg-inkscape/softmaxy_svg-tex.pdf><
+./svg-inkscape/softmaxscale_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/LeakyReLU_svg-tex.pdf' is 1 on in
-put line 377.
-
-(./svg-inkscape/LeakyReLU_svg-tex.pdf_tex
-<./svg-inkscape/LeakyReLU_svg-tex.pdf, id=456, page=1, 722.7pt x 505.89pt>
+put line 516.
+ (./svg-inkscape/LeakyReLU_svg-tex.pdf_tex
+<./svg-inkscape/LeakyReLU_svg-tex.pdf, id=546, page=1, 722.7pt x 505.89pt>
 File: ./svg-inkscape/LeakyReLU_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/LeakyReLU_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/LeakyReLU_svg-tex.pdf , page1 used on in
@@ -1109,34 +1308,36 @@ put line 56.
 )
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 378.
+(caption)                particular \caption on input line 517.
 See the caption package documentation for explanation.
 
-[15<./svg-inkscape/softmaxx_svg-tex.pdf><./svg-inkscape/softmaxy_svg-tex.pdf><./
-svg-inkscape/softmaxscale_svg-tex.pdf>] [16<./svg-inkscape/LeakyReLU_svg-tex.pdf
->] [17]
-<./images/connectFourExample.png, id=565, 1053.9375pt x 903.375pt>
+[18<./svg-inkscape/LeakyReLU_svg-tex.pdf>] [19]
+<./images/connectFourExample.png, id=629, 1053.9375pt x 903.375pt>
 File: ./images/connectFourExample.png Graphic file (type png)
 <use ./images/connectFourExample.png>
-Package luatex.def Info: ./images/connectFourExample.png  used on input line 446
+Package luatex.def Info: ./images/connectFourExample.png  used on input line 584
 .
 (luatex.def)             Requested size: 195.0pt x 167.13554pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 447.
+(caption)                particular \caption on input line 585.
 See the caption package documentation for explanation.
 
-[18<./images/connectFourExample.png>] [19] [20] [21]
-Underfull \hbox (badness 10000) in paragraph at lines 564--567
+[20] [21<./images/connectFourExample.png>] [22] [23]
 
- []
+LaTeX Warning: Reference `sec:NeruralNetworkArchitectur' on page 24 undefined on
+ input line 692.
 
-[22]
+
+LaTeX Warning: Reference `sec:NeruralNetworkArchitectur' on page 24 undefined on
+ input line 692.
+
+[24]
 Package svg Info: Last page of `./svg-inkscape/elo_svg-tex.pdf' is 1 on input li
-ne 586.
+ne 711.
  (./svg-inkscape/elo_svg-tex.pdf_tex
-<./svg-inkscape/elo_svg-tex.pdf, id=628, page=1, 462.52798pt x 346.89601pt>
+<./svg-inkscape/elo_svg-tex.pdf, id=690, page=1, 462.52798pt x 346.89601pt>
 File: ./svg-inkscape/elo_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/elo_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/elo_svg-tex.pdf , page1 used on input li
@@ -1145,14 +1346,15 @@ ne 56.
 )
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 587.
+(caption)                particular \caption on input line 712.
 See the caption package documentation for explanation.
 
-[23<./svg-inkscape/elo_svg-tex.pdf>]
+[25] [26<./svg-inkscape/elo_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/elo_back_svg-tex.pdf' is 1 on inp
-ut line 617.
- (./svg-inkscape/elo_back_svg-tex.pdf_tex
-<./svg-inkscape/elo_back_svg-tex.pdf, id=645, page=1, 462.52798pt x 346.89601pt>
+ut line 742.
+
+(./svg-inkscape/elo_back_svg-tex.pdf_tex
+<./svg-inkscape/elo_back_svg-tex.pdf, id=717, page=1, 462.52798pt x 346.89601pt>
 
 File: ./svg-inkscape/elo_back_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/elo_back_svg-tex.pdf, page 1>
@@ -1162,106 +1364,145 @@ ut line 56.
 )
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 618.
+(caption)                particular \caption on input line 743.
 See the caption package documentation for explanation.
 
-[24] [25<./svg-inkscape/elo_back_svg-tex.pdf>]
-<./images/eloRaitingByVersion.png, id=667, 462.528pt x 346.896pt>
-File: ./images/eloRaitingByVersion.png Graphic file (type png)
-<use ./images/eloRaitingByVersion.png>
-Package luatex.def Info: ./images/eloRaitingByVersion.png  used on input line 62
-8.
-(luatex.def)             Requested size: 350.99762pt x 263.26257pt.
+[27<./svg-inkscape/elo_back_svg-tex.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 762--764
 
+ []
+
+Package svg Info: Last page of `./svg-inkscape/eloRaitingByVersion_svg-tex.pdf' 
+is 1 on input line 773.
+(./svg-inkscape/eloRaitingByVersion_svg-tex.pdf_tex
+<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf, id=735, page=1, 462.52798pt x 3
+46.89601pt>
+File: ./svg-inkscape/eloRaitingByVersion_svg-tex.pdf Graphic file (type pdf)
+<use ./svg-inkscape/eloRaitingByVersion_svg-tex.pdf, page 1>
+Package luatex.def Info: ./svg-inkscape/eloRaitingByVersion_svg-tex.pdf , page1 
+used on input line 56.
+(luatex.def)             Requested size: 350.99762pt x 263.26259pt.
+)
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 630.
+(caption)                particular \caption on input line 775.
 See the caption package documentation for explanation.
 
-[26<./images/eloRaitingByVersion.png>] [27] [28]
+[28] [29<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 787--791
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 787--791
+
+ []
+
+
+\openout3 = AlphaZeroTheory.pyg
+(./_minted-AlphaZeroTheory/default-pyg-prefix.pygstyle)
+(./_minted-AlphaZeroTheory/default.pygstyle)
+(./_minted-AlphaZeroTheory/302C1D78011B9926FCF3E6A5E556E7A1AD2EF37E2608CEF3E418
+8C1D68AC8781.pygtex
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 5.
+)
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on input
+ line 823.
+ [30] [31]
 File: ./images/connectFourExample.png Graphic file (type png)
 <use ./images/connectFourExample.png>
-Package luatex.def Info: ./images/connectFourExample.png  used on input line 690
+Package luatex.def Info: ./images/connectFourExample.png  used on input line 843
 .
 (luatex.def)             Requested size: 195.0pt x 167.13554pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 691.
+(caption)                particular \caption on input line 844.
 See the caption package documentation for explanation.
 
-[29] [30]
+[32] [33] [34]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 954.
+
 Package svg Info: Last page of `./svg-inkscape/MCTS-steps_svg-tex.pdf' is 1 on i
-nput line 796.
- (./svg-inkscape/MCTS-steps_svg-tex.pdf_tex
-<./svg-inkscape/MCTS-steps_svg-tex.pdf, id=713, page=1, 1393.02477pt x 389.68431
+nput line 965.
+(./svg-inkscape/MCTS-steps_svg-tex.pdf_tex
+<./svg-inkscape/MCTS-steps_svg-tex.pdf, id=816, page=1, 1393.02477pt x 389.68431
 pt>
 File: ./svg-inkscape/MCTS-steps_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/MCTS-steps_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/MCTS-steps_svg-tex.pdf , page1 used on i
 nput line 56.
 (luatex.def)             Requested size: 548.5pt x 153.439pt.
-)
-Underfull \hbox (badness 10000) in paragraph at lines 804--809
-
+) [35] [36] (./AlphaZeroTheory.bbl
+[37]
+Underfull \hbox (badness 10000) in paragraph at lines 31--37
+[][]$\TU/lmr/m/n/12 http://en.wikipedia.org/w/index.php?title=Vector%20quantiza
+tion&
  []
 
-[31] [32] (./AlphaZeroTheory.bbl
-Underfull \hbox (badness 1371) in paragraph at lines 31--37
+
+Underfull \hbox (badness 1371) in paragraph at lines 39--45
 \TU/lmr/m/n/12 the free en-cy-clo-pe-dia.  [][]$https://en.wikipedia.org/w/inde
 x.php?title=
  []
 
-[33]) [34] [35<./svg-inkscape/MCTS-steps_svg-tex.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 869.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 869.
- (./AlphaZeroTheory.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 869.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 869.
+) [38] [39] [40] [41] [42<./svg-inkscape/MCTS-steps_svg-tex.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1289.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1289.
+
+(./AlphaZeroTheory.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1289.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1289.
 Package rerunfilecheck Info: File `AlphaZeroTheory.out' has not changed.
-(rerunfilecheck)             Checksum: 543209EF365881A6C5EF5E94096B2F5F;6856.
+(rerunfilecheck)             Checksum: 1A29B35D3F98D1E589672F8BCF2CC1B9;8238.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 869.
+runsystem(rm AlphaZeroTheory.pyg)...executed
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1289.
 )
 
 Here is how much of LuaTeX's memory you used:
- 24014 strings out of 481365
- 100000,794899 words of node,token memory allocated
- 968 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 112 attribute, 58 glue_spe
-c, 112 attribute_list, 2 write, 3 pdf_action nodes
-   avail lists: 2:898,3:201,4:368,5:217,6:113,7:3490,8:99,9:1114,10:22,11:211
- 39785 multiletter control sequences out of 65536+600000
- 78 fonts using 7313467 bytes
- 64i,13n,81p,1919b,686s stack positions out of 5000i,500n,10000p,200000b,100000s
-</usr/share/texmf/fonts/opentype/public/lm/lmroman8-regular.otf></usr/share/texm
-f/fonts/opentype/public/lm/lmroman12-italic.otf></usr/share/texmf/fonts/opentype
-/public/lm/lmroman12-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman
-10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-bold.otf></u
-sr/share/texmf/fonts/opentype/public/lm/lmroman12-regular.otf></usr/share/texmf/
-fonts/opentype/public/lm/lmroman17-regular.otf></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/symbols/msbm7.pfb>
-Output written on AlphaZeroTheory.pdf (35 pages, 605694 bytes).
+ 28656 strings out of 481365
+ 100000,1144653 words of node,token memory allocated
+ 4289 words of node memory still in use:
+   131 hlist, 14 vlist, 13 rule, 20 math, 74 glue, 34 kern, 128 glyph, 187 attri
+bute, 61 glue_spec, 187 attribute_list, 2 write, 3 pdf_action nodes
+   avail lists: 1:1,2:1136,3:188,4:514,5:257,6:111,7:3248,8:96,9:961,10:21,11:22
+0
+ 44122 multiletter control sequences out of 65536+600000
+ 88 fonts using 8201723 bytes
+ 64i,16n,81p,1800b,702s stack positions out of 5000i,500n,10000p,200000b,100000s
+</usr/share/texmf/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texmf
+/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/texmf/fonts/opentype/
+public/lm/lmroman6-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroma
+n7-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman8-regular.otf><
+/usr/share/texmf/fonts/opentype/public/lm/lmroman12-italic.otf></usr/share/texmf
+/fonts/opentype/public/lm/lmroman12-bold.otf></usr/share/texmf/fonts/opentype/pu
+blic/lm/lmroman10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman
+10-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-regular.otf></u
+sr/share/texmf/fonts/opentype/public/lm/lmroman17-regular.otf></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on AlphaZeroTheory.pdf (42 pages, 672554 bytes).
 
-PDF statistics: 860 PDF objects out of 1000 (max. 8388607)
- 702 compressed objects within 8 object streams
- 164 named destinations out of 1000 (max. 131072)
- 408 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1051 PDF objects out of 1200 (max. 8388607)
+ 878 compressed objects within 9 object streams
+ 245 named destinations out of 1000 (max. 131072)
+ 488 words of extra memory for PDF output out of 10000 (max. 100000000)
 
