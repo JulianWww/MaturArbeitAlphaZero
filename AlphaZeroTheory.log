@@ -1,73 +1,23 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2022.2.4)  6 SEP 2022 12:40
+This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2022.5.4)  11 SEP 2022 00:38
  system commands enabled.
 **AlphaZeroTheory.tex
 (./AlphaZeroTheory.tex
 LaTeX2e <2020-02-02> patch level 2
-Lua module: luaotfload-main 2020-02-02 3.12 luaotfload entry point
-Lua module: luaotfload-init 2020-02-02 3.12 luaotfload submodule / initializatio
-n
-Lua module: lualibs 2020-02-02 2.70 ConTeXt Lua standard libraries.
-Lua module: lualibs-extended 2020-02-02 2.70 ConTeXt Lua libraries -- extended c
-ollection.
-Lua module: luaotfload-log 2020-02-02 3.12 luaotfload submodule / logging
-Lua module: luaotfload-parsers 2020-02-02 3.12 luaotfload submodule / filelist
-Lua module: luaotfload-configuration 2020-02-02 3.12 luaotfload submodule / conf
-ig file reader
-luaotfload | conf : Root cache directory is /home/julian/.texlive2019/texmf-var/
-luatex-cache/generic-dev/names.
-luaotfload | init : Loading fontloader “fontloader-2020-01-26.lua” from kpse
--resolved path “/usr/share/texlive/texmf-dist/tex/luatex/luaotfload/fontloader
--2020-01-26.lua”.
-Lua-only attribute luaotfload@state = 2
-Lua-only attribute luaotfload@noligature = 3
-Lua-only attribute luaotfload@syllabe = 4
-luaotfload | init : Context OpenType loader version “3.11”
-Inserting `luaotfload.node_processor' at position 1 in `pre_linebreak_filter'.
-Inserting `luaotfload.node_processor' at position 1 in `hpack_filter'.
-Lua module: luaotfload-loaders 2020-02-02 3.12 luaotfload submodule / callback h
-andling
-Inserting `luaotfload.define_font' at position 1 in `define_font'.
-Lua module: luaotfload-database 2020-02-02 3.12 luaotfload submodule / database
-Lua module: luaotfload-unicode 2020-02-02 3.12 luaotfload submodule / Unicode he
-lpers
-Lua module: luaotfload-colors 2020-02-02 3.12 luaotfload submodule / color
-Lua-only attribute luaotfload_color_attribute = 5
-Lua module: luaotfload-resolvers 2020-02-02 3.12 luaotfload submodule / resolver
-s
-luaotfload | conf : Root cache directory is /home/julian/.texlive2019/texmf-var/
-luatex-cache/generic-dev/names.
-Lua module: luaotfload-features 2020-02-02 3.12 luaotfload submodule / features
-Lua module: luaotfload-letterspace 2020-02-02 3.12 luaotfload submodule / color
-Lua module: luaotfload-embolden 2020-02-02 3.12 luaotfload submodule / color
-Lua module: luaotfload-notdef 2020-02-02 3.12 luaotfload submodule / color
-Lua module: luaotfload-auxiliary 2020-02-02 3.12 luaotfload submodule / auxiliar
-y functions
-Inserting `luaotfload.aux.set_sscale_dimens' at position 1 in `luaotfload.patch_
-font'.
-Inserting `luaotfload.aux.set_font_index' at position 2 in `luaotfload.patch_fon
-t'.
-Inserting `luaotfload.aux.patch_cambria_domh' at position 3 in `luaotfload.patch
-_font'.
-Inserting `luaotfload.aux.fixup_fontdata' at position 1 in `luaotfload.patch_fon
-t_unsafe'.
-Inserting `luaotfload.aux.set_capheight' at position 4 in `luaotfload.patch_font
-'.
-Inserting `luaotfload.aux.set_xheight' at position 5 in `luaotfload.patch_font'.
-Lua module: luaotfload-fallback 2020-02-02 3.12 luaotfload submodule / fallback
-Lua module: luaotfload-multiscript 2020-02-02 3.12 luaotfload submodule / multis
-cript
-Lua module: luaotfload-script 2020-02-02 3.12 luaotfload submodule / Script help
-ers
-Lua module: luaotfload-tounicode 2020-02-02 3.12 luaotfload submodule / tounicod
-e
-Inserting `luaotfload.rewrite_fontname' at position 6 in `luaotfload.patch_font'
-. L3 programming layer <2020-02-14>
+[\directlua]:1: module 'luaotfload-main' not found:
+	no field package.preload['luaotfload-main']
+	[kpse lua searcher] file not found: 'luaotfload-main'
+	[kpse C searcher] file not found: 'luaotfload-main'
+Error in luaotfload: reverting to OT1 L3 programming layer <2020-02-14>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
-luaotfload | db : Font names database loaded from /home/julian/.texlive2019/texm
-f-var/luatex-cache/generic-dev/names/luaotfload-names.luc)
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 54
+.
+
+(/usr/share/texmf/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+))
 \c@part=\count163
 \c@section=\count164
 \c@subsection=\count165
@@ -854,7 +804,7 @@ File: lstlang1.sty 2019/09/10 1.8c listings language file
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 89.
+Package hyperref Info: Option `colorlinks' set `true' on input line 90.
 runsystem(which pygmentize && touch AlphaZeroTheory.aex)...executed
 runsystem(rm AlphaZeroTheory.aex)...executed
 
@@ -866,31 +816,31 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 (./AlphaZeroTheory.aux)
 \openout1 = AlphaZeroTheory.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 128.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 129.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 12
-8.
+9.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count328
@@ -920,7 +870,7 @@ Package caption Info: listings package is loaded.
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box76
-Package hyperref Info: Link coloring ON on input line 128.
+Package hyperref Info: Link coloring ON on input line 129.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -933,9 +883,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count334
 )
-LaTeX Info: Redefining \ref on input line 128.
-LaTeX Info: Redefining \pageref on input line 128.
-LaTeX Info: Redefining \nameref on input line 128.
+LaTeX Info: Redefining \ref on input line 129.
+LaTeX Info: Redefining \pageref on input line 129.
+LaTeX Info: Redefining \nameref on input line 129.
 
 (./AlphaZeroTheory.out) (./AlphaZeroTheory.out)
 \@outlinefile=\write6
@@ -944,13 +894,13 @@ LaTeX Info: Redefining \nameref on input line 128.
 \c@lstlisting=\count335
 
 ABD: EveryShipout initializing macros
-LaTeX Font Info:    Trying to load font information for U+msa on input line 130.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 131.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 130.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 131.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -963,234 +913,234 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 \openout7 = AlphaZeroTheory.toc
  [3] [4]
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 152--152
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 153--153
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 [5]
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 156--156
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 157--157
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 [6]
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 174--174
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 175--175
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 174--174
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 175--175
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 174--174
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 175--175
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 174--174
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 175--175
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 174--174
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 175--175
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 174--174
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 175--175
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 [7]
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 223--223
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 224--224
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 223--223
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 224--224
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 223--223
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 224--224
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 223--223
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 224--224
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 223--223
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 224--224
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 223--223
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 224--224
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 [8]
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 246--246
-[]|\TU/lmr/m/n/12 X| 
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 247--247
+[]|\OT1/lmr/m/n/12 X| 
  []
 
 
-Overfull \hbox (2.11783pt too wide) in paragraph at lines 246--246
-[]|\TU/lmr/m/n/12 O| 
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 247--247
+[]|\OT1/lmr/m/n/12 O| 
  []
 
 
-LaTeX Warning: Reference `code:config' on page 9 undefined on input line 255.
+LaTeX Warning: Reference `code:config' on page 9 undefined on input line 256.
 
 
-LaTeX Warning: Reference `code:config' on page 9 undefined on input line 255.
+LaTeX Warning: Reference `code:config' on page 9 undefined on input line 256.
 
 [9]
 Package svg Info: Last page of `./svg-inkscape/mctsExample_svg-tex.pdf' is 1 on 
-input line 262.
+input line 263.
  (./svg-inkscape/mctsExample_svg-tex.pdf_tex
 <./svg-inkscape/mctsExample_svg-tex.pdf, id=389, page=1, 384.8662pt x 342.18704p
 t>
@@ -1202,53 +1152,54 @@ input line 56.
 ) [10] [11<./svg-inkscape/mctsExample_svg-tex.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 295.
+(hyperref)                removing `math shift' on input line 303.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 295.
+(hyperref)                removing `subscript' on input line 303.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 295.
+(hyperref)                removing `subscript' on input line 303.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\in' on input line 295.
+(hyperref)                removing `\in' on input line 303.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 295.
+(hyperref)                removing `subscript' on input line 303.
+
+[12]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 313.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 305.
+(hyperref)                removing `subscript' on input line 313.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 305.
+(hyperref)                removing `subscript' on input line 313.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 305.
+(hyperref)                removing `\not' on input line 313.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\not' on input line 305.
+(hyperref)                removing `\in' on input line 313.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\in' on input line 305.
+(hyperref)                removing `subscript' on input line 313.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 305.
-
-[12] [13] [14] [15]
+[13] [14] [15] [16]
 Package svg Info: Last page of `./svg-inkscape/tanh_svg-tex.pdf' is 1 on input l
-ine 458.
+ine 475.
  (./svg-inkscape/tanh_svg-tex.pdf_tex
-<./svg-inkscape/tanh_svg-tex.pdf, id=467, page=1, 433.62pt x 144.54pt>
+<./svg-inkscape/tanh_svg-tex.pdf, id=479, page=1, 433.62pt x 144.54pt>
 File: ./svg-inkscape/tanh_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/tanh_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/tanh_svg-tex.pdf , page1 used on input l
@@ -1257,14 +1208,14 @@ ine 56.
 )
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 459.
+(caption)                particular \caption on input line 476.
 See the caption package documentation for explanation.
 
-[16<./svg-inkscape/tanh_svg-tex.pdf>]
+[17<./svg-inkscape/tanh_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/softmaxx_svg-tex.pdf' is 1 on inp
-ut line 477.
+ut line 494.
  (./svg-inkscape/softmaxx_svg-tex.pdf_tex
-<./svg-inkscape/softmaxx_svg-tex.pdf, id=513, page=1, 320.22081pt x 301.39346pt>
+<./svg-inkscape/softmaxx_svg-tex.pdf, id=528, page=1, 320.22081pt x 301.39346pt>
 
 File: ./svg-inkscape/softmaxx_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/softmaxx_svg-tex.pdf, page 1>
@@ -1273,9 +1224,9 @@ ut line 56.
 (luatex.def)             Requested size: 145.6974pt x 137.12962pt.
 )
 Package svg Info: Last page of `./svg-inkscape/softmaxy_svg-tex.pdf' is 1 on inp
-ut line 483.
+ut line 500.
 (./svg-inkscape/softmaxy_svg-tex.pdf_tex
-<./svg-inkscape/softmaxy_svg-tex.pdf, id=515, page=1, 320.22081pt x 301.39346pt>
+<./svg-inkscape/softmaxy_svg-tex.pdf, id=530, page=1, 320.22081pt x 301.39346pt>
 
 File: ./svg-inkscape/softmaxy_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/softmaxy_svg-tex.pdf, page 1>
@@ -1284,22 +1235,22 @@ ut line 56.
 (luatex.def)             Requested size: 145.6974pt x 137.12962pt.
 )
 Package svg Info: Last page of `./svg-inkscape/softmaxscale_svg-tex.pdf' is 1 on
- input line 489.
+ input line 506.
 
 (./svg-inkscape/softmaxscale_svg-tex.pdf_tex
-<./svg-inkscape/softmaxscale_svg-tex.pdf, id=517, page=1, 44.86574pt x 276.82434
+<./svg-inkscape/softmaxscale_svg-tex.pdf, id=532, page=1, 44.86574pt x 276.82434
 pt>
 File: ./svg-inkscape/softmaxscale_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/softmaxscale_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/softmaxscale_svg-tex.pdf , page1 used on
  input line 56.
 (luatex.def)             Requested size: 22.22296pt x 137.11507pt.
-) [17<./svg-inkscape/softmaxx_svg-tex.pdf><./svg-inkscape/softmaxy_svg-tex.pdf><
+) [18<./svg-inkscape/softmaxx_svg-tex.pdf><./svg-inkscape/softmaxy_svg-tex.pdf><
 ./svg-inkscape/softmaxscale_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/LeakyReLU_svg-tex.pdf' is 1 on in
-put line 516.
+put line 533.
  (./svg-inkscape/LeakyReLU_svg-tex.pdf_tex
-<./svg-inkscape/LeakyReLU_svg-tex.pdf, id=546, page=1, 722.7pt x 505.89pt>
+<./svg-inkscape/LeakyReLU_svg-tex.pdf, id=560, page=1, 722.7pt x 505.89pt>
 File: ./svg-inkscape/LeakyReLU_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/LeakyReLU_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/LeakyReLU_svg-tex.pdf , page1 used on in
@@ -1308,36 +1259,38 @@ put line 56.
 )
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 517.
+(caption)                particular \caption on input line 534.
 See the caption package documentation for explanation.
 
-[18<./svg-inkscape/LeakyReLU_svg-tex.pdf>] [19]
-<./images/connectFourExample.png, id=629, 1053.9375pt x 903.375pt>
+[19<./svg-inkscape/LeakyReLU_svg-tex.pdf>] [20]
+<./images/connectFourExample.png, id=644, 1053.9375pt x 903.375pt>
 File: ./images/connectFourExample.png Graphic file (type png)
 <use ./images/connectFourExample.png>
-Package luatex.def Info: ./images/connectFourExample.png  used on input line 584
+Package luatex.def Info: ./images/connectFourExample.png  used on input line 601
 .
 (luatex.def)             Requested size: 195.0pt x 167.13554pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 585.
+(caption)                particular \caption on input line 602.
 See the caption package documentation for explanation.
 
-[20] [21<./images/connectFourExample.png>] [22] [23]
+[21<./images/connectFourExample.png>] [22] [23] [24
+Missing character: There is no ˇ (U+02C7) in font rm-lmr12!
+]
 
-LaTeX Warning: Reference `sec:NeruralNetworkArchitectur' on page 24 undefined on
- input line 692.
+LaTeX Warning: Reference `sec:NeruralNetworkArchitectur' on page 25 undefined on
+ input line 709.
 
 
-LaTeX Warning: Reference `sec:NeruralNetworkArchitectur' on page 24 undefined on
- input line 692.
+LaTeX Warning: Reference `sec:NeruralNetworkArchitectur' on page 25 undefined on
+ input line 709.
 
-[24]
+[25]
 Package svg Info: Last page of `./svg-inkscape/elo_svg-tex.pdf' is 1 on input li
-ne 711.
+ne 728.
  (./svg-inkscape/elo_svg-tex.pdf_tex
-<./svg-inkscape/elo_svg-tex.pdf, id=690, page=1, 462.52798pt x 346.89601pt>
+<./svg-inkscape/elo_svg-tex.pdf, id=703, page=1, 462.52798pt x 346.89601pt>
 File: ./svg-inkscape/elo_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/elo_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/elo_svg-tex.pdf , page1 used on input li
@@ -1346,15 +1299,14 @@ ne 56.
 )
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 712.
+(caption)                particular \caption on input line 729.
 See the caption package documentation for explanation.
 
-[25] [26<./svg-inkscape/elo_svg-tex.pdf>]
+[26<./svg-inkscape/elo_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/elo_back_svg-tex.pdf' is 1 on inp
-ut line 742.
-
-(./svg-inkscape/elo_back_svg-tex.pdf_tex
-<./svg-inkscape/elo_back_svg-tex.pdf, id=717, page=1, 462.52798pt x 346.89601pt>
+ut line 759.
+ (./svg-inkscape/elo_back_svg-tex.pdf_tex
+<./svg-inkscape/elo_back_svg-tex.pdf, id=724, page=1, 462.52798pt x 346.89601pt>
 
 File: ./svg-inkscape/elo_back_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/elo_back_svg-tex.pdf, page 1>
@@ -1364,18 +1316,18 @@ ut line 56.
 )
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 743.
+(caption)                particular \caption on input line 760.
 See the caption package documentation for explanation.
 
-[27<./svg-inkscape/elo_back_svg-tex.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 762--764
+[27] [28<./svg-inkscape/elo_back_svg-tex.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 779--781
 
  []
 
 Package svg Info: Last page of `./svg-inkscape/eloRaitingByVersion_svg-tex.pdf' 
-is 1 on input line 773.
+is 1 on input line 790.
 (./svg-inkscape/eloRaitingByVersion_svg-tex.pdf_tex
-<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf, id=735, page=1, 462.52798pt x 3
+<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf, id=749, page=1, 462.52798pt x 3
 46.89601pt>
 File: ./svg-inkscape/eloRaitingByVersion_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/eloRaitingByVersion_svg-tex.pdf, page 1>
@@ -1385,124 +1337,132 @@ used on input line 56.
 )
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 775.
+(caption)                particular \caption on input line 792.
 See the caption package documentation for explanation.
 
-[28] [29<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 787--791
+[29<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 804--808
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 787--791
+Underfull \hbox (badness 10000) in paragraph at lines 804--808
 
  []
 
-
+[30]
 \openout3 = AlphaZeroTheory.pyg
-(./_minted-AlphaZeroTheory/default-pyg-prefix.pygstyle)
+ (./_minted-AlphaZeroTheory/default-pyg-prefix.pygstyle)
 (./_minted-AlphaZeroTheory/default.pygstyle)
 (./_minted-AlphaZeroTheory/302C1D78011B9926FCF3E6A5E556E7A1AD2EF37E2608CEF3E418
 8C1D68AC8781.pygtex
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 5.
+LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 1
+.
+ (/usr/share/texmf/tex/latex/lm/ot1lmtt.fd
+File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 5.
 )
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on input
- line 823.
- [30] [31]
+ line 840.
+ [31] [32]
 File: ./images/connectFourExample.png Graphic file (type png)
 <use ./images/connectFourExample.png>
-Package luatex.def Info: ./images/connectFourExample.png  used on input line 843
+Package luatex.def Info: ./images/connectFourExample.png  used on input line 860
 .
 (luatex.def)             Requested size: 195.0pt x 167.13554pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 844.
+(caption)                particular \caption on input line 861.
 See the caption package documentation for explanation.
 
-[32] [33] [34]
+[33] [34] [35]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 954.
+(hyperref)                removing `math shift' on input line 971.
 
 Package svg Info: Last page of `./svg-inkscape/MCTS-steps_svg-tex.pdf' is 1 on i
-nput line 965.
+nput line 982.
 (./svg-inkscape/MCTS-steps_svg-tex.pdf_tex
-<./svg-inkscape/MCTS-steps_svg-tex.pdf, id=816, page=1, 1393.02477pt x 389.68431
+<./svg-inkscape/MCTS-steps_svg-tex.pdf, id=831, page=1, 1393.02477pt x 389.68431
 pt>
 File: ./svg-inkscape/MCTS-steps_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/MCTS-steps_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/MCTS-steps_svg-tex.pdf , page1 used on i
 nput line 56.
 (luatex.def)             Requested size: 548.5pt x 153.439pt.
-) [35] [36] (./AlphaZeroTheory.bbl
-[37]
-Underfull \hbox (badness 10000) in paragraph at lines 31--37
-[][]$\TU/lmr/m/n/12 http://en.wikipedia.org/w/index.php?title=Vector%20quantiza
-tion&
+) [36] [37] (./AlphaZeroTheory.bbl
+[38]
+Underfull \hbox (badness 10000) in paragraph at lines 37--43
+[][]$\OT1/lmr/m/n/12 http://en.wikipedia.org/w/index.php?title=Vector%20quantiz
+ation&
  []
 
 
-Underfull \hbox (badness 1371) in paragraph at lines 39--45
-\TU/lmr/m/n/12 the free en-cy-clo-pe-dia.  [][]$https://en.wikipedia.org/w/inde
-x.php?title=
+Underfull \hbox (badness 1436) in paragraph at lines 45--51
+\OT1/lmr/m/n/12 the free en-cy-clo-pe-dia.  [][]$https://en.wikipedia.org/w/ind
+ex.php?title=
  []
 
-) [38] [39] [40] [41] [42<./svg-inkscape/MCTS-steps_svg-tex.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1289.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1289.
+) [39] [40] [41] [42] [43] [44<./svg-inkscape/MCTS-steps_svg-tex.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1306.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1306.
 
 (./AlphaZeroTheory.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1289.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1289.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1306.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1306.
 Package rerunfilecheck Info: File `AlphaZeroTheory.out' has not changed.
 (rerunfilecheck)             Checksum: 1A29B35D3F98D1E589672F8BCF2CC1B9;8238.
 
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 runsystem(rm AlphaZeroTheory.pyg)...executed
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1289.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1306.
 )
 
 Here is how much of LuaTeX's memory you used:
- 28656 strings out of 481365
+ 28738 strings out of 481365
  100000,1144653 words of node,token memory allocated
- 4289 words of node memory still in use:
-   131 hlist, 14 vlist, 13 rule, 20 math, 74 glue, 34 kern, 128 glyph, 187 attri
-bute, 61 glue_spec, 187 attribute_list, 2 write, 3 pdf_action nodes
-   avail lists: 1:1,2:1136,3:188,4:514,5:257,6:111,7:3248,8:96,9:961,10:21,11:22
-0
- 44122 multiletter control sequences out of 65536+600000
- 88 fonts using 8201723 bytes
- 64i,16n,81p,1800b,702s stack positions out of 5000i,500n,10000p,200000b,100000s
-</usr/share/texmf/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texmf
-/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/texmf/fonts/opentype/
-public/lm/lmroman6-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroma
-n7-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman8-regular.otf><
-/usr/share/texmf/fonts/opentype/public/lm/lmroman12-italic.otf></usr/share/texmf
-/fonts/opentype/public/lm/lmroman12-bold.otf></usr/share/texmf/fonts/opentype/pu
-blic/lm/lmroman10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman
-10-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman12-regular.otf></u
-sr/share/texmf/fonts/opentype/public/lm/lmroman17-regular.otf></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on AlphaZeroTheory.pdf (42 pages, 672554 bytes).
+ 3519 words of node memory still in use:
+   131 hlist, 14 vlist, 13 rule, 20 math, 74 glue, 31 kern, 127 glyph, 61 glue_s
+pec, 2 write, 3 pdf_action nodes
+   avail lists: 1:2,2:30,3:195,4:522,5:239,6:111,7:3370,8:100,9:961,10:21,11:198
 
-PDF statistics: 1051 PDF objects out of 1200 (max. 8388607)
- 878 compressed objects within 9 object streams
- 245 named destinations out of 1000 (max. 131072)
+ 44185 multiletter control sequences out of 65536+600000
+ 90 fonts using 5855579 bytes
+ 64i,16n,81p,1800b,702s stack positions out of 5000i,500n,10000p,200000b,100000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvip
+s/lm/lm-rmtt.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}</usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/sh
+are/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/l
+m/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb>
+</usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/p
+ublic/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/sha
+re/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/symbols/msbm10.pfb>
+Output written on AlphaZeroTheory.pdf (44 pages, 890939 bytes).
+
+PDF statistics: 1041 PDF objects out of 1200 (max. 8388607)
+ 888 compressed objects within 9 object streams
+ 250 named destinations out of 1000 (max. 131072)
  488 words of extra memory for PDF output out of 10000 (max. 100000000)
 

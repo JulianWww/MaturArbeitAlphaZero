@@ -55,6 +55,7 @@
 \newcommand{\listingref}[1]{listing \ref{#1} on page \pageref{#1}}
 \newcommand{\source}[1]{\caption*{Source: {#1}} }
 \newcommand{\quckeq}[1]{(\ref{#1})}
+\newcommand{\InBreadcrums}[0]{\mathcal N_{to_{l+1}}(e) \in \mathbb M_{back,l,L} \land \mathcal N_{from_{l+1}}(e) \in \mathbb M_{back,l,L}}
 
 \newcommand{\tickTackToe}[9]{
 \begin{tabular}{p{7px}|p{7px}|p{7px}}
@@ -268,7 +269,7 @@ Furthermore it is usefull to distingush expanded nodes from leaf nodes. Leaf nod
 
 \subsubsection{Evaluation Basis}
 The MCTS's goal is to find a good estimations of the reward for a certain action at a certain state. This reward estimation is \(Q_l~:~\mathbb{E}_{l}\to \mathbb{R}\). To define \(Q_l\), the functions \(W_l~:~\mathbb{E}_{l}\to\mathbb{R}\) and \(N_l~:~\mathbb{E}_{l}\to\mathbb{N}_0\) are required. \(N_l(e_l)\) is the amount of times an edge \(e_l\in\mathbb{E}_{l}\) has been traversed. This means how many times \(\sigma\) (\equationref{eq:sigma}) has chosen to follow the edge \(e_l\) to a new node. \(W_l(e_l)\) is the sum of the reward computations from all \(N(e_l)\) times the edge has been evaluated. With these two functions \(Q_l\) is defined as:
-\begin{equation}
+\begin{equation}\label{eq:Ql}
 Q_l(e_l) = 
 \begin{cases}
 0 & N_l(e_l) = 0\\
@@ -287,8 +288,15 @@ Where \(c_{puct}\in \mathbb{R}^+\) is the exploration constant used to define ho
 \begin{equation}\label{eq:sigma}
 \sigma_l(n) = \mathcal{N}_{to_l}(\text{argmax}_l(\mathbb{E}_l(n)))
 \end{equation}
-\(\text{argmax}_l\) returns the edge \(e \in\mathbb E_l\) with the largest \(v_l(e)\).
-\(\sigma_l\) is run, until its output is a leaf-node \(n_{L_l}\in\mathbb{M}_{leaf_l}\).
+\(\text{argmax}_l\) returns the edge \(e \in\mathbb E_l\) with the largest \(v_l(e)\).\\
+In order to find a leaf node \(n_{L_l}\) starting from the root node \(n_{0}\) and be able to update the tree later on, the following algorithm is run \(L\) times, until a leaf node is found. First let \(i \in [0,L]\) be the index of the iteration of this algorithm. Let \(\mathbb M_{back,l,i} \subseteq \mathbb M\) be the set of nodes traversed by the algorithm at set \(i\) during simulation \(l\). By definition \(\mathbb M_{back,l,0} := \{n_0\}\). Than:
+\begin{align}
+n_{L_i+1} &= \sigma (n_{L_i})\\
+\mathbb M_{back,l,i+1} &= \mathbb M_{back,l,i} \cup \{n_{L_i+1}\}
+\end{align}
+Once a leaf-node \(n_{L_l}\in\mathbb{M}_{leaf_l}\) is found that node is evaluated. \(\mathbb M_{back,l,L}\) will be important in \sectionref{sec:Methods:MCTS:Backfill}.
+
+
 \subsubsection{Node Evaluation and Expansion}
 \label{sec:Methods:MCTS:Node Evaluation and Expansion}
 When a leaf node \(n_{L_l}\) is reached, there are two possible cases. Ether \(\mathcal S(n_{L_l})\) is an end game state or not.
@@ -359,16 +367,24 @@ P_l (\mathcal E_{l+1}(n, a)) & e \in\mathbb E_l\\
 
 
 
-
 \subsubsection{Backfill}
 \label{sec:Methods:MCTS:Backfill}
-Let \(\mathbb E_{traversed}_l\) be the set of all edges traversed during leaf selection.
-The value \(v_l\) is used to update the reward prediction for all nodes \(n_{[0, L]_l}\) traversed during the edge selection. 
+%Let \(\mathbb E_{traversed}_l\) be the set of all edges traversed during leaf selection.
+The value \(v_l\) is used to update the \(P\), \(W\) and \(Q\) function as follows for every edge \(e\in\mathbb E_{l+1}\):
 \begin{align}
-N(n_t) + 1 &\Rightarrow N(n_t)\\
-W(n_t) + v \cdot \rho(n_t) \cdot \rho(n_L) &\Rightarrow W(n_t)
+N_{l+1}(e) &= \left\{\begin{matrix}
+1 & e \not\in\mathbb E_l\\
+N_l(e)+1 & \InBreadcrums\\
+N_l(e)
+\end{matrix}\right.\\
+%
+W_{l+1}(e) &= \left\{\begin{matrix}
+0 & e \not\in\mathbb E_l\\
+W_l(e)+v_l & \InBreadcrums\\
+W_l(e)
+\end{matrix}\right.
 \end{align}
-Wher \(\Rightarrow\) is defined in \sectionref{sec:assignmentOperator}.
+\(Q_{l+1}\) is already defined according to \quckeq{eq:Ql}. \(\InBreadcrums\) checks if the edge \(e\) has been traversed during leaf selection. \cite{chaslot2008parallel} In constrast to \cite{silver2018general}, this implementation stores the MCTS simulation values in the edges to allow for the fact that actions from two differant nodes leading to the same node are not identical and therefore should not be treated as such. But nodes of the same game state are identical and should be treated as such.
 
 %-------------------------------------------------------------------------
 \subsection{Neural Network}

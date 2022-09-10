@@ -1,5 +1,11 @@
 \begin{thebibliography}{1}
 
+\bibitem{chaslot2008parallel}
+Guillaume MJ-B Chaslot, Mark~HM Winands, and HJVD Herik.
+\newblock Parallel monte-carlo tree search.
+\newblock In {\em International Conference on Computers and Games}, pages
+  60--71. Springer, 2008.
+
 \bibitem{elo1978rating}
 Arpad~E. Elo.
 \newblock {\em The Rating of Chessplayers, Past and Present}.
