@@ -29,6 +29,16 @@
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
 
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{memoBox}[1][]{%
+  sharp corners,
+   colback=white,
+  attach title to upper,
+  #1
+}
+
+
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5}
 \lstset { %
@@ -55,6 +65,7 @@
 \newcommand{\listingref}[1]{listing \ref{#1} on page \pageref{#1}}
 \newcommand{\source}[1]{\caption*{Source: {#1}} }
 \newcommand{\quckeq}[1]{(\ref{#1})}
+\newcommand{\quickeq}[1]{\quckeq{#1}}
 \newcommand{\InBreadcrums}[0]{\mathcal N_{to_{l+1}}(e) \in \mathbb M_{back,l,L} \land \mathcal N_{from_{l+1}}(e) \in \mathbb M_{back,l,L}}
 
 \newcommand{\tickTackToe}[9]{
@@ -73,7 +84,7 @@
   #7 & #8 & #9 \\
 \end{tabular}
 }
-\newcommand{\rewardArrow}[1]{\(\xrightarrow[\text{#1}]{\text{reward}}\) }
+\newcommand{\rewardArrow}[2]{\(\xrightarrow[= #2]{R(s,#1)}\) }
 
 \newcommand{\FittedEloRaiting}{408}
 \newcommand{\FittedScoringThreshold}{2.8}
@@ -137,31 +148,33 @@
 \tableofcontents
 \newpage
 
-Alpha Zero is an algorithm published in 2018 by Google Deepmind as the generalization of AlphaGo Zero, an algorithm that learned to play the game of Go using only the rules of the game. In the generalized version, the same principles were applied to Chess and Shogi. Unlike previous algorithms such as StockFish or Elmo that use hand-crafted evaluation functions along with alpha-beta searches over a large search space, Alpha Zero uses no human knowledge. Rather, it generates all information through self-play. It has been shown to achieve superhuman performance in Chess, Shogi and Go. In this project the AI will be trained to play connect4. The entire algorithm is implemented in C++ to increase efficiency during the Monte Carlo Tree Search (MCTS). Furthermore, to allow for better performance when playing, all computations are handled via a server (my desktop). A secondary server has also been added to allow for easy re-routing of the main server and handle things like elo-ratings (see \sectionref{sec:Evaluation:elo-rating}) for all agents. Additionally, I have added a short introduction on how neural networks work and how they are trained in \sectionref{NN}. 
+Alpha Zero is an algorithm published in 2018 by Google Deepmind as the generalization of AlphaGo Zero, an algorithm that learned to play the game of Go using only the rules of the game. In the generalized version, the same principles were applied to Chess and Shogi. Unlike previous algorithms such as StockFish or Elmo that use hand-crafted evaluation functions along with alpha-beta searches over a large search space, Alpha Zero uses no human knowledge. Rather, it generates all information through self-play. It has been shown to achieve superhuman performance in Chess, Shogi and Go. In this project the AI will be trained to play connect4. The entire algorithm is implemented in C++. Furthermore all agents have been evaluated against each other using the Elo evaluation system \cite{elo1978rating}. Additionally, I have added a short introduction on how neural networks work and how they are trained in \sectionref{NN}. 
 
 \section{Methods}
 \label{Methods}
 The Alpha Zero algorithm is a reinforcement learning algorithm using two major parts: a) a {\it Monte Carlo tree search} (MCTS) that is guided by b) the {\it neural network} to improve performance.
-The agent (computer player) runs a certain amount of simulation games using its MCTS and neural network. At each step, the MCTS evaluates the most promising next states as given by the neural network's estimation. The MCTS, by simulating games starting from the current state, will improve the neural network's prediction for that state. At the end of each game, the winner is determined and used to update the neural network's estimation of who would win a game starting from a certain state.
+The agent (computer player) runs a certain amount of simulation games using its MCTS and neural network. At each step, the MCTS evaluates the most promising next states as given by the neural network's estimation. The MCTS, by simulating games starting from the current state, will improve the neural network's prediction for that state. At the end of each game, the winner is determined and used to update the neural network's estimation of who would win a game starting from a certain state. Training an AI by teaching it to prefer advantagious actions is called reinforcement learning.
 \subsection{Reinforcement Learning}
 When training neural networks, there are three major possible situations: Supervised learning, unsupervised learning, and reinforcement learning. The first uses predetermined data with known in- and outputs the network is trained to predict. An example of supervised learning is the recognition of handwriting as the data is defined by humans. This method consists of creating a large database of examples, and the neural network is then trained to predict a given output for all examples. 
 
 Unsupervised learning or self-organization is used when there is no previous available data and the neural network has to create those classifications itself. An example of unsupervised learning is Vector quantization. The algorythems sorts points in n-dimensional space into a predetermined amount of groups. Every group is defined by its centroid point. Training happens by selecting a sample point at random, and moving the closest centroid point towards the sample point by a fraction of the distance betwean them. The sample point is selected from the input data \cite{wiki:Vector_quantization}. An example of both supervised and unsupervised learning can be seen in the demo\footnote{demo is at \url{https://github.com/JulianWww/Matura-AlphaZero-demos}}.
 
-These two methods represent the extreme ends of the spectrum. Reinforcement leaning on the other hand can be thought of as an intermediate form. It uses a predetermined environment which gives positive, neutral and negative feedback. The neural network is then discouraged from taking actions leading to negative feedback and encouraged to take actions leading to positive feedback. The feedback is determined by the environment the agent learns to interact with. In this case, losing a game would be bad and result in negative feedback whereas winning a game leads to positive feedback. Ties lead to neutral feedback. The agents learning is set up in such a way, that it is encouraged to take actions leading to positive feedback and discouraged from taking actions that lead to negative feedback. However actions, can lead to a loss that only occurs many game steps in the future. A common approach to solve this problem is to have the feedback propagate backwards to previous actions. In Alpha Zero, this is handled by the memory (see \sectionref{sec:memory}). When the game reaches an end state and a winner is determined, the feedback is propagated backwards up the game. If the player won, the feedback is positive. If he lost, it is negative. More specifically, if a player takes an action \(a_s\) at a state \(s\), that leads to a win, the reward for that state is defined as \(R(s,a_s) = 1\). On the other hand, if the action leads to a loss, the reward will be \(R(s, a_s) = -1\). If the game ends in a tie, the reward is \(R(s,a_s) = 0\). Every agent \(p\) will try to maximize \(\sum_{s\in g\cap p} R(s, a_s)\). \(g\cap p\) is the set of all states in which the player \(p\) takes an action. Let's look at a tic tac toe example of the following game:
+These two methods represent the extreme ends of the spectrum. Reinforcement leaning on the other hand can be thought of as an intermediate form. It uses a predetermined environment which gives positive, neutral and negative feedback. The neural network is then discouraged from taking actions leading to negative feedback and encouraged to take actions leading to positive feedback. The feedback is determined by the environment the agent learns to interact with. In this case, losing a game would be bad and result in negative feedback whereas winning a game leads to positive feedback. Ties lead to neutral feedback. The agents learning is set up in such a way, that it is encouraged to take actions leading to positive feedback and discouraged from taking actions that lead to negative feedback. However actions, can lead to a loss that only occurs many game steps in the future. A common approach to solve this problem is to have the feedback propagate backwards to previous actions. In Alpha Zero, this is handled by the memory (see \sectionref{sec:memory}). When the game reaches an end state and a winner is determined, the feedback is propagated backwards up threw all states used to get to the end state. If the player won, the feedback is positive. If he lost, it is negative. More specifically, if a player takes an action \(a_s\) at a state \(s\), that leads to a win for that player, the reward for that state is defined as \(R(s,a_s) = 1\). On the other hand, if the action leads to a loss, the reward will be \(R(s, a_s) = -1\). If the game ends in a tie, the reward is \(R(s,a_s) = 0\). Every agent \(p\) will try to maximize \(\sum_{s\in g\cap p} R(s, a_s)\). \(g\cap p\) is the set of all states in which the player \(p\) takes an action. Let's look at a tic tac toe example of the following game:
 \begin{center}
 \tickTackToe{}{}{}{}{}{}{}{}{player X} \to \tickTackToe{X}{}{}{}{}{}{}{}{player O} \to \tickTackToe{X}{O}{}{}{}{}{}{}{player X} \to \tickTackToe{X}{O}{}{}{X}{}{}{}{player O} \to \tickTackToe{X}{O}{}{O}{X}{}{}{}{player X} \to \tickTackToe{X}{O}{}{O}{X}{}{}{X}{}
 \end{center}
 Since player \(X\) won the game, the reward for every state \(s\in g\cap X\) is \(R(s, a_s) = 1\) and the reward for every state \(s\in g\cap O\) is \(R(s, a_s) = -1\). The reward for the entire game is:
 \begin{center}
-\tickTackToe{}{}{}{}{}{}{}{}{} \rewardArrow{1} \tickTackToe{X}{}{}{}{}{}{}{}{} \rewardArrow{-1} \tickTackToe{X}{O}{}{}{}{}{}{}{} \rewardArrow{1} \tickTackToe{X}{O}{}{}{X}{}{}{}{} \rewardArrow{-1} \tickTackToe{X}{O}{}{O}{X}{}{}{}{} \rewardArrow{1} \tickTackToe{X}{O}{}{O}{X}{}{}{X}{}
+\tickTackToe{}{}{}{}{}{}{}{}{} \rewardArrow{X}{1} \tickTackToe{X}{}{}{}{}{}{}{}{} \rewardArrow{O}{-1} \tickTackToe{X}{O}{}{}{}{}{}{}{} \rewardArrow{X}{1} \tickTackToe{X}{O}{}{}{X}{}{}{}{} \rewardArrow{O}{-1} \tickTackToe{X}{O}{}{O}{X}{}{}{}{} \rewardArrow{X}{1} \tickTackToe{X}{O}{}{O}{X}{}{}{X}{}
 \end{center}
-
+\begin{memoBox}
 The important thing to keep in mind is that reinforcement learning algorithms encourage actions that lead to a positive feedback and discourage actions that lead to a negative feedback.
+\end{memoBox}
 \subsection{Game}
-The game is the environment, that is used to train the AI. The game consists of constant unchanging game states. Every game state consists of a game board and a player. An end game state is a state at which the game is done. This means that one player won or the game ended in a tie. For connect4 this means four stones in a line or a full game board.
+In order to train a reinforcement learning AI, it must interact with an environment. In Alpha Zero the game is the the environment. The game consists of a series of constant unchanging game states. Every game state consists of a game board and a player. An end game state is a state at which the game is done, every game ends in an end game state. At an end game state one player won or the game ended in a tie. Togather the states form a graph. Any possible path thought this graph starting from a root state (the inital state of the board) and ending in any end game state, is a possible game. From an end game state, there is no where left to go.
+For connect4 an end game state has either four stones in a line or a full game board.
 Let \(\mathbb{G}\) be the set of all legal game states.
-Let \(\mathbb{G}_{done}\) be the set of all game states for which the game is done. At every gamestate one player is at turn. This means that that player will take an action next. Let \(\phi(s)~:~\mathbb{G}\to\{1,-1\}\) be the function mapping states to players. In the tick-tack-toe example from earlyer we could say that:
+Let \(\mathbb{G}_{done} \subset \mathbb G\) be the set of all game states for which the game is done. At every gamestate one player is at turn. This means that that player will take an action next. Let \(\phi(s)~:~\mathbb{G}\to\{1,-1\}\) be the function mapping states to players. In the tick-tack-toe example from earlyer we could say that:
 \begin{align}
 \phi(s) = \left\{\begin{matrix}
 1 & s \in g\cap X\\
@@ -246,16 +259,15 @@ Let \(\mathbb{A}(s)\) be the set of all legal actions for a given state  \(s \in
  6 & 7 & 8 \\\hline
 \end{tabular} & \tickTackToe{X}{O}{}{}{}{}{}{}{State \(s\)}
 \end{tabular}\end{center}
-In this example player \(X\) is allowed to place a stone in anny empy field \(\mathbb A(s) = \left\{ 2, 3, 4, 5, 6, 7, 8 \right\}\). Therefor \(\mathcal A(a, s)\) is valid if \(a \in \mathbb A(s)\) and otherwise invalid.
+In this example player \(X\) is allowed to place a stone in any empy field \(\mathbb A(s) = \left\{ 2, 3, 4, 5, 6, 7, 8 \right\}\). Therefor \(\mathcal A(a, s)\) is valid if \(a \in \mathbb A(s)\) and otherwise invalid.
 
 \subsection{MCTS}
 A Monte Carlo tree search (MCTS) is a tree search algorithm that can be used to find sequences of actions leading to a desirable outcome. This is done by procedurally generating a directed graph of possible successor states to the current state or root state. In Alpha Zero it is used to improve the neural networks prediction.
+Because a MCTS changes during simulation, idices are used to specify which simulation step the tree is in. A MCTS simulation consists of three phases \nameref{sec:Methods:MCTS:Leaf_selection}, \nameref{sec:Methods:MCTS:Node Evaluation and Expansion} and \nameref{sec:Methods:MCTS:Backfill}.
 
-A MCTS changes during simulation. MCTS simulation consists of three phases \nameref{sec:Methods:MCTS:Leaf_selection}, \nameref{sec:Methods:MCTS:Node Evaluation and Expansion} and \nameref{sec:Methods:MCTS:Backfill}.
+The MCTS graph consists of nodes and edges. The edges represent connections betwean nodes while the nodes represent game states. Let \(\mathbb{M}_{possible} = \{\mathcal{N}(s)~|~ s \in \mathbb{G}\}\) be the set of all possible nodes , where \(\mathcal{N}:\mathbb{G}\to\mathbb{M}_{possible}\) is a bijective function that maps a game state to a node. \(\mathcal{S}~:~\mathbb{M}_{possible}\to\mathbb{G} = \mathcal{N}^{-1}\) is the inverse of \(\mathcal{N}\). For notational simplicity, the set of all allowed actions for any node \(n\in\mathbb{M}_{possible}\) is \(\mathbb{A}(n) = \mathbb{A}(\mathcal{S}(n))\). The ammount of nodes and structure of the MCTS is changed by the algorythem itself during simulation. Therefor Let \(l\) be the index of the current simulation step. Let \(\mathbb L = \mathbb [0, S]\) be the set of all \(l\), where \(S\) is a constant defined in the algorythems configuration file (\sectionref{code:config}). During the first simulation, the Tree contains only the root node \(n_0\). The root node is the starting point of the simulation. Let \(\mathbb{M}_l \subseteq \mathbb{M}_{possible}\) be the set of all nodes in the tree at step \(l\in\mathbb L\).
 
-This graph consists of nodes and edges. The edges represent connections betwean nodes while the nodes represent game states. Let \(\mathbb{M}_{possible} = \{\mathcal{N}(s)~|~ s \in \mathbb{G}\}\) be the set of all possible nodes , where \(\mathcal{N}:\mathbb{G}\to\mathbb{M}_{possible}\) is a bijective function that maps a game state to a node. \(\mathcal{S}~:~\mathbb{M}_{possible}\to\mathbb{G} = \mathcal{N}^{-1}\) is the inverse of \(\mathcal{N}\). For notational simplicity, the set of all allowed actions for any node \(n\in\mathbb{M}_{possible}\) is \(\mathbb{A}(n) = \mathbb{A}(\mathcal{S}(n))\). The ammount of nodes and structure of the MCTS is changed by the algorythem itself during simulation. Therefor Let \(l\) be the index of the current simulation step. Let \(\mathbb L = \mathbb [0, S]\) be the set of all \(l\), where \(S\) is a constant defined in the algorythems configuration file (\sectionref{code:config}). At the first step of the simulation, the Tree contains only the root node \(n_0\). The root node is the node is the starting point of the simulation. Let \(\mathbb{M}_l \subseteq \mathbb{M}_{possible}\) be the set of all nodes in the tree at step \(l\in\mathbb L\).
-
- Every node \(n_l \in \mathbb{M}_l\) has a set of edges \(\mathbb{E}_l(n_l)\) at step \(l\) that connect it to other nodes. Let \(\mathbb{E}_l\) be the set of all edges in the current graph. \(\mathcal{E}_l:~\mathbb{M}_l\times \mathbb{A}_{possible} \to \mathbb{E}_l\) is a bijective function used to map nodes and actions to edges. Furthermore for \(\mathcal{E}_l(n_l, a)\) to be valid \(a\) must be an element of \(\mathbb{A}(n_l)\).  The function \(\mathcal{N}_{to_l}~:~\mathbb{E}_{l}\to\mathbb{M}_l\) maps an edge to the node it is pointing to while \(\mathcal{N}_{from_l}~:~\mathbb{E}_{l}\to\mathbb{M}_l\) is used to find the node an edge is pointing from.
+ Every node \(n_l \in \mathbb{M}_l\) has a set of edges \(\mathbb{E}_l(n_l)\) at step \(l\) that point from it to another nodes. Let \(\mathbb{E}_l\) be the set of all edges in the current graph. \(\mathcal{E}_l:~\mathbb{M}_l\times \mathbb{A}_{possible} \to \mathbb{E}_l\) is a bijective function used to map nodes and actions to edges. Furthermore for \(\mathcal{E}_l(n_l, a)\) to be valid \(a\) must be an element of \(\mathbb{A}(n_l)\).  The function \(\mathcal{N}_{to_l}~:~\mathbb{E}_{l}\to\mathbb{M}_l\) maps an edge to the node it is pointing to while \(\mathcal{N}_{from_l}~:~\mathbb{E}_{l}\to\mathbb{M}_l\) is used to find the node an edge is pointing from.
 Furthermore it is usefull to distingush expanded nodes from leaf nodes. Leaf nodes are nodes that don't have edges leading out of them. Let \(\mathbb{M}_{leaf_l} \subseteq \mathbb{M}_l\) be the set of leafnodes. For every node \(n_l\in \mathbb{M}_{leaf_l}\), the following is true by definition \(\mathbb{E}_l(n_l) = \emptyset\). Expanded nodes are have edges leading out of them. Let \(\mathbb{M}_{expanded_l} \subseteq \mathbb{M}_l\) be the set of expanded nodes. For every node \(n_l\in \mathbb{M}_{leaf_l}\), the following is true by definition \(\mathbb{E}_l(n_l) \neq \emptyset\).
 
 \begin{figure}[H]
@@ -289,7 +301,7 @@ Where \(c_{puct}\in \mathbb{R}^+\) is the exploration constant used to define ho
 \sigma_l(n) = \mathcal{N}_{to_l}(\text{argmax}_l(\mathbb{E}_l(n)))
 \end{equation}
 \(\text{argmax}_l\) returns the edge \(e \in\mathbb E_l\) with the largest \(v_l(e)\).\\
-In order to find a leaf node \(n_{L_l}\) starting from the root node \(n_{0}\) and be able to update the tree later on, the following algorithm is run \(L\) times, until a leaf node is found. First let \(i \in [0,L]\) be the index of the iteration of this algorithm. Let \(\mathbb M_{back,l,i} \subseteq \mathbb M\) be the set of nodes traversed by the algorithm at set \(i\) during simulation \(l\). By definition \(\mathbb M_{back,l,0} := \{n_0\}\). Than:
+In order to find a leaf node \(n_{L_l}\) starting from the root node \(n_{0}\) and be able to update the tree later on, the following algorithm is run \(L\) times, until a leaf node is found. First let \(i \in [0,L[\) be the index of the iteration of this algorithm. Let \(\mathbb M_{back,l,i} \subseteq \mathbb M\) be the set of nodes traversed by the algorithm at set \(i\) during simulation \(l\). By definition \(\mathbb M_{back,l,0} := \{n_0\}\). Than:
 \begin{align}
 n_{L_i+1} &= \sigma (n_{L_i})\\
 \mathbb M_{back,l,i+1} &= \mathbb M_{back,l,i} \cup \{n_{L_i+1}\}
@@ -301,19 +313,19 @@ Once a leaf-node \(n_{L_l}\in\mathbb{M}_{leaf_l}\) is found that node is evaluat
 \label{sec:Methods:MCTS:Node Evaluation and Expansion}
 When a leaf node \(n_{L_l}\) is reached, there are two possible cases. Ether \(\mathcal S(n_{L_l})\) is an end game state or not.
 \paragraph{end game state \(\mathcal S(n_{L_l}) \in \mathbb G_{done}\)}
-In this case the tree is not changed but backfill is still performed. The value \(v_l \mathbb R_{-1,1}\) \quckeq{set:Rab} of \(n_{L_l}\) is defined as if the curren player \(\phi(\mathcal S(n_{L_l}))\):
+In this case the tree is not changed but backfill is still performed. If the player at turn at the end game state is \(\phi(\mathcal S(n_{L_l}))\).
+The value \(v_l \in \mathbb R_{-1,1}\) \quckeq{set:Rab} of \(n_{L_l}\) is defined as:
 \begin{equation}
 v_l = \left\{\begin{matrix}
-1 &  \text{lost}\\
-0 & \text{tied}\\
--1 & \text{won}
+-\phi(\mathcal S(n_{L_l}))  &\phi(\mathcal S(n_{L_l})) \text{ lost}\\
+0 				            &\phi(\mathcal S(n_{L_l})) \text{ tied}\\ 
+\phi(\mathcal S(n_{L_l})) &\phi(\mathcal S(n_{L_l})) \text{ won}
 \end{matrix}\right.
 \end{equation}
-This is done because the players alternate taking turns.
 \paragraph{not end game state \(\mathcal S(n_{L_l}) \not\in \mathbb G_{done}\)}
 In this case the nodes state is passed to the neural network (\sectionref{NN}). The neural networks prediction function outputs a policy vector \(\pi_l \in \mathbb R_{0,1}^{|\mathbb A|}\) \quckeq{set:Rab} and a scalar \(v_l \in \mathbb R_{-1,1}\) \quckeq{set:Rab}. The scalar \(v_l\) is the neural networks estimation of the expected reward at \(n_{L_l}\). \(\pi_l\) is the estimation of the advantageousness of every action in \(\mathbb A\). After evaluation, the leaf node is expanded.
-Let \(\mathbb E_{new}\) be the next set of all edges leading away from \(n_{L_l}\). This set contains one edge for every action in \(\mathbb A(n_{L_l})\).
-Let \(\mathbb M_{new}\) be the set of nodes, that can be reached in one game step from \(n_{L_l}\).
+Let \(\mathbb E_{new}\) be the next set of all edges pointing away from \(n_{L_l}\). This set contains one edge for every action in \(\mathbb A(n_{L_l})\).
+Let \(\mathbb M_{new}\) be the set of nodes, that the nodes in \(\mathbb E_{new}\) are pointing to.
 The various Tree sets and functions are then updated as follows for step \(l+1\).
 \begin{align}
 \mathbb M_{l+1}   =& \mathbb M_l \cup \mathbb M_{new} \\
@@ -373,7 +385,7 @@ P_l (\mathcal E_{l+1}(n, a)) & e \in\mathbb E_l\\
 The value \(v_l\) is used to update the \(P\), \(W\) and \(Q\) function as follows for every edge \(e\in\mathbb E_{l+1}\):
 \begin{align}
 N_{l+1}(e) &= \left\{\begin{matrix}
-1 & e \not\in\mathbb E_l\\
+0 & e \not\in\mathbb E_l\\
 N_l(e)+1 & \InBreadcrums\\
 N_l(e)
 \end{matrix}\right.\\
@@ -463,12 +475,8 @@ The same is done for \(\Lambda(I)_{121}\), \(\Lambda(I)_{211}\) and \(\Lambda(I)
 \end{bmatrix}
 \]
 \paragraph{Activation Function}
-All neural network layers are linear functions. Thus, given two layer evaluation functions \(f_1(x) = ax + b\) and \(f_2(x) = cx + d\), the chained function \(f(x) = f_1(f_2(x))\) is also linear because:
-\begin{equation}
-\label{eq:proofOfLinearity}
-f(x) = f_1(f_2(x)) = a(cx + d) + b = acx + ad + b = ex + g
-\end{equation}
-where \(a\),  \(b\), \(c\), \(d\), \(e\) and \(g \in \mathbb R\). In order to represent non linear functions, a non linear activation function \(f_a\) is added between two neural network layers. Thus, the chained function becomes \(c(x) = f_1(f_a(f_2(x)))\). In this neural network, three different activation functions are used: \(tanh\), \(softmax\), and \(LeakyReLU\). These functions are defined as follows:
+All neural network layers are linear functions. Thus, given two layer evaluation functions \(f_1(x) = ax + b\) and \(f_2(x) = cx + d\), the chained function \(f(x) = f_1(f_2(x))\) is also linear.
+In order to represent non linear functions, a non linear activation function \(f_a\) is added between two neural network layers. Thus, the chained function becomes \(c(x) = f_1(f_a(f_2(x)))\). In this neural network, three different activation functions are used: \(tanh\), \(softmax\), and \(LeakyReLU\). These functions are defined as follows:
 \subparagraph*{tanh:}\(\mathbb{R}\to \mathbb{R}\)
 
 \begin{center}
@@ -481,7 +489,20 @@ tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}
 \end{equation}\begin{equation} \label{eq:NN:tanh_derivative}
 \frac{d}{dx}tanh(x) = sech(x)^2
 \end{equation}
-see \sectionref{sec:proof:tanhd/dx} for proof.
+see \sectionref{sec:proof:tanhd/dx} for proof.\\
+Therefor for a given \(n\) dimensional vector \(v \in \mathbb R^n\), \(tanh(v)\) is deffined as:
+\begin{equation}\label{eq:vecTanh}
+tanh(v) = \left<tanh, x\right>_E
+\end{equation}
+Where \(\left<\right>_E\) is defined in \equationref{eq:vectorElemetwise}. For simplicity later on the derivative of \(tanh(v)\), \(tanh'(v) \in \mathbb R^{n \times n}\) is a \(n \times n\) dimensional matrix. It is defined as
+\begin{equation}
+tanh'(v)_{ij} = \left\{\begin{matrix}
+tanh'(v_{ij}) & i = j \\
+0
+\end{matrix}\right.
+\end{equation}
+for every element \(i,j\) in the derivative matrix.
+
 \subparagraph*{softmax:} \(\mathbb{R}^n\to \mathbb{R}^n\)\\
 \indent For a given input vector \(v \in \mathbb{R}^n\). The output vector \(o \in \mathbb{R}^n\) at every position \(i \in [1, n]\) is:
 \begin{equation} \label{eq:NN:softmax}
@@ -566,24 +587,47 @@ g(x) =
 c & x < 0\\
 \end{cases}
 \end{equation}
+Therefor for a given \(n\) dimensional vector \(v \in \mathbb R^n\), \(\text{LeakyReLU}(v)\) is deffined as:
+\begin{equation}\label{eq:vecTanh}
+\text{LeakyReLU}(v) = \left<\text{LeakyReLU}, x\right>_E
+\end{equation}
+Where \(\left<\right>_E\) is defined in \equationref{eq:vectorElemetwise}. For simplicity later on the derivative of \(\text{LeakyReLU}(v)\), \(\text{LeakyReLU}'(v) \in \mathbb R^{n \times n}\) is a \(n \times n\) dimensional matrix. It is defined as
+\begin{equation}
+\text{LeakyReLU}'(v)_{ij} = \left\{\begin{matrix}
+g(v_{ij}) & i = j \\
+0
+\end{matrix}\right.
+\end{equation}
+for every element \(i,j\) in the derivative matrix.
+
+
 \paragraph{Training} 
-Neural network training can be mathematically expressed as minimizing a loss function  \(\ell\) describing how inaccurate the network is. In our case, \(\ell\) takes the neural network's predicted value vector \(Y_{pred}\) and the correct value vector \(Y_{true}\). \(Y_{true}\) must be known before the computation begins. In AlphaZero, \(Y_{true}\) is generated by the MCTS. As with the activation, function there are many different possible loss functions. In this implementation, the mean-square-error(\(mse\)) loss function is used. \(mse:~\mathbb R^n\times\mathbb R^n \to \mathbb R\) is defined as:
+To make this explanation easier, I will use a fully connected neural network.
+Neural network training or backpropagation can be mathematically expressed as minimizing a loss function  \(\ell(Y_{pred}, Y_{true})\) describing how inaccurate the network is. In our case, \(\ell\) takes the neural network's predicted value vector \(Y_{pred}\) and the correct value vector \(Y_{true}\). \(Y_{true}\) must be known before the computation begins. In AlphaZero, \(Y_{true}\) is generated by the MCTS. As with the activation, function there are many different possible loss functions. In this implementation, the mean-square-error(\(mse\)) loss function is used. \(mse:~\mathbb R^n\times\mathbb R^n \to \mathbb R\) is defined as:
 \begin{equation} \label{eq:NN:loss_mse}
-\ell = \frac{|Y_{pred} - Y_{true}|^2}{n}
+\ell(Y_{pred}, Y_{true}) = \frac{|Y_{pred} - Y_{true}|^2}{n}
 \end{equation}
-The network then performs gradient descent to find parameters that minimize \(\ell\). To make this introduction easier, I will use a fully connected neural network. For every layer in the network, starting with the last one, it must be determined in which direction and by how much the output values \(Y_{pred_i} \in Y_{pred}\) should be ``moved'' to minimize \(\ell\). This change is described by \(\Delta Y_j\), where \(j\) is the index of the last layer. Then, the change in the inputs to the activation function \(f_a\) must be computed using the saved activation function inputs \(A\). \(\Delta A\) will describe the change to \(A\).
+The network then performs gradient descent to find parameters that minimize \(\ell\).  Let \(\ell'~:~\mathbb R^n \times \mathbb R^n \to \mathbb R^n\) be the derivative of \(\ell'\).
+\begin{equation}\label{eq:lossDerivative}
+\ell'(Y_{pred}, Y_{true}) = \frac{1}{n} \left(Y_{pred} - Y_{true}\right)
+\end{equation}
+Given a neural netowrk consisting of \(n\) layers, training will start at the last layer and probagate thought the network from back to front. Hence the name backpropagation. To change the values of the parameters of every layer in the network of the network, the algorythem must fist determine the in which direction and by how much, the variables should be moved. Let \(j \in \mathbb N_{0,n-1}\) be the index of the layer. The indeces start at the first layer (0) and count upwards. The layer at any particualer index \(j\) is \(f_j\). For the last layer \(j=n-1\), the change to its output \(\Delta Y_j\) is described by \quickeq{eq:lossDerivative} as follows:
+\begin{align}
+\Delta Y_j &= \left<l, \ell'(Y_{pred}, Y_{true})\right>_E\\
+l(x) &= \frac{2}{x}
+\end{align}
+Where \(\left<\right>_E\) is the elementwise vector opperator defined in \equationref{eq:vectorElemetwise}. In Generall \(f_j\) is always followed by an activation function \(f_{a_j}\). Let \(A_j\) be the precomputed inputs to \(f_{a_j}\). Let \(\Delta A_j\) be the wisched for change to \(A\).
+%For every layer in the network, starting with the last one, it must be determined in which direction and by how much the output values \(Y_{pred_i} \in Y_{pred}\) should be ``moved'' to minimize \(\ell\). This change is described by \(\Delta Y_j\), where \(j\) is the index of the last layer. Then, the change in the inputs to the activation function \(f_a\) must be computed using the saved activation function inputs \(A\). \(\Delta A\) will describe the change to \(A\).
 \begin{equation}\label{eq:NN:deltaA}
-\Delta A = f_a'(A) \circ \Delta Y_j
+\Delta A = f_a'(A) \Delta Y_j
 \end{equation}
-The hadamard product \(\circ\) is 
-defined in \sectionref{sec:hadamerd_product}.\\
 Next comes the update to the weight matrix \(w\). Let \(\Delta w\) describe the change to \(w\) and let \(X\) be the input vector of the layer. \(\Delta w\) is than defined as:
 \begin{equation}\label{eq:NN:deltaW}
 \Delta w = \Delta A \cdot X^T
 \end{equation}
 The layer's bias vector is updated in the direction of \(\Delta A\):
 \begin{equation}\label{eq:NN:deltaB}
-\Delta b \sim \Delta A
+\Delta b = \Delta A
 \end{equation}
 Lastly, the change to the output of the previous layer \(\Delta Y_{j-1}\) is computed.
 \begin{equation} \label{eq:NN:deltaA_lastLayer}
@@ -792,116 +836,116 @@ Collected data shows this to be true \imgRef{img:eloByVersion}. The same data sh
 	\captionof{figure}{Elo-rating of agents based on their version along with the expected minimal rating \(\Delta r_{min}\) and the best fitted rating \(\Delta r\).}
 	\label{img:eloByVersion}
 \end{center}
-\section{Servers and Clients}
-In computer science, server-client-communications are a form of distributed application, that allows multiple machines to communicate and share data. In general, the server will wait for connections, while the client will initialize a connection with the server. To accomplish this, the server must listen to a certain port and the client must know the servers ip and port. In our case, the cummunications use the TCP and HTTPS protocols. Alpha Zero uses three distinct servers: an AI server, a data server and an Apache web server.
-\subsection{The Web Server}
-Alpha Zero's web server uses the Apache web server application. The web server is used to host static files such as the source code for the iOS client (see \sectionref{sec:iosClient}), a debug version of the same client, the domain name of the AI server and the domain name of the data server. All these files were located at \href{https://wandhoven.ddns.net/code/AlphaZero/}{https://wandhoven.ddns.net/code/AlphaZero/}
-\subsection{The Data Server}
-The data server stores all global information. This was just the elo-rating to begin with, but was later expanded to handle all data. This explains the somewhat strange communication protocol. Requests to the server begin by sending a 4 byte signed integer \(a\) identifying the general action the server must perform. The first action \(a=1\) will return the elo-rating of a certain agent.
-This will require a further 4 bytes identifying the agent. The second action \(a=2\) will set an agents elo-rating. Two 4 byte integers are sent, the first identifying the agent and the second the elo-rating to set to. The third action \(a=-1\) will require a 4 byte signed integer \(e\) and return the agent's identifier with an elo-rating equal to \(r\) defined as:
-\begin{equation}
-r = \text{min}(\left\{x \in\mathbb E | x \geq e \right\})
-\end{equation}
-where \(\mathbb E\) is the set of the elo-ratings of all agents. The last action \(a=-2\) will access the custom data part of the server. This subsection will require an integer describing how many bytes the request consists of. The request is encoded using the python pickle library and consists of either a tuple containing a string, and a list of strings; or a tuple containing a string, a list of strings, and any other data type. In the first case, the system will return the value of the saved data associated with that request. In the second case, the value of the associated the variable will be set to whatever the third value is.\\\\
-The first two variables of the tuple are a string \(f\) and a list of strings \(k\). \(f\) tells the server in which file the variable is stored. Therefore, the server will load the json file with the name \(f\). \(k\) is the list of keys used to index the dictionary \(f\). \\\\
-For example, with \(f = \text{example.json}\), the server would decode the json file "example.json" shown in \listingref{listing:dataAssociation}. Assuming that \(k =\) ["address", "city"], the server would first search for key "address" in the outer most directory. At that key, there is another dictionary, which is then searched for the key "city".  At that key, there is a string ("New York"), which would  be returned to the client.
-
-\begin{listing}[H]
-\begin{minted}[frame=single,
-               framesep=3mm,
-               linenos=true,
-               xleftmargin=21pt,
-               tabsize=4]{js}
-{
-  "firstName": "John",
-  "lastName": "Smith",
-  "isAlive": true,
-  "age": 27,
-  "address": {
-    "streetAddress": "21 2nd Street",
-    "city": "New York",
-    "state": "NY",
-    "postalCode": "10021-3100"
-  },
-  "phoneNumbers": [
-    {
-      "type": "home",
-      "number": "212 555-1234"
-    },
-    {
-      "type": "office",
-      "number": "646 555-4567"
-    }
-  ],
-  "children": [],
-  "spouse": null
-}
-\end{minted}
-\caption{example.json \newline\indent from \href{https://en.wikipedia.org/wiki/JSON}{https://en.wikipedia.org/wiki/JSON}} 
-\label{listing:dataAssociation}
-\end{listing}
-\subsection{The AI Server}
-The AI server is used to evaluate a state and determine the best action using Alpha Zero. This is done by sending the server the state and waiting for it to send back the action.
-\subsubsection{State Transmission}
-To send a state to the server, the state's \(6 \times 7\) board is converted into an array of 85 boolean values\footnote{Stored as integers 0 and 1 in memory}. The first 42 booleans represent whether or not the starting player has a stone at that position. Positions are mapped from left to right and then top to bottom. The table below shows the order in which the positions will be added to the boolean array. The next 42 booleans are identical to the first but for the non-starting player. The last position tells the server which player is taking the next action.
-\begin{center}
-\begin{tabular}{| c | c | c | c | c | c | c |}
- \hline
-0 & 1 & 2 & 3 & 4 & 5 & 6  \\\hline
-7 & 8 & 9 & 10 & 11 & 12 & 13\\\hline
-14 & 15 & 16 & 17 & 18 & 19 & 20 \\\hline
-21 & 22 & 23& 24 & 25 & 26 & 27 \\\hline
-28 & 29 & 30 & 31 & 32 & 33 & 34 \\\hline
-35 & 36 & 37 & 38 & 39 & 40 & 41 \\\hline
-\end{tabular}
-\end{center}
-Consider the following game state \imgRef{fig:connectFourExample} at which the starting player is at turn.
-\begin{center}
-\includegraphics[width=0.5\textwidth]{connectFourExample}
-\captionof{figure}{example game state}
-\label{fig:connectFourExample}
-\end{center}
-This state's boolean array \(a\) is:
-\begin{equation}
-a =
-\text{vec}\left(\left[\begin{matrix}
-\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{1}     & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{\gold}{0} & \mathColor{\gold}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{1}     & \mathColor{\gold}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{1}     & \mathColor{red}{1}     & \mathColor{\gold}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{1}     & \mathColor{\gold}{0} & \mathColor{\gold}{0} & \mathColor{red}{1}     & \mathColor{black}{0}\\
-\end{matrix}
-\right]\right)
-\frown vec
-\left(\left[
-\begin{matrix}
-\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{0}     & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{\gold}{1} & \mathColor{\gold}{1} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{0}     & \mathColor{\gold}{1} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{0}     & \mathColor{red}{0}     & \mathColor{\gold}{1} & \mathColor{black}{0} & \mathColor{black}{0}\\
-\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{0}     & \mathColor{\gold}{1} & \mathColor{\gold}{1} & \mathColor{red}{0}     & \mathColor{black}{0}\\
-%&&& 1 &&&]\\
-\end{matrix}\right]\right)\frown \left<1\right>
-\end{equation}
-Where \(vec\) is the matrix vectorization defined in \sectionref{sec:ref:vectorization} and \(\frown\) is the vector concatination defined in \sectionref{sec:ref:vectorConcatination}.
-To the front of this vector, the version of the AI we want to play against is added. If the version is invalid the server will default to the best version.
-
-
-
-\subsubsection{Action Selection}
-The AI's action is selected by running MCTS simulations and choosing the action with the most evaluations. It is the same algorithm as the deterministic method defined in \sectionref{sec:training:actionSelection}.
-\subsubsection{Action Transmission}
-The action is stored and transmitted as a four byte integer.
-
-\subsection{Clients}
-There are two clients for the AlphaZero system. The first is a python client for DOS, macOS, Linux, etc., and the second was developped for iOS using pythonista.
-\subsubsection{Desktop Client}
-The Desktop client will allow the player to play against an AI with a slightly better elo-rating than the player's. This is done by creating an account on the data server. The data server will give the client a unique number representing its account. The Client will then proceed to save this number and request the player's elo-rating. Finally, the AI version with the closest but better elo-rating to that of the player is requested. Now the client renders the game board and randomly selects a starting player. The client will tean wait for user inputs and query the server as appropriate, i.e. what player is at turn. When the game is done, the client's log of the game is uploaded to the data server and the player will be shown the appropriate end-of-the-game screen. The client also has the possibility to request game logs and replay games.
-This client version uses the python socket library for communication and Tkinter to render the game board.
-\subsubsection{iOS Client}\label{sec:iosClient}
-The iOS version does the same thing as the Desktop version with a few differences. Firstly, it renders the board using the pythonista scene library. Secondly, it dose not create or store accounts. The player will always play against the best AI version. Thirdly, it does not have the possiblity to replay games. Lastly, the Client will request its actual source code from the web server to allow for easier updating.
+%\section{Servers and Clients}
+%In computer science, server-client-communications are a form of distributed application, that allows multiple machines to communicate and share data. In general, the server will wait for connections, while the client will initialize a connection with the server. To accomplish this, the server must listen to a certain port and the client must know the servers ip and port. In our case, the cummunications use the TCP and HTTPS protocols. Alpha Zero uses three distinct servers: an AI server, a data server and an Apache web server.
+%\subsection{The Web Server}
+%Alpha Zero's web server uses the Apache web server application. The web server is used to host static files such as the source code for the iOS client (see \sectionref{sec:iosClient}), a debug version of the same client, the domain name of the AI server and the domain name of the data server. All these files were located at \href{https://wandhoven.ddns.net/code/AlphaZero/}{https://wandhoven.ddns.net/code/AlphaZero/}
+%\subsection{The Data Server}
+%The data server stores all global information. This was just the elo-rating to begin with, but was later expanded to handle all data. This explains the somewhat strange communication protocol. Requests to the server begin by sending a 4 byte signed integer \(a\) identifying the general action the server must perform. The first action \(a=1\) will return the elo-rating of a certain agent.
+%This will require a further 4 bytes identifying the agent. The second action \(a=2\) will set an agents elo-rating. Two 4 byte integers are sent, the first identifying the agent and the second the elo-rating to set to. The third action \(a=-1\) will require a 4 byte signed integer \(e\) and return the agent's identifier with an elo-rating equal to \(r\) defined as:
+%\begin{equation}
+%r = \text{min}(\left\{x \in\mathbb E | x \geq e \right\})
+%\end{equation}
+%where \(\mathbb E\) is the set of the elo-ratings of all agents. The last action \(a=-2\) will access the custom data part of the server. This subsection will require an integer describing how many bytes the request consists of. The request is encoded using the python pickle library and consists of either a tuple containing a string, and a list of strings; or a tuple containing a string, a list of strings, and any other data type. In the first case, the system will return the value of the saved data associated with that request. In the second case, the value of the associated the variable will be set to whatever the third value is.\\\\
+%The first two variables of the tuple are a string \(f\) and a list of strings \(k\). \(f\) tells the server in which file the variable is stored. Therefore, the server will load the json file with the name \(f\). \(k\) is the list of keys used to index the dictionary \(f\). \\\\
+%For example, with \(f = \text{example.json}\), the server would decode the json file "example.json" shown in \listingref{listing:dataAssociation}. Assuming that \(k =\) ["address", "city"], the server would first search for key "address" in the outer most directory. At that key, there is another dictionary, which is then searched for the key "city".  At that key, there is a string ("New York"), which would  be returned to the client.
+%
+%\begin{listing}[H]
+%\begin{minted}[frame=single,
+%               framesep=3mm,
+%               linenos=true,
+%               xleftmargin=21pt,
+%               tabsize=4]{js}
+%{
+%  "firstName": "John",
+%  "lastName": "Smith",
+%  "isAlive": true,
+%  "age": 27,
+%  "address": {
+%    "streetAddress": "21 2nd Street",
+%    "city": "New York",
+%    "state": "NY",
+%    "postalCode": "10021-3100"
+%  },
+%  "phoneNumbers": [
+%    {
+%      "type": "home",
+%      "number": "212 555-1234"
+%    },
+%    {
+%      "type": "office",
+%      "number": "646 555-4567"
+%    }
+%  ],
+%  "children": [],
+%  "spouse": null
+%}
+%\end{minted}
+%\caption{example.json \newline\indent from \href{https://en.wikipedia.org/wiki/JSON}{https://en.wikipedia.org/wiki/JSON}} 
+%\label{listing:dataAssociation}
+%\end{listing}
+%\subsection{The AI Server}
+%The AI server is used to evaluate a state and determine the best action using Alpha Zero. This is done by sending the server the state and waiting for it to send back the action.
+%\subsubsection{State Transmission}
+%To send a state to the server, the state's \(6 \times 7\) board is converted into an array of 85 boolean values\footnote{Stored as integers 0 and 1 in memory}. The first 42 booleans represent whether or not the starting player has a stone at that position. Positions are mapped from left to right and then top to bottom. The table below shows the order in which the positions will be added to the boolean array. The next 42 booleans are identical to the first but for the non-starting player. The last position tells the server which player is taking the next action.
+%\begin{center}
+%\begin{tabular}{| c | c | c | c | c | c | c |}
+% \hline
+%0 & 1 & 2 & 3 & 4 & 5 & 6  \\\hline
+%7 & 8 & 9 & 10 & 11 & 12 & 13\\\hline
+%14 & 15 & 16 & 17 & 18 & 19 & 20 \\\hline
+%21 & 22 & 23& 24 & 25 & 26 & 27 \\\hline
+%28 & 29 & 30 & 31 & 32 & 33 & 34 \\\hline
+%35 & 36 & 37 & 38 & 39 & 40 & 41 \\\hline
+%\end{tabular}
+%\end{center}
+%Consider the following game state \imgRef{fig:connectFourExample} at which the starting player is at turn.
+%\begin{center}
+%\includegraphics[width=0.5\textwidth]{connectFourExample}
+%\captionof{figure}{example game state}
+%\label{fig:connectFourExample}
+%\end{center}
+%This state's boolean array \(a\) is:
+%\begin{equation}
+%a =
+%\text{vec}\left(\left[\begin{matrix}
+%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
+%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{1}     & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
+%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{\gold}{0} & \mathColor{\gold}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
+%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{1}     & \mathColor{\gold}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
+%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{1}     & \mathColor{red}{1}     & \mathColor{\gold}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
+%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{1}     & \mathColor{\gold}{0} & \mathColor{\gold}{0} & \mathColor{red}{1}     & \mathColor{black}{0}\\
+%\end{matrix}
+%\right]\right)
+%\frown vec
+%\left(\left[
+%\begin{matrix}
+%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
+%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{0}     & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
+%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{\gold}{1} & \mathColor{\gold}{1} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
+%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{0}     & \mathColor{\gold}{1} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
+%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{0}     & \mathColor{red}{0}     & \mathColor{\gold}{1} & \mathColor{black}{0} & \mathColor{black}{0}\\
+%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{0}     & \mathColor{\gold}{1} & \mathColor{\gold}{1} & \mathColor{red}{0}     & \mathColor{black}{0}\\
+%%&&& 1 &&&]\\
+%\end{matrix}\right]\right)\frown \left<1\right>
+%\end{equation}
+%Where \(vec\) is the matrix vectorization defined in \sectionref{sec:ref:vectorization} and \(\frown\) is the vector concatination defined in \sectionref{sec:ref:vectorConcatination}.
+%To the front of this vector, the version of the AI we want to play against is added. If the version is invalid the server will default to the best version.
+%
+%
+%
+%\subsubsection{Action Selection}
+%The AI's action is selected by running MCTS simulations and choosing the action with the most evaluations. It is the same algorithm as the deterministic method defined in \sectionref{sec:training:actionSelection}.
+%\subsubsection{Action Transmission}
+%The action is stored and transmitted as a four byte integer.
+%
+%\subsection{Clients}
+%There are two clients for the AlphaZero system. The first is a python client for DOS, macOS, Linux, etc., and the second was developped for iOS using pythonista.
+%\subsubsection{Desktop Client}
+%The Desktop client will allow the player to play against an AI with a slightly better elo-rating than the player's. This is done by creating an account on the data server. The data server will give the client a unique number representing its account. The Client will then proceed to save this number and request the player's elo-rating. Finally, the AI version with the closest but better elo-rating to that of the player is requested. Now the client renders the game board and randomly selects a starting player. The client will tean wait for user inputs and query the server as appropriate, i.e. what player is at turn. When the game is done, the client's log of the game is uploaded to the data server and the player will be shown the appropriate end-of-the-game screen. The client also has the possibility to request game logs and replay games.
+%This client version uses the python socket library for communication and Tkinter to render the game board.
+%\subsubsection{iOS Client}\label{sec:iosClient}
+%The iOS version does the same thing as the Desktop version with a few differences. Firstly, it renders the board using the pythonista scene library. Secondly, it dose not create or store accounts. The player will always play against the best AI version. Thirdly, it does not have the possiblity to replay games. Lastly, the Client will request its actual source code from the web server to allow for easier updating.
 
 
 \section{Further definitions}
@@ -1049,23 +1093,26 @@ u_{n_u}\\
 \right)
 \end{equation}
 
-\subsection{Future Assignment Operator}
-\label{sec:assignmentOperator}
-The future assignemtn operator, denoted \(\Rightarrow\), is in the explenation of iterative algorythems to represent assigning an value to a variable for the next iteration. The operation implies the existance of an index \(i\). Let \(x\) represent any variable and \(v\) be any possible value of \(x\). On the \(i\)\textsuperscript{th} use of the future assignment operator on \(x\). 
-\begin{equation}
-v \Rightarrow x
+\subsection{Elementwise vector operations}
+Let \(v \in \mathbb R^n\) be a \(n\) dimensional vector.
+The Elementwise vector opperator \(\left<s, v\right>_{E_s}\) of some statement \(s\) is defined as:
+\begin{equation}\label{eq:vectorElemetwise}
+\left<s, v\right>_D = \left(\begin{matrix}
+s(v_1) \\
+s(v_2) \\
+\vdots\\
+s(v_n)
+\end{matrix}\right)
 \end{equation}
-is equivilent to
-\begin{equation}
-v = x_{i+1}
-\end{equation}
-Furthermore any variable refered to, that the uses the future assignment operator, will automatically refer to the last set one. This means that if an algorythem uses \(x\) and the initial value of \(x = x_0 = z\), where \(z\) is a possible value of  \(x\). Than that algorythem uses this operation on \(x\), \(v \Rightarrow x\). Than from that  point forward in the logical operations all referances to \(x = x_1 = v\).\\
-The reason for this is that using indecies in the MCTS is more confusing than helpfull.
+For example let \(v = [1, 4, 2]^T\), than \(\left<v\right>_T = [1, 0.25, 0.5]^T\).
+
+
 \subsection{Sets}
 Let
-\begin{equation}\label{set:Rab}
-\mathbb R_{a, b} = \{x \in \mathbb R~:~ a\leq x \leq b\}
-\end{equation}
+\begin{align}\label{set:Rab}
+\mathbb R_{a, b} &= \{x \in \mathbb R~:~ a\leq x \leq b\}\\ \label{set:Nab}
+\mathbb N_{a,b} & = \{x \in \mathbb N~:~a\leq x \leq b\}
+\end{align}
 
 \bibliographystyle{plain}
 \bibliography{bibliography}

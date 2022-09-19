@@ -18,42 +18,32 @@
 \contentsline {paragraph}{\numberline {1.4.1.4}Training}{20}{paragraph.1.4.1.4}%
 \contentsline {subsubsection}{\numberline {1.4.2}Network used by AlphaZero}{21}{subsubsection.1.4.2}%
 \contentsline {paragraph}{\numberline {1.4.2.1}Neural Network input}{21}{paragraph.1.4.2.1}%
-\contentsline {paragraph}{\numberline {1.4.2.2}Neural Network Architecture}{22}{paragraph.1.4.2.2}%
+\contentsline {paragraph}{\numberline {1.4.2.2}Neural Network Architecture}{23}{paragraph.1.4.2.2}%
 \contentsline {paragraph}{\numberline {1.4.2.3}Training}{24}{paragraph.1.4.2.3}%
-\contentsline {subsection}{\numberline {1.5}Data generation}{24}{subsection.1.5}%
-\contentsline {subsubsection}{\numberline {1.5.1}Action selection}{24}{subsubsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5}Data generation}{25}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}Action selection}{25}{subsubsection.1.5.1}%
 \contentsline {subsubsection}{\numberline {1.5.2}Memory}{25}{subsubsection.1.5.2}%
-\contentsline {paragraph}{\numberline {1.5.2.1}Memory update}{25}{paragraph.1.5.2.1}%
-\contentsline {paragraph}{\numberline {1.5.2.2}Model Training}{25}{paragraph.1.5.2.2}%
-\contentsline {subsection}{\numberline {1.6}Model evaluation}{25}{subsection.1.6}%
+\contentsline {paragraph}{\numberline {1.5.2.1}Memory update}{26}{paragraph.1.5.2.1}%
+\contentsline {paragraph}{\numberline {1.5.2.2}Model Training}{26}{paragraph.1.5.2.2}%
+\contentsline {subsection}{\numberline {1.6}Model evaluation}{26}{subsection.1.6}%
 \contentsline {section}{\numberline {2}Evaluation}{26}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Elo-rating}{26}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Relativity of the Elo-rating}{28}{subsubsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.2}Elo results}{28}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Servers and Clients}{30}{section.3}%
-\contentsline {subsection}{\numberline {3.1}The Web Server}{30}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}The Data Server}{30}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}The AI Server}{32}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}State Transmission}{33}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Action Selection}{34}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}Action Transmission}{34}{subsubsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.4}Clients}{34}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Desktop Client}{34}{subsubsection.3.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.2}iOS Client}{35}{subsubsection.3.4.2}%
-\contentsline {section}{\numberline {4}Further definitions}{35}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Set Exclusion}{35}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Hadamard product}{35}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Inner Product}{36}{subsection.4.3}%
-\contentsline {subsubsection}{\numberline {4.3.1}Matrices}{36}{subsubsection.4.3.1}%
-\contentsline {subsubsection}{\numberline {4.3.2}\(n\)-dimensional Tensors}{36}{subsubsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.4}Submatrix}{36}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Vectorization}{37}{subsection.4.5}%
-\contentsline {subsubsection}{\numberline {4.5.1}Tensors}{37}{subsubsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.6}Vector Concatination}{37}{subsection.4.6}%
-\contentsline {subsection}{\numberline {4.7}Future Assignment Operator}{38}{subsection.4.7}%
-\contentsline {subsection}{\numberline {4.8}Sets}{38}{subsection.4.8}%
-\contentsline {section}{\numberline {5}Examples}{39}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Mcts}{39}{subsection.5.1}%
-\contentsline {section}{\numberline {6}Proofs}{41}{section.6}%
-\contentsline {subsection}{\numberline {6.1}tanh derivative}{41}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Softmax Derivative}{42}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {2.1.1}Relativity of the Elo-rating}{29}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.2}Elo results}{29}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Further definitions}{30}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Set Exclusion}{30}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Hadamard product}{30}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Inner Product}{31}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Matrices}{31}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}\(n\)-dimensional Tensors}{31}{subsubsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.4}Submatrix}{31}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Vectorization}{32}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Tensors}{32}{subsubsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.6}Vector Concatination}{32}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Elementwise vector operations}{33}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Sets}{33}{subsection.3.8}%
+\contentsline {section}{\numberline {4}Examples}{35}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Mcts}{35}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Proofs}{36}{section.5}%
+\contentsline {subsection}{\numberline {5.1}tanh derivative}{36}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Softmax Derivative}{37}{subsection.5.2}%
