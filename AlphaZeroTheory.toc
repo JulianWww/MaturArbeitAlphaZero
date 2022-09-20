@@ -20,30 +20,38 @@
 \contentsline {paragraph}{\numberline {1.4.2.1}Neural Network input}{21}{paragraph.1.4.2.1}%
 \contentsline {paragraph}{\numberline {1.4.2.2}Neural Network Architecture}{23}{paragraph.1.4.2.2}%
 \contentsline {paragraph}{\numberline {1.4.2.3}Training}{24}{paragraph.1.4.2.3}%
-\contentsline {subsection}{\numberline {1.5}Data generation}{25}{subsection.1.5}%
-\contentsline {subsubsection}{\numberline {1.5.1}Action selection}{25}{subsubsection.1.5.1}%
-\contentsline {subsubsection}{\numberline {1.5.2}Memory}{25}{subsubsection.1.5.2}%
-\contentsline {paragraph}{\numberline {1.5.2.1}Memory update}{26}{paragraph.1.5.2.1}%
-\contentsline {paragraph}{\numberline {1.5.2.2}Model Training}{26}{paragraph.1.5.2.2}%
-\contentsline {subsection}{\numberline {1.6}Model evaluation}{26}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.5}Training loop}{25}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}Data generation}{25}{subsubsection.1.5.1}%
+\contentsline {paragraph}{\numberline {1.5.1.1}Action selection}{25}{paragraph.1.5.1.1}%
+\contentsline {paragraph}{\numberline {1.5.1.2}Memory}{25}{paragraph.1.5.1.2}%
+\contentsline {paragraph}{\numberline {1.5.1.3}Memory update}{26}{paragraph.1.5.1.3}%
+\contentsline {subsubsection}{\numberline {1.5.2}Model Training}{26}{subsubsection.1.5.2}%
+\contentsline {subsubsection}{\numberline {1.5.3}Model evaluation}{26}{subsubsection.1.5.3}%
 \contentsline {section}{\numberline {2}Evaluation}{26}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Elo-rating}{26}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Relativity of the Elo-rating}{29}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1}Elo-rating}{27}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Relativity of the Elo-rating}{28}{subsubsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.2}Elo results}{29}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Further definitions}{30}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Set Exclusion}{30}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Hadamard product}{30}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Inner Product}{31}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Matrices}{31}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}\(n\)-dimensional Tensors}{31}{subsubsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.4}Submatrix}{31}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Vectorization}{32}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}Tensors}{32}{subsubsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.6}Vector Concatination}{32}{subsection.3.6}%
-\contentsline {subsection}{\numberline {3.7}Elementwise vector operations}{33}{subsection.3.7}%
-\contentsline {subsection}{\numberline {3.8}Sets}{33}{subsection.3.8}%
-\contentsline {section}{\numberline {4}Examples}{35}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Mcts}{35}{subsection.4.1}%
-\contentsline {section}{\numberline {5}Proofs}{36}{section.5}%
-\contentsline {subsection}{\numberline {5.1}tanh derivative}{36}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Softmax Derivative}{37}{subsection.5.2}%
+\contentsline {section}{\numberline {3}Problem Complexity}{31}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Trivial Answers}{31}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Combinatorics}{32}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}SBFS based state search}{32}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Conclusion}{32}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Improvements}{32}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Further definitions}{33}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Set Exclusion}{33}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Hadamard product}{33}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Inner Product}{33}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Matrices}{33}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}\(n\)-dimensional Tensors}{34}{subsubsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.4}Submatrix}{34}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Vectorization}{34}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Tensors}{35}{subsubsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.6}Vector Concatination}{35}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Elementwise vector operations}{35}{subsection.5.7}%
+\contentsline {subsection}{\numberline {5.8}Sets}{35}{subsection.5.8}%
+\contentsline {section}{\numberline {6}Further examples}{37}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Mcts}{37}{subsection.6.1}%
+\contentsline {section}{\numberline {7}Proofs}{39}{section.7}%
+\contentsline {subsection}{\numberline {7.1}tanh derivative}{39}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Softmax Derivative}{39}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Elo Rating}{40}{subsection.7.3}%

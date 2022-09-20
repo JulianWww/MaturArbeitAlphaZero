@@ -74,10 +74,10 @@
 \@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.1.4}Training}{20}{paragraph.1.4.1.4}\protected@file@percent }
 \newlabel{eq:NN:loss_mse}{{38}{20}{Training}{equation.1.38}{}}
 \newlabel{eq:lossDerivative}{{39}{20}{Training}{equation.1.39}{}}
-\newlabel{eq:NN:deltaA}{{42}{21}{Training}{equation.1.42}{}}
-\newlabel{eq:NN:deltaW}{{43}{21}{Training}{equation.1.43}{}}
-\newlabel{eq:NN:deltaB}{{44}{21}{Training}{equation.1.44}{}}
-\newlabel{eq:NN:deltaA_lastLayer}{{45}{21}{Training}{equation.1.45}{}}
+\newlabel{eq:NN:deltaA}{{41}{21}{Training}{equation.1.41}{}}
+\newlabel{eq:NN:deltaW}{{42}{21}{Training}{equation.1.42}{}}
+\newlabel{eq:NN:deltaB}{{43}{21}{Training}{equation.1.43}{}}
+\newlabel{eq:NN:deltaA_lastLayer}{{44}{21}{Training}{equation.1.44}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.2}Network used by AlphaZero}{21}{subsubsection.1.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.2.1}Neural Network input}{21}{paragraph.1.4.2.1}\protected@file@percent }
 \newlabel{sec:neuralNetworkInput}{{1.4.2.1}{21}{Neural Network input}{paragraph.1.4.2.1}{}}
@@ -88,87 +88,102 @@
 \citation{ioffe2015batch}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.2.2}Neural Network Architecture}{23}{paragraph.1.4.2.2}\protected@file@percent }
 \newlabel{sec:NeruralNetworkArchitecture}{{1.4.2.2}{23}{Neural Network Architecture}{paragraph.1.4.2.2}{}}
-\newlabel{eq:nn:policyDefinition}{{46}{24}{Neural Network Architecture}{equation.1.46}{}}
+\newlabel{eq:nn:policyDefinition}{{45}{24}{Neural Network Architecture}{equation.1.45}{}}
 \@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.2.3}Training}{24}{paragraph.1.4.2.3}\protected@file@percent }
 \newlabel{sec:Methods:NN:A0:Training}{{1.4.2.3}{24}{Training}{paragraph.1.4.2.3}{}}
-\newlabel{eq:NN:policy_computation}{{47}{24}{Training}{equation.1.47}{}}
-\newlabel{eq:NN:policy_computation_nonlegal}{{48}{24}{Training}{equation.1.48}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Data generation}{25}{subsection.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.5.1}Action selection}{25}{subsubsection.1.5.1}\protected@file@percent }
-\newlabel{sec:training:actionSelection}{{1.5.1}{25}{Action selection}{subsubsection.1.5.1}{}}
-\newlabel{eq:ActionSelection:Probabilistic}{{49}{25}{Action selection}{equation.1.49}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.5.2}Memory}{25}{subsubsection.1.5.2}\protected@file@percent }
-\newlabel{sec:memory}{{1.5.2}{25}{Memory}{subsubsection.1.5.2}{}}
-\newlabel{eq:Memory:ActionValuesDefinition}{{50}{25}{Memory}{equation.1.50}{}}
+\newlabel{eq:NN:policy_computation}{{46}{24}{Training}{equation.1.46}{}}
+\newlabel{eq:NN:policy_computation_nonlegal}{{47}{24}{Training}{equation.1.47}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Training loop}{25}{subsection.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.5.1}Data generation}{25}{subsubsection.1.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {1.5.1.1}Action selection}{25}{paragraph.1.5.1.1}\protected@file@percent }
+\newlabel{sec:training:actionSelection}{{1.5.1.1}{25}{Action selection}{paragraph.1.5.1.1}{}}
+\newlabel{eq:ActionSelection:Probabilistic}{{48}{25}{Action selection}{equation.1.48}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {1.5.1.2}Memory}{25}{paragraph.1.5.1.2}\protected@file@percent }
+\newlabel{sec:memory}{{1.5.1.2}{25}{Memory}{paragraph.1.5.1.2}{}}
 \citation{elo1978rating}
-\citation{silver2018general}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.5.2.1}Memory update}{26}{paragraph.1.5.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.5.2.2}Model Training}{26}{paragraph.1.5.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.6}Model evaluation}{26}{subsection.1.6}\protected@file@percent }
-\newlabel{sec:modelEvaluation}{{1.6}{26}{Model evaluation}{subsection.1.6}{}}
+\newlabel{eq:Memory:ActionValuesDefinition}{{49}{26}{Memory}{equation.1.49}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {1.5.1.3}Memory update}{26}{paragraph.1.5.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.5.2}Model Training}{26}{subsubsection.1.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.5.3}Model evaluation}{26}{subsubsection.1.5.3}\protected@file@percent }
+\newlabel{sec:modelEvaluation}{{1.5.3}{26}{Model evaluation}{subsubsection.1.5.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Evaluation}{26}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Elo-rating}{26}{subsection.2.1}\protected@file@percent }
-\newlabel{sec:Evaluation:elo-rating}{{2.1}{26}{Elo-rating}{subsection.2.1}{}}
+\citation{silver2018general}
 \citation{elo1978rating}
-\citation{elo1978rating}
-\newlabel{eq:elo_pred}{{51}{27}{Elo-rating}{equation.2.51}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Elo-rating}{27}{subsection.2.1}\protected@file@percent }
+\newlabel{sec:Evaluation:elo-rating}{{2.1}{27}{Elo-rating}{subsection.2.1}{}}
+\newlabel{eq:elo_pred}{{50}{27}{Elo-rating}{equation.2.50}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces elo-rating win probability for \(r_b = 0\)\relax }}{27}{figure.6}\protected@file@percent }
-\newlabel{eq:elo_update}{{52}{27}{Elo-rating}{equation.2.52}{}}
-\newlabel{eq:elo_score}{{53}{28}{Elo-rating}{equation.2.53}{}}
-\newlabel{eq:elo_back}{{54}{28}{Elo-rating}{equation.2.54}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces elo inverse function\relax }}{28}{figure.7}\protected@file@percent }
-\newlabel{fig:eloInv}{{7}{28}{elo inverse function\relax }{figure.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Relativity of the Elo-rating}{29}{subsubsection.2.1.1}\protected@file@percent }
+\newlabel{eq:elo_update}{{51}{27}{Elo-rating}{equation.2.51}{}}
+\citation{elo1978rating}
+\newlabel{eq:elo_score}{{52}{28}{Elo-rating}{equation.2.52}{}}
+\newlabel{eq:elo_back}{{53}{28}{Elo-rating}{equation.2.53}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Relativity of the Elo-rating}{28}{subsubsection.2.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces elo inverse function for \(r_b = 0\)\relax }}{29}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:eloInv}{{7}{29}{elo inverse function for \(r_b = 0\)\relax }{figure.caption.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Elo results}{29}{subsection.2.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Elo-rating of agents based on their version along with the expected minimal rating \(\Delta r_{min}\) and the best fitted rating \(\Delta r\).\relax }}{30}{figure.8}\protected@file@percent }
-\newlabel{img:eloByVersion}{{8}{30}{Elo-rating of agents based on their version along with the expected minimal rating \(\Delta r_{min}\) and the best fitted rating \(\Delta r\).\relax }{figure.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Further definitions}{30}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Set Exclusion}{30}{subsection.3.1}\protected@file@percent }
-\newlabel{eq:defs:SetExclusion}{{60}{30}{Set Exclusion}{equation.3.60}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Hadamard product}{30}{subsection.3.2}\protected@file@percent }
-\newlabel{sec:hadamerd_product}{{3.2}{30}{Hadamard product}{subsection.3.2}{}}
-\newlabel{eq:defs:Hadamard product}{{61}{30}{Hadamard product}{equation.3.61}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Inner Product}{31}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Matrices}{31}{subsubsection.3.3.1}\protected@file@percent }
-\newlabel{eq:defs:Inner_product}{{62}{31}{Matrices}{equation.3.62}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}\(n\)-dimensional Tensors}{31}{subsubsection.3.3.2}\protected@file@percent }
-\newlabel{eq:defs:Inner_product_3d}{{63}{31}{\(n\)-dimensional Tensors}{equation.3.63}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Submatrix}{31}{subsection.3.4}\protected@file@percent }
-\newlabel{sec:Ref:submatrix}{{3.4}{31}{Submatrix}{subsection.3.4}{}}
+\newlabel{eq:deltaRCalculation}{{54}{29}{Elo results}{equation.2.54}{}}
+\newlabel{eq:scoreSumm}{{55}{29}{Elo results}{equation.2.55}{}}
+\newlabel{eq:scoregeq}{{60}{30}{Elo results}{equation.2.60}{}}
+\newlabel{eq:siByTheta}{{62}{30}{Elo results}{equation.2.62}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Elo-rating of agents based on their version along with the expected minimal rating \(\Delta r_{min}\) and the best fitted rating \(\Delta r\).\relax }}{31}{figure.8}\protected@file@percent }
+\newlabel{img:eloByVersion}{{8}{31}{Elo-rating of agents based on their version along with the expected minimal rating \(\Delta r_{min}\) and the best fitted rating \(\Delta r\).\relax }{figure.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Complexity}{31}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Trivial Answers}{31}{subsection.3.1}\protected@file@percent }
+\citation{kissmann_2016}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Combinatorics}{32}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}SBFS based state search}{32}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{32}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Improvements}{32}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Further definitions}{33}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Set Exclusion}{33}{subsection.5.1}\protected@file@percent }
+\newlabel{eq:defs:SetExclusion}{{67}{33}{Set Exclusion}{equation.5.67}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Hadamard product}{33}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:hadamerd_product}{{5.2}{33}{Hadamard product}{subsection.5.2}{}}
+\newlabel{eq:defs:Hadamard product}{{68}{33}{Hadamard product}{equation.5.68}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Inner Product}{33}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Matrices}{33}{subsubsection.5.3.1}\protected@file@percent }
+\newlabel{eq:defs:Inner_product}{{69}{33}{Matrices}{equation.5.69}{}}
 \citation{vectorization_2021}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Vectorization}{32}{subsection.3.5}\protected@file@percent }
-\newlabel{sec:ref:vectorization}{{3.5}{32}{Vectorization}{subsection.3.5}{}}
-\newlabel{eq:ref:vectorization}{{65}{32}{Vectorization}{equation.3.65}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Tensors}{32}{subsubsection.3.5.1}\protected@file@percent }
-\newlabel{sec:ref:vectorization:tensor}{{3.5.1}{32}{Tensors}{subsubsection.3.5.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Vector Concatination}{32}{subsection.3.6}\protected@file@percent }
-\newlabel{sec:ref:vectorConcatination}{{3.6}{32}{Vector Concatination}{subsection.3.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}\(n\)-dimensional Tensors}{34}{subsubsection.5.3.2}\protected@file@percent }
+\newlabel{eq:defs:Inner_product_3d}{{70}{34}{\(n\)-dimensional Tensors}{equation.5.70}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Submatrix}{34}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:Ref:submatrix}{{5.4}{34}{Submatrix}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Vectorization}{34}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:ref:vectorization}{{5.5}{34}{Vectorization}{subsection.5.5}{}}
+\newlabel{eq:ref:vectorization}{{72}{34}{Vectorization}{equation.5.72}{}}
 \bibstyle{plain}
 \bibdata{bibliography}
 \bibcite{chaslot2008parallel}{1}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}Tensors}{35}{subsubsection.5.5.1}\protected@file@percent }
+\newlabel{sec:ref:vectorization:tensor}{{5.5.1}{35}{Tensors}{subsubsection.5.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Vector Concatination}{35}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:ref:vectorConcatination}{{5.6}{35}{Vector Concatination}{subsection.5.6}{}}
+\newlabel{eq:ref:vecConcatination}{{74}{35}{Vector Concatination}{equation.5.74}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Elementwise vector operations}{35}{subsection.5.7}\protected@file@percent }
+\newlabel{eq:vectorElemetwise}{{75}{35}{Elementwise vector operations}{equation.5.75}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Sets}{35}{subsection.5.8}\protected@file@percent }
+\newlabel{set:Rab}{{76}{35}{Sets}{equation.5.76}{}}
+\newlabel{set:Nab}{{77}{35}{Sets}{equation.5.77}{}}
 \bibcite{elo1978rating}{2}
 \bibcite{ioffe2015batch}{3}
-\bibcite{silver2018general}{4}
-\newlabel{eq:ref:vecConcatination}{{67}{33}{Vector Concatination}{equation.3.67}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Elementwise vector operations}{33}{subsection.3.7}\protected@file@percent }
-\newlabel{eq:vectorElemetwise}{{68}{33}{Elementwise vector operations}{equation.3.68}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Sets}{33}{subsection.3.8}\protected@file@percent }
-\newlabel{set:Rab}{{69}{33}{Sets}{equation.3.69}{}}
-\newlabel{set:Nab}{{70}{33}{Sets}{equation.3.70}{}}
-\bibcite{silver2017mastering}{5}
-\bibcite{wiki:Vector_quantization}{6}
-\bibcite{vectorization_2021}{7}
-\bibcite{zhang2018artificial}{8}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Examples}{35}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Mcts}{35}{subsection.4.1}\protected@file@percent }
-\newlabel{mctsExampleFullData}{{4.1}{35}{Mcts}{subsection.4.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Proofs}{36}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}tanh derivative}{36}{subsection.5.1}\protected@file@percent }
-\newlabel{sec:proof:tanhd/dx}{{5.1}{36}{tanh derivative}{subsection.5.1}{}}
-\newlabel{eq:tanhDerivativeEnd}{{107}{37}{tanh derivative}{equation.5.107}{}}
-\newlabel{eq:sech}{{108}{37}{tanh derivative}{equation.5.108}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Softmax Derivative}{37}{subsection.5.2}\protected@file@percent }
-\newlabel{eq:proof:softmax}{{110}{37}{Softmax Derivative}{equation.5.110}{}}
-\newlabel{RF1}{39}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces width=0.7\columnwidth }}{39}{figure.caption.3}\protected@file@percent }
-\newlabel{MCTS-simulation}{{9}{39}{width=0.7\columnwidth }{figure.caption.3}{}}
+\bibcite{kissmann_2016}{4}
+\bibcite{silver2018general}{5}
+\bibcite{silver2017mastering}{6}
+\bibcite{wiki:Vector_quantization}{7}
+\bibcite{vectorization_2021}{8}
+\bibcite{zhang2018artificial}{9}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Further examples}{37}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Mcts}{37}{subsection.6.1}\protected@file@percent }
+\newlabel{mctsExampleFullData}{{6.1}{37}{Mcts}{subsection.6.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Proofs}{39}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}tanh derivative}{39}{subsection.7.1}\protected@file@percent }
+\newlabel{sec:proof:tanhd/dx}{{7.1}{39}{tanh derivative}{subsection.7.1}{}}
+\newlabel{eq:tanhDerivativeEnd}{{114}{39}{tanh derivative}{equation.7.114}{}}
+\newlabel{eq:sech}{{115}{39}{tanh derivative}{equation.7.115}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Softmax Derivative}{39}{subsection.7.2}\protected@file@percent }
+\newlabel{eq:proof:softmax}{{117}{39}{Softmax Derivative}{equation.7.117}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Elo Rating}{40}{subsection.7.3}\protected@file@percent }
+\newlabel{sec:eloGet}{{7.3}{40}{Elo Rating}{subsection.7.3}{}}
+\newlabel{RF1}{41}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces width=0.7\columnwidth }}{41}{figure.caption.4}\protected@file@percent }
+\newlabel{MCTS-simulation}{{9}{41}{width=0.7\columnwidth }{figure.caption.4}{}}

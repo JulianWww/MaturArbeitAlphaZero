@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2022.5.4)  18 SEP 2022 21:43
+This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2022.5.4)  20 SEP 2022 20:28
  system commands enabled.
 **AlphaZeroTheory.tex
 (./AlphaZeroTheory.tex
@@ -1244,7 +1244,7 @@ LaTeX Warning: Reference `code:config' on page 9 undefined on input line 268.
 Package svg Info: Last page of `./svg-inkscape/mctsExample_svg-tex.pdf' is 1 on 
 input line 275.
  (./svg-inkscape/mctsExample_svg-tex.pdf_tex
-<./svg-inkscape/mctsExample_svg-tex.pdf, id=375, page=1, 384.8662pt x 342.18704p
+<./svg-inkscape/mctsExample_svg-tex.pdf, id=415, page=1, 384.8662pt x 342.18704p
 t>
 File: ./svg-inkscape/mctsExample_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/mctsExample_svg-tex.pdf, page 1>
@@ -1301,7 +1301,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package svg Info: Last page of `./svg-inkscape/tanh_svg-tex.pdf' is 1 on input l
 ine 483.
  (./svg-inkscape/tanh_svg-tex.pdf_tex
-<./svg-inkscape/tanh_svg-tex.pdf, id=464, page=1, 433.62pt x 144.54pt>
+<./svg-inkscape/tanh_svg-tex.pdf, id=505, page=1, 433.62pt x 144.54pt>
 File: ./svg-inkscape/tanh_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/tanh_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/tanh_svg-tex.pdf , page1 used on input l
@@ -1317,7 +1317,7 @@ See the caption package documentation for explanation.
 Package svg Info: Last page of `./svg-inkscape/softmaxx_svg-tex.pdf' is 1 on inp
 ut line 515.
  (./svg-inkscape/softmaxx_svg-tex.pdf_tex
-<./svg-inkscape/softmaxx_svg-tex.pdf, id=518, page=1, 320.22081pt x 301.39346pt>
+<./svg-inkscape/softmaxx_svg-tex.pdf, id=558, page=1, 320.22081pt x 301.39346pt>
 
 File: ./svg-inkscape/softmaxx_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/softmaxx_svg-tex.pdf, page 1>
@@ -1328,7 +1328,7 @@ ut line 56.
 Package svg Info: Last page of `./svg-inkscape/softmaxy_svg-tex.pdf' is 1 on inp
 ut line 521.
 (./svg-inkscape/softmaxy_svg-tex.pdf_tex
-<./svg-inkscape/softmaxy_svg-tex.pdf, id=520, page=1, 320.22081pt x 301.39346pt>
+<./svg-inkscape/softmaxy_svg-tex.pdf, id=560, page=1, 320.22081pt x 301.39346pt>
 
 File: ./svg-inkscape/softmaxy_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/softmaxy_svg-tex.pdf, page 1>
@@ -1340,7 +1340,7 @@ Package svg Info: Last page of `./svg-inkscape/softmaxscale_svg-tex.pdf' is 1 on
  input line 527.
 
 (./svg-inkscape/softmaxscale_svg-tex.pdf_tex
-<./svg-inkscape/softmaxscale_svg-tex.pdf, id=522, page=1, 44.86574pt x 276.82434
+<./svg-inkscape/softmaxscale_svg-tex.pdf, id=562, page=1, 44.86574pt x 276.82434
 pt>
 File: ./svg-inkscape/softmaxscale_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/softmaxscale_svg-tex.pdf, page 1>
@@ -1352,7 +1352,7 @@ Package luatex.def Info: ./svg-inkscape/softmaxscale_svg-tex.pdf , page1 used on
 Package svg Info: Last page of `./svg-inkscape/LeakyReLU_svg-tex.pdf' is 1 on in
 put line 554.
  (./svg-inkscape/LeakyReLU_svg-tex.pdf_tex
-<./svg-inkscape/LeakyReLU_svg-tex.pdf, id=550, page=1, 722.7pt x 505.89pt>
+<./svg-inkscape/LeakyReLU_svg-tex.pdf, id=590, page=1, 722.7pt x 505.89pt>
 File: ./svg-inkscape/LeakyReLU_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/LeakyReLU_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/LeakyReLU_svg-tex.pdf , page1 used on in
@@ -1364,35 +1364,27 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 555.
 See the caption package documentation for explanation.
 
-[19<./svg-inkscape/LeakyReLU_svg-tex.pdf>] [20] [21]
-<./images/connectFourExample.png, id=648, 1053.9375pt x 903.375pt>
+[19<./svg-inkscape/LeakyReLU_svg-tex.pdf>] [20]
+<./images/connectFourExample.png, id=674, 1053.9375pt x 903.375pt>
 File: ./images/connectFourExample.png Graphic file (type png)
 <use ./images/connectFourExample.png>
-Package luatex.def Info: ./images/connectFourExample.png  used on input line 645
+Package luatex.def Info: ./images/connectFourExample.png  used on input line 644
 .
 (luatex.def)             Requested size: 195.0pt x 167.13554pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 646.
+(caption)                particular \caption on input line 645.
 See the caption package documentation for explanation.
 
-[22<./images/connectFourExample.png>] [23] [24
+[21] [22<./images/connectFourExample.png>] [23] [24
 Missing character: There is no ˇ (U+02C7) in font rm-lmr12!
-]
-
-LaTeX Warning: Reference `sec:NeruralNetworkArchitectur' on page 25 undefined on
- input line 753.
-
-
-LaTeX Warning: Reference `sec:NeruralNetworkArchitectur' on page 25 undefined on
- input line 753.
-
-[25] [26]
+] [25] [26]
 Package svg Info: Last page of `./svg-inkscape/elo_svg-tex.pdf' is 1 on input li
-ne 772.
- (./svg-inkscape/elo_svg-tex.pdf_tex
-<./svg-inkscape/elo_svg-tex.pdf, id=706, page=1, 462.52798pt x 346.89601pt>
+ne 774.
+
+(./svg-inkscape/elo_svg-tex.pdf_tex
+<./svg-inkscape/elo_svg-tex.pdf, id=749, page=1, 462.52798pt x 346.89601pt>
 File: ./svg-inkscape/elo_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/elo_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/elo_svg-tex.pdf , page1 used on input li
@@ -1401,14 +1393,14 @@ ne 56.
 )
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 773.
+(caption)                particular \caption on input line 775.
 See the caption package documentation for explanation.
 
 [27<./svg-inkscape/elo_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/elo_back_svg-tex.pdf' is 1 on inp
-ut line 803.
+ut line 807.
  (./svg-inkscape/elo_back_svg-tex.pdf_tex
-<./svg-inkscape/elo_back_svg-tex.pdf, id=728, page=1, 462.52798pt x 346.89601pt>
+<./svg-inkscape/elo_back_svg-tex.pdf, id=773, page=1, 462.52798pt x 346.89601pt>
 
 File: ./svg-inkscape/elo_back_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/elo_back_svg-tex.pdf, page 1>
@@ -1416,20 +1408,12 @@ Package luatex.def Info: ./svg-inkscape/elo_back_svg-tex.pdf , page1 used on inp
 ut line 56.
 (luatex.def)             Requested size: 312.00119pt x 234.01236pt.
 )
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 804.
-See the caption package documentation for explanation.
-
-[28<./svg-inkscape/elo_back_svg-tex.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 823--825
-
- []
-
+[28] [29<./svg-inkscape/elo_back_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/eloRaitingByVersion_svg-tex.pdf' 
-is 1 on input line 834.
+is 1 on input line 863.
+
 (./svg-inkscape/eloRaitingByVersion_svg-tex.pdf_tex
-<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf, id=745, page=1, 462.52798pt x 3
+<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf, id=801, page=1, 462.52798pt x 3
 46.89601pt>
 File: ./svg-inkscape/eloRaitingByVersion_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/eloRaitingByVersion_svg-tex.pdf, page 1>
@@ -1439,46 +1423,47 @@ used on input line 56.
 )
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 836.
+(caption)                particular \caption on input line 865.
 See the caption package documentation for explanation.
 
-[29] [30<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf>]
+[30] [31<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf>] [32]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1015.
+(hyperref)                removing `math shift' on input line 1077.
 
+[33]
 Package svg Info: Last page of `./svg-inkscape/MCTS-steps_svg-tex.pdf' is 1 on i
-nput line 1026.
-(./svg-inkscape/MCTS-steps_svg-tex.pdf_tex
-<./svg-inkscape/MCTS-steps_svg-tex.pdf, id=777, page=1, 1393.02477pt x 389.68431
+nput line 1088.
+ (./svg-inkscape/MCTS-steps_svg-tex.pdf_tex
+<./svg-inkscape/MCTS-steps_svg-tex.pdf, id=854, page=1, 1393.02477pt x 389.68431
 pt>
 File: ./svg-inkscape/MCTS-steps_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/MCTS-steps_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/MCTS-steps_svg-tex.pdf , page1 used on i
 nput line 56.
 (luatex.def)             Requested size: 548.5pt x 153.439pt.
-) [31] [32] (./AlphaZeroTheory.bbl
-[33]
-Underfull \hbox (badness 10000) in paragraph at lines 37--43
+) [34] (./AlphaZeroTheory.bbl
+[35]
+Underfull \hbox (badness 10000) in paragraph at lines 42--48
 [][]$\OT1/lmr/m/n/12 http://en.wikipedia.org/w/index.php?title=Vector%20quantiz
 ation&
  []
 
 
-Underfull \hbox (badness 1436) in paragraph at lines 45--51
+Underfull \hbox (badness 1436) in paragraph at lines 50--56
 \OT1/lmr/m/n/12 the free en-cy-clo-pe-dia.  [][]$https://en.wikipedia.org/w/ind
 ex.php?title=
  []
 
-) [34] [35] [36] [37] [38] [39<./svg-inkscape/MCTS-steps_svg-tex.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1353.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1353.
+) [36] [37] [38] [39] [40] [41<./svg-inkscape/MCTS-steps_svg-tex.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1431.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1431.
 
 (./AlphaZeroTheory.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1353.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1353.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1431.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1431.
 Package rerunfilecheck Info: File `AlphaZeroTheory.out' has not changed.
-(rerunfilecheck)             Checksum: 679374722B4A5ABFB44C2840FC53BCC9;6873.
+(rerunfilecheck)             Checksum: 899641660CBBF6A31F446FAD52B2BFC3;7966.
 
 
 LaTeX Warning: There were undefined references.
@@ -1486,17 +1471,17 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1353.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1431.
 )
 
 Here is how much of LuaTeX's memory you used:
- 33399 strings out of 481365
+ 33437 strings out of 481365
  100000,1373583 words of node,token memory allocated
- 4004 words of node memory still in use:
-   155 hlist, 14 vlist, 25 rule, 20 math, 73 glue, 31 kern, 127 glyph, 61 glue_s
-pec, 2 write, 24 pdf_literal, 3 pdf_action, 24 pdf_colorstack nodes
-   avail lists: 2:32,3:219,4:520,5:247,6:112,7:3167,8:102,9:957,10:22,11:248
- 48787 multiletter control sequences out of 65536+600000
+ 3930 words of node memory still in use:
+   151 hlist, 13 vlist, 24 rule, 18 math, 72 glue, 30 kern, 127 glyph, 61 glue_s
+pec, 2 write, 24 pdf_literal, 4 pdf_action, 24 pdf_colorstack nodes
+   avail lists: 2:32,3:221,4:520,5:233,6:111,7:3176,8:121,9:963,10:22,11:248
+ 48800 multiletter control sequences out of 65536+600000
  87 fonts using 5731471 bytes
  65i,16n,108p,1853b,704s stack positions out of 5000i,500n,10000p,200000b,100000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvip
@@ -1518,10 +1503,10 @@ lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/
 fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on AlphaZeroTheory.pdf (39 pages, 806660 bytes).
+Output written on AlphaZeroTheory.pdf (41 pages, 818113 bytes).
 
-PDF statistics: 978 PDF objects out of 1000 (max. 8388607)
- 810 compressed objects within 9 object streams
- 236 named destinations out of 1000 (max. 131072)
- 648 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1059 PDF objects out of 1200 (max. 8388607)
+ 889 compressed objects within 9 object streams
+ 261 named destinations out of 1000 (max. 131072)
+ 712 words of extra memory for PDF output out of 10000 (max. 100000000)
 

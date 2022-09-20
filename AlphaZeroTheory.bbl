@@ -18,6 +18,11 @@ Sergey Ioffe and Christian Szegedy.
 \newblock In {\em International conference on machine learning}, pages
   448--456. PMLR, 2015.
 
+\bibitem{kissmann_2016}
+Peter Kissmann.
+\newblock
+  \url{https://web.archive.org/web/20131002122656/http://www.tzi.de/~edelkamp/lectures/ae/slide/AE-SymbolischeSuche.pdf}.
+
 \bibitem{silver2018general}
 David Silver, Thomas Hubert, Julian Schrittwieser, Ioannis Antonoglou, Matthew
   Lai, Arthur Guez, Marc Lanctot, Laurent Sifre, Dharshan Kumaran, Thore

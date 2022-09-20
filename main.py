@@ -1,6 +1,6 @@
 from this import d
 import numpy as np
-from math import e
+from math import e, floor, ceil, comb
 import matplotlib.pyplot as plt
 
 def tanh(x):
@@ -15,8 +15,18 @@ def elo(x):
 def elo_back(x):
     return 0 - np.log((1-x)/x)*400
 
-x = np.arange(-2000, 2000, 10)
-plt.plot(x, elo(x))
-plt.xlabel(r"$r_{a}$")
-plt.savefig("fig.svg")
-plt.show()
+def a(n):
+    return comb(42, ceil(n/2)) * comb(42- ceil(n/2), floor(n/2))
+
+#x = np.arange(0, 1, 0.001)
+#print(x)
+#plt.plot(x, elo_back(x))
+#plt.xlabel(r"$s_{a}$")
+#plt.ylabel(r"$r_{a}$")
+#plt.savefig("images/elo_back.svg")
+#plt.show()
+
+s = 0
+for i in range(43):
+    s += a(i)
+print(s)
