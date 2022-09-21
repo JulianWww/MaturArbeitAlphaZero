@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+  \PYG{l+s+s2}{\PYGZdq{}firstName\PYGZdq{}}\PYG{o}{:} \PYG{l+s+s2}{\PYGZdq{}John\PYGZdq{}}\PYG{p}{,}
+  \PYG{l+s+s2}{\PYGZdq{}lastName\PYGZdq{}}\PYG{o}{:} \PYG{l+s+s2}{\PYGZdq{}Smith\PYGZdq{}}\PYG{p}{,}
+  \PYG{l+s+s2}{\PYGZdq{}isAlive\PYGZdq{}}\PYG{o}{:} \PYG{k+kc}{true}\PYG{p}{,}
+  \PYG{l+s+s2}{\PYGZdq{}age\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mf}{27}\PYG{p}{,}
+  \PYG{l+s+s2}{\PYGZdq{}address\PYGZdq{}}\PYG{o}{:} \PYG{p}{\PYGZob{}}
+    \PYG{l+s+s2}{\PYGZdq{}streetAddress\PYGZdq{}}\PYG{o}{:} \PYG{l+s+s2}{\PYGZdq{}21 2nd Street\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}city\PYGZdq{}}\PYG{o}{:} \PYG{l+s+s2}{\PYGZdq{}New York\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}state\PYGZdq{}}\PYG{o}{:} \PYG{l+s+s2}{\PYGZdq{}NY\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}postalCode\PYGZdq{}}\PYG{o}{:} \PYG{l+s+s2}{\PYGZdq{}10021\PYGZhy{}3100\PYGZdq{}}
+  \PYG{p}{\PYGZcb{},}
+  \PYG{l+s+s2}{\PYGZdq{}phoneNumbers\PYGZdq{}}\PYG{o}{:} \PYG{p}{[}
+    \PYG{p}{\PYGZob{}}
+      \PYG{l+s+s2}{\PYGZdq{}type\PYGZdq{}}\PYG{o}{:} \PYG{l+s+s2}{\PYGZdq{}home\PYGZdq{}}\PYG{p}{,}
+      \PYG{l+s+s2}{\PYGZdq{}number\PYGZdq{}}\PYG{o}{:} \PYG{l+s+s2}{\PYGZdq{}212 555\PYGZhy{}1234\PYGZdq{}}
+    \PYG{p}{\PYGZcb{},}
+    \PYG{p}{\PYGZob{}}
+      \PYG{l+s+s2}{\PYGZdq{}type\PYGZdq{}}\PYG{o}{:} \PYG{l+s+s2}{\PYGZdq{}office\PYGZdq{}}\PYG{p}{,}
+      \PYG{l+s+s2}{\PYGZdq{}number\PYGZdq{}}\PYG{o}{:} \PYG{l+s+s2}{\PYGZdq{}646 555\PYGZhy{}4567\PYGZdq{}}
+    \PYG{p}{\PYGZcb{}}
+  \PYG{p}{],}
+  \PYG{l+s+s2}{\PYGZdq{}children\PYGZdq{}}\PYG{o}{:} \PYG{p}{[],}
+  \PYG{l+s+s2}{\PYGZdq{}spouse\PYGZdq{}}\PYG{o}{:} \PYG{k+kc}{null}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -134,8 +134,8 @@
   tabsize=2,	                   % sets default tabsize to 2 spaces
   %title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
-\newcommand{\incFile}[2]{\label{code:#2}\lstinputlisting[language=#1]{code/#2}\newpage}
-\newcommand{\incDemo}[2]{\label{demo:#2}\lstinputlisting[language=#1]{Matura-AlphaZero-demos/#2}\newpage}
+\newcommand{\incFile}[2]{\label{code:#2}\lstinputlisting[language=#1]{code/#2}}
+\newcommand{\incDemo}[2]{\label{demo:#2}\lstinputlisting[language=#1]{demos/#2}}
 
 \begin{document}
 \maketitle
@@ -286,7 +286,7 @@ Q_l(e_l) =
 \begin{cases}
 0 & N_l(e_l) = 0\\
 \frac{W(e_l)}{N(e_l)} &
-\end{cases}
+\end{cases}LeakyReLU
 \end{equation}
 The fourth and last of these functions is \(P_l~:~\mathbb{E}_{l}\to\mathbb{R}\). \(P_l\) is the policy function, it's the neural network's preliminary estimation of how valuable the action is. To see what \(P_l(e_l)\) is trained to aproximate see \equationref{eq:NN:policy_computation}.
 This function is used to guide the search to more promising edges.
@@ -754,7 +754,7 @@ p_{pre_a} &
 \end{equation}
 \(\mathbb A(g)\) is the set of all legal actions. \(p_{pre}\) is defined in \sectionref{sec:NeruralNetworkArchitecture}, and is used for all non legal actions. \(P\) is defined in \equationref{eq:ActionSelection:Probabilistic}.
 
-\paragraph{Memory update}
+\paragraph{Memory update}\label{sec:memoryUpdate}
 Once the game is over, the winning player is determined and the value \(r\) of every memory element in the temporary memory is updated. \(r\) is 1 if the player taking an action at that state won, -1 if he lost and 0 if the game ended in a draw. The updated states are then passed to memory.
 
 \subsubsection{Model Training}
@@ -887,16 +887,6 @@ n_s < \sum_{n=0}^{42} a(n) = 16'282'402'094'173'127'445
 \end{equation}
 \subsection {SBFS based state search}
 According to calculations made with BDD's, the amount of state in connect4 is \(4'531'985'219'092\).\cite{kissmann_2016}
-\section{Conclusion}
-In conclusion the algorythem works, and is able to learn to play connect4 at a level better than any human I could find. Some improvements can still be made, but in generall, Im rather happy with the results.
-\subsection{Improvements}
-\begin{itemize}
-\item The algorythem could be compleatly rewritten to allow for taining on TPU's.
-\item Process distribution could be improved allow for training of the AI on multiple GPU's.
-\item It it is possible to remove the need for model testing.
-\item The algorythem could be tested for differant games, and other configurations.
-\item Most of the time is spent on running neural network simulations. By maximizing information gane from every neural network simulation.  A possible way to do this would be to not only update MCTS Graphs to the current node, but all the way back to the root. Furthermore by not only updateing the path but every possible pass back would increase efficency. 
-\end{itemize}
 
 %\section{Servers and Clients}
 %In computer science, server-client-communications are a form of distributed application, that allows multiple machines to communicate and share data. In general, the server will wait for connections, while the client will initialize a connection with the server. To accomplish this, the server must listen to a certain port and the client must know the servers ip and port. In our case, the cummunications use the TCP and HTTPS protocols. Alpha Zero uses three distinct servers: an AI server, a data server and an Apache web server.
@@ -1008,6 +998,152 @@ In conclusion the algorythem works, and is able to learn to play connect4 at a l
 %This client version uses the python socket library for communication and Tkinter to render the game board.
 %\subsubsection{iOS Client}\label{sec:iosClient}
 %The iOS version does the same thing as the Desktop version with a few differences. Firstly, it renders the board using the pythonista scene library. Secondly, it dose not create or store accounts. The player will always play against the best AI version. Thirdly, it does not have the possiblity to replay games. Lastly, the Client will request its actual source code from the web server to allow for easier updating.
+
+\section{Implementation}
+The Alpha Zero training loop, can be found in ``train'' function found in \sectionref{code:playGame}. This function loads the latest neural network and memory if available. It uses then perform data generation by using the ``playGames\_InThreads'' function to have the Ai play a certain amount of games against itself. This is done by distributing the computations over multiple threads, each thread has its own MCTS and temporary memory. Once they are done generating data, the global memory is updated. The ``playGames\_InThreads'' function creates and manages the threads running ``playGames''. This latter function simulates a certain amount of games betwean two agents (\sectionref{code:Agent}). A game simmulation consists creating an instance of the Game (\sectionref{code:Game}) class, that handles all the game logic, then queriing sed game for what player is a trun, then using the agensts ``getAction'' to determin the next move and get the data used for training (see \sectionref{sec:training:actionSelection}), which is passed to temporary memory \eqref{eq:NN:policy_computation}, lastly the action is used to move to the next game state, by using the games ``takeAction'' function. This loop, of getting the agent to sugens an action, and then using the game to take that action is repeated, untill the game reaches an end game state. At that point, the temporary memory is updated with the correct rewards in accordance with \sectionref{sec:memoryUpdate}.
+
+
+\section{Conclusion}
+In conclusion the algorythem works, and is able to learn to play connect4 at a level better than any human I could find. Some improvements can still be made, but in generall, Im rather happy with the results.
+\subsection{Improvements}
+\begin{itemize}
+\item The algorythem could be compleatly rewritten to allow for taining on TPU's.
+\item Process distribution could be improved allow for training of the AI on multiple GPU's.
+\item It it is possible to remove the need for model testing.
+\item The algorythem could be tested for differant games, and other configurations.
+\item Most of the time is spent on running neural network simulations. By maximizing information gane from every neural network simulation.  A possible way to do this would be to not only update MCTS Graphs to the current node, but all the way back to the root. Furthermore by not only updateing the path but every possible pass back would increase efficency. 
+\end{itemize}
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+\section*{Acknowledgements}
+\begin{itemize}
+\item Leonie Scheck, Frederik Ott, Nico Steiner, Wolfgang Wandhoven for aiding in evaluating the AI against human players and providing feedback.
+\end{itemize}
+
+\section{Code}
+\subsection{AlphaZeroPytorch}
+\subsubsection{AlphaZeroPytorch.h}							\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.h}
+\subsubsection{AlphaZeroPytorch.cpp}						\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.cpp}
+%\subsubsection{cmake.sh}												\incFile{sh}{AlphaZeroPytorch/cmake.sh}
+\subsubsection{CMakeLists.txt}										\incFile{python}{AlphaZeroPytorch/CMakeLists.txt}
+\subsubsection{convertToJceFormat.cpp}					\incFile{C++}{AlphaZeroPytorch/convertToJceFormat.cpp}
+%\incFile{C++}{AlphaZeroPytorch/detect_cuda_compute_capabilities.cpp}
+%\incFile{C++}{AlphaZeroPytorch/detect_cuda_version.cc}
+\subsubsection{doEloRaiting.cpp}									\incFile{C++}{AlphaZeroPytorch/doEloRaiting.cpp}
+\subsubsection{makeFiles.hpp}										\incFile{C++}{AlphaZeroPytorch/makeFiles.hpp}
+\subsubsection{Replay.cpp}											\incFile{C++}{AlphaZeroPytorch/Replay.cpp}
+\subsubsection{runServer.cpp}										\incFile{C++}{AlphaZeroPytorch/runServer.cpp}
+\subsubsection{showLoss.cpp}										\incFile{C++}{AlphaZeroPytorch/showLoss.cpp}
+\subsubsection{test.cpp}												\incFile{C++}{AlphaZeroPytorch/test.cpp}
+\subsubsection{include}													% AlphaZeroPytorch/include
+\paragraph{config.hpp}													\incFile{C++}{AlphaZeroPytorch/include/config.hpp} \label{code:config}
+\paragraph{config.cpp}													\incFile{C++}{AlphaZeroPytorch/include/config.cpp}
+\paragraph{io.hpp}															\incFile{C++}{AlphaZeroPytorch/include/io.hpp}
+\paragraph{log.hpp}														\incFile{C++}{AlphaZeroPytorch/include/log.hpp}
+\paragraph{log.cpp}														\incFile{C++}{AlphaZeroPytorch/include/log.cpp}
+\paragraph{timer.hpp}													\incFile{C++}{AlphaZeroPytorch/include/timer.hpp}
+\paragraph{ai}																	% AlphaZeroPytorch/include/ai
+\subparagraph{agent.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.hpp} \label{code:Agent}
+\subparagraph{agent.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.cpp}
+\subparagraph{MCTS.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.hpp}
+\subparagraph{MCTS.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.cpp}
+\subparagraph{memory.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.hpp}
+\subparagraph{memory.cpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.cpp}
+\subparagraph{model.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/model.hpp}
+\subparagraph{modelSynchronizer.hpp}						\incFile{C++}{AlphaZeroPytorch/include/ai/modelSynchronizer.hpp}
+\subparagraph{modelWorker.hpp}								\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.hpp}
+\subparagraph{modelWorker.cpp}									\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.cpp}
+\subparagraph{playGame.hpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.hpp}\label{code:playGame}
+\subparagraph{playGame.cpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.cpp}
+\subparagraph{utils.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/utils.hpp}
+\paragraph{game}															% AlphaZeroPytorch/include/game
+\subparagraph{game.hpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.hpp}\label{code:Game}
+\subparagraph{game.cpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.cpp}
+\paragraph{jce}																% AlphaZeroPytorch/include/jce
+\subparagraph{load.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/load.hpp}
+\subparagraph{save.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/save.hpp}
+\subparagraph{string.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/string.hpp}
+\subparagraph{vector.hpp}											\incFile{C++}{AlphaZeroPytorch/include/jce/vector.hpp}
+\paragraph{server}															% AlphaZeroPytorch/include/server
+\subparagraph{eloClient.hpp}										\incFile{C++}{AlphaZeroPytorch/include/Server/eloClient.hpp}
+\subparagraph{server.hpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.hpp}
+\subparagraph{server.cpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.cpp}
+\paragraph{test}																% AlphaZeroPytorch/include/test
+\subparagraph{testSuit.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.hpp}	
+\subparagraph{testSuit.cpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.cpp}
+\subparagraph{testUtils.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testUtils.hpp}
+
+\subsection{Clients}														% Clients/ConsoleClient
+\subsubsection{ConsoleClient}
+\paragraph{ConsoleClient.h}											\incFile{C++}{Clients/ConsoleClient/ConsoleClient.h}
+\paragraph{ConsoleClient.cpp}										\incFile{C++}{Clients/ConsoleClient/ConsoleClient.cpp}
+\paragraph{include}														% clients/consoleClient/include
+\subparagraph{agent.hpp}												\incFile{C++}{Clients/ConsoleClient/include/agent.hpp}
+\subparagraph{game.hpp}												\incFile{C++}{Clients/ConsoleClient/include/game.hpp}
+\subparagraph{modifications.hpp}								\incFile{C++}{Clients/ConsoleClient/include/modifications.hpp}
+\paragraph{scr}																% Clients/ConsoleClient/src
+\subparagraph{game.cpp}												\incFile{C++}{Clients/ConsoleClient/scr/game.cpp}
+\subsubsection{iosClient}												% Clients/iosClient
+\paragraph{caller.py}														\incFile{python}{Clients/iosClient/caller.py}
+\paragraph{connect4IOS.py}											\incFile{python}{Clients/iosClient/connect4IOS.py}
+\subsubsection{pyClient}												% Clients/pyClient
+\paragraph{Client.py}														\incFile{python}{Clients/pyClient/Client.py}
+\paragraph{game.py}														\incFile{python}{Clients/pyClient/game.py}
+\paragraph{gameSaver.py}												\incFile{python}{Clients/pyClient/gameSaver.py}
+\paragraph{GUI.py}															\incFile{python}{Clients/pyClient/GUI.py}
+\paragraph{main.py}														\incFile{python}{Clients/pyClient/main.py}
+\paragraph{test.py}														\incFile{python}{Clients/pyClient/test.py}
+\paragraph{winStates.json}											\incFile{python}{Clients/pyClient/winStates.json}
+
+\subsection{elo}																% /elo
+\subsubsection{agent.py}												\incFile{python}{elo/agent.py}
+\subsubsection{renderElo.py}										\incFile{python}{elo/renderElo.py}
+\subsubsection{score.py}												\incFile{python}{elo/score.py}
+\subsubsection{server.py}												\incFile{python}{elo/server.py}
+
+\subsection{game}															% games/connect4
+\subsubsection{connect4}
+\paragraph{config.hpp}													\incFile{C++}{games/connect4/config.hpp}
+\paragraph{game.hpp}													\incFile{C++}{games/connect4/game.hpp}
+\paragraph{game.cpp}													\incFile{C++}{games/connect4/game.cpp}
+\subsubsection{othello}													% games/othello
+\paragraph{config.hpp}													\incFile{C++}{games/othello/config.hpp}
+\paragraph{game.hpp}													\incFile{C++}{games/othello/game.hpp}
+\paragraph{game.cpp}													\incFile{C++}{games/othello/game.cpp}
+
+% /
+\subsection{CMakeLists.txt}											\incFile{python}{CMakeLists.txt}
+\subsection{README.md}												\incFile{python}{README.md}
+%\subsection{serch.sh}														\incFile{sh}{serch.sh}
+
+\section{Demos}
+\subsection{Matura-AlphaZero-demos}
+\subsubsection{CMakeLists.txt}										\incDemo{python}{CMakeLists.txt}
+%\subsubsection{LICENSE}											\incDemo{python}{LICENSE}
+\subsubsection{main.cpp}												\incDemo{c++}{main.cpp}
+\subsubsection{README.md}										\incDemo{python}{README.md}
+\subsubsection{supervised.cpp}									\incDemo{c++}{supervised.cpp}
+\subsubsection{include}													% demo/include
+\paragraph{point.hpp}													\incDemo{c++}{include/point.hpp}
+\paragraph{utils.hpp}														\incDemo{c++}{include/utils.hpp}
+\subsubsection{scr}														% demo/scr
+\paragraph{point.cpp}													\incDemo{c++}{scr/point.cpp}
+\subsubsection{supervised}											% demo/supervised
+\paragraph{include}														% demo/supervised/include
+\subparagraph{config.hpp}											\incDemo{c++}{supervised/include/config.hpp}
+\subparagraph{model.hpp}											\incDemo{c++}{supervised/include/model.hpp}
+\paragraph{src}																% demo/supervised/src
+\subparagraph{model.cpp}												\incDemo{c++}{supervised/src/model.cpp}
+\subsubsection{unsupervised}										% demo/unsupervised
+\paragraph{include}														% demo/unsupervised/include
+\subparagraph{cluster.hpp}											\incDemo{c++}{unsupervised/include/cluster.hpp}
+\subparagraph{config.hpp}											\incDemo{c++}{unsupervised/include/config.hpp}
+\subparagraph{group.hpp}												\incDemo{c++}{unsupervised/include/group.hpp}
+\paragraph{src}																% demo/unsupervised/src
+%\subparagraph{cluster.cpp}											\incDemo{c++}{unsupervised/src/cluster.cpp}
+%\subparagraph{group.cpp}												\incDemo{c++}{unsupervised/src/group.cpp}
 
 
 \section{Further definitions}
@@ -1176,137 +1312,6 @@ Let
 \mathbb N_{a,b} & = \{x \in \mathbb N~:~a\leq x \leq b\}
 \end{align}
 
-\bibliographystyle{plain}
-\bibliography{bibliography}
-
-\section*{Acknowledgements}
-\begin{itemize}
-\item Leonie Scheck, Frederik Ott, Nico Steiner, Wolfgang Wandhoven for aiding in evaluating the AI against human players and providing feedback.
-\end{itemize}
-
-%\newpage\section{Code}
-%\subsection{AlphaZeroPytorch}
-%\subsubsection{AlphaZeroPytorch.h}							\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.h}
-%\subsubsection{AlphaZeroPytorch.cpp}						\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.cpp}
-%\subsubsection{cmake.sh}												\incFile{sh}{AlphaZeroPytorch/cmake.sh}
-%\subsubsection{CMakeLists.txt}										\incFile{python}{AlphaZeroPytorch/CMakeLists.txt}
-%\subsubsection{convertToJceFormat.cpp}					\incFile{C++}{AlphaZeroPytorch/convertToJceFormat.cpp}
-%%\incFile{C++}{AlphaZeroPytorch/detect_cuda_compute_capabilities.cpp}
-%%\incFile{C++}{AlphaZeroPytorch/detect_cuda_version.cc}
-%\subsubsection{doEloRaiting.cpp}									\incFile{C++}{AlphaZeroPytorch/doEloRaiting.cpp}
-%\subsubsection{makeFiles.hpp}										\incFile{C++}{AlphaZeroPytorch/makeFiles.hpp}
-%\subsubsection{Replay.cpp}											\incFile{C++}{AlphaZeroPytorch/Replay.cpp}
-%\subsubsection{runServer.cpp}										\incFile{C++}{AlphaZeroPytorch/runServer.cpp}
-%\subsubsection{showLoss.cpp}										\incFile{C++}{AlphaZeroPytorch/showLoss.cpp}
-%\subsubsection{test.cpp}												\incFile{C++}{AlphaZeroPytorch/test.cpp}
-%\subsubsection{include}													% AlphaZeroPytorch/include
-%\paragraph{config.hpp}													\incFile{C++}{AlphaZeroPytorch/include/config.hpp} \label{code:config}
-%\paragraph{config.cpp}													\incFile{C++}{AlphaZeroPytorch/include/config.cpp}
-%\paragraph{io.hpp}															\incFile{C++}{AlphaZeroPytorch/include/io.hpp}
-%\paragraph{log.hpp}														\incFile{C++}{AlphaZeroPytorch/include/log.hpp}
-%\paragraph{log.cpp}														\incFile{C++}{AlphaZeroPytorch/include/log.cpp}
-%\paragraph{timer.hpp}													\incFile{C++}{AlphaZeroPytorch/include/timer.hpp}
-%\paragraph{ai}																	% AlphaZeroPytorch/include/ai
-%\subparagraph{agent.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.hpp}
-%\subparagraph{agent.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.cpp}
-%\subparagraph{MCTS.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.hpp}
-%\subparagraph{MCTS.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.cpp}
-%\subparagraph{memory.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.hpp}
-%\subparagraph{memory.cpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.cpp}
-%\subparagraph{model.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/model.hpp}
-%\subparagraph{modelSynchronizer.hpp}						\incFile{C++}{AlphaZeroPytorch/include/ai/modelSynchronizer.hpp}
-%\subparagraph{modelWorker.hpp}								\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.hpp}
-%\subparagraph{modelWorker.cpp}									\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.cpp}
-%\subparagraph{playGame.hpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.hpp}
-%\subparagraph{playGame.cpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.cpp}
-%\subparagraph{utils.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/utils.hpp}
-%\paragraph{game}															% AlphaZeroPytorch/include/game
-%\subparagraph{game.hpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.hpp}
-%\subparagraph{game.cpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.cpp}
-%\paragraph{jce}																% AlphaZeroPytorch/include/jce
-%\subparagraph{load.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/load.hpp}
-%\subparagraph{save.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/save.hpp}
-%\subparagraph{string.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/string.hpp}
-%\subparagraph{vector.hpp}											\incFile{C++}{AlphaZeroPytorch/include/jce/vector.hpp}
-%\paragraph{server}															% AlphaZeroPytorch/include/server
-%\subparagraph{eloClient.hpp}										\incFile{C++}{AlphaZeroPytorch/include/Server/eloClient.hpp}
-%\subparagraph{server.hpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.hpp}
-%\subparagraph{server.cpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.cpp}
-%\paragraph{test}																% AlphaZeroPytorch/include/test
-%\subparagraph{testSuit.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.hpp}	
-%\subparagraph{testSuit.cpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.cpp}
-%\subparagraph{testUtils.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testUtils.hpp}
-%
-%\subsection{Clients}														% Clients/ConsoleClient
-%\subsubsection{ConsoleClient}
-%\paragraph{ConsoleClient.h}											\incFile{C++}{Clients/ConsoleClient/ConsoleClient.h}
-%\paragraph{ConsoleClient.cpp}										\incFile{C++}{Clients/ConsoleClient/ConsoleClient.cpp}
-%\paragraph{include}														% clients/consoleClient/include
-%\subparagraph{agent.hpp}												\incFile{C++}{Clients/ConsoleClient/include/agent.hpp}
-%\subparagraph{game.hpp}												\incFile{C++}{Clients/ConsoleClient/include/game.hpp}
-%\subparagraph{modifications.hpp}								\incFile{C++}{Clients/ConsoleClient/include/modifications.hpp}
-%\paragraph{scr}																% Clients/ConsoleClient/src
-%\subparagraph{game.cpp}												\incFile{C++}{Clients/ConsoleClient/scr/game.cpp}
-%\subsubsection{iosClient}												% Clients/iosClient
-%\paragraph{caller.py}														\incFile{python}{Clients/iosClient/caller.py}
-%\paragraph{connect4IOS.py}											\incFile{python}{Clients/iosClient/connect4IOS.py}
-%\subsubsection{pyClient}												% Clients/pyClient
-%\paragraph{Client.py}														\incFile{python}{Clients/pyClient/Client.py}
-%\paragraph{game.py}														\incFile{python}{Clients/pyClient/game.py}
-%\paragraph{gameSaver.py}												\incFile{python}{Clients/pyClient/gameSaver.py}
-%\paragraph{GUI.py}															\incFile{python}{Clients/pyClient/GUI.py}
-%\paragraph{main.py}														\incFile{python}{Clients/pyClient/main.py}
-%\paragraph{test.py}														\incFile{python}{Clients/pyClient/test.py}
-%\paragraph{winStates.json}											\incFile{python}{Clients/pyClient/winStates.json}
-%
-%\subsection{elo}																% /elo
-%\subsubsection{agent.py}												\incFile{python}{elo/agent.py}
-%\subsubsection{renderElo.py}										\incFile{python}{elo/renderElo.py}
-%\subsubsection{score.py}												\incFile{python}{elo/score.py}
-%\subsubsection{server.py}												\incFile{python}{elo/server.py}
-%
-%\subsection{game}															% games/connect4
-%\subsubsection{connect4}
-%\paragraph{config.hpp}													\incFile{C++}{games/connect4/config.hpp}
-%\paragraph{game.hpp}													\incFile{C++}{games/connect4/game.hpp}
-%\paragraph{game.cpp}													\incFile{C++}{games/connect4/game.cpp}
-%\subsubsection{othello}													% games/othello
-%\paragraph{config.hpp}													\incFile{C++}{games/othello/config.hpp}
-%\paragraph{game.hpp}													\incFile{C++}{games/othello/game.hpp}
-%\paragraph{game.cpp}													\incFile{C++}{games/othello/game.cpp}
-%
-%% /
-%\subsection{CMakeLists.txt}											\incFile{python}{CMakeLists.txt}
-%\subsection{README.md}												\incFile{python}{README.md}
-%\subsection{serch.sh}														\incFile{sh}{serch.sh}
-%
-%\section{Demos}
-%\subsection{Matura-AlphaZero-demos}
-%\subsubsection{CMakeLists.txt}										\incDemo{python}{CMakeLists.txt}
-%%\subsubsection{LICENSE}											\incDemo{python}{LICENSE}
-%\subsubsection{main.cpp}												\incDemo{c++}{main.cpp}
-%\subsubsection{README.md}										\incDemo{python}{README.md}
-%\subsubsection{supervised.cpp}									\incDemo{c++}{supervised.cpp}
-%\subsubsection{include}													% demo/include
-%\paragraph{point.hpp}													\incDemo{c++}{include/point.hpp}
-%\paragraph{utils.hpp}														\incDemo{c++}{include/utils.hpp}
-%\subsubsection{scr}														% demo/scr
-%\paragraph{point.cpp}													\incDemo{c++}{scr/point.cpp}
-%\subsubsection{supervised}											% demo/supervised
-%\paragraph{include}														% demo/supervised/include
-%\subparagraph{config.hpp}											\incDemo{c++}{supervised/include/config.hpp}
-%\subparagraph{model.hpp}											\incDemo{c++}{supervised/include/model.hpp}
-%\paragraph{src}																% demo/supervised/src
-%\subparagraph{model.cpp}												\incDemo{c++}{supervised/src/model.cpp}
-%\subsubsection{unsupervised}										% demo/unsupervised
-%\paragraph{include}														% demo/unsupervised/include
-%\subparagraph{cluster.hpp}											\incDemo{c++}{unsupervised/include/cluster.hpp}
-%\subparagraph{config.hpp}											\incDemo{c++}{unsupervised/include/config.hpp}
-%\subparagraph{group.hpp}												\incDemo{c++}{unsupervised/include/group.hpp}
-%\paragraph{src}																% demo/unsupervised/src
-%%\subparagraph{cluster.cpp}											\incDemo{c++}{unsupervised/src/cluster.cpp}
-%%\subparagraph{group.cpp}												\incDemo{c++}{unsupervised/src/group.cpp}
-%
 \section{Further examples}
 \subsection{Mcts}\label{mctsExampleFullData}
 The full set of data as seen by the computer in the mcts example \imgRef{fig:mcts:example}. The node sets are as follows defined by the amount of edged leaving each node.

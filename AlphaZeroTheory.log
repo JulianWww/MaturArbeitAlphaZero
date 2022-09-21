@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2022.5.4)  20 SEP 2022 20:28
+This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2022.5.4)  21 SEP 2022 23:09
  system commands enabled.
 **AlphaZeroTheory.tex
 (./AlphaZeroTheory.tex
@@ -1010,11 +1010,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./AlphaZeroTheory.toc [2]
-)
+ [3] [4] [5])
 \tf@toc=\write9
 
 \openout9 = AlphaZeroTheory.toc
- [3] [4]
+
+[6] [7]
 Overfull \hbox (1.78183pt too wide) in paragraph at lines 164--164
 []|\OT1/lmr/m/n/12 X| 
  []
@@ -1086,145 +1087,145 @@ Overfull \hbox (1.78183pt too wide) in paragraph at lines 164--164
 
 
 Overfull \hbox (1.78183pt too wide) in paragraph at lines 164--164
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-[5]
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-
-Overfull \hbox (2.11284pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 O| 
- []
-
-
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-
-Overfull \hbox (2.11284pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 O| 
- []
-
-
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-
-Overfull \hbox (2.11284pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 O| 
- []
-
-
-Overfull \hbox (2.11284pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 O| 
- []
-
-
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-
-Overfull \hbox (2.11284pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 O| 
- []
-
-
-Overfull \hbox (2.11284pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 O| 
- []
-
-
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-[6]
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 188--188
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-
-Overfull \hbox (2.11284pt too wide) in paragraph at lines 188--188
-[]|\OT1/lmr/m/n/12 O| 
- []
-
-
-Overfull \hbox (2.11284pt too wide) in paragraph at lines 188--188
-[]|\OT1/lmr/m/n/12 O| 
- []
-
-
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 188--188
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-
-Overfull \hbox (2.11284pt too wide) in paragraph at lines 188--188
-[]|\OT1/lmr/m/n/12 O| 
- []
-
-
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 188--188
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-[7]
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 237--237
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-
-Overfull \hbox (2.11284pt too wide) in paragraph at lines 237--237
-[]|\OT1/lmr/m/n/12 O| 
- []
-
-
-Overfull \hbox (2.11284pt too wide) in paragraph at lines 237--237
-[]|\OT1/lmr/m/n/12 O| 
- []
-
-
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 237--237
-[]|\OT1/lmr/m/n/12 X| 
- []
-
-
-Overfull \hbox (2.11284pt too wide) in paragraph at lines 237--237
-[]|\OT1/lmr/m/n/12 O| 
- []
-
-
-Overfull \hbox (1.78183pt too wide) in paragraph at lines 237--237
 []|\OT1/lmr/m/n/12 X| 
  []
 
 [8]
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 O| 
+ []
+
+
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 O| 
+ []
+
+
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 O| 
+ []
+
+
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 O| 
+ []
+
+
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 O| 
+ []
+
+
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 O| 
+ []
+
+
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 168--168
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+[9]
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 188--188
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 188--188
+[]|\OT1/lmr/m/n/12 O| 
+ []
+
+
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 188--188
+[]|\OT1/lmr/m/n/12 O| 
+ []
+
+
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 188--188
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 188--188
+[]|\OT1/lmr/m/n/12 O| 
+ []
+
+
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 188--188
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+[10]
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 237--237
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 237--237
+[]|\OT1/lmr/m/n/12 O| 
+ []
+
+
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 237--237
+[]|\OT1/lmr/m/n/12 O| 
+ []
+
+
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 237--237
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+
+Overfull \hbox (2.11284pt too wide) in paragraph at lines 237--237
+[]|\OT1/lmr/m/n/12 O| 
+ []
+
+
+Overfull \hbox (1.78183pt too wide) in paragraph at lines 237--237
+[]|\OT1/lmr/m/n/12 X| 
+ []
+
+[11]
 Overfull \hbox (1.78183pt too wide) in paragraph at lines 260--260
 []|\OT1/lmr/m/n/12 X| 
  []
@@ -1234,24 +1235,18 @@ Overfull \hbox (2.11284pt too wide) in paragraph at lines 260--260
 []|\OT1/lmr/m/n/12 O| 
  []
 
-
-LaTeX Warning: Reference `code:config' on page 9 undefined on input line 268.
-
-
-LaTeX Warning: Reference `code:config' on page 9 undefined on input line 268.
-
-[9]
+[12]
 Package svg Info: Last page of `./svg-inkscape/mctsExample_svg-tex.pdf' is 1 on 
 input line 275.
  (./svg-inkscape/mctsExample_svg-tex.pdf_tex
-<./svg-inkscape/mctsExample_svg-tex.pdf, id=415, page=1, 384.8662pt x 342.18704p
+<./svg-inkscape/mctsExample_svg-tex.pdf, id=986, page=1, 384.8662pt x 342.18704p
 t>
 File: ./svg-inkscape/mctsExample_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/mctsExample_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/mctsExample_svg-tex.pdf , page1 used on 
 input line 56.
 (luatex.def)             Requested size: 154.23842pt x 137.13345pt.
-) [10] [11<./svg-inkscape/mctsExample_svg-tex.pdf>]
+) [13] [14<./svg-inkscape/mctsExample_svg-tex.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 315.
@@ -1272,7 +1267,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 315.
 
-[12]
+[15]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 325.
@@ -1297,11 +1292,11 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 325.
 
-[13] [14] [15] [16]
+[16] [17] [18] [19]
 Package svg Info: Last page of `./svg-inkscape/tanh_svg-tex.pdf' is 1 on input l
 ine 483.
  (./svg-inkscape/tanh_svg-tex.pdf_tex
-<./svg-inkscape/tanh_svg-tex.pdf, id=505, page=1, 433.62pt x 144.54pt>
+<./svg-inkscape/tanh_svg-tex.pdf, id=1077, page=1, 433.62pt x 144.54pt>
 File: ./svg-inkscape/tanh_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/tanh_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/tanh_svg-tex.pdf , page1 used on input l
@@ -1313,12 +1308,12 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 484.
 See the caption package documentation for explanation.
 
-[17<./svg-inkscape/tanh_svg-tex.pdf>]
+[20<./svg-inkscape/tanh_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/softmaxx_svg-tex.pdf' is 1 on inp
 ut line 515.
  (./svg-inkscape/softmaxx_svg-tex.pdf_tex
-<./svg-inkscape/softmaxx_svg-tex.pdf, id=558, page=1, 320.22081pt x 301.39346pt>
-
+<./svg-inkscape/softmaxx_svg-tex.pdf, id=1131, page=1, 320.22081pt x 301.39346pt
+>
 File: ./svg-inkscape/softmaxx_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/softmaxx_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/softmaxx_svg-tex.pdf , page1 used on inp
@@ -1328,8 +1323,8 @@ ut line 56.
 Package svg Info: Last page of `./svg-inkscape/softmaxy_svg-tex.pdf' is 1 on inp
 ut line 521.
 (./svg-inkscape/softmaxy_svg-tex.pdf_tex
-<./svg-inkscape/softmaxy_svg-tex.pdf, id=560, page=1, 320.22081pt x 301.39346pt>
-
+<./svg-inkscape/softmaxy_svg-tex.pdf, id=1133, page=1, 320.22081pt x 301.39346pt
+>
 File: ./svg-inkscape/softmaxy_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/softmaxy_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/softmaxy_svg-tex.pdf , page1 used on inp
@@ -1340,19 +1335,19 @@ Package svg Info: Last page of `./svg-inkscape/softmaxscale_svg-tex.pdf' is 1 on
  input line 527.
 
 (./svg-inkscape/softmaxscale_svg-tex.pdf_tex
-<./svg-inkscape/softmaxscale_svg-tex.pdf, id=562, page=1, 44.86574pt x 276.82434
-pt>
+<./svg-inkscape/softmaxscale_svg-tex.pdf, id=1135, page=1, 44.86574pt x 276.8243
+4pt>
 File: ./svg-inkscape/softmaxscale_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/softmaxscale_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/softmaxscale_svg-tex.pdf , page1 used on
  input line 56.
 (luatex.def)             Requested size: 22.22296pt x 137.11507pt.
-) [18<./svg-inkscape/softmaxx_svg-tex.pdf><./svg-inkscape/softmaxy_svg-tex.pdf><
+) [21<./svg-inkscape/softmaxx_svg-tex.pdf><./svg-inkscape/softmaxy_svg-tex.pdf><
 ./svg-inkscape/softmaxscale_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/LeakyReLU_svg-tex.pdf' is 1 on in
 put line 554.
  (./svg-inkscape/LeakyReLU_svg-tex.pdf_tex
-<./svg-inkscape/LeakyReLU_svg-tex.pdf, id=590, page=1, 722.7pt x 505.89pt>
+<./svg-inkscape/LeakyReLU_svg-tex.pdf, id=1164, page=1, 722.7pt x 505.89pt>
 File: ./svg-inkscape/LeakyReLU_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/LeakyReLU_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/LeakyReLU_svg-tex.pdf , page1 used on in
@@ -1364,8 +1359,8 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 555.
 See the caption package documentation for explanation.
 
-[19<./svg-inkscape/LeakyReLU_svg-tex.pdf>] [20]
-<./images/connectFourExample.png, id=674, 1053.9375pt x 903.375pt>
+[22<./svg-inkscape/LeakyReLU_svg-tex.pdf>] [23]
+<./images/connectFourExample.png, id=1247, 1053.9375pt x 903.375pt>
 File: ./images/connectFourExample.png Graphic file (type png)
 <use ./images/connectFourExample.png>
 Package luatex.def Info: ./images/connectFourExample.png  used on input line 644
@@ -1377,14 +1372,14 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 645.
 See the caption package documentation for explanation.
 
-[21] [22<./images/connectFourExample.png>] [23] [24
+[24] [25<./images/connectFourExample.png>] [26] [27
 Missing character: There is no ˇ (U+02C7) in font rm-lmr12!
-] [25] [26]
+] [28] [29]
 Package svg Info: Last page of `./svg-inkscape/elo_svg-tex.pdf' is 1 on input li
 ne 774.
 
 (./svg-inkscape/elo_svg-tex.pdf_tex
-<./svg-inkscape/elo_svg-tex.pdf, id=749, page=1, 462.52798pt x 346.89601pt>
+<./svg-inkscape/elo_svg-tex.pdf, id=1321, page=1, 462.52798pt x 346.89601pt>
 File: ./svg-inkscape/elo_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/elo_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/elo_svg-tex.pdf , page1 used on input li
@@ -1396,25 +1391,25 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 775.
 See the caption package documentation for explanation.
 
-[27<./svg-inkscape/elo_svg-tex.pdf>]
+[30<./svg-inkscape/elo_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/elo_back_svg-tex.pdf' is 1 on inp
 ut line 807.
  (./svg-inkscape/elo_back_svg-tex.pdf_tex
-<./svg-inkscape/elo_back_svg-tex.pdf, id=773, page=1, 462.52798pt x 346.89601pt>
-
+<./svg-inkscape/elo_back_svg-tex.pdf, id=1345, page=1, 462.52798pt x 346.89601pt
+>
 File: ./svg-inkscape/elo_back_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/elo_back_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/elo_back_svg-tex.pdf , page1 used on inp
 ut line 56.
 (luatex.def)             Requested size: 312.00119pt x 234.01236pt.
 )
-[28] [29<./svg-inkscape/elo_back_svg-tex.pdf>]
+[31] [32<./svg-inkscape/elo_back_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/eloRaitingByVersion_svg-tex.pdf' 
 is 1 on input line 863.
 
 (./svg-inkscape/eloRaitingByVersion_svg-tex.pdf_tex
-<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf, id=801, page=1, 462.52798pt x 3
-46.89601pt>
+<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf, id=1375, page=1, 462.52798pt x 
+346.89601pt>
 File: ./svg-inkscape/eloRaitingByVersion_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/eloRaitingByVersion_svg-tex.pdf, page 1>
 Package luatex.def Info: ./svg-inkscape/eloRaitingByVersion_svg-tex.pdf , page1 
@@ -1426,24 +1421,8 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 865.
 See the caption package documentation for explanation.
 
-[30] [31<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf>] [32]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1077.
-
-[33]
-Package svg Info: Last page of `./svg-inkscape/MCTS-steps_svg-tex.pdf' is 1 on i
-nput line 1088.
- (./svg-inkscape/MCTS-steps_svg-tex.pdf_tex
-<./svg-inkscape/MCTS-steps_svg-tex.pdf, id=854, page=1, 1393.02477pt x 389.68431
-pt>
-File: ./svg-inkscape/MCTS-steps_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/MCTS-steps_svg-tex.pdf, page 1>
-Package luatex.def Info: ./svg-inkscape/MCTS-steps_svg-tex.pdf , page1 used on i
-nput line 56.
-(luatex.def)             Requested size: 548.5pt x 153.439pt.
-) [34] (./AlphaZeroTheory.bbl
-[35]
+[33] [34<./svg-inkscape/eloRaitingByVersion_svg-tex.pdf>] [35]
+(./AlphaZeroTheory.bbl [36]
 Underfull \hbox (badness 10000) in paragraph at lines 42--48
 [][]$\OT1/lmr/m/n/12 http://en.wikipedia.org/w/index.php?title=Vector%20quantiz
 ation&
@@ -1455,58 +1434,290 @@ Underfull \hbox (badness 1436) in paragraph at lines 50--56
 ex.php?title=
  []
 
-) [36] [37] [38] [39] [40] [41<./svg-inkscape/MCTS-steps_svg-tex.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1431.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1431.
+) [37]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
+put line 1027.
+ (./code/AlphaZeroPytorch/AlphaZeroPytorch.h
+LaTeX Font Info:    Trying to load font information for OML+lmr on input line 6.
 
-(./AlphaZeroTheory.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1431.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1431.
+
+(/usr/share/texmf/tex/latex/lm/omllmr.fd
+File: omllmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 6.
+
+
+(/usr/share/texmf/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OML/lmr/m/n' in size <10> not available
+(Font)              Font shape `OML/lmm/m/it' tried instead on input line 6.
+)
+(./code/AlphaZeroPytorch/AlphaZeroPytorch.cpp
+LaTeX Font Info:    Trying to load font information for OMS+lmr on input line 13
+.
+
+(/usr/share/texmf/tex/latex/lm/omslmr.fd
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 1
+3.
+
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 13.
+ [38])
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/09/10 1.8c listings language file
+)
+(./code/AlphaZeroPytorch/CMakeLists.txt [39] [40])
+(./code/AlphaZeroPytorch/convertToJceFormat.cpp [41])
+(./code/AlphaZeroPytorch/doEloRaiting.cpp [42] [43])
+(./code/AlphaZeroPytorch/makeFiles.hpp [44])
+(./code/AlphaZeroPytorch/Replay.cpp) (./code/AlphaZeroPytorch/runServer.cpp
+[45]) (./code/AlphaZeroPytorch/showLoss.cpp) (./code/AlphaZeroPytorch/test.cpp) [46] (./code/AlphaZeroPytorch/include/config.hpp [47]
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 77--78
+[][][][] 
+ []
+
+
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 79--80
+[][][][] 
+ []
+
+[48]
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 81--82
+[][][][] 
+ []
+
+
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 83--84
+[][][][] 
+ []
+
+
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 85--86
+[][][][] 
+ []
+
+) (./code/AlphaZeroPytorch/include/config.cpp)
+(./code/AlphaZeroPytorch/include/io.hpp [49] [50] [51] [52])
+(./code/AlphaZeroPytorch/include/log.hpp [53] [54] [55] [56] [57]
+Overfull \hbox (110.00488pt too wide) in paragraph at lines 203--204
+[][][][] 
+ []
+
+) (./code/AlphaZeroPytorch/include/log.cpp [58] [59]) [60]
+(./code/AlphaZeroPytorch/include/timer.hpp)
+(./code/AlphaZeroPytorch/include/ai/agent.hpp [61] [62] [63] [64] [65])
+(./code/AlphaZeroPytorch/include/ai/agent.cpp [66] [67])
+(./code/AlphaZeroPytorch/include/ai/MCTS.hpp [68] [69] [70])
+(./code/AlphaZeroPytorch/include/ai/MCTS.cpp [71] [72])
+(./code/AlphaZeroPytorch/include/ai/memory.hpp [73] [74] [75])
+(./code/AlphaZeroPytorch/include/ai/memory.cpp [76])
+(./code/AlphaZeroPytorch/include/ai/model.hpp [77] [78] [79] [80] [81] [82]
+[83] [84] [85] [86] [87] [88] [89] [90] [91])
+(./code/AlphaZeroPytorch/include/ai/modelSynchronizer.hpp [92] [93] [94]
+[95]) [96] (./code/AlphaZeroPytorch/include/ai/modelWorker.hpp)
+(./code/AlphaZeroPytorch/include/ai/modelWorker.cpp) [97]
+(./code/AlphaZeroPytorch/include/ai/playGame.hpp [98])
+(./code/AlphaZeroPytorch/include/ai/playGame.cpp [99] [100] [101] [102]
+Overfull \hbox (14.0039pt too wide) in paragraph at lines 165--166
+[][][][] 
+ []
+
+[103]
+Overfull \hbox (14.0039pt too wide) in paragraph at lines 167--168
+[][][][] 
+ []
+
+[104] [105]) (./code/AlphaZeroPytorch/include/ai/utils.hpp [106])
+(./code/AlphaZeroPytorch/include/game/game.hpp [107] [108] [109] [110])
+(./code/AlphaZeroPytorch/include/game/game.cpp [111] [112] [113] [114] [115]
+[116] [117] [118]) (./code/AlphaZeroPytorch/include/jce/load.hpp [119] [120]
+[121] [122] [123]) (./code/AlphaZeroPytorch/include/jce/save.hpp [124] [125]
+[126] [127] [128]) (./code/AlphaZeroPytorch/include/jce/string.hpp [129])
+(./code/AlphaZeroPytorch/include/jce/vector.hpp)
+(./code/AlphaZeroPytorch/include/Server/eloClient.hpp [130] [131] [132])
+(./code/AlphaZeroPytorch/include/Server/server.hpp [133])
+(./code/AlphaZeroPytorch/include/Server/server.cpp [134] [135] [136])
+(./code/AlphaZeroPytorch/include/test/testSuit.hpp [137] [138])
+(./code/AlphaZeroPytorch/include/test/testSuit.cpp [139] [140] [141] [142])
+(./code/AlphaZeroPytorch/include/test/testUtils.hpp [143])
+(./code/Clients/ConsoleClient/ConsoleClient.h)
+(./code/Clients/ConsoleClient/ConsoleClient.cpp [144])
+(./code/Clients/ConsoleClient/include/agent.hpp [145] [146] [147])
+(./code/Clients/ConsoleClient/include/game.hpp [148] [149] [150])
+(./code/Clients/ConsoleClient/include/modifications.hpp) [151]
+(./code/Clients/ConsoleClient/scr/game.cpp [152] [153] [154] [155] [156]
+[157] [158]) (./code/Clients/iosClient/caller.py)
+(./code/Clients/iosClient/connect4IOS.py
+Overfull \hbox (1526.01929pt too wide) in paragraph at lines 8--9
+[][] 
+ []
+
+
+Overfull \hbox (26.00403pt too wide) in paragraph at lines 8--9
+[][] 
+ []
+
+
+Overfull \hbox (104.00482pt too wide) in paragraph at lines 8--9
+[][] 
+ []
+
+[159] [160] [161] [162] [163] [164] [165]) (./code/Clients/pyClient/Client.py
+[166] [167]) (./code/Clients/pyClient/game.py [168] [169] [170])
+(./code/Clients/pyClient/gameSaver.py [171] [172] [173])
+(./code/Clients/pyClient/GUI.py [174] [175] [176] [177] [178]) [179]
+(./code/Clients/pyClient/main.py [180]) (./code/Clients/pyClient/test.py)
+[181] (./code/Clients/pyClient/winStates.json [182] [183]) (./code/elo/agent.py
+[184]) (./code/elo/renderElo.py) [185] (./code/elo/score.py)
+(./code/elo/server.py [186] [187] [188] [189])
+(./code/games/connect4/config.hpp [190] [191]
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 83--84
+[][][][] 
+ []
+
+
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 85--86
+[][][][] 
+ []
+
+
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 87--88
+[][][][] 
+ []
+
+
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 89--90
+[][][][] 
+ []
+
+
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 91--92
+[][][][] 
+ []
+
+) (./code/games/connect4/game.hpp [192] [193] [194] [195])
+(./code/games/connect4/game.cpp [196] [197] [198] [199] [200] [201] [202]
+[203]) (./code/games/othello/config.hpp [204] [205]
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 80--81
+[][][][] 
+ []
+
+
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 82--83
+[][][][] 
+ []
+
+
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 84--85
+[][][][] 
+ []
+
+
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 86--87
+[][][][] 
+ []
+
+
+Overfull \hbox (152.00531pt too wide) in paragraph at lines 88--89
+[][][][] 
+ []
+
+) (./code/games/othello/game.hpp [206] [207] [208] [209] [210])
+(./code/games/othello/game.cpp [211] [212] [213] [214] [215] [216] [217]
+[218] [219]) (./code/CMakeLists.txt) (./code/README.md) (./demos/CMakeLists.txt
+[220] [221]
+Overfull \hbox (8.00385pt too wide) in paragraph at lines 49--50
+[][][][] 
+ []
+
+
+Overfull \hbox (8.00385pt too wide) in paragraph at lines 58--59
+[][][][] 
+ []
+
+[222]) (./demos/main.cpp [223] [224] [225] [226]) (./demos/README.md)
+(./demos/supervised.cpp [227] [228] [229]) [230] (./demos/include/point.hpp)
+(./demos/include/utils.hpp [231]) (./demos/scr/point.cpp [232] [233]) [234]
+(./demos/supervised/include/config.hpp) (./demos/supervised/include/model.hpp
+[235]) (./demos/supervised/src/model.cpp [236] [237])
+(./demos/unsupervised/include/cluster.hpp [238])
+(./demos/unsupervised/include/config.hpp)
+(./demos/unsupervised/include/group.hpp) [239]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1213.
+
+[240]
+Package svg Info: Last page of `./svg-inkscape/MCTS-steps_svg-tex.pdf' is 1 on i
+nput line 1224.
+ (./svg-inkscape/MCTS-steps_svg-tex.pdf_tex
+<./svg-inkscape/MCTS-steps_svg-tex.pdf, id=10389, page=1, 1393.02477pt x 389.684
+31pt>
+File: ./svg-inkscape/MCTS-steps_svg-tex.pdf Graphic file (type pdf)
+<use ./svg-inkscape/MCTS-steps_svg-tex.pdf, page 1>
+Package luatex.def Info: ./svg-inkscape/MCTS-steps_svg-tex.pdf , page1 used on i
+nput line 56.
+(luatex.def)             Requested size: 548.5pt x 153.439pt.
+) [241] [242] [243] [244]
+[245] [246] [247<./svg-inkscape/MCTS-steps_svg-tex.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1436.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1436.
+ (./AlphaZeroTheory.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1436.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1436.
 Package rerunfilecheck Info: File `AlphaZeroTheory.out' has not changed.
-(rerunfilecheck)             Checksum: 899641660CBBF6A31F446FAD52B2BFC3;7966.
-
-
-LaTeX Warning: There were undefined references.
+(rerunfilecheck)             Checksum: 58A9C8F52DF022856AD001D86E10B64D;21157.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1431.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1436.
 )
 
 Here is how much of LuaTeX's memory you used:
- 33437 strings out of 481365
- 100000,1373583 words of node,token memory allocated
+ 45975 strings out of 481365
+ 931584,1373583 words of node,token memory allocated
  3930 words of node memory still in use:
    151 hlist, 13 vlist, 24 rule, 18 math, 72 glue, 30 kern, 127 glyph, 61 glue_s
 pec, 2 write, 24 pdf_literal, 4 pdf_action, 24 pdf_colorstack nodes
-   avail lists: 2:32,3:221,4:520,5:233,6:111,7:3176,8:121,9:963,10:22,11:248
- 48800 multiletter control sequences out of 65536+600000
- 87 fonts using 5731471 bytes
- 65i,16n,108p,1853b,704s stack positions out of 5000i,500n,10000p,200000b,100000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvip
-s/lm/lm-rm.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cme
-x10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
-></usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type
-1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/s
-hare/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/
-lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/
-fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on AlphaZeroTheory.pdf (41 pages, 818113 bytes).
+   avail lists: 1:3,2:35,3:221,4:8051,5:5854,6:111,7:92626,8:115,9:17502,10:61,1
+1:930
+ 51992 multiletter control sequences out of 65536+600000
+ 92 fonts using 5938163 bytes
+ 65i,16n,108p,1853b,1046s stack positions out of 5000i,500n,10000p,200000b,100000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/d
+vips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/shar
+e/texmf/fonts/enc/dvips/lm/lm-rm.enc}</usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/
+share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/publi
+c/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/te
+xmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr1
+7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/s
+hare/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public
+/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbol
+s/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/
+msbm10.pfb>
+Output written on AlphaZeroTheory.pdf (247 pages, 1747215 bytes).
 
-PDF statistics: 1059 PDF objects out of 1200 (max. 8388607)
- 889 compressed objects within 9 object streams
- 261 named destinations out of 1000 (max. 131072)
- 712 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 10870 PDF objects out of 12825 (max. 8388607)
+ 10396 compressed objects within 104 object streams
+ 8593 named destinations out of 8907 (max. 131072)
+ 1592 words of extra memory for PDF output out of 10000 (max. 100000000)
 
