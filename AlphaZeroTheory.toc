@@ -1,167 +1,47 @@
-\contentsline {section}{\numberline {1}Methods}{7}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Reinforcement Learning}{7}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Game}{9}{subsection.1.2}%
-\contentsline {subsubsection}{\numberline {1.2.1}Game Board}{10}{subsubsection.1.2.1}%
-\contentsline {subsubsection}{\numberline {1.2.2}Actions}{11}{subsubsection.1.2.2}%
-\contentsline {subsection}{\numberline {1.3}MCTS}{12}{subsection.1.3}%
-\contentsline {subsubsection}{\numberline {1.3.1}Evaluation Basis}{14}{subsubsection.1.3.1}%
-\contentsline {subsubsection}{\numberline {1.3.2}Leaf Selection}{15}{subsubsection.1.3.2}%
-\contentsline {subsubsection}{\numberline {1.3.3}Node Evaluation and Expansion}{15}{subsubsection.1.3.3}%
-\contentsline {paragraph}{\numberline {1.3.3.1}end game state \(\mathcal S(n_{L_l}) \in \mathbb G_{done}\)}{16}{paragraph.1.3.3.1}%
-\contentsline {paragraph}{\numberline {1.3.3.2}not end game state \(\mathcal S(n_{L_l}) \not \in \mathbb G_{done}\)}{16}{paragraph.1.3.3.2}%
-\contentsline {subsubsection}{\numberline {1.3.4}Backfill}{17}{subsubsection.1.3.4}%
-\contentsline {subsection}{\numberline {1.4}Neural Network}{17}{subsection.1.4}%
-\contentsline {subsubsection}{\numberline {1.4.1}Introduction to Neural Networks}{18}{subsubsection.1.4.1}%
-\contentsline {paragraph}{\numberline {1.4.1.1}Fully Connected Layer}{18}{paragraph.1.4.1.1}%
-\contentsline {paragraph}{\numberline {1.4.1.2}Convolutional Layer}{18}{paragraph.1.4.1.2}%
-\contentsline {paragraph}{\numberline {1.4.1.3}Activation Function}{20}{paragraph.1.4.1.3}%
-\contentsline {paragraph}{\numberline {1.4.1.4}Training}{23}{paragraph.1.4.1.4}%
-\contentsline {subsubsection}{\numberline {1.4.2}Network used by AlphaZero}{24}{subsubsection.1.4.2}%
-\contentsline {paragraph}{\numberline {1.4.2.1}Neural Network input}{24}{paragraph.1.4.2.1}%
-\contentsline {paragraph}{\numberline {1.4.2.2}Neural Network Architecture}{26}{paragraph.1.4.2.2}%
-\contentsline {paragraph}{\numberline {1.4.2.3}Training}{27}{paragraph.1.4.2.3}%
-\contentsline {subsection}{\numberline {1.5}Training loop}{28}{subsection.1.5}%
-\contentsline {subsubsection}{\numberline {1.5.1}Data generation}{28}{subsubsection.1.5.1}%
-\contentsline {paragraph}{\numberline {1.5.1.1}Action selection}{28}{paragraph.1.5.1.1}%
-\contentsline {paragraph}{\numberline {1.5.1.2}Memory}{28}{paragraph.1.5.1.2}%
-\contentsline {paragraph}{\numberline {1.5.1.3}Memory update}{29}{paragraph.1.5.1.3}%
-\contentsline {subsubsection}{\numberline {1.5.2}Model Training}{29}{subsubsection.1.5.2}%
-\contentsline {subsubsection}{\numberline {1.5.3}Model evaluation}{29}{subsubsection.1.5.3}%
-\contentsline {section}{\numberline {2}Evaluation}{29}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Elo-rating}{30}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Relativity of the Elo-rating}{31}{subsubsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.2}Elo results}{32}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Problem Complexity}{34}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Trivial Answers}{34}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Combinatorics}{35}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}SBFS based state search}{35}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Implementation}{35}{section.4}%
-\contentsline {section}{\numberline {5}Conclusion}{36}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Improvements}{36}{subsection.5.1}%
-\contentsline {section}{\numberline {6}Code}{38}{section.6}%
-\contentsline {subsection}{\numberline {6.1}AlphaZeroPytorch}{38}{subsection.6.1}%
-\contentsline {subsubsection}{\numberline {6.1.1}AlphaZeroPytorch.h}{38}{subsubsection.6.1.1}%
-\contentsline {subsubsection}{\numberline {6.1.2}AlphaZeroPytorch.cpp}{38}{subsubsection.6.1.2}%
-\contentsline {subsubsection}{\numberline {6.1.3}CMakeLists.txt}{39}{subsubsection.6.1.3}%
-\contentsline {subsubsection}{\numberline {6.1.4}convertToJceFormat.cpp}{41}{subsubsection.6.1.4}%
-\contentsline {subsubsection}{\numberline {6.1.5}doEloRaiting.cpp}{42}{subsubsection.6.1.5}%
-\contentsline {subsubsection}{\numberline {6.1.6}makeFiles.hpp}{44}{subsubsection.6.1.6}%
-\contentsline {subsubsection}{\numberline {6.1.7}Replay.cpp}{45}{subsubsection.6.1.7}%
-\contentsline {subsubsection}{\numberline {6.1.8}runServer.cpp}{45}{subsubsection.6.1.8}%
-\contentsline {subsubsection}{\numberline {6.1.9}showLoss.cpp}{46}{subsubsection.6.1.9}%
-\contentsline {subsubsection}{\numberline {6.1.10}test.cpp}{46}{subsubsection.6.1.10}%
-\contentsline {subsubsection}{\numberline {6.1.11}include}{47}{subsubsection.6.1.11}%
-\contentsline {paragraph}{\numberline {6.1.11.1}config.hpp}{47}{paragraph.6.1.11.1}%
-\contentsline {paragraph}{\numberline {6.1.11.2}config.cpp}{49}{paragraph.6.1.11.2}%
-\contentsline {paragraph}{\numberline {6.1.11.3}io.hpp}{49}{paragraph.6.1.11.3}%
-\contentsline {paragraph}{\numberline {6.1.11.4}log.hpp}{53}{paragraph.6.1.11.4}%
-\contentsline {paragraph}{\numberline {6.1.11.5}log.cpp}{58}{paragraph.6.1.11.5}%
-\contentsline {paragraph}{\numberline {6.1.11.6}timer.hpp}{61}{paragraph.6.1.11.6}%
-\contentsline {paragraph}{\numberline {6.1.11.7}ai}{61}{paragraph.6.1.11.7}%
-\contentsline {subparagraph}{\numberline {6.1.11.7.1}agent.hpp}{61}{subparagraph.6.1.11.7.1}%
-\contentsline {subparagraph}{\numberline {6.1.11.7.2}agent.cpp}{66}{subparagraph.6.1.11.7.2}%
-\contentsline {subparagraph}{\numberline {6.1.11.7.3}MCTS.hpp}{68}{subparagraph.6.1.11.7.3}%
-\contentsline {subparagraph}{\numberline {6.1.11.7.4}MCTS.cpp}{71}{subparagraph.6.1.11.7.4}%
-\contentsline {subparagraph}{\numberline {6.1.11.7.5}memory.hpp}{73}{subparagraph.6.1.11.7.5}%
-\contentsline {subparagraph}{\numberline {6.1.11.7.6}memory.cpp}{76}{subparagraph.6.1.11.7.6}%
-\contentsline {subparagraph}{\numberline {6.1.11.7.7}model.hpp}{77}{subparagraph.6.1.11.7.7}%
-\contentsline {subparagraph}{\numberline {6.1.11.7.8}modelSynchronizer.hpp}{92}{subparagraph.6.1.11.7.8}%
-\contentsline {subparagraph}{\numberline {6.1.11.7.9}modelWorker.hpp}{97}{subparagraph.6.1.11.7.9}%
-\contentsline {subparagraph}{\numberline {6.1.11.7.10}modelWorker.cpp}{97}{subparagraph.6.1.11.7.10}%
-\contentsline {subparagraph}{\numberline {6.1.11.7.11}playGame.hpp}{98}{subparagraph.6.1.11.7.11}%
-\contentsline {subparagraph}{\numberline {6.1.11.7.12}playGame.cpp}{99}{subparagraph.6.1.11.7.12}%
-\contentsline {subparagraph}{\numberline {6.1.11.7.13}utils.hpp}{106}{subparagraph.6.1.11.7.13}%
-\contentsline {paragraph}{\numberline {6.1.11.8}game}{107}{paragraph.6.1.11.8}%
-\contentsline {subparagraph}{\numberline {6.1.11.8.1}game.hpp}{107}{subparagraph.6.1.11.8.1}%
-\contentsline {subparagraph}{\numberline {6.1.11.8.2}game.cpp}{111}{subparagraph.6.1.11.8.2}%
-\contentsline {paragraph}{\numberline {6.1.11.9}jce}{119}{paragraph.6.1.11.9}%
-\contentsline {subparagraph}{\numberline {6.1.11.9.1}load.hpp}{119}{subparagraph.6.1.11.9.1}%
-\contentsline {subparagraph}{\numberline {6.1.11.9.2}save.hpp}{124}{subparagraph.6.1.11.9.2}%
-\contentsline {subparagraph}{\numberline {6.1.11.9.3}string.hpp}{129}{subparagraph.6.1.11.9.3}%
-\contentsline {subparagraph}{\numberline {6.1.11.9.4}vector.hpp}{130}{subparagraph.6.1.11.9.4}%
-\contentsline {paragraph}{\numberline {6.1.11.10}server}{130}{paragraph.6.1.11.10}%
-\contentsline {subparagraph}{\numberline {6.1.11.10.1}eloClient.hpp}{130}{subparagraph.6.1.11.10.1}%
-\contentsline {subparagraph}{\numberline {6.1.11.10.2}server.hpp}{133}{subparagraph.6.1.11.10.2}%
-\contentsline {subparagraph}{\numberline {6.1.11.10.3}server.cpp}{134}{subparagraph.6.1.11.10.3}%
-\contentsline {paragraph}{\numberline {6.1.11.11}test}{137}{paragraph.6.1.11.11}%
-\contentsline {subparagraph}{\numberline {6.1.11.11.1}testSuit.hpp}{137}{subparagraph.6.1.11.11.1}%
-\contentsline {subparagraph}{\numberline {6.1.11.11.2}testSuit.cpp}{139}{subparagraph.6.1.11.11.2}%
-\contentsline {subparagraph}{\numberline {6.1.11.11.3}testUtils.hpp}{143}{subparagraph.6.1.11.11.3}%
-\contentsline {subsection}{\numberline {6.2}Clients}{144}{subsection.6.2}%
-\contentsline {subsubsection}{\numberline {6.2.1}ConsoleClient}{144}{subsubsection.6.2.1}%
-\contentsline {paragraph}{\numberline {6.2.1.1}ConsoleClient.h}{144}{paragraph.6.2.1.1}%
-\contentsline {paragraph}{\numberline {6.2.1.2}ConsoleClient.cpp}{144}{paragraph.6.2.1.2}%
-\contentsline {paragraph}{\numberline {6.2.1.3}include}{145}{paragraph.6.2.1.3}%
-\contentsline {subparagraph}{\numberline {6.2.1.3.1}agent.hpp}{145}{subparagraph.6.2.1.3.1}%
-\contentsline {subparagraph}{\numberline {6.2.1.3.2}game.hpp}{148}{subparagraph.6.2.1.3.2}%
-\contentsline {subparagraph}{\numberline {6.2.1.3.3}modifications.hpp}{151}{subparagraph.6.2.1.3.3}%
-\contentsline {paragraph}{\numberline {6.2.1.4}scr}{152}{paragraph.6.2.1.4}%
-\contentsline {subparagraph}{\numberline {6.2.1.4.1}game.cpp}{152}{subparagraph.6.2.1.4.1}%
-\contentsline {subsubsection}{\numberline {6.2.2}iosClient}{159}{subsubsection.6.2.2}%
-\contentsline {paragraph}{\numberline {6.2.2.1}caller.py}{159}{paragraph.6.2.2.1}%
-\contentsline {paragraph}{\numberline {6.2.2.2}connect4IOS.py}{159}{paragraph.6.2.2.2}%
-\contentsline {subsubsection}{\numberline {6.2.3}pyClient}{166}{subsubsection.6.2.3}%
-\contentsline {paragraph}{\numberline {6.2.3.1}Client.py}{166}{paragraph.6.2.3.1}%
-\contentsline {paragraph}{\numberline {6.2.3.2}game.py}{168}{paragraph.6.2.3.2}%
-\contentsline {paragraph}{\numberline {6.2.3.3}gameSaver.py}{171}{paragraph.6.2.3.3}%
-\contentsline {paragraph}{\numberline {6.2.3.4}GUI.py}{174}{paragraph.6.2.3.4}%
-\contentsline {paragraph}{\numberline {6.2.3.5}main.py}{180}{paragraph.6.2.3.5}%
-\contentsline {paragraph}{\numberline {6.2.3.6}test.py}{181}{paragraph.6.2.3.6}%
-\contentsline {paragraph}{\numberline {6.2.3.7}winStates.json}{182}{paragraph.6.2.3.7}%
-\contentsline {subsection}{\numberline {6.3}elo}{184}{subsection.6.3}%
-\contentsline {subsubsection}{\numberline {6.3.1}agent.py}{184}{subsubsection.6.3.1}%
-\contentsline {subsubsection}{\numberline {6.3.2}renderElo.py}{185}{subsubsection.6.3.2}%
-\contentsline {subsubsection}{\numberline {6.3.3}score.py}{186}{subsubsection.6.3.3}%
-\contentsline {subsubsection}{\numberline {6.3.4}server.py}{186}{subsubsection.6.3.4}%
-\contentsline {subsection}{\numberline {6.4}game}{190}{subsection.6.4}%
-\contentsline {subsubsection}{\numberline {6.4.1}connect4}{190}{subsubsection.6.4.1}%
-\contentsline {paragraph}{\numberline {6.4.1.1}config.hpp}{190}{paragraph.6.4.1.1}%
-\contentsline {paragraph}{\numberline {6.4.1.2}game.hpp}{192}{paragraph.6.4.1.2}%
-\contentsline {paragraph}{\numberline {6.4.1.3}game.cpp}{196}{paragraph.6.4.1.3}%
-\contentsline {subsubsection}{\numberline {6.4.2}othello}{204}{subsubsection.6.4.2}%
-\contentsline {paragraph}{\numberline {6.4.2.1}config.hpp}{204}{paragraph.6.4.2.1}%
-\contentsline {paragraph}{\numberline {6.4.2.2}game.hpp}{206}{paragraph.6.4.2.2}%
-\contentsline {paragraph}{\numberline {6.4.2.3}game.cpp}{211}{paragraph.6.4.2.3}%
-\contentsline {subsection}{\numberline {6.5}CMakeLists.txt}{220}{subsection.6.5}%
-\contentsline {subsection}{\numberline {6.6}README.md}{220}{subsection.6.6}%
-\contentsline {section}{\numberline {7}Demos}{220}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Matura-AlphaZero-demos}{220}{subsection.7.1}%
-\contentsline {subsubsection}{\numberline {7.1.1}CMakeLists.txt}{220}{subsubsection.7.1.1}%
-\contentsline {subsubsection}{\numberline {7.1.2}main.cpp}{223}{subsubsection.7.1.2}%
-\contentsline {subsubsection}{\numberline {7.1.3}README.md}{227}{subsubsection.7.1.3}%
-\contentsline {subsubsection}{\numberline {7.1.4}supervised.cpp}{227}{subsubsection.7.1.4}%
-\contentsline {subsubsection}{\numberline {7.1.5}include}{231}{subsubsection.7.1.5}%
-\contentsline {paragraph}{\numberline {7.1.5.1}point.hpp}{231}{paragraph.7.1.5.1}%
-\contentsline {paragraph}{\numberline {7.1.5.2}utils.hpp}{231}{paragraph.7.1.5.2}%
-\contentsline {subsubsection}{\numberline {7.1.6}scr}{232}{subsubsection.7.1.6}%
-\contentsline {paragraph}{\numberline {7.1.6.1}point.cpp}{232}{paragraph.7.1.6.1}%
-\contentsline {subsubsection}{\numberline {7.1.7}supervised}{235}{subsubsection.7.1.7}%
-\contentsline {paragraph}{\numberline {7.1.7.1}include}{235}{paragraph.7.1.7.1}%
-\contentsline {subparagraph}{\numberline {7.1.7.1.1}config.hpp}{235}{subparagraph.7.1.7.1.1}%
-\contentsline {subparagraph}{\numberline {7.1.7.1.2}model.hpp}{235}{subparagraph.7.1.7.1.2}%
-\contentsline {paragraph}{\numberline {7.1.7.2}src}{236}{paragraph.7.1.7.2}%
-\contentsline {subparagraph}{\numberline {7.1.7.2.1}model.cpp}{236}{subparagraph.7.1.7.2.1}%
-\contentsline {subsubsection}{\numberline {7.1.8}unsupervised}{238}{subsubsection.7.1.8}%
-\contentsline {paragraph}{\numberline {7.1.8.1}include}{238}{paragraph.7.1.8.1}%
-\contentsline {subparagraph}{\numberline {7.1.8.1.1}cluster.hpp}{238}{subparagraph.7.1.8.1.1}%
-\contentsline {subparagraph}{\numberline {7.1.8.1.2}config.hpp}{239}{subparagraph.7.1.8.1.2}%
-\contentsline {subparagraph}{\numberline {7.1.8.1.3}group.hpp}{239}{subparagraph.7.1.8.1.3}%
-\contentsline {paragraph}{\numberline {7.1.8.2}src}{240}{paragraph.7.1.8.2}%
-\contentsline {section}{\numberline {8}Further definitions}{240}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Set Exclusion}{240}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Hadamard product}{240}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}Inner Product}{240}{subsection.8.3}%
-\contentsline {subsubsection}{\numberline {8.3.1}Matrices}{240}{subsubsection.8.3.1}%
-\contentsline {subsubsection}{\numberline {8.3.2}\(n\)-dimensional Tensors}{241}{subsubsection.8.3.2}%
-\contentsline {subsection}{\numberline {8.4}Submatrix}{241}{subsection.8.4}%
-\contentsline {subsection}{\numberline {8.5}Vectorization}{241}{subsection.8.5}%
-\contentsline {subsubsection}{\numberline {8.5.1}Tensors}{242}{subsubsection.8.5.1}%
-\contentsline {subsection}{\numberline {8.6}Vector Concatination}{242}{subsection.8.6}%
-\contentsline {subsection}{\numberline {8.7}Elementwise vector operations}{242}{subsection.8.7}%
-\contentsline {subsection}{\numberline {8.8}Sets}{242}{subsection.8.8}%
-\contentsline {section}{\numberline {9}Further examples}{243}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Mcts}{243}{subsection.9.1}%
-\contentsline {section}{\numberline {10}Proofs}{244}{section.10}%
-\contentsline {subsection}{\numberline {10.1}tanh derivative}{244}{subsection.10.1}%
-\contentsline {subsection}{\numberline {10.2}Softmax Derivative}{245}{subsection.10.2}%
-\contentsline {subsection}{\numberline {10.3}Elo Rating}{246}{subsection.10.3}%
+\contentsline {section}{\numberline {1}Methods}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Reinforcement Learning}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Game}{6}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Game Board}{7}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Actions}{8}{subsubsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.3}MCTS \cite {chaslot2008parallel}\cite {silver2018general}}{9}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Evaluation Basis}{10}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Leaf Selection}{11}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}Node Evaluation and Expansion}{12}{subsubsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {1.3.4}Backfill}{13}{subsubsection.1.3.4}%
+\contentsline {subsection}{\numberline {1.4}Neural Network}{13}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Introduction to Neural Networks}{13}{subsubsection.1.4.1}%
+\contentsline {paragraph}{\numberline {1.4.1.1}Fully Connected Layer}{14}{paragraph.1.4.1.1}%
+\contentsline {paragraph}{\numberline {1.4.1.2}Convolutional Layer}{14}{paragraph.1.4.1.2}%
+\contentsline {paragraph}{\numberline {1.4.1.3}Activation Function}{16}{paragraph.1.4.1.3}%
+\contentsline {paragraph}{\numberline {1.4.1.4}Training introduction}{19}{paragraph.1.4.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.2}Network used by Alpha Zero}{20}{subsubsection.1.4.2}%
+\contentsline {paragraph}{\numberline {1.4.2.1}Neural Network input}{21}{paragraph.1.4.2.1}%
+\contentsline {paragraph}{\numberline {1.4.2.2}Neural Network Architecture}{22}{paragraph.1.4.2.2}%
+\contentsline {paragraph}{\numberline {1.4.2.3}Model Training}{23}{paragraph.1.4.2.3}%
+\contentsline {subsection}{\numberline {1.5}Training loop}{24}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}Data generation}{24}{subsubsection.1.5.1}%
+\contentsline {paragraph}{\numberline {1.5.1.1}Action selection}{24}{paragraph.1.5.1.1}%
+\contentsline {paragraph}{\numberline {1.5.1.2}Memory}{24}{paragraph.1.5.1.2}%
+\contentsline {paragraph}{\numberline {1.5.1.3}Memory update}{25}{paragraph.1.5.1.3}%
+\contentsline {subsubsection}{\numberline {1.5.2}Model Training}{25}{subsubsection.1.5.2}%
+\contentsline {subsubsection}{\numberline {1.5.3}Model evaluation}{25}{subsubsection.1.5.3}%
+\contentsline {section}{\numberline {2}Evaluation}{26}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Elo-rating}{26}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Relativity of the Elo-rating}{27}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.2}Elo results}{28}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Problem Complexity}{30}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Trivial Answers}{30}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Combinatorics}{31}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}SBFS based state search}{31}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Implementation}{31}{section.4}%
+\contentsline {section}{\numberline {5}Conclusion}{32}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Improvements}{32}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Apendix 3: Further definitions}{34}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Hadamard product}{34}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Inner Product}{34}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Matrices}{34}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}\(n\)-dimensional Tensors}{34}{subsubsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.3}Submatrix}{35}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Sets}{35}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Softmax Derivative}{35}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Elo Rating}{36}{subsection.6.6}%

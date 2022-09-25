@@ -1,0 +1,268 @@
+\title{Mastering the game of Connect 4 through self-play Apendix}
+\author{
+        Julian Wandhoven \\
+                FGZ\\
+}
+\date{\today}
+
+\documentclass[12pt]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{svg}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{lscape}
+\usepackage{import}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{minted}
+
+\usepackage{rotating}
+\usepackage{tikz}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{memoBox}[1][]{%
+  sharp corners,
+   colback=white,
+  attach title to upper,
+  #1
+}
+
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+\lstset { %
+    language=C++,
+    backgroundcolor=\color{black!5}, % set backgroundcolor
+    basicstyle=\footnotesize,% basic font setting
+}
+
+
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\titleformat{\subparagraph}
+{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+\titlespacing*{\subparagraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\newcommand{\imgRef}[1]{(fig \ref{#1} on page \pageref{#1})}
+\newcommand{\equationref}[1]{equation \ref{#1} on page \pageref{#1}}
+\newcommand{\sectionref}[1]{section \ref{#1} ``\nameref{#1}'' on page \pageref{#1}}
+\newcommand{\listingref}[1]{listing \ref{#1} on page \pageref{#1}}
+\newcommand{\source}[1]{\caption*{Source: {#1}} }
+\newcommand{\quckeq}[1]{(\ref{#1})}
+\newcommand{\quickeq}[1]{\quckeq{#1}}
+\newcommand{\InBreadcrums}[0]{e \in \mathbb E_{back,l,L}}
+
+\newcommand{\tickTackToe}[9]{
+\begin{tabular}{p{7px}|p{7px}|p{7px}}
+\multicolumn{3}{c}{}\\
+  #1 & #2 & #3 \\      \hline
+  #4 & #5 & #6 \\      \hline
+   & #7 & #8\\
+\multicolumn{3}{c}{#9}
+\end{tabular}
+}
+\newcommand{\ticTacToe}[9]{
+\begin{tabular}{p{7px}|p{7px}|p{7px}}
+  #1 & #2 & #3 \\      \hline
+  #4 & #5 & #6 \\      \hline
+  #7 & #8 & #9 \\
+\end{tabular}
+}
+\newcommand{\rewardArrow}[2]{\(\xrightarrow[= #2]{R(\dots)}\) }
+
+\newcommand{\FittedEloRaiting}{408}
+\newcommand{\FittedScoringThreshold}{2.8}
+\newcommand{\batchSize}{256}
+
+\newcommand{\mathColor}[2]{\color{#1}#2\color{black}}
+\newcommand{\gold}{YellowOrange}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0.29,0}
+\definecolor{codeLightGray}{rgb}{0.9,0.9,0.9}
+
+\lstset{ 
+  backgroundcolor=\color{codeLightGray},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  %frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=C++,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  %title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+\newcommand{\incFile}[2]{\label{code:#2}\lstinputlisting[language=#1]{code/#2}}
+\newcommand{\incDemo}[2]{\label{demo:#2}\lstinputlisting[language=#1]{demos/#2}}
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+%\section{Apendix 1: Alpha Zero Code}
+%\subsection{AlphaZeroPytorch}
+%\subsubsection{AlphaZeroPytorch.h}							\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.h}
+%\subsubsection{AlphaZeroPytorch.cpp}						\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.cpp}
+%%\subsubsection{cmake.sh}												\incFile{sh}{AlphaZeroPytorch/cmake.sh}
+%\subsubsection{CMakeLists.txt}										\incFile{python}{AlphaZeroPytorch/CMakeLists.txt}
+%\subsubsection{convertToJceFormat.cpp}					\incFile{C++}{AlphaZeroPytorch/convertToJceFormat.cpp}
+%%\incFile{C++}{AlphaZeroPytorch/detect_cuda_compute_capabilities.cpp}
+%%\incFile{C++}{AlphaZeroPytorch/detect_cuda_version.cc}
+%\subsubsection{doEloRaiting.cpp}									\incFile{C++}{AlphaZeroPytorch/doEloRaiting.cpp}
+%\subsubsection{makeFiles.hpp}										\incFile{C++}{AlphaZeroPytorch/makeFiles.hpp}
+%\subsubsection{Replay.cpp}											\incFile{C++}{AlphaZeroPytorch/Replay.cpp}
+%\subsubsection{runServer.cpp}										\incFile{C++}{AlphaZeroPytorch/runServer.cpp}
+%\subsubsection{showLoss.cpp}										\incFile{C++}{AlphaZeroPytorch/showLoss.cpp}
+%\subsubsection{test.cpp}												\incFile{C++}{AlphaZeroPytorch/test.cpp}
+%\subsubsection{include}													% AlphaZeroPytorch/include
+%\paragraph{config.hpp}													\incFile{C++}{AlphaZeroPytorch/include/config.hpp} \label{code:config}
+%\paragraph{config.cpp}													\incFile{C++}{AlphaZeroPytorch/include/config.cpp}
+%\paragraph{io.hpp}															\incFile{C++}{AlphaZeroPytorch/include/io.hpp}
+%\paragraph{log.hpp}														\incFile{C++}{AlphaZeroPytorch/include/log.hpp}
+%\paragraph{log.cpp}														\incFile{C++}{AlphaZeroPytorch/include/log.cpp}
+%\paragraph{timer.hpp}													\incFile{C++}{AlphaZeroPytorch/include/timer.hpp}
+%\paragraph{ai}																	% AlphaZeroPytorch/include/ai
+%\subparagraph{agent.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.hpp} \label{code:Agent}
+%\subparagraph{agent.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.cpp}
+%\subparagraph{MCTS.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.hpp}
+%\subparagraph{MCTS.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.cpp}
+%\subparagraph{memory.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.hpp}
+%\subparagraph{memory.cpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.cpp}
+%\subparagraph{model.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/model.hpp}
+%\subparagraph{modelSynchronizer.hpp}						\incFile{C++}{AlphaZeroPytorch/include/ai/modelSynchronizer.hpp}
+%\subparagraph{modelWorker.hpp}								\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.hpp}
+%\subparagraph{modelWorker.cpp}									\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.cpp}
+%\subparagraph{playGame.hpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.hpp}\label{code:playGame}
+%\subparagraph{playGame.cpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.cpp}
+%\subparagraph{utils.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/utils.hpp}
+%\paragraph{game}															% AlphaZeroPytorch/include/game
+%\subparagraph{game.hpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.hpp}\label{code:Game}
+%\subparagraph{game.cpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.cpp}
+%\paragraph{jce}																% AlphaZeroPytorch/include/jce
+%\subparagraph{load.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/load.hpp}
+%\subparagraph{save.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/save.hpp}
+%\subparagraph{string.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/string.hpp}
+%\subparagraph{vector.hpp}											\incFile{C++}{AlphaZeroPytorch/include/jce/vector.hpp}
+%\paragraph{server}															% AlphaZeroPytorch/include/server
+%\subparagraph{eloClient.hpp}										\incFile{C++}{AlphaZeroPytorch/include/Server/eloClient.hpp}
+%\subparagraph{server.hpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.hpp}
+%\subparagraph{server.cpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.cpp}
+%\paragraph{test}																% AlphaZeroPytorch/include/test
+%\subparagraph{testSuit.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.hpp}	
+%\subparagraph{testSuit.cpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.cpp}
+%\subparagraph{testUtils.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testUtils.hpp}
+%
+%\subsection{Clients}														% Clients/ConsoleClient
+%\subsubsection{ConsoleClient}
+%\paragraph{ConsoleClient.h}											\incFile{C++}{Clients/ConsoleClient/ConsoleClient.h}
+%\paragraph{ConsoleClient.cpp}										\incFile{C++}{Clients/ConsoleClient/ConsoleClient.cpp}
+%\paragraph{include}														% clients/consoleClient/include
+%\subparagraph{agent.hpp}												\incFile{C++}{Clients/ConsoleClient/include/agent.hpp}
+%\subparagraph{game.hpp}												\incFile{C++}{Clients/ConsoleClient/include/game.hpp}
+%\subparagraph{modifications.hpp}								\incFile{C++}{Clients/ConsoleClient/include/modifications.hpp}
+%\paragraph{scr}																% Clients/ConsoleClient/src
+%\subparagraph{game.cpp}												\incFile{C++}{Clients/ConsoleClient/scr/game.cpp}
+%\subsubsection{iosClient}												% Clients/iosClient
+%\paragraph{caller.py}														\incFile{python}{Clients/iosClient/caller.py}
+%\paragraph{connect4IOS.py}											\incFile{python}{Clients/iosClient/connect4IOS.py}
+%\subsubsection{pyClient}												% Clients/pyClient
+%\paragraph{Client.py}														\incFile{python}{Clients/pyClient/Client.py}
+%\paragraph{game.py}														\incFile{python}{Clients/pyClient/game.py}
+%\paragraph{gameSaver.py}												\incFile{python}{Clients/pyClient/gameSaver.py}
+%\paragraph{GUI.py}															\incFile{python}{Clients/pyClient/GUI.py}
+%\paragraph{main.py}														\incFile{python}{Clients/pyClient/main.py}
+%\paragraph{test.py}														\incFile{python}{Clients/pyClient/test.py}
+%\paragraph{winStates.json}											\incFile{python}{Clients/pyClient/winStates.json}
+%
+%\subsection{elo}																% /elo
+%\subsubsection{agent.py}												\incFile{python}{elo/agent.py}
+%\subsubsection{renderElo.py}										\incFile{python}{elo/renderElo.py}
+%\subsubsection{score.py}												\incFile{python}{elo/score.py}
+%\subsubsection{server.py}												\incFile{python}{elo/server.py}
+%
+%\subsection{game}															% games/connect4
+%\subsubsection{connect4}
+%\paragraph{config.hpp}													\incFile{C++}{games/connect4/config.hpp}
+%\paragraph{game.hpp}													\incFile{C++}{games/connect4/game.hpp}
+%\paragraph{game.cpp}													\incFile{C++}{games/connect4/game.cpp}
+%\subsubsection{othello}													% games/othello
+%\paragraph{config.hpp}													\incFile{C++}{games/othello/config.hpp}
+%\paragraph{game.hpp}													\incFile{C++}{games/othello/game.hpp}
+%\paragraph{game.cpp}													\incFile{C++}{games/othello/game.cpp}
+%
+%% /
+%\subsection{CMakeLists.txt}											\incFile{python}{CMakeLists.txt}
+%\subsection{README.md}												\incFile{python}{README.md}
+%%\subsection{serch.sh}														\incFile{sh}{serch.sh}
+%
+%\section{Apendix 2: Demos Code}
+%\subsection{Matura-AlphaZero-demos}
+%\subsubsection{CMakeLists.txt}										\incDemo{python}{CMakeLists.txt}
+%%\subsubsection{LICENSE}											\incDemo{python}{LICENSE}
+%\subsubsection{main.cpp}												\incDemo{c++}{main.cpp}
+%\subsubsection{README.md}										\incDemo{python}{README.md}
+%\subsubsection{supervised.cpp}									\incDemo{c++}{supervised.cpp}
+%\subsubsection{include}													% demo/include
+%\paragraph{point.hpp}													\incDemo{c++}{include/point.hpp}
+%\paragraph{utils.hpp}														\incDemo{c++}{include/utils.hpp}
+%\subsubsection{scr}														% demo/scr
+%\paragraph{point.cpp}													\incDemo{c++}{scr/point.cpp}
+%\subsubsection{supervised}											% demo/supervised
+%\paragraph{include}														% demo/supervised/include
+%\subparagraph{config.hpp}											\incDemo{c++}{supervised/include/config.hpp}
+%\subparagraph{model.hpp}											\incDemo{c++}{supervised/include/model.hpp}
+%\paragraph{src}																% demo/supervised/src
+%\subparagraph{model.cpp}												\incDemo{c++}{supervised/src/model.cpp}
+%\subsubsection{unsupervised}										% demo/unsupervised
+%\paragraph{include}														% demo/unsupervised/include
+%\subparagraph{cluster.hpp}											\incDemo{c++}{unsupervised/include/cluster.hpp}
+%\subparagraph{config.hpp}											\incDemo{c++}{unsupervised/include/config.hpp}
+%\subparagraph{group.hpp}												\incDemo{c++}{unsupervised/include/group.hpp}
+%\paragraph{src}																% demo/unsupervised/src
+%%\subparagraph{cluster.cpp}											\incDemo{c++}{unsupervised/src/cluster.cpp}
+%%\subparagraph{group.cpp}												\incDemo{c++}{unsupervised/src/group.cpp}
+\end{document}

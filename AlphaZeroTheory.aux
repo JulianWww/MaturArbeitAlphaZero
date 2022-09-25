@@ -19,448 +19,149 @@
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \citation{silver2018general}
 \citation{silver2017mastering}
-\citation{elo1978rating}
-\citation{wiki:Vector_quantization}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Methods}{7}{section.1}\protected@file@percent }
-\newlabel{Methods}{{1}{7}{Methods}{section.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Reinforcement Learning}{7}{subsection.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Game}{9}{subsection.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.1}Game Board}{10}{subsubsection.1.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.2}Actions}{11}{subsubsection.1.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}MCTS}{12}{subsection.1.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces In the following small MCTS tree represents a possible graph at step \(l\), where \(n_?\) are nodes, \(e_?\) are edges connecting the nodes and \(A_?\) are actions associated with the edge they are next to. The questionmark represents the indices. The set of all nodes \(\mathbb  M_l = \{n_1, n_2, \dots  , n_8\}\) and \(\mathbb  E_l = \{e_1, e_2, \dots  , e_5\}\). We can also see that \(\mathbb  E_l(n_1) = \{e_1, e_2, e_3\}\), \(\mathbb  E_l(n_2) = \{e_4, e_5\}\), \(\mathbb  E_l(n_3) = \emptyset \) and so forth. Because \(e_1\) represents action \(A_1\) taken at node \(n_1\), \(\mathcal  E_l(n_1, A_1) = e_1\). By the same logic \(\mathcal  E_l(n_2, A_2) = e_2\) and so forth. Becuase edge \(e_1\) connects node \(n_1\) to \(n_3\), \(\mathcal  N_{from_l}(e_1) = n_1\) and \(\mathcal  N_{to_l}(e_1) = n_3\). The same logic applies to all other nodes. The set of all expanded nodes \(\mathbb  M_{expanded_l} = \{n_1, n_2, n_4\}\) because they have at least one edge leading away from them. On the other hand, the set of all leaf nodes \(\mathbb  M_{leaf_l} = \{n_3, n_5, n_6, n_7, n_8\}\). Finally \(\mathbb  M = \mathbb  M_{expanded} \cup \mathbb  M_{leaf}\) (see section \ref  {mctsExampleFullData} on page \pageref  {mctsExampleFullData} for all data)\relax }}{14}{figure.caption.1}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:mcts:example}{{1}{14}{In the following small MCTS tree represents a possible graph at step \(l\), where \(n_?\) are nodes, \(e_?\) are edges connecting the nodes and \(A_?\) are actions associated with the edge they are next to. The questionmark represents the indices. The set of all nodes \(\mathbb M_l = \{n_1, n_2, \dots , n_8\}\) and \(\mathbb E_l = \{e_1, e_2, \dots , e_5\}\). We can also see that \(\mathbb E_l(n_1) = \{e_1, e_2, e_3\}\), \(\mathbb E_l(n_2) = \{e_4, e_5\}\), \(\mathbb E_l(n_3) = \emptyset \) and so forth. Because \(e_1\) represents action \(A_1\) taken at node \(n_1\), \(\mathcal E_l(n_1, A_1) = e_1\). By the same logic \(\mathcal E_l(n_2, A_2) = e_2\) and so forth. Becuase edge \(e_1\) connects node \(n_1\) to \(n_3\), \(\mathcal N_{from_l}(e_1) = n_1\) and \(\mathcal N_{to_l}(e_1) = n_3\). The same logic applies to all other nodes. The set of all expanded nodes \(\mathbb M_{expanded_l} = \{n_1, n_2, n_4\}\) because they have at least one edge leading away from them. On the other hand, the set of all leaf nodes \(\mathbb M_{leaf_l} = \{n_3, n_5, n_6, n_7, n_8\}\). Finally \(\mathbb M = \mathbb M_{expanded} \cup \mathbb M_{leaf}\) (see \sectionref {mctsExampleFullData} for all data)\relax }{figure.caption.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.1}Evaluation Basis}{14}{subsubsection.1.3.1}\protected@file@percent }
-\newlabel{eq:Ql}{{4}{14}{Evaluation Basis}{equation.1.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.2}Leaf Selection}{15}{subsubsection.1.3.2}\protected@file@percent }
-\newlabel{sec:Methods:MCTS:Leaf_selection}{{1.3.2}{15}{Leaf Selection}{subsubsection.1.3.2}{}}
-\newlabel{eq:sigma}{{6}{15}{Leaf Selection}{equation.1.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.3}Node Evaluation and Expansion}{15}{subsubsection.1.3.3}\protected@file@percent }
-\newlabel{sec:Methods:MCTS:Node Evaluation and Expansion}{{1.3.3}{15}{Node Evaluation and Expansion}{subsubsection.1.3.3}{}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.3.3.1}end game state \(\mathcal  S(n_{L_l}) \in \mathbb  G_{done}\)}{16}{paragraph.1.3.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.3.3.2}not end game state \(\mathcal  S(n_{L_l}) \not \in \mathbb  G_{done}\)}{16}{paragraph.1.3.3.2}\protected@file@percent }
 \citation{chaslot2008parallel}
 \citation{silver2018general}
-\citation{zhang2018artificial}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.4}Backfill}{17}{subsubsection.1.3.4}\protected@file@percent }
-\newlabel{sec:Methods:MCTS:Backfill}{{1.3.4}{17}{Backfill}{subsubsection.1.3.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Neural Network}{17}{subsection.1.4}\protected@file@percent }
-\newlabel{NN}{{1.4}{17}{Neural Network}{subsection.1.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.1}Introduction to Neural Networks}{18}{subsubsection.1.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.1.1}Fully Connected Layer}{18}{paragraph.1.4.1.1}\protected@file@percent }
-\newlabel{eq:NN:fully_connected_layer_forward}{{21}{18}{Fully Connected Layer}{equation.1.21}{}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.1.2}Convolutional Layer}{18}{paragraph.1.4.1.2}\protected@file@percent }
-\newlabel{eq:NN:kernelOpperation}{{22}{18}{Convolutional Layer}{equation.1.22}{}}
-\newlabel{eq:NN:convolutional_opperation}{{23}{19}{Convolutional Layer}{equation.1.23}{}}
-\newlabel{eq:conv:eg}{{24}{19}{Convolutional Layer}{equation.1.24}{}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.1.3}Activation Function}{20}{paragraph.1.4.1.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces tanh function in blue and the tanh's derivative is in orange\relax }}{20}{figure.2}\protected@file@percent }
-\newlabel{eq:NN:tanh}{{25}{20}{}{equation.1.25}{}}
-\newlabel{eq:NN:tanh_derivative}{{26}{20}{}{equation.1.26}{}}
-\newlabel{eq:vecTanh}{{27}{20}{}{equation.1.27}{}}
-\newlabel{eq:NN:softmax}{{29}{21}{}{equation.1.29}{}}
-\newlabel{fig:sub1}{{3a}{21}{\(i=1\)\relax }{figure.caption.2}{}}
-\newlabel{sub@fig:sub1}{{a}{21}{\(i=1\)\relax }{figure.caption.2}{}}
-\newlabel{fig:sub2}{{3b}{21}{\(i=2\)\relax }{figure.caption.2}{}}
-\newlabel{sub@fig:sub2}{{b}{21}{\(i=2\)\relax }{figure.caption.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Graph of the softmax function from \(\mathbb  R^2 \to \mathbb  R^2\). \(i\) is the index of the output dimension. Therefore, \(i=1\) referes to the output's first dimension and \(i=2\) referes to it's second dimension.\relax }}{21}{figure.caption.2}\protected@file@percent }
-\newlabel{fig:test}{{3}{21}{Graph of the softmax function from \(\mathbb R^2 \to \mathbb R^2\). \(i\) is the index of the output dimension. Therefore, \(i=1\) referes to the output's first dimension and \(i=2\) referes to it's second dimension.\relax }{figure.caption.2}{}}
-\newlabel{eq:NN:softmax_derivative}{{32}{21}{}{equation.1.32}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces LeakyReLU with \(c = 0.3\)\relax }}{22}{figure.4}\protected@file@percent }
-\newlabel{eq:NN:ReLU}{{33}{22}{}{equation.1.33}{}}
-\newlabel{eq:NN:Relu_derivative}{{34}{22}{}{equation.1.34}{}}
-\newlabel{eq:vecTanh}{{36}{23}{}{equation.1.36}{}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.1.4}Training}{23}{paragraph.1.4.1.4}\protected@file@percent }
-\newlabel{eq:NN:loss_mse}{{38}{23}{Training}{equation.1.38}{}}
-\newlabel{eq:lossDerivative}{{39}{23}{Training}{equation.1.39}{}}
-\newlabel{eq:NN:deltaA}{{41}{24}{Training}{equation.1.41}{}}
-\newlabel{eq:NN:deltaW}{{42}{24}{Training}{equation.1.42}{}}
-\newlabel{eq:NN:deltaB}{{43}{24}{Training}{equation.1.43}{}}
-\newlabel{eq:NN:deltaA_lastLayer}{{44}{24}{Training}{equation.1.44}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.2}Network used by AlphaZero}{24}{subsubsection.1.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.2.1}Neural Network input}{24}{paragraph.1.4.2.1}\protected@file@percent }
-\newlabel{sec:neuralNetworkInput}{{1.4.2.1}{24}{Neural Network input}{paragraph.1.4.2.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \relax }}{25}{figure.5}\protected@file@percent }
-\newlabel{fig:connect4ImageOne}{{5}{25}{\relax }{figure.5}{}}
-\citation{ioffe2015batch}
-\citation{ioffe2015batch}
-\citation{ioffe2015batch}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.2.2}Neural Network Architecture}{26}{paragraph.1.4.2.2}\protected@file@percent }
-\newlabel{sec:NeruralNetworkArchitecture}{{1.4.2.2}{26}{Neural Network Architecture}{paragraph.1.4.2.2}{}}
-\newlabel{eq:nn:policyDefinition}{{45}{27}{Neural Network Architecture}{equation.1.45}{}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.2.3}Training}{27}{paragraph.1.4.2.3}\protected@file@percent }
-\newlabel{sec:Methods:NN:A0:Training}{{1.4.2.3}{27}{Training}{paragraph.1.4.2.3}{}}
-\newlabel{eq:NN:policy_computation}{{46}{27}{Training}{equation.1.46}{}}
-\newlabel{eq:NN:policy_computation_nonlegal}{{47}{27}{Training}{equation.1.47}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Training loop}{28}{subsection.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.5.1}Data generation}{28}{subsubsection.1.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.5.1.1}Action selection}{28}{paragraph.1.5.1.1}\protected@file@percent }
-\newlabel{sec:training:actionSelection}{{1.5.1.1}{28}{Action selection}{paragraph.1.5.1.1}{}}
-\newlabel{eq:ActionSelection:Probabilistic}{{48}{28}{Action selection}{equation.1.48}{}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.5.1.2}Memory}{28}{paragraph.1.5.1.2}\protected@file@percent }
-\newlabel{sec:memory}{{1.5.1.2}{28}{Memory}{paragraph.1.5.1.2}{}}
 \citation{elo1978rating}
-\newlabel{eq:Memory:ActionValuesDefinition}{{49}{29}{Memory}{equation.1.49}{}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {1.5.1.3}Memory update}{29}{paragraph.1.5.1.3}\protected@file@percent }
-\newlabel{sec:memoryUpdate}{{1.5.1.3}{29}{Memory update}{paragraph.1.5.1.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.5.2}Model Training}{29}{subsubsection.1.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.5.3}Model evaluation}{29}{subsubsection.1.5.3}\protected@file@percent }
-\newlabel{sec:modelEvaluation}{{1.5.3}{29}{Model evaluation}{subsubsection.1.5.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Evaluation}{29}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Methods}{4}{section.1}\protected@file@percent }
+\newlabel{Methods}{{1}{4}{Methods}{section.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Reinforcement Learning}{4}{subsection.1.1}\protected@file@percent }
+\citation{wiki:Vector_quantization}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Game}{6}{subsection.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.1}Game Board}{7}{subsubsection.1.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.2}Actions}{8}{subsubsection.1.2.2}\protected@file@percent }
+\citation{chaslot2008parallel}
+\citation{silver2018general}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}MCTS \cite  {chaslot2008parallel}\cite  {silver2018general}}{9}{subsection.1.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \relax }}{10}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:mcts:example}{{1}{10}{\relax }{figure.caption.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.1}Evaluation Basis}{10}{subsubsection.1.3.1}\protected@file@percent }
+\newlabel{eq:Ql}{{4}{10}{Evaluation Basis}{equation.1.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.2}Leaf Selection}{11}{subsubsection.1.3.2}\protected@file@percent }
+\newlabel{sec:Methods:MCTS:Leaf_selection}{{1.3.2}{11}{Leaf Selection}{subsubsection.1.3.2}{}}
+\newlabel{eq:sigma}{{7}{11}{Leaf Selection}{equation.1.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.3}Node Evaluation and Expansion}{12}{subsubsection.1.3.3}\protected@file@percent }
+\newlabel{sec:Methods:MCTS:Node Evaluation and Expansion}{{1.3.3}{12}{Node Evaluation and Expansion}{subsubsection.1.3.3}{}}
+\citation{silver2018general}
+\citation{zhang2018artificial}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.4}Backfill}{13}{subsubsection.1.3.4}\protected@file@percent }
+\newlabel{sec:Methods:MCTS:Backfill}{{1.3.4}{13}{Backfill}{subsubsection.1.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Neural Network}{13}{subsection.1.4}\protected@file@percent }
+\newlabel{NN}{{1.4}{13}{Neural Network}{subsection.1.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.1}Introduction to Neural Networks}{13}{subsubsection.1.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.1.1}Fully Connected Layer}{14}{paragraph.1.4.1.1}\protected@file@percent }
+\newlabel{eq:NN:fully_connected_layer_forward}{{18}{14}{Fully Connected Layer}{equation.1.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.1.2}Convolutional Layer}{14}{paragraph.1.4.1.2}\protected@file@percent }
+\newlabel{eq:NN:kernelOpperation}{{19}{14}{Convolutional Layer}{equation.1.19}{}}
+\newlabel{eq:NN:convolutional_opperation}{{20}{15}{Convolutional Layer}{equation.1.20}{}}
+\newlabel{eq:conv:eg}{{21}{15}{Convolutional Layer}{equation.1.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.1.3}Activation Function}{16}{paragraph.1.4.1.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces tanh function in blue and the tanh's derivative is in orange\relax }}{16}{figure.2}\protected@file@percent }
+\newlabel{eq:NN:tanh}{{22}{16}{}{equation.1.22}{}}
+\newlabel{eq:NN:tanh_derivative}{{23}{16}{}{equation.1.23}{}}
+\newlabel{eq:vecTanh}{{24}{16}{}{equation.1.24}{}}
+\newlabel{eq:NN:softmax}{{26}{17}{}{equation.1.26}{}}
+\newlabel{fig:sub1}{{3a}{17}{\(o_1\)\relax }{figure.caption.2}{}}
+\newlabel{sub@fig:sub1}{{a}{17}{\(o_1\)\relax }{figure.caption.2}{}}
+\newlabel{fig:sub2}{{3b}{17}{\(o_2\)\relax }{figure.caption.2}{}}
+\newlabel{sub@fig:sub2}{{b}{17}{\(o_2\)\relax }{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Graph of the softmax function from \(\mathbb  R^2 \to \mathbb  R^2\).\relax }}{17}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:test}{{3}{17}{Graph of the softmax function from \(\mathbb R^2 \to \mathbb R^2\).\relax }{figure.caption.2}{}}
+\newlabel{eq:NN:softmax_derivative}{{29}{18}{}{equation.1.29}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces LeakyReLU with \(c = 0.3\)\relax }}{18}{figure.4}\protected@file@percent }
+\newlabel{eq:NN:ReLU}{{30}{18}{}{equation.1.30}{}}
+\newlabel{eq:NN:Relu_derivative}{{31}{18}{}{equation.1.31}{}}
+\newlabel{eq:vecTanh}{{33}{19}{}{equation.1.33}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.1.4}Training introduction}{19}{paragraph.1.4.1.4}\protected@file@percent }
+\newlabel{eq:NN:loss_mse}{{35}{19}{Training introduction}{equation.1.35}{}}
+\newlabel{eq:lossDerivative}{{36}{19}{Training introduction}{equation.1.36}{}}
+\newlabel{eq:NN:deltaA}{{38}{20}{Training introduction}{equation.1.38}{}}
+\newlabel{eq:NN:deltaW}{{39}{20}{Training introduction}{equation.1.39}{}}
+\newlabel{eq:NN:deltaB}{{40}{20}{Training introduction}{equation.1.40}{}}
+\newlabel{eq:NN:deltaA_lastLayer}{{41}{20}{Training introduction}{equation.1.41}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.2}Network used by Alpha Zero}{20}{subsubsection.1.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.2.1}Neural Network input}{21}{paragraph.1.4.2.1}\protected@file@percent }
+\newlabel{sec:neuralNetworkInput}{{1.4.2.1}{21}{Neural Network input}{paragraph.1.4.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \relax }}{21}{figure.5}\protected@file@percent }
+\newlabel{fig:connect4ImageOne}{{5}{21}{\relax }{figure.5}{}}
+\citation{ioffe2015batch}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.2.2}Neural Network Architecture}{22}{paragraph.1.4.2.2}\protected@file@percent }
+\newlabel{sec:NeruralNetworkArchitecture}{{1.4.2.2}{22}{Neural Network Architecture}{paragraph.1.4.2.2}{}}
+\newlabel{eq:nn:policyDefinition}{{42}{23}{Neural Network Architecture}{equation.1.42}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {1.4.2.3}Model Training}{23}{paragraph.1.4.2.3}\protected@file@percent }
+\newlabel{sec:Methods:NN:A0:Training}{{1.4.2.3}{23}{Model Training}{paragraph.1.4.2.3}{}}
+\newlabel{eq:NN:policy_computation}{{43}{23}{Model Training}{equation.1.43}{}}
+\newlabel{eq:NN:policy_computation_nonlegal}{{44}{23}{Model Training}{equation.1.44}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Training loop}{24}{subsection.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.5.1}Data generation}{24}{subsubsection.1.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\numberline {1.5.1.1}Action selection}{24}{paragraph.1.5.1.1}\protected@file@percent }
+\newlabel{sec:training:actionSelection}{{1.5.1.1}{24}{Action selection}{paragraph.1.5.1.1}{}}
+\newlabel{eq:ActionSelection:Probabilistic}{{45}{24}{Action selection}{equation.1.45}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {1.5.1.2}Memory}{24}{paragraph.1.5.1.2}\protected@file@percent }
+\newlabel{sec:memory}{{1.5.1.2}{24}{Memory}{paragraph.1.5.1.2}{}}
+\citation{elo1978rating}
+\newlabel{eq:Memory:ActionValuesDefinition}{{46}{25}{Memory}{equation.1.46}{}}
+\@writefile{toc}{\contentsline {paragraph}{\numberline {1.5.1.3}Memory update}{25}{paragraph.1.5.1.3}\protected@file@percent }
+\newlabel{sec:memoryUpdate}{{1.5.1.3}{25}{Memory update}{paragraph.1.5.1.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.5.2}Model Training}{25}{subsubsection.1.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.5.3}Model evaluation}{25}{subsubsection.1.5.3}\protected@file@percent }
+\newlabel{sec:modelEvaluation}{{1.5.3}{25}{Model evaluation}{subsubsection.1.5.3}{}}
 \citation{silver2018general}
 \citation{elo1978rating}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Elo-rating}{30}{subsection.2.1}\protected@file@percent }
-\newlabel{sec:Evaluation:elo-rating}{{2.1}{30}{Elo-rating}{subsection.2.1}{}}
-\newlabel{eq:elo_pred}{{50}{30}{Elo-rating}{equation.2.50}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces elo-rating win probability for \(r_b = 0\)\relax }}{30}{figure.6}\protected@file@percent }
-\newlabel{eq:elo_update}{{51}{30}{Elo-rating}{equation.2.51}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Evaluation}{26}{section.2}\protected@file@percent }
+\newlabel{sec:evaluation}{{2}{26}{Evaluation}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Elo-rating}{26}{subsection.2.1}\protected@file@percent }
+\newlabel{sec:Evaluation:elo-rating}{{2.1}{26}{Elo-rating}{subsection.2.1}{}}
+\newlabel{eq:elo_pred}{{47}{26}{Elo-rating}{equation.2.47}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces elo-rating win probability for \(r_b = 0\)\relax }}{26}{figure.6}\protected@file@percent }
 \citation{elo1978rating}
-\newlabel{eq:elo_score}{{52}{31}{Elo-rating}{equation.2.52}{}}
-\newlabel{eq:elo_back}{{53}{31}{Elo-rating}{equation.2.53}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Relativity of the Elo-rating}{31}{subsubsection.2.1.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces elo inverse function for \(r_b = 0\)\relax }}{32}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:eloInv}{{7}{32}{elo inverse function for \(r_b = 0\)\relax }{figure.caption.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Elo results}{32}{subsection.2.2}\protected@file@percent }
-\newlabel{eq:deltaRCalculation}{{54}{32}{Elo results}{equation.2.54}{}}
-\newlabel{eq:scoreSumm}{{55}{32}{Elo results}{equation.2.55}{}}
-\newlabel{eq:scoregeq}{{60}{33}{Elo results}{equation.2.60}{}}
-\newlabel{eq:siByTheta}{{62}{33}{Elo results}{equation.2.62}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Elo-rating of agents based on their version along with the expected minimal rating \(\Delta r_{min}\) and the best fitted rating \(\Delta r\).\relax }}{34}{figure.8}\protected@file@percent }
-\newlabel{img:eloByVersion}{{8}{34}{Elo-rating of agents based on their version along with the expected minimal rating \(\Delta r_{min}\) and the best fitted rating \(\Delta r\).\relax }{figure.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Complexity}{34}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Trivial Answers}{34}{subsection.3.1}\protected@file@percent }
+\newlabel{eq:elo_update}{{48}{27}{Elo-rating}{equation.2.48}{}}
+\newlabel{eq:elo_score}{{49}{27}{Elo-rating}{equation.2.49}{}}
+\newlabel{eq:elo_back}{{50}{27}{Elo-rating}{equation.2.50}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Relativity of the Elo-rating}{27}{subsubsection.2.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces elo inverse function for \(r_b = 0\)\relax }}{28}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:eloInv}{{7}{28}{elo inverse function for \(r_b = 0\)\relax }{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Elo results}{28}{subsection.2.2}\protected@file@percent }
+\newlabel{eq:deltaRCalculation}{{51}{28}{Elo results}{equation.2.51}{}}
+\newlabel{eq:scoreSumm}{{52}{28}{Elo results}{equation.2.52}{}}
+\newlabel{eq:scoregeq}{{57}{29}{Elo results}{equation.2.57}{}}
+\newlabel{eq:siByTheta}{{59}{29}{Elo results}{equation.2.59}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Elo-rating of agents based on their version along with the expected minimal rating \(\Delta r_{min}\) and the best fitted rating \(\Delta r\).\relax }}{30}{figure.8}\protected@file@percent }
+\newlabel{img:eloByVersion}{{8}{30}{Elo-rating of agents based on their version along with the expected minimal rating \(\Delta r_{min}\) and the best fitted rating \(\Delta r\).\relax }{figure.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Complexity}{30}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Trivial Answers}{30}{subsection.3.1}\protected@file@percent }
 \citation{kissmann_2016}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Combinatorics}{35}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}SBFS based state search}{35}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Implementation}{35}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Combinatorics}{31}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}SBFS based state search}{31}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Implementation}{31}{section.4}\protected@file@percent }
 \bibstyle{plain}
 \bibdata{bibliography}
 \bibcite{chaslot2008parallel}{1}
 \bibcite{elo1978rating}{2}
 \bibcite{ioffe2015batch}{3}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{36}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Improvements}{36}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{32}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Improvements}{32}{subsection.5.1}\protected@file@percent }
 \bibcite{kissmann_2016}{4}
 \bibcite{silver2018general}{5}
 \bibcite{silver2017mastering}{6}
 \bibcite{wiki:Vector_quantization}{7}
 \bibcite{vectorization_2021}{8}
 \bibcite{zhang2018artificial}{9}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Code}{38}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}AlphaZeroPytorch}{38}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}AlphaZeroPytorch.h}{38}{subsubsection.6.1.1}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/AlphaZeroPytorch.h}{{6.1.1}{38}{AlphaZeroPytorch.h}{subsubsection.6.1.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/AlphaZeroPytorch.h}{38}{lstlisting.-1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}AlphaZeroPytorch.cpp}{38}{subsubsection.6.1.2}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/AlphaZeroPytorch.cpp}{{6.1.2}{38}{AlphaZeroPytorch.cpp}{subsubsection.6.1.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/AlphaZeroPytorch.cpp}{38}{lstlisting.-2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.3}CMakeLists.txt}{39}{subsubsection.6.1.3}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/CMakeLists.txt}{{6.1.3}{39}{CMakeLists.txt}{subsubsection.6.1.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/CMakeLists.txt}{39}{lstlisting.-3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.4}convertToJceFormat.cpp}{41}{subsubsection.6.1.4}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/convertToJceFormat.cpp}{{6.1.4}{41}{convertToJceFormat.cpp}{subsubsection.6.1.4}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/convertToJceFormat.cpp}{41}{lstlisting.-4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.5}doEloRaiting.cpp}{42}{subsubsection.6.1.5}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/doEloRaiting.cpp}{{6.1.5}{42}{doEloRaiting.cpp}{subsubsection.6.1.5}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/doEloRaiting.cpp}{42}{lstlisting.-5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.6}makeFiles.hpp}{44}{subsubsection.6.1.6}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/makeFiles.hpp}{{6.1.6}{44}{makeFiles.hpp}{subsubsection.6.1.6}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/makeFiles.hpp}{44}{lstlisting.-6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.7}Replay.cpp}{45}{subsubsection.6.1.7}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/Replay.cpp}{{6.1.7}{45}{Replay.cpp}{subsubsection.6.1.7}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/Replay.cpp}{45}{lstlisting.-7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.8}runServer.cpp}{45}{subsubsection.6.1.8}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/runServer.cpp}{{6.1.8}{45}{runServer.cpp}{subsubsection.6.1.8}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/runServer.cpp}{45}{lstlisting.-8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.9}showLoss.cpp}{46}{subsubsection.6.1.9}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/showLoss.cpp}{{6.1.9}{46}{showLoss.cpp}{subsubsection.6.1.9}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/showLoss.cpp}{46}{lstlisting.-9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.10}test.cpp}{46}{subsubsection.6.1.10}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/test.cpp}{{6.1.10}{46}{test.cpp}{subsubsection.6.1.10}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/test.cpp}{46}{lstlisting.-10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.11}include}{47}{subsubsection.6.1.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.1.11.1}config.hpp}{47}{paragraph.6.1.11.1}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/config.hpp}{{6.1.11.1}{47}{config.hpp}{paragraph.6.1.11.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/config.hpp}{47}{lstlisting.-11}\protected@file@percent }
-\newlabel{code:config}{{6.1.11.1}{49}{config.hpp}{lstnumber.-11.89}{}}
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.1.11.2}config.cpp}{49}{paragraph.6.1.11.2}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/config.cpp}{{6.1.11.2}{49}{config.cpp}{paragraph.6.1.11.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/config.cpp}{49}{lstlisting.-12}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.1.11.3}io.hpp}{49}{paragraph.6.1.11.3}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/io.hpp}{{6.1.11.3}{49}{io.hpp}{paragraph.6.1.11.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/io.hpp}{49}{lstlisting.-13}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.1.11.4}log.hpp}{53}{paragraph.6.1.11.4}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/log.hpp}{{6.1.11.4}{53}{log.hpp}{paragraph.6.1.11.4}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/log.hpp}{53}{lstlisting.-14}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.1.11.5}log.cpp}{58}{paragraph.6.1.11.5}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/log.cpp}{{6.1.11.5}{58}{log.cpp}{paragraph.6.1.11.5}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/log.cpp}{58}{lstlisting.-15}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.1.11.6}timer.hpp}{61}{paragraph.6.1.11.6}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/timer.hpp}{{6.1.11.6}{61}{timer.hpp}{paragraph.6.1.11.6}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/timer.hpp}{61}{lstlisting.-16}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.1.11.7}ai}{61}{paragraph.6.1.11.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.7.1}agent.hpp}{61}{subparagraph.6.1.11.7.1}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/ai/agent.hpp}{{6.1.11.7.1}{61}{agent.hpp}{subparagraph.6.1.11.7.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/ai/agent.hpp}{61}{lstlisting.-17}\protected@file@percent }
-\newlabel{code:Agent}{{6.1.11.7.1}{66}{agent.hpp}{lstnumber.-17.191}{}}
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.7.2}agent.cpp}{66}{subparagraph.6.1.11.7.2}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/ai/agent.cpp}{{6.1.11.7.2}{66}{agent.cpp}{subparagraph.6.1.11.7.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/ai/agent.cpp}{66}{lstlisting.-18}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.7.3}MCTS.hpp}{68}{subparagraph.6.1.11.7.3}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/ai/MCTS.hpp}{{6.1.11.7.3}{68}{MCTS.hpp}{subparagraph.6.1.11.7.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/ai/MCTS.hpp}{68}{lstlisting.-19}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.7.4}MCTS.cpp}{71}{subparagraph.6.1.11.7.4}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/ai/MCTS.cpp}{{6.1.11.7.4}{71}{MCTS.cpp}{subparagraph.6.1.11.7.4}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/ai/MCTS.cpp}{71}{lstlisting.-20}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.7.5}memory.hpp}{73}{subparagraph.6.1.11.7.5}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/ai/memory.hpp}{{6.1.11.7.5}{73}{memory.hpp}{subparagraph.6.1.11.7.5}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/ai/memory.hpp}{73}{lstlisting.-21}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.7.6}memory.cpp}{76}{subparagraph.6.1.11.7.6}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/ai/memory.cpp}{{6.1.11.7.6}{76}{memory.cpp}{subparagraph.6.1.11.7.6}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/ai/memory.cpp}{76}{lstlisting.-22}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.7.7}model.hpp}{77}{subparagraph.6.1.11.7.7}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/ai/model.hpp}{{6.1.11.7.7}{77}{model.hpp}{subparagraph.6.1.11.7.7}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/ai/model.hpp}{78}{lstlisting.-23}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.7.8}modelSynchronizer.hpp}{92}{subparagraph.6.1.11.7.8}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/ai/modelSynchronizer.hpp}{{6.1.11.7.8}{92}{modelSynchronizer.hpp}{subparagraph.6.1.11.7.8}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/ai/modelSynchronizer.hpp}{92}{lstlisting.-24}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.7.9}modelWorker.hpp}{97}{subparagraph.6.1.11.7.9}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/ai/modelWorker.hpp}{{6.1.11.7.9}{97}{modelWorker.hpp}{subparagraph.6.1.11.7.9}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/ai/modelWorker.hpp}{97}{lstlisting.-25}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.7.10}modelWorker.cpp}{97}{subparagraph.6.1.11.7.10}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/ai/modelWorker.cpp}{{6.1.11.7.10}{97}{modelWorker.cpp}{subparagraph.6.1.11.7.10}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/ai/modelWorker.cpp}{97}{lstlisting.-26}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.7.11}playGame.hpp}{98}{subparagraph.6.1.11.7.11}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/ai/playGame.hpp}{{6.1.11.7.11}{98}{playGame.hpp}{subparagraph.6.1.11.7.11}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/ai/playGame.hpp}{98}{lstlisting.-27}\protected@file@percent }
-\newlabel{code:playGame}{{6.1.11.7.11}{99}{playGame.hpp}{lstnumber.-27.57}{}}
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.7.12}playGame.cpp}{99}{subparagraph.6.1.11.7.12}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/ai/playGame.cpp}{{6.1.11.7.12}{99}{playGame.cpp}{subparagraph.6.1.11.7.12}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/ai/playGame.cpp}{99}{lstlisting.-28}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.7.13}utils.hpp}{106}{subparagraph.6.1.11.7.13}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/ai/utils.hpp}{{6.1.11.7.13}{106}{utils.hpp}{subparagraph.6.1.11.7.13}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/ai/utils.hpp}{106}{lstlisting.-29}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.1.11.8}game}{107}{paragraph.6.1.11.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.8.1}game.hpp}{107}{subparagraph.6.1.11.8.1}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/game/game.hpp}{{6.1.11.8.1}{107}{game.hpp}{subparagraph.6.1.11.8.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/game/game.hpp}{107}{lstlisting.-30}\protected@file@percent }
-\newlabel{code:Game}{{6.1.11.8.1}{111}{game.hpp}{lstnumber.-30.164}{}}
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.8.2}game.cpp}{111}{subparagraph.6.1.11.8.2}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/game/game.cpp}{{6.1.11.8.2}{111}{game.cpp}{subparagraph.6.1.11.8.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/game/game.cpp}{111}{lstlisting.-31}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.1.11.9}jce}{119}{paragraph.6.1.11.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.9.1}load.hpp}{119}{subparagraph.6.1.11.9.1}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/jce/load.hpp}{{6.1.11.9.1}{119}{load.hpp}{subparagraph.6.1.11.9.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/jce/load.hpp}{119}{lstlisting.-32}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.9.2}save.hpp}{124}{subparagraph.6.1.11.9.2}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/jce/save.hpp}{{6.1.11.9.2}{124}{save.hpp}{subparagraph.6.1.11.9.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/jce/save.hpp}{124}{lstlisting.-33}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.9.3}string.hpp}{129}{subparagraph.6.1.11.9.3}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/jce/string.hpp}{{6.1.11.9.3}{129}{string.hpp}{subparagraph.6.1.11.9.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/jce/string.hpp}{129}{lstlisting.-34}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.9.4}vector.hpp}{130}{subparagraph.6.1.11.9.4}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/jce/vector.hpp}{{6.1.11.9.4}{130}{vector.hpp}{subparagraph.6.1.11.9.4}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/jce/vector.hpp}{130}{lstlisting.-35}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.1.11.10}server}{130}{paragraph.6.1.11.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.10.1}eloClient.hpp}{130}{subparagraph.6.1.11.10.1}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/Server/eloClient.hpp}{{6.1.11.10.1}{130}{eloClient.hpp}{subparagraph.6.1.11.10.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/Server/eloClient.hpp}{130}{lstlisting.-36}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.10.2}server.hpp}{133}{subparagraph.6.1.11.10.2}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/Server/server.hpp}{{6.1.11.10.2}{133}{server.hpp}{subparagraph.6.1.11.10.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/Server/server.hpp}{133}{lstlisting.-37}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.10.3}server.cpp}{134}{subparagraph.6.1.11.10.3}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/Server/server.cpp}{{6.1.11.10.3}{134}{server.cpp}{subparagraph.6.1.11.10.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/Server/server.cpp}{134}{lstlisting.-38}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.1.11.11}test}{137}{paragraph.6.1.11.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.11.1}testSuit.hpp}{137}{subparagraph.6.1.11.11.1}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/test/testSuit.hpp}{{6.1.11.11.1}{137}{testSuit.hpp}{subparagraph.6.1.11.11.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/test/testSuit.hpp}{137}{lstlisting.-39}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.11.2}testSuit.cpp}{139}{subparagraph.6.1.11.11.2}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/test/testSuit.cpp}{{6.1.11.11.2}{139}{testSuit.cpp}{subparagraph.6.1.11.11.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/test/testSuit.cpp}{139}{lstlisting.-40}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.1.11.11.3}testUtils.hpp}{143}{subparagraph.6.1.11.11.3}\protected@file@percent }
-\newlabel{code:AlphaZeroPytorch/include/test/testUtils.hpp}{{6.1.11.11.3}{143}{testUtils.hpp}{subparagraph.6.1.11.11.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/AlphaZeroPytorch/include/test/testUtils.hpp}{143}{lstlisting.-41}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Clients}{144}{subsection.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}ConsoleClient}{144}{subsubsection.6.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.2.1.1}ConsoleClient.h}{144}{paragraph.6.2.1.1}\protected@file@percent }
-\newlabel{code:Clients/ConsoleClient/ConsoleClient.h}{{6.2.1.1}{144}{ConsoleClient.h}{paragraph.6.2.1.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/ConsoleClient/ConsoleClient.h}{144}{lstlisting.-42}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.2.1.2}ConsoleClient.cpp}{144}{paragraph.6.2.1.2}\protected@file@percent }
-\newlabel{code:Clients/ConsoleClient/ConsoleClient.cpp}{{6.2.1.2}{144}{ConsoleClient.cpp}{paragraph.6.2.1.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/ConsoleClient/ConsoleClient.cpp}{144}{lstlisting.-43}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.2.1.3}include}{145}{paragraph.6.2.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.2.1.3.1}agent.hpp}{145}{subparagraph.6.2.1.3.1}\protected@file@percent }
-\newlabel{code:Clients/ConsoleClient/include/agent.hpp}{{6.2.1.3.1}{145}{agent.hpp}{subparagraph.6.2.1.3.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/ConsoleClient/include/agent.hpp}{145}{lstlisting.-44}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.2.1.3.2}game.hpp}{148}{subparagraph.6.2.1.3.2}\protected@file@percent }
-\newlabel{code:Clients/ConsoleClient/include/game.hpp}{{6.2.1.3.2}{148}{game.hpp}{subparagraph.6.2.1.3.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/ConsoleClient/include/game.hpp}{148}{lstlisting.-45}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.2.1.3.3}modifications.hpp}{151}{subparagraph.6.2.1.3.3}\protected@file@percent }
-\newlabel{code:Clients/ConsoleClient/include/modifications.hpp}{{6.2.1.3.3}{151}{modifications.hpp}{subparagraph.6.2.1.3.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/ConsoleClient/include/modifications.hpp}{151}{lstlisting.-46}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.2.1.4}scr}{152}{paragraph.6.2.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {6.2.1.4.1}game.cpp}{152}{subparagraph.6.2.1.4.1}\protected@file@percent }
-\newlabel{code:Clients/ConsoleClient/scr/game.cpp}{{6.2.1.4.1}{152}{game.cpp}{subparagraph.6.2.1.4.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/ConsoleClient/scr/game.cpp}{152}{lstlisting.-47}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}iosClient}{159}{subsubsection.6.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.2.2.1}caller.py}{159}{paragraph.6.2.2.1}\protected@file@percent }
-\newlabel{code:Clients/iosClient/caller.py}{{6.2.2.1}{159}{caller.py}{paragraph.6.2.2.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/iosClient/caller.py}{159}{lstlisting.-48}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.2.2.2}connect4IOS.py}{159}{paragraph.6.2.2.2}\protected@file@percent }
-\newlabel{code:Clients/iosClient/connect4IOS.py}{{6.2.2.2}{159}{connect4IOS.py}{paragraph.6.2.2.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/iosClient/connect4IOS.py}{159}{lstlisting.-49}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.3}pyClient}{166}{subsubsection.6.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.2.3.1}Client.py}{166}{paragraph.6.2.3.1}\protected@file@percent }
-\newlabel{code:Clients/pyClient/Client.py}{{6.2.3.1}{166}{Client.py}{paragraph.6.2.3.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/pyClient/Client.py}{166}{lstlisting.-50}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.2.3.2}game.py}{168}{paragraph.6.2.3.2}\protected@file@percent }
-\newlabel{code:Clients/pyClient/game.py}{{6.2.3.2}{168}{game.py}{paragraph.6.2.3.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/pyClient/game.py}{168}{lstlisting.-51}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.2.3.3}gameSaver.py}{171}{paragraph.6.2.3.3}\protected@file@percent }
-\newlabel{code:Clients/pyClient/gameSaver.py}{{6.2.3.3}{171}{gameSaver.py}{paragraph.6.2.3.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/pyClient/gameSaver.py}{171}{lstlisting.-52}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.2.3.4}GUI.py}{174}{paragraph.6.2.3.4}\protected@file@percent }
-\newlabel{code:Clients/pyClient/GUI.py}{{6.2.3.4}{174}{GUI.py}{paragraph.6.2.3.4}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/pyClient/GUI.py}{174}{lstlisting.-53}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.2.3.5}main.py}{180}{paragraph.6.2.3.5}\protected@file@percent }
-\newlabel{code:Clients/pyClient/main.py}{{6.2.3.5}{180}{main.py}{paragraph.6.2.3.5}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/pyClient/main.py}{180}{lstlisting.-54}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.2.3.6}test.py}{181}{paragraph.6.2.3.6}\protected@file@percent }
-\newlabel{code:Clients/pyClient/test.py}{{6.2.3.6}{181}{test.py}{paragraph.6.2.3.6}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/pyClient/test.py}{181}{lstlisting.-55}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.2.3.7}winStates.json}{182}{paragraph.6.2.3.7}\protected@file@percent }
-\newlabel{code:Clients/pyClient/winStates.json}{{6.2.3.7}{182}{winStates.json}{paragraph.6.2.3.7}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/Clients/pyClient/winStates.json}{182}{lstlisting.-56}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}elo}{184}{subsection.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}agent.py}{184}{subsubsection.6.3.1}\protected@file@percent }
-\newlabel{code:elo/agent.py}{{6.3.1}{184}{agent.py}{subsubsection.6.3.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/elo/agent.py}{184}{lstlisting.-57}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2}renderElo.py}{185}{subsubsection.6.3.2}\protected@file@percent }
-\newlabel{code:elo/renderElo.py}{{6.3.2}{185}{renderElo.py}{subsubsection.6.3.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/elo/renderElo.py}{185}{lstlisting.-58}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3}score.py}{186}{subsubsection.6.3.3}\protected@file@percent }
-\newlabel{code:elo/score.py}{{6.3.3}{186}{score.py}{subsubsection.6.3.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/elo/score.py}{186}{lstlisting.-59}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.4}server.py}{186}{subsubsection.6.3.4}\protected@file@percent }
-\newlabel{code:elo/server.py}{{6.3.4}{186}{server.py}{subsubsection.6.3.4}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/elo/server.py}{186}{lstlisting.-60}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}game}{190}{subsection.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.1}connect4}{190}{subsubsection.6.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.4.1.1}config.hpp}{190}{paragraph.6.4.1.1}\protected@file@percent }
-\newlabel{code:games/connect4/config.hpp}{{6.4.1.1}{190}{config.hpp}{paragraph.6.4.1.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/games/connect4/config.hpp}{190}{lstlisting.-61}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.4.1.2}game.hpp}{192}{paragraph.6.4.1.2}\protected@file@percent }
-\newlabel{code:games/connect4/game.hpp}{{6.4.1.2}{192}{game.hpp}{paragraph.6.4.1.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/games/connect4/game.hpp}{192}{lstlisting.-62}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.4.1.3}game.cpp}{196}{paragraph.6.4.1.3}\protected@file@percent }
-\newlabel{code:games/connect4/game.cpp}{{6.4.1.3}{196}{game.cpp}{paragraph.6.4.1.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/games/connect4/game.cpp}{196}{lstlisting.-63}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.2}othello}{204}{subsubsection.6.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.4.2.1}config.hpp}{204}{paragraph.6.4.2.1}\protected@file@percent }
-\newlabel{code:games/othello/config.hpp}{{6.4.2.1}{204}{config.hpp}{paragraph.6.4.2.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/games/othello/config.hpp}{204}{lstlisting.-64}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.4.2.2}game.hpp}{206}{paragraph.6.4.2.2}\protected@file@percent }
-\newlabel{code:games/othello/game.hpp}{{6.4.2.2}{206}{game.hpp}{paragraph.6.4.2.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/games/othello/game.hpp}{206}{lstlisting.-65}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {6.4.2.3}game.cpp}{211}{paragraph.6.4.2.3}\protected@file@percent }
-\newlabel{code:games/othello/game.cpp}{{6.4.2.3}{211}{game.cpp}{paragraph.6.4.2.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/games/othello/game.cpp}{211}{lstlisting.-66}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}CMakeLists.txt}{220}{subsection.6.5}\protected@file@percent }
-\newlabel{code:CMakeLists.txt}{{6.5}{220}{CMakeLists.txt}{subsection.6.5}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/CMakeLists.txt}{220}{lstlisting.-67}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}README.md}{220}{subsection.6.6}\protected@file@percent }
-\newlabel{code:README.md}{{6.6}{220}{README.md}{subsection.6.6}{}}
-\@writefile{lol}{\contentsline {lstlisting}{code/README.md}{220}{lstlisting.-68}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Demos}{220}{section.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Matura-AlphaZero-demos}{220}{subsection.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.1}CMakeLists.txt}{220}{subsubsection.7.1.1}\protected@file@percent }
-\newlabel{demo:CMakeLists.txt}{{7.1.1}{220}{CMakeLists.txt}{subsubsection.7.1.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{demos/CMakeLists.txt}{221}{lstlisting.-69}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.2}main.cpp}{223}{subsubsection.7.1.2}\protected@file@percent }
-\newlabel{demo:main.cpp}{{7.1.2}{223}{main.cpp}{subsubsection.7.1.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{demos/main.cpp}{223}{lstlisting.-70}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.3}README.md}{227}{subsubsection.7.1.3}\protected@file@percent }
-\newlabel{demo:README.md}{{7.1.3}{227}{README.md}{subsubsection.7.1.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{demos/README.md}{227}{lstlisting.-71}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.4}supervised.cpp}{227}{subsubsection.7.1.4}\protected@file@percent }
-\newlabel{demo:supervised.cpp}{{7.1.4}{227}{supervised.cpp}{subsubsection.7.1.4}{}}
-\@writefile{lol}{\contentsline {lstlisting}{demos/supervised.cpp}{227}{lstlisting.-72}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.5}include}{231}{subsubsection.7.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {7.1.5.1}point.hpp}{231}{paragraph.7.1.5.1}\protected@file@percent }
-\newlabel{demo:include/point.hpp}{{7.1.5.1}{231}{point.hpp}{paragraph.7.1.5.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{demos/include/point.hpp}{231}{lstlisting.-73}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {7.1.5.2}utils.hpp}{231}{paragraph.7.1.5.2}\protected@file@percent }
-\newlabel{demo:include/utils.hpp}{{7.1.5.2}{231}{utils.hpp}{paragraph.7.1.5.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{demos/include/utils.hpp}{232}{lstlisting.-74}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.6}scr}{232}{subsubsection.7.1.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {7.1.6.1}point.cpp}{232}{paragraph.7.1.6.1}\protected@file@percent }
-\newlabel{demo:scr/point.cpp}{{7.1.6.1}{232}{point.cpp}{paragraph.7.1.6.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{demos/scr/point.cpp}{232}{lstlisting.-75}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.7}supervised}{235}{subsubsection.7.1.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {7.1.7.1}include}{235}{paragraph.7.1.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {7.1.7.1.1}config.hpp}{235}{subparagraph.7.1.7.1.1}\protected@file@percent }
-\newlabel{demo:supervised/include/config.hpp}{{7.1.7.1.1}{235}{config.hpp}{subparagraph.7.1.7.1.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{demos/supervised/include/config.hpp}{235}{lstlisting.-76}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {7.1.7.1.2}model.hpp}{235}{subparagraph.7.1.7.1.2}\protected@file@percent }
-\newlabel{demo:supervised/include/model.hpp}{{7.1.7.1.2}{235}{model.hpp}{subparagraph.7.1.7.1.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{demos/supervised/include/model.hpp}{235}{lstlisting.-77}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {7.1.7.2}src}{236}{paragraph.7.1.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {7.1.7.2.1}model.cpp}{236}{subparagraph.7.1.7.2.1}\protected@file@percent }
-\newlabel{demo:supervised/src/model.cpp}{{7.1.7.2.1}{236}{model.cpp}{subparagraph.7.1.7.2.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{demos/supervised/src/model.cpp}{236}{lstlisting.-78}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1.8}unsupervised}{238}{subsubsection.7.1.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {7.1.8.1}include}{238}{paragraph.7.1.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {7.1.8.1.1}cluster.hpp}{238}{subparagraph.7.1.8.1.1}\protected@file@percent }
-\newlabel{demo:unsupervised/include/cluster.hpp}{{7.1.8.1.1}{238}{cluster.hpp}{subparagraph.7.1.8.1.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{demos/unsupervised/include/cluster.hpp}{238}{lstlisting.-79}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {7.1.8.1.2}config.hpp}{239}{subparagraph.7.1.8.1.2}\protected@file@percent }
-\newlabel{demo:unsupervised/include/config.hpp}{{7.1.8.1.2}{239}{config.hpp}{subparagraph.7.1.8.1.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{demos/unsupervised/include/config.hpp}{239}{lstlisting.-80}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{\numberline {7.1.8.1.3}group.hpp}{239}{subparagraph.7.1.8.1.3}\protected@file@percent }
-\newlabel{demo:unsupervised/include/group.hpp}{{7.1.8.1.3}{239}{group.hpp}{subparagraph.7.1.8.1.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{demos/unsupervised/include/group.hpp}{239}{lstlisting.-81}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{\numberline {7.1.8.2}src}{240}{paragraph.7.1.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8}Further definitions}{240}{section.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Set Exclusion}{240}{subsection.8.1}\protected@file@percent }
-\newlabel{eq:defs:SetExclusion}{{67}{240}{Set Exclusion}{equation.8.67}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Hadamard product}{240}{subsection.8.2}\protected@file@percent }
-\newlabel{sec:hadamerd_product}{{8.2}{240}{Hadamard product}{subsection.8.2}{}}
-\newlabel{eq:defs:Hadamard product}{{68}{240}{Hadamard product}{equation.8.68}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Inner Product}{240}{subsection.8.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.3.1}Matrices}{240}{subsubsection.8.3.1}\protected@file@percent }
-\newlabel{eq:defs:Inner_product}{{69}{240}{Matrices}{equation.8.69}{}}
-\citation{vectorization_2021}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.3.2}\(n\)-dimensional Tensors}{241}{subsubsection.8.3.2}\protected@file@percent }
-\newlabel{eq:defs:Inner_product_3d}{{70}{241}{\(n\)-dimensional Tensors}{equation.8.70}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Submatrix}{241}{subsection.8.4}\protected@file@percent }
-\newlabel{sec:Ref:submatrix}{{8.4}{241}{Submatrix}{subsection.8.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.5}Vectorization}{241}{subsection.8.5}\protected@file@percent }
-\newlabel{sec:ref:vectorization}{{8.5}{241}{Vectorization}{subsection.8.5}{}}
-\newlabel{eq:ref:vectorization}{{72}{241}{Vectorization}{equation.8.72}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.5.1}Tensors}{242}{subsubsection.8.5.1}\protected@file@percent }
-\newlabel{sec:ref:vectorization:tensor}{{8.5.1}{242}{Tensors}{subsubsection.8.5.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.6}Vector Concatination}{242}{subsection.8.6}\protected@file@percent }
-\newlabel{sec:ref:vectorConcatination}{{8.6}{242}{Vector Concatination}{subsection.8.6}{}}
-\newlabel{eq:ref:vecConcatination}{{74}{242}{Vector Concatination}{equation.8.74}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.7}Elementwise vector operations}{242}{subsection.8.7}\protected@file@percent }
-\newlabel{eq:vectorElemetwise}{{75}{242}{Elementwise vector operations}{equation.8.75}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8}Sets}{242}{subsection.8.8}\protected@file@percent }
-\newlabel{set:Rab}{{76}{242}{Sets}{equation.8.76}{}}
-\newlabel{set:Nab}{{77}{242}{Sets}{equation.8.77}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Further examples}{243}{section.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Mcts}{243}{subsection.9.1}\protected@file@percent }
-\newlabel{mctsExampleFullData}{{9.1}{243}{Mcts}{subsection.9.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {10}Proofs}{244}{section.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}tanh derivative}{244}{subsection.10.1}\protected@file@percent }
-\newlabel{sec:proof:tanhd/dx}{{10.1}{244}{tanh derivative}{subsection.10.1}{}}
-\newlabel{eq:tanhDerivativeEnd}{{114}{245}{tanh derivative}{equation.10.114}{}}
-\newlabel{eq:sech}{{115}{245}{tanh derivative}{equation.10.115}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Softmax Derivative}{245}{subsection.10.2}\protected@file@percent }
-\newlabel{eq:proof:softmax}{{117}{245}{Softmax Derivative}{equation.10.117}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}Elo Rating}{246}{subsection.10.3}\protected@file@percent }
-\newlabel{sec:eloGet}{{10.3}{246}{Elo Rating}{subsection.10.3}{}}
-\newlabel{RF1}{247}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces width=0.7\columnwidth }}{247}{figure.caption.4}\protected@file@percent }
-\newlabel{MCTS-simulation}{{9}{247}{width=0.7\columnwidth }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Apendix 3: Further definitions}{34}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Hadamard product}{34}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:hadamerd_product}{{6.1}{34}{Hadamard product}{subsection.6.1}{}}
+\newlabel{eq:defs:Hadamard product}{{64}{34}{Hadamard product}{equation.6.64}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Inner Product}{34}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}Matrices}{34}{subsubsection.6.2.1}\protected@file@percent }
+\newlabel{eq:defs:Inner_product}{{65}{34}{Matrices}{equation.6.65}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}\(n\)-dimensional Tensors}{34}{subsubsection.6.2.2}\protected@file@percent }
+\newlabel{eq:defs:Inner_product_3d}{{66}{34}{\(n\)-dimensional Tensors}{equation.6.66}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Submatrix}{35}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:Ref:submatrix}{{6.3}{35}{Submatrix}{subsection.6.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Sets}{35}{subsection.6.4}\protected@file@percent }
+\newlabel{set:Rab}{{68}{35}{Sets}{equation.6.68}{}}
+\newlabel{set:Nab}{{69}{35}{Sets}{equation.6.69}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Softmax Derivative}{35}{subsection.6.5}\protected@file@percent }
+\newlabel{eq:proof:softmax}{{70}{35}{Softmax Derivative}{equation.6.70}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Elo Rating}{36}{subsection.6.6}\protected@file@percent }
+\newlabel{sec:eloGet}{{6.6}{36}{Elo Rating}{subsection.6.6}{}}
