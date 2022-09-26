@@ -1,0 +1,10 @@
+
+*.aux
+*.log
+*.out
+*.pdf
+*.synctex(busy)
+*.toc
+demos/
+AlphaZero/
+networks/
