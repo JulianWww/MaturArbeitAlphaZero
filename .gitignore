@@ -8,3 +8,8 @@
 demos/
 AlphaZero/
 networks/
+code/
+svg-inkscape/
+*.synctex.gz
+*.blg
+*.bbl
