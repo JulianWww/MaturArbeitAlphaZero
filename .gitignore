@@ -8,3 +8,8 @@
 demos/
 AlphaZero/
 networks/
+AlphaZeroTheory.bbl
+AlphaZeroTheory.blg
+AlphaZeroTheory.synctex.gz
+code/
+*.pdf_tex
