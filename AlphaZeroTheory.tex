@@ -266,7 +266,7 @@ A Monte Carlo tree search (MCTS) is a tree search algorithm that can be used to 
 Because an MCTS changes during simulation, indices are used to specify which simulation step the tree is in. An MCTS simulation consists of three phases: \nameref{sec:Methods:MCTS:Leaf_selection}, \nameref{sec:Methods:MCTS:Node Evaluation and Expansion} as well as \nameref{sec:Methods:MCTS:Backfill}.
 
 A MCTS graph consists of nodes and edges. Nodes represent game states and edges represent actions. As in the game, edges connect nodes to each other.
-The amount of nodes and structure of the MCTS is changed by the algorithm itself during simulation. During the first simulation, the tree contains only the root node \(n_0\). The root node is the starting point of the simulation. Let \(l \in \mathbb L\) be the index of the current simulation step. Let \(\mathbb L = \mathbb [0, S]\cap\mathbb N\) be the set of all \(l\), where \(S\) is a constant defined in the algorithm's configuration file (\sectionref{code:config}). Let \(\mathbb{M}_l \subseteq \mathbb{G}\) be the set of all nodes in the tree at step \(l\in\mathbb L\). That implies \(\mathbb M_0 = \left\{n_0\right\}\).
+The amount of nodes and structure of the MCTS is changed by the algorithm itself during simulation. During the first simulation, the tree contains only the root node \(n_0\). The root node is the starting point of the simulation. Let \(l \in \mathbb L\) be the index of the current simulation step. Let \(\mathbb L = \mathbb [0, S]\cap\mathbb N\) be the set of all \(l\), where \(S\) is a constant defined in the algorithm's configuration file. Let \(\mathbb{M}_l \subseteq \mathbb{G}\) be the set of all nodes in the tree at step \(l\in\mathbb L\). That implies \(\mathbb M_0 = \left\{n_0\right\}\).
 
  Every node \(n_l \in \mathbb{M}_l\) has a set of edges \(\mathbb{E}_l(n_l)\) at step \(l\) that point from it to another node. Let \(\mathbb{E}_l\) be the set of all edges in the current graph. The function \(\mathcal{N}_{to_l}~:~\mathbb{E}_{l}\to\mathbb{M}_l\) maps an edge to the node it is pointing to while \(\mathcal{N}_{from_l}~:~\mathbb{E}_{l}\to\mathbb{M}_l\) is used to find the node an edge is pointing from.
 Furthermore, it is useful to distinguish expanded nodes from leaf nodes. Leaf nodes are nodes that don't have edges leading out of them. Let \(\mathbb{M}_{leaf_l} \subseteq \mathbb{M}_l\) be the set of leafnodes. For every node \(n_l\in \mathbb{M}_{leaf_l}\), the following is true by definition \(\mathbb{E}_l(n_l) = \emptyset\). Expanded nodes have edges leading out of them.
@@ -275,7 +275,7 @@ Furthermore, it is useful to distinguish expanded nodes from leaf nodes. Leaf no
   \centering
   \includesvg[height=.25\textheight]{images/mctsExample}
   \captionsetup{width=.9\linewidth}
-  \caption{}
+  \caption{This is a possible MCTS graph. In this exampel the set of all nodes is \(\mathbb M = \{n_1, n_2,\hdots,n_8\}\), the set of all leaf nodes is \(\mathbb M_{leaf} =  \{n_3, n_5, n_6, n_7, n_8\}\). The set  \(\mathbb E(n)\) of a node \(n\), beeing the set of edges pointing away from that node, for node \(n_1\) is \(\mathbb E(n_1) = \{e_1, e_2,e_3\}\). The same for all other nodes. \(\mathcal N_{to}(e)\) is the node an edge \(e\) points to. This means that \(\mathcal N_{to}(e_1) = n_3\), \(\mathcal N_{to}(e_2) = n_2\), etc. In contrast \(\mathcal N_{from}(e)\) is the node an edge \(e\) points from. Therefore, \(\mathcal N_{from}(e_1) = n_1, \mathcal N_{from}(e_2) = n_1\), etc.}
 	\label{fig:mcts:example}
 \end{figure}
 
@@ -324,7 +324,7 @@ where \(e\) is the edge taken at node \(n_{(L-1)_l}\) to reach \(n_{L_l}\). \\
 (The value of \(v_l\) is ``negative'' because it is player B's turn after player A won.)
 
 \paragraph*{case: not end game state \(n_{L_l} \not\in \mathbb G_{done}\)}
-In this case, the node is passed to the neural network (\sectionref{NN}). The neural network evaluates the node and outputs a policy vector \(\pi_l \in \mathbb R_{0,1}^{|\mathbb A|}\) \quckeq{set:Rab} and an estimated reward scalar \(v_l \in \mathbb R_{-1,1}\) \quckeq{set:Rab}. \(\pi_l\) is the estimation of the advantageousness of every action in \(\mathbb A\). After evaluation, the leaf node is expanded.
+In this case, the node is passed to the neural network (\sectionref{NN}). The neural network evaluates the node and outputs a policy vector \(\pi_l \in [0,1]^{|\mathbb A|}\) and an estimated reward scalar \(v_l \in \mathbb [-1,1]\). \(\pi_l\) is the estimation of the advantageousness of every action in \(\mathbb A\). After evaluation, the leaf node is expanded.
 Let \(\mathbb E_{new}\) be the next set of all edges pointing away from \(n_{L_l}\). This set contains one edge for every action in \(\mathbb A(n_{L_l})\).
 Let \(\mathbb M_{new}\) be the set of nodes, that the edges in \(\mathbb E_{new}\) are pointing to.
 The various tree sets and functions are then updated as follows for step \(l+1\).
@@ -783,7 +783,6 @@ Assuming that this is the probability of \(a\) winning against \(b\), \(a\)'s el
 \begin{equation} \label{eq:elo_back}
 r_a = r_b - ln\left(\frac{1-s_a}{s_a}\right) \cdot 400
 \end{equation}
-see \sectionref{sec:eloGet} for how to get from \quickeq{eq:elo_pred} to \quickeq{eq:elo_back}
 \begin{figure}
 \center
 \includesvg[width=0.8\columnwidth]{images/elo_back}
@@ -847,29 +846,29 @@ Collected data shows this to be true \imgRef{img:eloByVersion}. The same data sh
 	\captionof{figure}{Elo-rating of agents based on their version along with the expected minimal rating \(\Delta r_{min}\) and the best fitted rating \(\Delta r\).}
 	\label{img:eloByVersion}
 \end{center}
-\section{Problem Complexity}
-Lastly let us look at the complexity of the game connect4. Complexity in this case referes to the amount of possibly game states in the game.
-\subsection{Trivial Answers}
-There are two trivial ways of putting an upper bound on the amount of game states, the game has. The first is too simply look at the number of possible ways to place three differant kinds of stones onto a board with 42 locations. This means that there can not be more game states than \(3^{42}\). Another way is to realize is that it must be less than \(42!\).
-\subsection{Combinatorics}
-Let \(a(n)~:~\mathbb N \to \mathbb N^+\) be the amount of placements of \(n\) stones of colors given by the connect4 rules in a \(6\times 7\) board:
-\begin{equation}
-a(n) = \left(\begin{matrix}
-42\\
-\lceil\frac{n}{2}\rceil
-\end{matrix}\right)
-\left(\begin{matrix}
-42-\lceil\frac{n}{2}\rceil\\
-\lfloor\frac{n}{2}\rfloor
-\end{matrix}\right)
-\end{equation}
-The Total amount of possible game states \(n_s\) must be less than:
-\begin{equation}
-n_s < \sum_{n=0}^{42} a(n) = 16'282'402'094'173'127'445
-\end{equation}
-\subsection {SBFS based state search}
-According to calculations made with BDD's, the amount of state in connect4 is \(4'531'985'219'092\).\cite{kissmann_2016}
-
+%\section{Problem Complexity}
+%Lastly let us look at the complexity of the game connect4. Complexity in this case referes to the amount of possibly game states in the game.
+%\subsection{Trivial Answers}
+%There are two trivial ways of putting an upper bound on the amount of game states, the game has. The first is too simply look at the number of possible ways to place three differant kinds of stones onto a board with 42 locations. This means that there can not be more game states than \(3^{42}\). Another way is to realize is that it must be less than \(42!\).
+%\subsection{Combinatorics}
+%Let \(a(n)~:~\mathbb N \to \mathbb N^+\) be the amount of placements of \(n\) stones of colors given by the connect4 rules in a \(6\times 7\) board:
+%\begin{equation}
+%a(n) = \left(\begin{matrix}
+%42\\
+%\lceil\frac{n}{2}\rceil
+%\end{matrix}\right)
+%\left(\begin{matrix}
+%42-\lceil\frac{n}{2}\rceil\\
+%\lfloor\frac{n}{2}\rfloor
+%\end{matrix}\right)
+%\end{equation}
+%The Total amount of possible game states \(n_s\) must be less than:
+%\begin{equation}
+%n_s < \sum_{n=0}^{42} a(n) = 16'282'402'094'173'127'445
+%\end{equation}
+%\subsection {SBFS based state search}
+%According to calculations made with BDD's, the amount of state in connect4 is \(4'531'985'219'092\).\cite{kissmann_2016}
+%
 %\section{Servers and Clients}
 %In computer science, server-client-communications are a form of distributed application, that allows multiple machines to communicate and share data. In general, the server will wait for connections, while the client will initialize a connection with the server. To accomplish this, the server must listen to a certain port and the client must know the servers ip and port. In our case, the cummunications use the TCP and HTTPS protocols. Alpha Zero uses three distinct servers: an AI server, a data server and an Apache web server.
 %\subsection{The Web Server}
@@ -982,11 +981,9 @@ According to calculations made with BDD's, the amount of state in connect4 is \(
 %The iOS version does the same thing as the Desktop version with a few differences. Firstly, it renders the board using the pythonista scene library. Secondly, it dose not create or store accounts. The player will always play against the best AI version. Thirdly, it does not have the possiblity to replay games. Lastly, the Client will request its actual source code from the web server to allow for easier updating.
 
 \section{Implementation}
-The Alpha Zero training loop, can be found in ``train'' function found in \sectionref{code:playGame}. This function loads the latest neural network and memory if available. It uses then perform data generation by using the ``playGames\_InThreads'' function to have the Ai play a certain amount of games against itself. This is done by distributing the computations over multiple threads, each thread has its own MCTS and temporary memory. Once they are done generating data, the global memory is updated. The ``playGames\_InThreads'' function creates and manages the threads running ``playGames''. This latter function simulates a certain amount of games betwean two agents (\sectionref{code:Agent}). A game simmulation consists creating an instance of the Game (\sectionref{code:Game}) class, that handles all the game logic, then queriing sed game for what player is a trun, then using the agensts ``getAction'' to determin the next move and get the data used for training (see \sectionref{sec:training:actionSelection}), which is passed to temporary memory \eqref{eq:NN:policy_computation}, lastly the action is used to move to the next game state, by using the games ``takeAction'' function. This loop, of getting the agent to sugens an action, and then using the game to take that action is repeated, untill the game reaches an end game state. At that point, the temporary memory is updated with the correct rewards in accordance with \sectionref{sec:memoryUpdate}.
-
-
+In order to implement this, I began by implement the MCTS and Neural network seperatly. First I tried using Tensorflow for the neural network evaluation, but their C++ api is nearly undocumented and vary complicated to use, so I seettle on Pytorch. With that solved, I implemented the basic training loop and than ran the algorith. This is when the problem of insurficent computational resources accured. In an atempt to sovle this, I ran the program over google cloud platform and moved model evaluation to the GPU, furthermore I made game simulation and data generation asynchronous to avoid CPU/GPU downtime while the other is operating. Furthermore I created two python GUI's that comunicate with a c++ AI server to allow humans to play against the AI. Because the AI server was turned of most of the time but I still wanted access to the elo data and game logs against humans, I created a dedicated data server to store this information. Than because the AI server running on google cloud platform changes IP a lot, I created a webpage on a webserver, to redirect the clients to the right server. I than aquired a computer capable of handeling the AI and thus a lot of this work became useless. I than also implemented a neural network in numpy and created supervised and unsupervised learning examples.
 \section{Conclusion}
-In conclusion the algorythem works, and is able to learn to play connect4 at a level better than any human I could find. Some improvements can still be made, but in generall, Im rather happy with the results.
+In conclusion the algorythem works, and is able to learn to play connect4 at a level better than any human I could find. Some improvements can still be made, but in generall, Im rather happy with the results. If I were to ever do this again, I would stick with python.
 \subsection{Improvements}
 \begin{itemize}
 \item The algorythem could be compleatly rewritten to allow for taining on TPU's.
@@ -1128,7 +1125,7 @@ In conclusion the algorythem works, and is able to learn to play connect4 at a l
 %%\subparagraph{group.cpp}												\incDemo{c++}{unsupervised/src/group.cpp}
 %
 %
-\section{Apendix 3: Further definitions}
+\section{Apendix: Further definitions}
 %\subsection{Set Exclusion}
 %Let \(\mathbb A - \mathbb B\) be the set exclusion of \(\mathbb A\) and \(\mathbb B\).
 %\begin{equation}\label{eq:defs:SetExclusion}
@@ -1199,15 +1196,15 @@ A \diamond B = \sum_{i=0}^{m} A_{i} \diamond B_{i}
 \end{equation}
 %
 %%sidewaysfigure
-%\begin{sidewaysfigure}[ht]
-%    \centering
-%	\captionsetup{width=.9\linewidth}
-%    \includesvg[width=\columnwidth]{images/MCTS-steps.svg}
-%		\caption[width=0.7\columnwidth]{MCTS simulation steps. In this diagram, the numbers in the node represent \(Q\) and the number on the arrow is \(P\). The red nodes are leaf nodes and the green one is the leaf node \(n_L\). During the \textbf{selection} phase, \(\sigma\) is used to find successive nodes until the node \(n_L\) is reached. This is shown with the arrows. During the \textbf{expansion} phase, new nodes and edges are added for all possible legal actions at the node \(n_L\). The \textbf{evaluation} phase gives the new nodes the following values \(Q = 0\) and \(P = \pi_a\). The value of the leaf \(v\) is then used during the \textbf{backfill} phase to update the \(Q\)'s of all nodes traversed during selection.}
-%		\source{modified from \url{https://en.wikipedia.org/wiki/File:MCTS-steps.svg}\\File available under \href{https://creativecommons.org/licenses/by-sa/4.0/deed.en}{Creative Commons Attribution-Share Alike 4.0 International} at \url{https://wandhoven.ddns.net/edu/AlphaZeroTheory/images/MCTS-steps.svg}}
-%	\label{MCTS-simulation}
-%\end{sidewaysfigure}
-%
+\begin{sidewaysfigure}[ht]
+    \centering
+	\captionsetup{width=.9\linewidth}
+    \includesvg[width=\columnwidth]{images/MCTS-steps.svg}
+		\caption[width=0.7\columnwidth]{MCTS simulation steps. In this diagram, the numbers in the node represent \(Q\) and the number on the arrow is \(P\). The red nodes are leaf nodes and the green one is the leaf node \(n_L\). During the \textbf{selection} phase, \(\sigma\) is used to find successive nodes until the node \(n_L\) is reached. This is shown with the arrows. During the \textbf{expansion} phase, new nodes and edges are added for all possible legal actions at the node \(n_L\). The \textbf{evaluation} phase gives the new nodes the following values \(Q = 0\) and \(P = \pi_a\). The value of the leaf \(v\) is then used during the \textbf{backfill} phase to update the \(Q\)'s of all nodes traversed during selection.}
+		\source{modified from \url{https://en.wikipedia.org/wiki/File:MCTS-steps.svg}\\File available under \href{https://creativecommons.org/licenses/by-sa/4.0/deed.en}{Creative Commons Attribution-Share Alike 4.0 International} at \url{https://wandhoven.ddns.net/edu/AlphaZeroTheory/images/MCTS-steps.svg}}
+	\label{MCTS-simulation}
+\end{sidewaysfigure}
+
 \subsection{Submatrix}
 \label{sec:Ref:submatrix}
 Let \(m = m_{ijk}\) be an \(m\times n\times o\) dimensional tensor.\\
@@ -1221,57 +1218,56 @@ Let \(\left<\right>_{x\times y,\,ab}\) be the matrix slicing operator. \(x\times
 [m_{a(b+y-1)1},\dots,m_{a(b+y-1)o}] & \dots & [m_{(a+x-1)(b+y-1)1},\dots,m_{(a+x-1)(b+y-1)o}]\\
 \end{matrix}\right]
 \end{equation}
-%
-%\subsection{Vectorization}  \label{sec:ref:vectorization}
-%The vectorization of an \(m \times n\) matrix \(A\), denoted \(\text{vec}(A)\), is the \(mn \times 1\) column vector obtained by stacking the columns of the matrix A on top of one another: 
-%\begin{equation}\label{eq:ref:vectorization}
-%\text{vec}(A) = \left[
-%A_{11}\,\dots\,A_{1m}\,A_{21}\,\dots \,A{2m}\,\dots\,A_{n1}\,\dots\,A{nm}
-%\right]^T
-%\end{equation}
-%
-%Taken verbatim from:\cite{vectorization_2021}\\
-%For example, the \(3\times 2\) matrix \(A=\left[
-%\begin{matrix}
-%a & b & c\\
-%d & e & f\\
-%\end{matrix}
-%\right]\) vectorizes to
-%\[
-%\text{vec}(A) = \left(
-%\begin{matrix}
-%a\\
-%b\\
-%c\\
-%d\\
-%e\\
-%f\\
-%\end{matrix}
-%\right)
-%\]
-%\subsubsection{Tensors}\label{sec:ref:vectorization:tensor}
-%Let \(T \in \mathbb R^{n \times\dots}\) be a n-dimensional Tensor.
-%Let \(vec(T)\) be defined as:
-%\begin{equation}
-%vec(T) = T_0 \frown T_1 \frown \dots \frown T_n
-%\end{equation}
-%Where \(\frown\) is defined defined in \sectionref{sec:ref:vectorConcatination}. For those who are familiar with python's numpy library, \(vec\) is equivilent to numpy.flatten.
-%
-%\subsection{Vector Concatination}\label{sec:ref:vectorConcatination}
-%Vector Concatination of two vectors \(v\) and \(u\) of dimensions \(n_v\) and  \(n_u\), denoted \(v\frown u\), is the \(n_v + n_u\) dimensional vector obtained by placing both vectors one on top of the other.
-%\begin{equation} \label{eq:ref:vecConcatination}
-%v\frown u = \left(
-%\begin{matrix}
-%v_1\\
-%\vdots\\
-%v_{n_v}\\
-%u_1\\
-%\vdots\\
-%u_{n_u}\\
-%\end{matrix}
-%\right)
-%\end{equation}
-%
+
+\subsection{Vectorization}  \label{sec:ref:vectorization}
+``[T]he vectorization of an \(m \times n\) matrix \(A\), denoted \(\text{vec}(A)\), is the \(mn \times 1\) column vector obtained by stacking the columns of the matrix A on top of one another''\cite{vectorization_2021}: 
+\begin{equation}\label{eq:ref:vectorization}
+\text{vec}(A) = \left[
+A_{11}\,\dots\,A_{1m}\,A_{21}\,\dots \,A{2m}\,\dots\,A_{n1}\,\dots\,A{nm}
+\right]^T
+\end{equation}
+
+For example, the \(3\times 2\) matrix \(A=\left[
+\begin{matrix}
+a & b & c\\
+d & e & f\\
+\end{matrix}
+\right]\) vectorizes to
+\[
+\text{vec}(A) = \left(
+\begin{matrix}
+a\\
+b\\
+c\\
+d\\
+e\\
+f\\
+\end{matrix}
+\right)
+\]
+\subsubsection{Tensor Vectorization}\label{sec:ref:vectorization:tensor}
+Let \(T \in \mathbb R^{n \times\dots}\) be a n-dimensional Tensor.
+Let \(vec(T)\) be defined as:
+\begin{equation}
+vec(T) = T_0 \frown T_1 \frown \dots \frown T_n
+\end{equation}
+Where \(\frown\) is defined defined in \sectionref{sec:ref:vectorConcatination}. For those who are familiar with python's numpy library, \(vec\) is equivilent to numpy.flatten.
+
+\subsection{Vector Concatination}\label{sec:ref:vectorConcatination}
+Vector Concatination of two vectors \(v\) and \(u\) of dimensions \(n_v\) and  \(n_u\), denoted \(v\frown u\), is the \(n_v + n_u\) dimensional vector obtained by placing both vectors one on top of the other.
+\begin{equation} \label{eq:ref:vecConcatination}
+v\frown u = \left(
+\begin{matrix}
+v_1\\
+\vdots\\
+v_{n_v}\\
+u_1\\
+\vdots\\
+u_{n_u}\\
+\end{matrix}
+\right)
+\end{equation}
+
 %\subsection{Elementwise vector operations}
 %Let \(v \in \mathbb R^n\) be a \(n\) dimensional vector.
 %The Elementwise vector opperator \(\left<s, v\right>_{E}\) of some function \(s\) is defined as:
@@ -1285,13 +1281,6 @@ Let \(\left<\right>_{x\times y,\,ab}\) be the matrix slicing operator. \(x\times
 %\end{equation}
 %For example let \(v = [1, 4, 2]^T\) and \(s(x) = \frac{1}{x}\), than \(\left<s, v\right>_E = [1, 0.25, 0.5]^T\).
 %
-%
-\subsection{Sets}
-Let
-\begin{align}\label{set:Rab}
-\mathbb R_{a, b} &= \{x \in \mathbb R~:~ a\leq x \leq b\}\\ \label{set:Nab}
-\mathbb N_{a,b} & = \{x \in \mathbb N~:~a\leq x \leq b\}
-\end{align}
 %
 %\section{Apendix 4: Further examples}
 %\subsection{Mcts}\label{mctsExampleFullData}
@@ -1373,45 +1362,45 @@ Let
 %\frac{d}{dx}\left[tanh(x)\right] = sech(x)^2
 %\end{equation}
 %
-\subsection{Softmax Derivative}
-The Softmax \(s~:~\mathbb R^n~\to~\mathbb R^n\), \(n\in\mathbb N\), is defined as
-\begin{equation} \label{eq:proof:softmax}
-s(v)_i := \frac{e^{v_i}}{\sum_{j \in v} e^j}
-\end{equation}
-for all \(i \in [1,n]\cap\mathbb N\). Due to the multidimensional nature of this function we are taking the derivative \(\frac{d}{dv_j}s(v)_i\), with \(i \in [1,n]\cap\mathbb N\) and \(j \in [1,n]\cap\mathbb N\). 
-\subparagraph*{case \(i \neq j\)}
-\begin{align}
-\begin{split}
-\frac{d}{dv_j}\left[\frac{e^{v_i}}{\sum_{a \in v} e^a}\right] &= -\frac{\frac{d}{dx}\left[\sum_{a \in v} e^a\right]e^{v_i}}{(\sum_{a \in v} e^a)^2}\\
-&= -\frac{e^{v_j} e^{v_i}}{(\sum_{a \in v} e^a)^2}\\
-&= -s(v)_j s(v)_i
-\end{split}
-\end{align}
-\subparagraph*{case \(i = j\)}
-\begin{align}
-\begin{split}
-\frac{d}{dv_j}\left[\frac{e^{v_i}}{\sum_{a \in v} e^a}\right] 
-&= \frac{\frac{d}{dx}\left[e^{v_i}\right]\sum_{a \in v} e^a - e^{v_i}\frac{d}{dx}\left[\sum_{a \in v} e^a\right]}{(\sum_{a \in v} e^a)^2}\\
-&= \frac{e^{v_i}\sum_{a \in v} e^a - e^{v_i}e^{v_j}}{(\sum_{a \in v} e^a)^2}\\
-&= s(v)_i - s(v)_i s(v)_j\\
-&= s(v)_i (1 - s(v)_j)
-\end{split}
-\end{align}
-
-\subsection{Elo Rating}\label{sec:eloGet}
-Let \(r_b\), \(r_a \in \mathbb R\)\\
-Let \(E\) be the elo win expectation
-\begin{equation}
-E = \frac{1}{1+e^{r_b - r_a/400}}
-\end{equation}
-Solve to \(r_a\):
-\begin{align}
-E + Ee^{r_b - r_a/400} &= 1\\
-Ee^{r_b - r_a/400} &= 1 - E\\
-e^{r_b - r_a/400} &= \frac{1 - E}{E}\\
-\text{ln}\left(\frac{1 - E}{E}\right) &= \frac{r_b - r_a}{400}\\
-400 \text{ ln}\left(\frac{1 - E}{E}\right) &= r_b - r_a\\
-r_b - 400 \text{ ln}\left(\frac{1 - E}{E}\right)  &= r_a
-\end{align}
+%\subsection{Softmax Derivative}
+%The Softmax \(s~:~\mathbb R^n~\to~\mathbb R^n\), \(n\in\mathbb N\), is defined as
+%\begin{equation} \label{eq:proof:softmax}
+%s(v)_i := \frac{e^{v_i}}{\sum_{j \in v} e^j}
+%\end{equation}
+%for all \(i \in [1,n]\cap\mathbb N\). Due to the multidimensional nature of this function we are taking the derivative \(\frac{d}{dv_j}s(v)_i\), with \(i \in [1,n]\cap\mathbb N\) and \(j \in [1,n]\cap\mathbb N\). 
+%\subparagraph*{case \(i \neq j\)}
+%\begin{align}
+%\begin{split}
+%\frac{d}{dv_j}\left[\frac{e^{v_i}}{\sum_{a \in v} e^a}\right] &= -\frac{\frac{d}{dx}\left[\sum_{a \in v} e^a\right]e^{v_i}}{(\sum_{a \in v} e^a)^2}\\
+%&= -\frac{e^{v_j} e^{v_i}}{(\sum_{a \in v} e^a)^2}\\
+%&= -s(v)_j s(v)_i
+%\end{split}
+%\end{align}
+%\subparagraph*{case \(i = j\)}
+%\begin{align}
+%\begin{split}
+%\frac{d}{dv_j}\left[\frac{e^{v_i}}{\sum_{a \in v} e^a}\right] 
+%&= \frac{\frac{d}{dx}\left[e^{v_i}\right]\sum_{a \in v} e^a - e^{v_i}\frac{d}{dx}\left[\sum_{a \in v} e^a\right]}{(\sum_{a \in v} e^a)^2}\\
+%&= \frac{e^{v_i}\sum_{a \in v} e^a - e^{v_i}e^{v_j}}{(\sum_{a \in v} e^a)^2}\\
+%&= s(v)_i - s(v)_i s(v)_j\\
+%&= s(v)_i (1 - s(v)_j)
+%\end{split}
+%\end{align}
+%
+%\subsection{Elo Rating}\label{sec:eloGet}
+%Let \(r_b\), \(r_a \in \mathbb R\)\\
+%Let \(E\) be the elo win expectation
+%\begin{equation}
+%E = \frac{1}{1+e^{r_b - r_a/400}}
+%\end{equation}
+%Solve to \(r_a\):
+%\begin{align}
+%E + Ee^{r_b - r_a/400} &= 1\\
+%Ee^{r_b - r_a/400} &= 1 - E\\
+%e^{r_b - r_a/400} &= \frac{1 - E}{E}\\
+%\text{ln}\left(\frac{1 - E}{E}\right) &= \frac{r_b - r_a}{400}\\
+%400 \text{ ln}\left(\frac{1 - E}{E}\right) &= r_b - r_a\\
+%r_b - 400 \text{ ln}\left(\frac{1 - E}{E}\right)  &= r_a
+%\end{align}
 
 \end{document}

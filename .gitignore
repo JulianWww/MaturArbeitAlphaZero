@@ -8,8 +8,8 @@
 demos/
 AlphaZero/
 networks/
+AlphaZeroTheory.bbl
+AlphaZeroTheory.blg
+AlphaZeroTheory.synctex.gz
 code/
-svg-inkscape/
-*.synctex.gz
-*.blg
-*.bbl
+*.pdf_tex
