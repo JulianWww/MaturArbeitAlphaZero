@@ -54,3 +54,4 @@ ass many of these processes were spread out the values are not compleatly accura
 
 
 - 100h wrote paper and generated images.
+- 30h testing and fixing minor problems and setting up servers
