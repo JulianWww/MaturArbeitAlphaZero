@@ -846,291 +846,36 @@ Collected data shows this to be true \imgRef{img:eloByVersion}. The same data sh
 	\captionof{figure}{Elo-rating of agents based on their version along with the expected minimal rating \(\Delta r_{min}\) and the best fitted rating \(\Delta r\).}
 	\label{img:eloByVersion}
 \end{center}
-%\section{Problem Complexity}
-%Lastly let us look at the complexity of the game connect4. Complexity in this case referes to the amount of possibly game states in the game.
-%\subsection{Trivial Answers}
-%There are two trivial ways of putting an upper bound on the amount of game states, the game has. The first is too simply look at the number of possible ways to place three differant kinds of stones onto a board with 42 locations. This means that there can not be more game states than \(3^{42}\). Another way is to realize is that it must be less than \(42!\).
-%\subsection{Combinatorics}
-%Let \(a(n)~:~\mathbb N \to \mathbb N^+\) be the amount of placements of \(n\) stones of colors given by the connect4 rules in a \(6\times 7\) board:
-%\begin{equation}
-%a(n) = \left(\begin{matrix}
-%42\\
-%\lceil\frac{n}{2}\rceil
-%\end{matrix}\right)
-%\left(\begin{matrix}
-%42-\lceil\frac{n}{2}\rceil\\
-%\lfloor\frac{n}{2}\rfloor
-%\end{matrix}\right)
-%\end{equation}
-%The Total amount of possible game states \(n_s\) must be less than:
-%\begin{equation}
-%n_s < \sum_{n=0}^{42} a(n) = 16'282'402'094'173'127'445
-%\end{equation}
-%\subsection {SBFS based state search}
-%According to calculations made with BDD's, the amount of state in connect4 is \(4'531'985'219'092\).\cite{kissmann_2016}
-%
-%\section{Servers and Clients}
-%In computer science, server-client-communications are a form of distributed application, that allows multiple machines to communicate and share data. In general, the server will wait for connections, while the client will initialize a connection with the server. To accomplish this, the server must listen to a certain port and the client must know the servers ip and port. In our case, the cummunications use the TCP and HTTPS protocols. Alpha Zero uses three distinct servers: an AI server, a data server and an Apache web server.
-%\subsection{The Web Server}
-%Alpha Zero's web server uses the Apache web server application. The web server is used to host static files such as the source code for the iOS client (see \sectionref{sec:iosClient}), a debug version of the same client, the domain name of the AI server and the domain name of the data server. All these files were located at \href{https://wandhoven.ddns.net/code/AlphaZero/}{https://wandhoven.ddns.net/code/AlphaZero/}
-%\subsection{The Data Server}
-%The data server stores all global information. This was just the elo-rating to begin with, but was later expanded to handle all data. This explains the somewhat strange communication protocol. Requests to the server begin by sending a 4 byte signed integer \(a\) identifying the general action the server must perform. The first action \(a=1\) will return the elo-rating of a certain agent.
-%This will require a further 4 bytes identifying the agent. The second action \(a=2\) will set an agents elo-rating. Two 4 byte integers are sent, the first identifying the agent and the second the elo-rating to set to. The third action \(a=-1\) will require a 4 byte signed integer \(e\) and return the agent's identifier with an elo-rating equal to \(r\) defined as:
-%\begin{equation}
-%r = \text{min}(\left\{x \in\mathbb E | x \geq e \right\})
-%\end{equation}
-%where \(\mathbb E\) is the set of the elo-ratings of all agents. The last action \(a=-2\) will access the custom data part of the server. This subsection will require an integer describing how many bytes the request consists of. The request is encoded using the python pickle library and consists of either a tuple containing a string, and a list of strings; or a tuple containing a string, a list of strings, and any other data type. In the first case, the system will return the value of the saved data associated with that request. In the second case, the value of the associated the variable will be set to whatever the third value is.\\\\
-%The first two variables of the tuple are a string \(f\) and a list of strings \(k\). \(f\) tells the server in which file the variable is stored. Therefore, the server will load the json file with the name \(f\). \(k\) is the list of keys used to index the dictionary \(f\). \\\\
-%For example, with \(f = \text{example.json}\), the server would decode the json file "example.json" shown in \listingref{listing:dataAssociation}. Assuming that \(k =\) ["address", "city"], the server would first search for key "address" in the outer most directory. At that key, there is another dictionary, which is then searched for the key "city".  At that key, there is a string ("New York"), which would  be returned to the client.
-%
-%\begin{listing}[H]
-%\begin{minted}[frame=single,
-%               framesep=3mm,
-%               linenos=true,
-%               xleftmargin=21pt,
-%               tabsize=4]{js}
-%{
-%  "firstName": "John",
-%  "lastName": "Smith",
-%  "isAlive": true,
-%  "age": 27,
-%  "address": {
-%    "streetAddress": "21 2nd Street",
-%    "city": "New York",
-%    "state": "NY",
-%    "postalCode": "10021-3100"
-%  },
-%  "phoneNumbers": [
-%    {
-%      "type": "home",
-%      "number": "212 555-1234"
-%    },
-%    {
-%      "type": "office",
-%      "number": "646 555-4567"
-%    }
-%  ],
-%  "children": [],
-%  "spouse": null
-%}
-%\end{minted}
-%\caption{example.json \newline\indent from \href{https://en.wikipedia.org/wiki/JSON}{https://en.wikipedia.org/wiki/JSON}} 
-%\label{listing:dataAssociation}
-%\end{listing}
-%\subsection{The AI Server}
-%The AI server is used to evaluate a state and determine the best action using Alpha Zero. This is done by sending the server the state and waiting for it to send back the action.
-%\subsubsection{State Transmission}
-%To send a state to the server, the state's \(6 \times 7\) board is converted into an array of 85 boolean values\footnote{Stored as integers 0 and 1 in memory}. The first 42 booleans represent whether or not the starting player has a stone at that position. Positions are mapped from left to right and then top to bottom. The table below shows the order in which the positions will be added to the boolean array. The next 42 booleans are identical to the first but for the non-starting player. The last position tells the server which player is taking the next action.
-%\begin{center}
-%\begin{tabular}{| c | c | c | c | c | c | c |}
-% \hline
-%0 & 1 & 2 & 3 & 4 & 5 & 6  \\\hline
-%7 & 8 & 9 & 10 & 11 & 12 & 13\\\hline
-%14 & 15 & 16 & 17 & 18 & 19 & 20 \\\hline
-%21 & 22 & 23& 24 & 25 & 26 & 27 \\\hline
-%28 & 29 & 30 & 31 & 32 & 33 & 34 \\\hline
-%35 & 36 & 37 & 38 & 39 & 40 & 41 \\\hline
-%\end{tabular}
-%\end{center}
-%Consider the following game state \imgRef{fig:connectFourExample} at which the starting player is at turn.
-%\begin{center}
-%\includegraphics[width=0.5\textwidth]{connectFourExample}
-%\captionof{figure}{example game state}
-%\label{fig:connectFourExample}
-%\end{center}
-%This state's boolean array \(a\) is:
-%\begin{equation}
-%a =
-%\text{vec}\left(\left[\begin{matrix}
-%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{1}     & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{\gold}{0} & \mathColor{\gold}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{1}     & \mathColor{\gold}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{1}     & \mathColor{red}{1}     & \mathColor{\gold}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{1}     & \mathColor{\gold}{0} & \mathColor{\gold}{0} & \mathColor{red}{1}     & \mathColor{black}{0}\\
-%\end{matrix}
-%\right]\right)
-%\frown vec
-%\left(\left[
-%\begin{matrix}
-%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{0}     & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{\gold}{1} & \mathColor{\gold}{1} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{0}     & \mathColor{\gold}{1} & \mathColor{black}{0} & \mathColor{black}{0} & \mathColor{black}{0}\\
-%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{0}     & \mathColor{red}{0}     & \mathColor{\gold}{1} & \mathColor{black}{0} & \mathColor{black}{0}\\
-%\mathColor{black}{0} & \mathColor{black}{0} & \mathColor{red}{0}     & \mathColor{\gold}{1} & \mathColor{\gold}{1} & \mathColor{red}{0}     & \mathColor{black}{0}\\
-%%&&& 1 &&&]\\
-%\end{matrix}\right]\right)\frown \left<1\right>
-%\end{equation}
-%Where \(vec\) is the matrix vectorization defined in \sectionref{sec:ref:vectorization} and \(\frown\) is the vector concatination defined in \sectionref{sec:ref:vectorConcatination}.
-%To the front of this vector, the version of the AI we want to play against is added. If the version is invalid the server will default to the best version.
-%
-%
-%
-%\subsubsection{Action Selection}
-%The AI's action is selected by running MCTS simulations and choosing the action with the most evaluations. It is the same algorithm as the deterministic method defined in \sectionref{sec:training:actionSelection}.
-%\subsubsection{Action Transmission}
-%The action is stored and transmitted as a four byte integer.
-%
-%\subsection{Clients}
-%There are two clients for the AlphaZero system. The first is a python client for DOS, macOS, Linux, etc., and the second was developped for iOS using pythonista.
-%\subsubsection{Desktop Client}
-%The Desktop client will allow the player to play against an AI with a slightly better elo-rating than the player's. This is done by creating an account on the data server. The data server will give the client a unique number representing its account. The Client will then proceed to save this number and request the player's elo-rating. Finally, the AI version with the closest but better elo-rating to that of the player is requested. Now the client renders the game board and randomly selects a starting player. The client will tean wait for user inputs and query the server as appropriate, i.e. what player is at turn. When the game is done, the client's log of the game is uploaded to the data server and the player will be shown the appropriate end-of-the-game screen. The client also has the possibility to request game logs and replay games.
-%This client version uses the python socket library for communication and Tkinter to render the game board.
-%\subsubsection{iOS Client}\label{sec:iosClient}
-%The iOS version does the same thing as the Desktop version with a few differences. Firstly, it renders the board using the pythonista scene library. Secondly, it dose not create or store accounts. The player will always play against the best AI version. Thirdly, it does not have the possiblity to replay games. Lastly, the Client will request its actual source code from the web server to allow for easier updating.
 
 \section{Implementation}
-In order to implement this, I began by implement the MCTS and Neural network seperatly. First I tried using Tensorflow for the neural network evaluation, but their C++ api is nearly undocumented and vary complicated to use, so I seettle on Pytorch. With that solved, I implemented the basic training loop and than ran the algorith. This is when the problem of insurficent computational resources accured. In an atempt to sovle this, I ran the program over google cloud platform and moved model evaluation to the GPU, furthermore I made game simulation and data generation asynchronous to avoid CPU/GPU downtime while the other is operating. Furthermore I created two python GUI's that comunicate with a c++ AI server to allow humans to play against the AI. Because the AI server was turned of most of the time but I still wanted access to the elo data and game logs against humans, I created a dedicated data server to store this information. Than because the AI server running on google cloud platform changes IP a lot, I created a webpage on a webserver, to redirect the clients to the right server. I than aquired a computer capable of handeling the AI and thus a lot of this work became useless. I than also implemented a neural network in numpy and created supervised and unsupervised learning examples.
+I began by implementing the MCTS and neural network seperately. First, I tried using Tensorflow for the neural network evaluation, but its C++ API is nearly undocumented and very complicated to use. So I setteled for Pytorch. With that solved, I implemented the basic training loop and ran the algorithm. This is when the problem of insufficent computational resources occurred. In an attempt to solve this, I ran the program over google cloud platform and moved model evaluation to the GPU. Furthermore, I made game simulation and data generation asynchronous to avoid CPU/GPU downtime while the other is computing. Additionally, I created two python GUI's and one C++ UI that comunicate with a C++ AI server to allow humans to play against the AI. Because the AI server was turned off most of the time but I still wanted to access the elo data and game logs, I created a dedicated data server to store this information. Then, because the AI server running on google cloud platform changes IP a lot, I created a webpage on a webserver, to redirect the clients to the right server. When I aquired a computer capable of handling the AI, a lot of this work became redundant. I also implemented a neural network in numpy and created supervised and unsupervised learning examples.
 \section{Conclusion}
-In conclusion the algorythem works, and is able to learn to play connect4 at a level better than any human I could find. Some improvements can still be made, but in generall, Im rather happy with the results. If I were to ever do this again, I would stick with python.
+%In conclusion the algorythem works, and is able to learn to play connect4 at a level better than any human I could find. Some improvements can still be made, but in generall, Im rather happy with the results. If I were to ever do this again, I would stick with python.
+I very much enjoyed the development of the AI as well as deriving the mathematics behind neural networks. Coding was a lot of fun though the endless debugging was painful. Performance issues were a major part of my concern. Solving these was an interesting experience. Working on asynchronous programs of this scale was a new experience for me, and it worked quite well.
+As a result, I successfully developed an AI-based computer program that plays connect4, and has beaten every human so far that it played against.
+I am very happy with the results. However, if I were ever to do this again, I would stick to python.
+\\
+Some improvements could be made - like the following
 \subsection{Improvements}
 \begin{itemize}
-\item The algorythem could be compleatly rewritten to allow for taining on TPU's.
-\item Process distribution could be improved allow for training of the AI on multiple GPU's.
-\item It it is possible to remove the need for model testing.
-\item The algorythem could be tested for differant games, and other configurations.
-\item Most of the time is spent on running neural network simulations. By maximizing information gane from every neural network simulation.  A possible way to do this would be to not only update MCTS Graphs to the current node, but all the way back to the root. Furthermore by not only updateing the path but every possible pass back would increase efficency. 
+\item The algorithm could be completely rewritten to allow for training on TPU's (tensor processing units).
+\item Process distribution could be improved to allow for training of the AI on multiple GPU's.
+\item The algorithm could be tested for different games and other configurations.
+\item Since most of the time is spent on running neural network simulations, process efficiency could be improved by not only updating MCTS graphs to the current node, but all the way back to the root. Furthermore, not only updating the path but every possible path back would increase efficency even further - at least in theory. 
 \end{itemize}
 
+\newpage
 \bibliographystyle{plain}
 \bibliography{bibliography}
 
+\newpage
 \section*{Acknowledgements}
 \begin{itemize}
-\item Leonie Scheck, Frederik Ott, Nico Steiner, Wolfgang Wandhoven for aiding in evaluating the AI against human players and providing feedback.
+\item Leonie Scheck, Frederik Ott, Nico Steiner, Wolfgang Wandhoven for assisting in evaluating the AI against human players and providing feedback.
 \end{itemize}
 
-%\section{Apendix 1: Alpha Zero Code}
-%\subsection{AlphaZeroPytorch}
-%\subsubsection{AlphaZeroPytorch.h}							\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.h}
-%\subsubsection{AlphaZeroPytorch.cpp}						\incFile{C++}{AlphaZeroPytorch/AlphaZeroPytorch.cpp}
-%%\subsubsection{cmake.sh}												\incFile{sh}{AlphaZeroPytorch/cmake.sh}
-%\subsubsection{CMakeLists.txt}										\incFile{python}{AlphaZeroPytorch/CMakeLists.txt}
-%\subsubsection{convertToJceFormat.cpp}					\incFile{C++}{AlphaZeroPytorch/convertToJceFormat.cpp}
-%%\incFile{C++}{AlphaZeroPytorch/detect_cuda_compute_capabilities.cpp}
-%%\incFile{C++}{AlphaZeroPytorch/detect_cuda_version.cc}
-%\subsubsection{doEloRaiting.cpp}									\incFile{C++}{AlphaZeroPytorch/doEloRaiting.cpp}
-%\subsubsection{makeFiles.hpp}										\incFile{C++}{AlphaZeroPytorch/makeFiles.hpp}
-%\subsubsection{Replay.cpp}											\incFile{C++}{AlphaZeroPytorch/Replay.cpp}
-%\subsubsection{runServer.cpp}										\incFile{C++}{AlphaZeroPytorch/runServer.cpp}
-%\subsubsection{showLoss.cpp}										\incFile{C++}{AlphaZeroPytorch/showLoss.cpp}
-%\subsubsection{test.cpp}												\incFile{C++}{AlphaZeroPytorch/test.cpp}
-%\subsubsection{include}													% AlphaZeroPytorch/include
-%\paragraph{config.hpp}													\incFile{C++}{AlphaZeroPytorch/include/config.hpp} \label{code:config}
-%\paragraph{config.cpp}													\incFile{C++}{AlphaZeroPytorch/include/config.cpp}
-%\paragraph{io.hpp}															\incFile{C++}{AlphaZeroPytorch/include/io.hpp}
-%\paragraph{log.hpp}														\incFile{C++}{AlphaZeroPytorch/include/log.hpp}
-%\paragraph{log.cpp}														\incFile{C++}{AlphaZeroPytorch/include/log.cpp}
-%\paragraph{timer.hpp}													\incFile{C++}{AlphaZeroPytorch/include/timer.hpp}
-%\paragraph{ai}																	% AlphaZeroPytorch/include/ai
-%\subparagraph{agent.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.hpp} \label{code:Agent}
-%\subparagraph{agent.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/agent.cpp}
-%\subparagraph{MCTS.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.hpp}
-%\subparagraph{MCTS.cpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/MCTS.cpp}
-%\subparagraph{memory.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.hpp}
-%\subparagraph{memory.cpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/memory.cpp}
-%\subparagraph{model.hpp}											\incFile{C++}{AlphaZeroPytorch/include/ai/model.hpp}
-%\subparagraph{modelSynchronizer.hpp}						\incFile{C++}{AlphaZeroPytorch/include/ai/modelSynchronizer.hpp}
-%\subparagraph{modelWorker.hpp}								\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.hpp}
-%\subparagraph{modelWorker.cpp}									\incFile{C++}{AlphaZeroPytorch/include/ai/modelWorker.cpp}
-%\subparagraph{playGame.hpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.hpp}\label{code:playGame}
-%\subparagraph{playGame.cpp}										\incFile{C++}{AlphaZeroPytorch/include/ai/playGame.cpp}
-%\subparagraph{utils.hpp}												\incFile{C++}{AlphaZeroPytorch/include/ai/utils.hpp}
-%\paragraph{game}															% AlphaZeroPytorch/include/game
-%\subparagraph{game.hpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.hpp}\label{code:Game}
-%\subparagraph{game.cpp}												\incFile{C++}{AlphaZeroPytorch/include/game/game.cpp}
-%\paragraph{jce}																% AlphaZeroPytorch/include/jce
-%\subparagraph{load.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/load.hpp}
-%\subparagraph{save.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/save.hpp}
-%\subparagraph{string.hpp}												\incFile{C++}{AlphaZeroPytorch/include/jce/string.hpp}
-%\subparagraph{vector.hpp}											\incFile{C++}{AlphaZeroPytorch/include/jce/vector.hpp}
-%\paragraph{server}															% AlphaZeroPytorch/include/server
-%\subparagraph{eloClient.hpp}										\incFile{C++}{AlphaZeroPytorch/include/Server/eloClient.hpp}
-%\subparagraph{server.hpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.hpp}
-%\subparagraph{server.cpp}												\incFile{C++}{AlphaZeroPytorch/include/Server/server.cpp}
-%\paragraph{test}																% AlphaZeroPytorch/include/test
-%\subparagraph{testSuit.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.hpp}	
-%\subparagraph{testSuit.cpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testSuit.cpp}
-%\subparagraph{testUtils.hpp}											\incFile{C++}{AlphaZeroPytorch/include/test/testUtils.hpp}
-%
-%\subsection{Clients}														% Clients/ConsoleClient
-%\subsubsection{ConsoleClient}
-%\paragraph{ConsoleClient.h}											\incFile{C++}{Clients/ConsoleClient/ConsoleClient.h}
-%\paragraph{ConsoleClient.cpp}										\incFile{C++}{Clients/ConsoleClient/ConsoleClient.cpp}
-%\paragraph{include}														% clients/consoleClient/include
-%\subparagraph{agent.hpp}												\incFile{C++}{Clients/ConsoleClient/include/agent.hpp}
-%\subparagraph{game.hpp}												\incFile{C++}{Clients/ConsoleClient/include/game.hpp}
-%\subparagraph{modifications.hpp}								\incFile{C++}{Clients/ConsoleClient/include/modifications.hpp}
-%\paragraph{scr}																% Clients/ConsoleClient/src
-%\subparagraph{game.cpp}												\incFile{C++}{Clients/ConsoleClient/scr/game.cpp}
-%\subsubsection{iosClient}												% Clients/iosClient
-%\paragraph{caller.py}														\incFile{python}{Clients/iosClient/caller.py}
-%\paragraph{connect4IOS.py}											\incFile{python}{Clients/iosClient/connect4IOS.py}
-%\subsubsection{pyClient}												% Clients/pyClient
-%\paragraph{Client.py}														\incFile{python}{Clients/pyClient/Client.py}
-%\paragraph{game.py}														\incFile{python}{Clients/pyClient/game.py}
-%\paragraph{gameSaver.py}												\incFile{python}{Clients/pyClient/gameSaver.py}
-%\paragraph{GUI.py}															\incFile{python}{Clients/pyClient/GUI.py}
-%\paragraph{main.py}														\incFile{python}{Clients/pyClient/main.py}
-%\paragraph{test.py}														\incFile{python}{Clients/pyClient/test.py}
-%\paragraph{winStates.json}											\incFile{python}{Clients/pyClient/winStates.json}
-%
-%\subsection{elo}																% /elo
-%\subsubsection{agent.py}												\incFile{python}{elo/agent.py}
-%\subsubsection{renderElo.py}										\incFile{python}{elo/renderElo.py}
-%\subsubsection{score.py}												\incFile{python}{elo/score.py}
-%\subsubsection{server.py}												\incFile{python}{elo/server.py}
-%
-%\subsection{game}															% games/connect4
-%\subsubsection{connect4}
-%\paragraph{config.hpp}													\incFile{C++}{games/connect4/config.hpp}
-%\paragraph{game.hpp}													\incFile{C++}{games/connect4/game.hpp}
-%\paragraph{game.cpp}													\incFile{C++}{games/connect4/game.cpp}
-%\subsubsection{othello}													% games/othello
-%\paragraph{config.hpp}													\incFile{C++}{games/othello/config.hpp}
-%\paragraph{game.hpp}													\incFile{C++}{games/othello/game.hpp}
-%\paragraph{game.cpp}													\incFile{C++}{games/othello/game.cpp}
-%
-%% /
-%\subsection{CMakeLists.txt}											\incFile{python}{CMakeLists.txt}
-%\subsection{README.md}												\incFile{python}{README.md}
-%%\subsection{serch.sh}														\incFile{sh}{serch.sh}
-%
-%\section{Apendix 2: Demos Code}
-%\subsection{Matura-AlphaZero-demos}
-%\subsubsection{CMakeLists.txt}										\incDemo{python}{CMakeLists.txt}
-%%\subsubsection{LICENSE}											\incDemo{python}{LICENSE}
-%\subsubsection{main.cpp}												\incDemo{c++}{main.cpp}
-%\subsubsection{README.md}										\incDemo{python}{README.md}
-%\subsubsection{supervised.cpp}									\incDemo{c++}{supervised.cpp}
-%\subsubsection{include}													% demo/include
-%\paragraph{point.hpp}													\incDemo{c++}{include/point.hpp}
-%\paragraph{utils.hpp}														\incDemo{c++}{include/utils.hpp}
-%\subsubsection{scr}														% demo/scr
-%\paragraph{point.cpp}													\incDemo{c++}{scr/point.cpp}
-%\subsubsection{supervised}											% demo/supervised
-%\paragraph{include}														% demo/supervised/include
-%\subparagraph{config.hpp}											\incDemo{c++}{supervised/include/config.hpp}
-%\subparagraph{model.hpp}											\incDemo{c++}{supervised/include/model.hpp}
-%\paragraph{src}																% demo/supervised/src
-%\subparagraph{model.cpp}												\incDemo{c++}{supervised/src/model.cpp}
-%\subsubsection{unsupervised}										% demo/unsupervised
-%\paragraph{include}														% demo/unsupervised/include
-%\subparagraph{cluster.hpp}											\incDemo{c++}{unsupervised/include/cluster.hpp}
-%\subparagraph{config.hpp}											\incDemo{c++}{unsupervised/include/config.hpp}
-%\subparagraph{group.hpp}												\incDemo{c++}{unsupervised/include/group.hpp}
-%\paragraph{src}																% demo/unsupervised/src
-%%\subparagraph{cluster.cpp}											\incDemo{c++}{unsupervised/src/cluster.cpp}
-%%\subparagraph{group.cpp}												\incDemo{c++}{unsupervised/src/group.cpp}
-%
-%
-\section{Apendix: Further definitions}
-%\subsection{Set Exclusion}
-%Let \(\mathbb A - \mathbb B\) be the set exclusion of \(\mathbb A\) and \(\mathbb B\).
-%\begin{equation}\label{eq:defs:SetExclusion}
-%\mathbb A - \mathbb B = \mathbb A \setminus \mathbb B = \left\{x: x\in\mathbb  A ~\wedge~ x \notin\mathbb B\right\}
-%\end{equation}
+\newpage
+\section{Appendix: Further definitions}
 \subsection{Hadamard product}\label{sec:hadamerd_product}
 Let \(A\) and \(B\) be 2 \(m \times n\) matrices. For all \(i \in [1, m]\cap\mathbb N\) and \(j \in [1, n]\cap\mathbb N\)
 the hadamard product \(A \circ B\) is defined as:
@@ -1160,7 +905,7 @@ a_{21}b_{21} & a_{22}b_{22} \\
 a_{31}b_{31} & a_{32}b_{32} \\
 \end{array}
 \right]
-\]
+\]\\
 
 \subsection{Inner Product}
 \subsubsection{Matrices}
@@ -1196,37 +941,36 @@ A \diamond B = \sum_{i=0}^{m} A_{i} \diamond B_{i}
 \end{equation}
 %
 %%sidewaysfigure
-\begin{sidewaysfigure}[ht]
-    \centering
-	\captionsetup{width=.9\linewidth}
-    \includesvg[width=\columnwidth]{images/MCTS-steps.svg}
-		\caption[width=0.7\columnwidth]{MCTS simulation steps. In this diagram, the numbers in the node represent \(Q\) and the number on the arrow is \(P\). The red nodes are leaf nodes and the green one is the leaf node \(n_L\). During the \textbf{selection} phase, \(\sigma\) is used to find successive nodes until the node \(n_L\) is reached. This is shown with the arrows. During the \textbf{expansion} phase, new nodes and edges are added for all possible legal actions at the node \(n_L\). The \textbf{evaluation} phase gives the new nodes the following values \(Q = 0\) and \(P = \pi_a\). The value of the leaf \(v\) is then used during the \textbf{backfill} phase to update the \(Q\)'s of all nodes traversed during selection.}
-		\source{modified from \url{https://en.wikipedia.org/wiki/File:MCTS-steps.svg}\\File available under \href{https://creativecommons.org/licenses/by-sa/4.0/deed.en}{Creative Commons Attribution-Share Alike 4.0 International} at \url{https://wandhoven.ddns.net/edu/AlphaZeroTheory/images/MCTS-steps.svg}}
-	\label{MCTS-simulation}
-\end{sidewaysfigure}
+%\begin{sidewaysfigure}[ht]
+%    \centering
+%	\captionsetup{width=.9\linewidth}
+%    \includesvg[width=\columnwidth]{images/MCTS-steps.svg}
+%		\caption[width=0.7\columnwidth]{MCTS simulation steps. In this diagram, the numbers in the node represent \(Q\) and the number on the arrow is \(P\). The red nodes are leaf nodes and the green one is the leaf node \(n_L\). During the \textbf{selection} phase, \(\sigma\) is used to find successive nodes until the node \(n_L\) is reached. This is shown with the arrows. During the \textbf{expansion} phase, new nodes and edges are added for all possible legal actions at the node \(n_L\). The \textbf{evaluation} phase gives the new nodes the following values \(Q = 0\) and \(P = \pi_a\). The value of the leaf \(v\) is then used during the \textbf{backfill} phase to update the \(Q\)'s of all nodes traversed during selection.}
+%		\source{modified from \url{https://en.wikipedia.org/wiki/File:MCTS-steps.svg}\\File available under \href{https://creativecommons.org/licenses/by-sa/4.0/deed.en}{Creative Commons Attribution-Share Alike 4.0 International} at %\url{https://wandhoven.ddns.net/edu/AlphaZeroTheory/images/MCTS-steps.svg}}
+%	\label{MCTS-simulation}
+%\end{sidewaysfigure}
 
 \subsection{Submatrix}
 \label{sec:Ref:submatrix}
-Let \(m = m_{ijk}\) be an \(m\times n\times o\) dimensional tensor.\\
-Let \(\left<\right>_{x\times y,\,ab}\) be the matrix slicing operator. \(x\times y\) is the size of the submatrix the operation should output. \(ab\) is the top left position of the submatrix within the outer matrix.  For the operation to be defined, the following must be true: \(x \in [0, m[\cap\mathbb N\), \(y \in [0, n[ \cap\mathbb N\), \(a  \in [1, m-x]\cap\mathbb N\) and \(b \in [1, n-y]\cap\mathbb N\). The submatrix \(\left<m\right>_{x\times y,\,ab}\) is defined as:
+Let \(M \in\mathbb R^{m\times n\times o}\) be a tensor of size  \(m\times n\times o\).\\
+Let \(\left<\right>_{x\times y,\,ab}\) be the matrix slicing operator. \(x\times y\) is the size of the submatrix the operation should output. \(ab\) is the top left position of the submatrix within the outer matrix.  For the operation to be defined, the following must be true: \(x \in [1, m[\cap\mathbb N\), \(y \in [1, n[ \cap\mathbb N\), \(a  \in [1, m-x+1]\cap\mathbb N\) and \(b \in [1, n-y+1]\cap\mathbb N\). The submatrix \(\left<M\right>_{x\times y,\,ab}\) is defined as:
 \begin{equation}
-\left<m\right>_{x\times y,\,ab} = 
+\left<M\right>_{x\times y,\,ab} = 
 \left[
 \begin{matrix}
-[m_{ab1},\dots,m_{abo}] & \dots & [m_{(a+x-1)b1},\dots,m_{(a+x-1)bo}]\\
+[M_{ab1},\dots,M_{abo}] & \dots & [M_{(a+x-1)b1},\dots,M_{(a+x-1)bo}]\\
 \vdots &  \ddots & \vdots\\
-[m_{a(b+y-1)1},\dots,m_{a(b+y-1)o}] & \dots & [m_{(a+x-1)(b+y-1)1},\dots,m_{(a+x-1)(b+y-1)o}]\\
+[M_{a(b+y-1)1},\dots,M_{a(b+y-1)o}] & \dots & [M_{(a+x-1)(b+y-1)1},\dots, M_{(a+x-1)(b+y-1)o}]\\
 \end{matrix}\right]
 \end{equation}
 
 \subsection{Vectorization}  \label{sec:ref:vectorization}
-``[T]he vectorization of an \(m \times n\) matrix \(A\), denoted \(\text{vec}(A)\), is the \(mn \times 1\) column vector obtained by stacking the columns of the matrix A on top of one another''\cite{vectorization_2021}: 
+``[\dots] the vectorization of an \(m \times n\) matrix \(A\), denoted \(\text{vec}(A)\), is the \(mn \times 1\) column vector obtained by stacking the columns of the matrix A on top of one another''\cite{vectorization_2021}: 
 \begin{equation}\label{eq:ref:vectorization}
 \text{vec}(A) = \left[
 A_{11}\,\dots\,A_{1m}\,A_{21}\,\dots \,A{2m}\,\dots\,A_{n1}\,\dots\,A{nm}
 \right]^T
 \end{equation}
-
 For example, the \(3\times 2\) matrix \(A=\left[
 \begin{matrix}
 a & b & c\\
@@ -1246,12 +990,12 @@ f\\
 \right)
 \]
 \subsubsection{Tensor Vectorization}\label{sec:ref:vectorization:tensor}
-Let \(T \in \mathbb R^{n \times\dots}\) be a n-dimensional Tensor.
+Let \(T \in \mathbb R^{n \times\dots}\) be a m-dimensional Tensor.
 Let \(vec(T)\) be defined as:
 \begin{equation}
-vec(T) = T_0 \frown T_1 \frown \dots \frown T_n
+vec(T) = vec(T_0) \frown vec(T_1) \frown \dots \frown vec(T_n)
 \end{equation}
-Where \(\frown\) is defined defined in \sectionref{sec:ref:vectorConcatination}. For those who are familiar with python's numpy library, \(vec\) is equivilent to numpy.flatten.
+Where \(\frown\) is defined defined in \sectionref{sec:ref:vectorConcatination}. For those familiar with python's numpy library, \(vec\) is equivalent to numpy.flatten.
 
 \subsection{Vector Concatination}\label{sec:ref:vectorConcatination}
 Vector Concatination of two vectors \(v\) and \(u\) of dimensions \(n_v\) and  \(n_u\), denoted \(v\frown u\), is the \(n_v + n_u\) dimensional vector obtained by placing both vectors one on top of the other.
@@ -1266,141 +1010,14 @@ u_1\\
 u_{n_u}\\
 \end{matrix}
 \right)
-\end{equation}
+\end{equation}\\
 
-%\subsection{Elementwise vector operations}
-%Let \(v \in \mathbb R^n\) be a \(n\) dimensional vector.
-%The Elementwise vector opperator \(\left<s, v\right>_{E}\) of some function \(s\) is defined as:
-%\begin{equation}\label{eq:vectorElemetwise}
-%\left<s, v\right>_E = \left(\begin{matrix}
-%s(v_1) \\
-%s(v_2) \\
-%\vdots\\
-%s(v_n)
-%\end{matrix}\right)
-%\end{equation}
-%For example let \(v = [1, 4, 2]^T\) and \(s(x) = \frac{1}{x}\), than \(\left<s, v\right>_E = [1, 0.25, 0.5]^T\).
-%
-%
-%\section{Apendix 4: Further examples}
-%\subsection{Mcts}\label{mctsExampleFullData}
-%The full set of data as seen by the computer in the mcts example \imgRef{fig:mcts:example}. The node sets are as follows defined by the amount of edged leaving each node.
-%\begin{align}
-% \mathbb M 										&= \{n_1, n_2, n_3, n_4, n_5, n_6, n_7, n_8\}\\
-% \mathbb M_{leaf} 						&= \{n_3, n_5, n_6, n_7, n_8\}\\
-% \mathbb M_{expanded} 	&= \{n_1, n_2, n_4\}
-%\end{align}
-%The edge sets for every node are as follows.
-%\begin{align}
-% \mathbb E(n_1) &= \{e_1, e_2, e_3\}\\
-% \mathbb E(n_2) &= \{e_4, e_5\}\\
-% \mathbb E(n_3) &= \emptyset\\
-% \mathbb E(n_4) &= \{e_6, e_7, e_8\}\\
-% \mathbb E(n_5) &= \emptyset\\
-% \mathbb E(n_6) &= \emptyset\\
-% \mathbb E(n_7) &= \emptyset\\
-% \mathbb E(n_8) &= \emptyset
-%\end{align}
-%The edge by action and node function \(\mathcal E\) looks af follows:
-%\begin{align}
-%   \mathcal E(n_1, A_1) &= e_1\\
-%	\mathcal E(n_1, A_2) &= e_2\\
-%	\mathcal E(n_1, A_3) &= e_3\\
-%	\mathcal E(n_2, A_4) &= e_4\\
-%	\mathcal E(n_2, A_5) &= e_5\\
-%	\mathcal E(n_4, A_6) &= e_6\\
-%	\mathcal E(n_4, A_7) &= e_7\\
-%	\mathcal E(n_4, A_8) &= e_8
-%\end{align}
-%The node an edge points from function \(\mathcal N_{from}\) looks af follows:
-%\begin{align}
-%	\mathcal N_{from} (e_1) &= n_1\\
-%	\mathcal N_{from} (e_2) &= n_1\\
-%	\mathcal N_{from} (e_3) &= n_1\\
-%	\mathcal N_{from} (e_4) &= n_2\\
-%	\mathcal N_{from} (e_5) &= n_2\\
-%	\mathcal N_{from} (e_6) &= n_4\\
-%	\mathcal N_{from} (e_7) &= n_4\\
-%	\mathcal N_{from} (e_8) &= n_4
-%\end{align}
-%The node an edge points to function \(\mathcal N_{to}\) looks af follows:
-%\begin{align}
-%	\mathcal N_{to} (e_1) &= n_3\\
-%	\mathcal N_{to} (e_2) &= n_2\\
-%	\mathcal N_{to} (e_3) &= n_4\\
-%	\mathcal N_{to} (e_4) &= n_5\\
-%	\mathcal N_{to} (e_5) &= n_6\\
-%	\mathcal N_{to} (e_6) &= n_6\\
-%	\mathcal N_{to} (e_7) &= n_7\\
-%	\mathcal N_{to} (e_8) &= n_8
-%\end{align}
-%
-%\section{Apendix 5: Proofs}
-%\subsection{tanh derivative} \label{sec:proof:tanhd/dx}
-%\(tanh~:~\mathbb R~\to~\mathbb R\) is defined as:
-%\begin{equation}
-%tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}
-%\end{equation}
-%\begin{align}
-%\begin{split}
-%\frac{d}{dx}\left[ \frac{e^x-e^{-x}}{e^x+e^{-x}}\right] &= \frac{ 
-%													(e^x+e^{-x})\frac{d}{dx}\left[e^x-e^{-x}\right]
-%												- (e^x-e^{-x}) \frac{d}{dx}\left[e^x+e^{-x}\right]}
-%											{(e^x+e^{-x})^2}\\
-%&= \frac{(e^x+e^{-x})^2 - (e^x-e^{-x})^2}{(e^x+e^{-x})^2}\\
-%&= \frac{e^{2x} + 2e^xe^{-x} + e^{-2x} - e^{2x} + 2e^xe^{-x} -e^{-x}}{(e^x+e^{-2x})^2}\\
-%&= \frac{4}{(e^x+e^{-x})^2}
-%\end{split}
-%\label{eq:tanhDerivativeEnd}
-%\end{align}
-%because
-%\begin{equation}\label{eq:sech}
-%sech(x) := \frac{2}{e^x+e^{-x}}
-%\end{equation}
-%using (\ref{eq:tanhDerivativeEnd}) and (\ref{eq:sech}) we can see, that
-%\begin{equation}
-%\frac{d}{dx}\left[tanh(x)\right] = sech(x)^2
-%\end{equation}
-%
-%\subsection{Softmax Derivative}
-%The Softmax \(s~:~\mathbb R^n~\to~\mathbb R^n\), \(n\in\mathbb N\), is defined as
-%\begin{equation} \label{eq:proof:softmax}
-%s(v)_i := \frac{e^{v_i}}{\sum_{j \in v} e^j}
-%\end{equation}
-%for all \(i \in [1,n]\cap\mathbb N\). Due to the multidimensional nature of this function we are taking the derivative \(\frac{d}{dv_j}s(v)_i\), with \(i \in [1,n]\cap\mathbb N\) and \(j \in [1,n]\cap\mathbb N\). 
-%\subparagraph*{case \(i \neq j\)}
-%\begin{align}
-%\begin{split}
-%\frac{d}{dv_j}\left[\frac{e^{v_i}}{\sum_{a \in v} e^a}\right] &= -\frac{\frac{d}{dx}\left[\sum_{a \in v} e^a\right]e^{v_i}}{(\sum_{a \in v} e^a)^2}\\
-%&= -\frac{e^{v_j} e^{v_i}}{(\sum_{a \in v} e^a)^2}\\
-%&= -s(v)_j s(v)_i
-%\end{split}
-%\end{align}
-%\subparagraph*{case \(i = j\)}
-%\begin{align}
-%\begin{split}
-%\frac{d}{dv_j}\left[\frac{e^{v_i}}{\sum_{a \in v} e^a}\right] 
-%&= \frac{\frac{d}{dx}\left[e^{v_i}\right]\sum_{a \in v} e^a - e^{v_i}\frac{d}{dx}\left[\sum_{a \in v} e^a\right]}{(\sum_{a \in v} e^a)^2}\\
-%&= \frac{e^{v_i}\sum_{a \in v} e^a - e^{v_i}e^{v_j}}{(\sum_{a \in v} e^a)^2}\\
-%&= s(v)_i - s(v)_i s(v)_j\\
-%&= s(v)_i (1 - s(v)_j)
-%\end{split}
-%\end{align}
-%
-%\subsection{Elo Rating}\label{sec:eloGet}
-%Let \(r_b\), \(r_a \in \mathbb R\)\\
-%Let \(E\) be the elo win expectation
-%\begin{equation}
-%E = \frac{1}{1+e^{r_b - r_a/400}}
-%\end{equation}
-%Solve to \(r_a\):
-%\begin{align}
-%E + Ee^{r_b - r_a/400} &= 1\\
-%Ee^{r_b - r_a/400} &= 1 - E\\
-%e^{r_b - r_a/400} &= \frac{1 - E}{E}\\
-%\text{ln}\left(\frac{1 - E}{E}\right) &= \frac{r_b - r_a}{400}\\
-%400 \text{ ln}\left(\frac{1 - E}{E}\right) &= r_b - r_a\\
-%r_b - 400 \text{ ln}\left(\frac{1 - E}{E}\right)  &= r_a
-%\end{align}
-
+\subsection{Source Code Locations}
+The source code can be found in the following github repositories:
+\begin{itemize}
+\item AI, AI-Server, data server and UI's: \url{https://github.com/JulianWww/AlphaZero} 
+\item Supervised and unsupervised learning demos: \url{https://github.com/JulianWww/Matura-AlphaZero-demos}
+\item Neural network in python: \url{https://github.com/JulianWww/NeuralNetwork}
+\item This Document: \url{https://github.com/JulianWww/MaturArbeitAlphaZero}
+\end{itemize}
 \end{document}

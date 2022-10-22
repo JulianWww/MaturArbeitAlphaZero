@@ -137,7 +137,8 @@
 }
 \newcommand{\incFile}[2]{\label{code:#2}\lstinputlisting[language=#1]{code/#2}\newpage}
 \newcommand{\incDemo}[2]{\label{demo:#2}\lstinputlisting[language=#1]{demos/#2}\newpage}
-\newcommand{\incNN}[2]{\label{demo:#2}\lstinputlisting[language=#1]{networks/#2}\newpage}
+\newcommand{\incNN}[2]{\label{NN:#2}\lstinputlisting[language=#1]{networks/#2}\newpage}
+\newcommand{\incTex}[2]{\label{tex:#2}\lstinputlisting[language=#1]{#2}\newpage}
 
 \begin{document}
 \maketitle
@@ -283,4 +284,9 @@
 \subsubsection{layers.py}												\incNN{python}{pynet/layers.py}
 \subsubsection{loss.py}													\incNN{python}{pynet/loss.py}
 \subsubsection{tensor.py}												\incNN{python}{pynet/tensor.py}
+
+\section{Iamage generation}
+\subsection{main.py}													\incTex{python}{main.py}
+\subsection{softmax.py}												\incTex{python}{softmax.py}
+\subsection{test.py}													\incTex{python}{test.py}
 \end{document}

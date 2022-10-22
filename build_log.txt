@@ -1,57 +1,58 @@
-first of all I started the week School started and have bean coding for 25 h a weak ever since
-ass many of these processes were spread out the values are not compleatly accurat
+ I started the week school started - Aug 2021
+ As many of these processes were spread out the values are not completely accurate
 
-1) 2h serch for original paper + read it
+1) 2h search for original paper + read it
 2) 2h find the python implementation
 3) 25h 2 weeks implementing
-4) 15h implementation with TF- Problems with pybind
+4) 15h implementation with Tensorflow - problems with pybind
 5) 10h trying to remove pybind - fail
 6) 10h pytorch implementation
 7) 5h increase efficency with GPU on Google cloud platform
 8) 1h install cuda - took for ever
-9) 10h install cuDNN - problems that i cant download from Nvidia (im counting download times)
-10) 10h compile c++ code on ubuntu - problems with window incompetancy
-	1) 3h ubuntu dose not accept cout's not terminated by std::endl - don't know why
-	2) 10s removed paralizable CPU (just one thread)(still in but deactivated with compiler directive)
-	3) 1h because the Profiler broke I rebuilt it from scraps
-	4) 1min updated the shared reposetary to valid linux files
+9) 10h install cuDNN - problems that I can't download from Nvidia
+10) 10h compile C++ code on ubuntu - problems with window incompatibility
+	1) 3h ubuntu does not accept cout's that are not terminated by std::endl - don't know why
+	2) 10s removed CPU paralization (just one thread)(still in but deactivated with compiler directive)
+	3) 1h because the profiler broke. I rebuilt it from scratch.
+	4) 1min updated the shared repositary to valid linux files
 	5) 10s created backup of include/ai/playGame.cpp at ~/backups/AlphaZero/include/ai/playGame.cpp on the gcp cloud server
 
-11) 2h reserch MCTS paralellization: "https://dke.maastrichtuniversity.nl/m.winands/documents/multithreadedMCTS2.pdf"
-	decided on Root parallelization
-	removed some shared_ptr's and replaced with normal pointers as they are not Thread safe
-12) 2h optimized the Profiler with auto detection of Systemconfig
+11) 2h research MCTS paralization: "https://dke.maastrichtuniversity.nl/m.winands/documents/multithreadedMCTS2.pdf"
+	decided on root paralization
+	removed some shared_ptr's and replaced with normal pointers as they are not thread safe
+12) 2h optimized the profiler with auto detection of Systemconfig
 13) 1h GPU monitoring with ``nvtop``
 14) 2h optimizing model performance (model saved on GPU) -- in progress
 15) 6h bug fixing, CUDA optimization, adding debuger, fixing problem with loss of console output when ssh disconnects (created system service) and preparing for full scale tests
-16) 4h of debugging and Full scale Testing on UNIX P4 GCP server (mostly waiting for code execution)
+16) 4h of debugging and full scale testing on UNIX P4 GCP server (mostly waiting for code execution)
 
-17) 2h SockReserch and sockpp build, link, test
-18) 1h Console client Creation - no Socket (next step)
-19) 1h sock Server creation
-20) 2h unable to load model (Can not load CUDA model to non Cuda environment, coding a CUDA to CPU programm (load to cuda, transfer all tensors, save)) - failed
-21) 2h fixed issues with sock Server
-22) 1h optimizing Parallelization and deactivating it for run_2
-23) 2h model bug fixing and changing some of the mcts
-24) 4h as the Algorythom does not act as expected there are bugs witch im just removing by going threw the original AlphaZero paper by deepmind. the worst error so far was that the Net did not get the current game board but a zero board.
+17) 2h Socket research and sockpp build, link, test
+18) 1h Console client creation - no Socket (next step)
+19) 1h sock server creation
+20) 2h unable to load model (cannot load CUDA model to non Cuda environment, coding a CUDA to CPU programm (load to cuda, transfer all tensors, save)) - failed
+21) 2h fixed issues with sock server
+22) 1h optimizing paralization and deactivating it for run_2
+23) 2h model bug fixing and changing some of the MCTS
+24) 4h As the algorithm does not act as expected there are bugs which I'm just removing by going through the original AlphaZero paper by Deepmind. The worst error so far was that the NN did not get the current game board but a zero board.
      
     Note 25 to 28 were coded late at night with satelite internet so 1 minute to open stack overflow
-25) 8h Java and c++ GUI client  -fail
-26) 8h Python GUI client (success ish) (it works but not how I wanted it (Im terrible with GUI's)
+25) 8h Java and C++ GUI client - fail
+26) 8h Python GUI client (success-ish) (it works but not how I wanted it (Im terrible with GUI's)
 27) 2h C++ file io
-28) 5h Bug fixes, Test suit.
+28) 5h Bug fixes, test suite.
 
-29) 8 h Bug fixes mostly waiting for execution
-30) 4 h Model batching
-31) 10 h Model batching finding error fixing - scrated
-32) 1h resetting to single thread version and adding Model data and single prediction for it. (next step is multiprediction and it must be identical to single prediction)
-33) 4h multiprediction and problems in Model forward predictor.
+29) 8h Bug fixes, mostly waiting for execution
+30) 4h Model batching
+31) 10h Model batching, finding and fixing errors - abandoned
+32) 1h resetting to single thread version and adding model data and single prediction. (next step is multiprediction and it must be identical to single prediction)
+33) 4h multiprediction and problems in model forward predictor.
 34) 10h model fit testing.
 35) 10h model loading, server and cleanup (jce)
-36) 1 s 24/11 um 11:16 chris hat enter gedrückt
-37) 2h fixed bug in model (no activation)
-38) 5h multiple minor bug fixes with multiple machines not comunicating corectly (server crashed)
+36) 2h fixing bug in model (no activation function)
+37) 5h multiple minor bug fixes with multiple machines not comunicating correctly (server crashed)
 
 
 - 100h wrote paper and generated images.
 - 30h testing and fixing minor problems and setting up servers
+
+Total time: 329 h (probably much more)
