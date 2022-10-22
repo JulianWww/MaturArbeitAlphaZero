@@ -1,4 +1,4 @@
-\title{Mastering the game of Connect 4 through self-play}
+\title{Mastering the game of Connect4 through self-play}
 \author{
         Julian Wandhoven \\
                 FGZ\\
@@ -46,7 +46,6 @@
     backgroundcolor=\color{black!5}, % set backgroundcolor
     basicstyle=\footnotesize,% basic font setting
 }
-
 
 
 \titleformat{\paragraph}
@@ -150,6 +149,7 @@
 
 Alpha Zero is an algorithm published in 2018 by Google Deepmind as the generalization of AlphaGo Zero, an algorithm that learned to play the game of Go using only the rules of the game. In the generalized version, the same principles were applied to Chess and Shogi. Unlike previous algorithms such as StockFish or Elmo that use hand-crafted evaluation functions along with alpha-beta searches over a large search space, Alpha Zero uses no human knowledge. Rather, it generates all information through self-play. It has been shown to achieve superhuman performance in Chess, Shogi and Go. In this project, an AI will be built and taught to play connect4. The entire algorithm is implemented in C++. Starting from a random computer player (agent), the algorithm is able to improve that agent, and in so doing create a better one. This can be repeated to produce a series of agents, that become progessively better at playing the game. These agents will then be evaluated against each other using the Elo evaluation system \cite{elo1978rating} (see \sectionref{sec:evaluation}). Additionally, I have added a short introduction on the mathematics behind neural networks in \sectionref{NN}. 
 
+\newpage
 \section{Methods}
 \label{Methods}
 The Alpha Zero algorithm is a reinforcement learning algorithm using two major parts: a) a {\it Monte Carlo tree search} (MCTS) that is guided by b) the {\it neural network} to improve performance.
@@ -157,18 +157,18 @@ The agent runs a certain amount of simulation games using its MCTS and neural ne
 \subsection{Reinforcement Learning}
 When training neural networks, there are three major possible situations: Supervised learning, unsupervised learning, and reinforcement learning. The first uses predetermined data with known in- and outputs the network is trained to predict. An example of supervised learning is the recognition of handwriting as the data is defined by humans. This method consists of creating a large database of examples, and the neural network is then trained to predict a given output for all examples. 
 
-Unsupervised learning or self-organization is used when there is no previously available data and the neural network has to create those classifications itself. An example of unsupervised learning is Vector quantization. The algorithm sorts points in n-dimensional space into a predetermined amount of groups. Each group is defined by its centroid point and contains all points closer to that centroid point than any other centroid point. Training happens by selecting a random sample point from the input data, and moving the closest centroid point towards this sample point by a fraction of the distance between them.\cite{wiki:Vector_quantization} This is repeated untill an equilibrium is reached. An example of both supervised and unsupervised learning can be seen in the demo\footnote{demo is at \url{https://github.com/JulianWww/Matura-AlphaZero-demos}}.
+Unsupervised learning or self-organization is used when there is no previously available data and the neural network has to create those classifications itself. An example of unsupervised learning is vector quantization. The algorithm sorts points in n-dimensional space into a predetermined amount of groups. Each group is defined by its centroid point and contains all points closer to that centroid point than any other centroid point. Training happens by selecting a random sample point from the input data, and moving the closest centroid point towards this sample point by a fraction of the distance between them.\cite{wiki:Vector_quantization} This is repeated until an equilibrium is reached. An example of both supervised and unsupervised learning can be found in the demo\footnote{demo is at \url{https://github.com/JulianWww/Matura-AlphaZero-demos}}.
 
-These two methods represent the extreme ends of the spectrum. Reinforcement learning can be thought of as an intermediate form. It uses a predetermined environment which gives positive, neutral and negative feedback. The neural network is then discouraged from taking actions leading to negative feedback and encouraged to take actions leading to positive feedback. The feedback is determined by the environment the agent learns to interact with. In this case, losing a game would be bad and result in negative feedback whereas winning a game leads to positive feedback. Ties lead to neutral feedback. The agents learning is set up in such a way, that it is encouraged to take actions leading to positive feedback and discouraged from taking actions that lead to negative feedback. However, actions can lead to feedback that only occurs many game steps ahead in the future. A common approach to solve this problem is to have the feedback propagate backwards to previous actions. In Alpha Zero, this is handled by the memory (see \sectionref{sec:memory}). When the game reaches an end state and a winner is determined, the feedback is propagated backwards up through all states used to get to that end state. If the player won, the feedback is positive. If he lost, it is negative. More specifically, if a player takes an action \(a_s\) at a state \(s\), that leads to a win for that player, the reward for that state is defined as \(R(s,a_s) = 1\). On the other hand, if the action leads to a loss, the reward will be \(R(s, a_s) = -1\). If the game ends in a tie, the reward is \(R(s,a_s) = 0\). Every agent \(p\) will try to maximize \(\sum_{s\in g\cap p} R(s, a_s)\). \(g\cap p\) is the set of all states in which the player \(p\) takes an action during the game \(g\). Let's look at a tic tac toe example of the following game:
+These two methods represent the extreme ends of the spectrum. Reinforcement learning can be thought of as an intermediate form. It uses a predetermined environment which gives positive, neutral and negative feedback. The neural network is discouraged from taking actions leading to negative feedback and encouraged to take actions leading to positive feedback. The feedback is determined by the environment the agent learns to interact with. In this case, losing a game would be bad and result in negative feedback whereas winning a game leads to positive feedback. Ties lead to neutral feedback. The agent's learning is set up in such a way, that it is encouraged to take actions leading to positive feedback and discouraged from taking actions that lead to negative feedback. However, actions can lead to feedback that only occurs many game steps ahead in the future. A common approach to solve this problem is to have the feedback propagate backwards to previous actions. In Alpha Zero, this is handled by the memory (see \sectionref{sec:memory}). When the game reaches an end state, a winner is determined, and the feedback is propagated backwards up through all states used to get to that end state. If the player won, the feedback is positive. If he lost, it is negative. More specifically, if a player takes an action \(a_s\) at a state \(s\), that leads to a win for that player, the reward for that state is defined as \(R(s,a_s) = 1\). On the other hand, if the action leads to a loss, the reward will be \(R(s, a_s) = -1\). If the game ends in a tie, the reward is \(R(s,a_s) = 0\). Every agent \(p\) will try to maximize \(\sum_{s\in g\cap p} R(s, a_s)\). \(g\cap p\) is the set of all states in which the player \(p\) takes an action during the game \(g\). Let's look at a tic tac toe example of the following game:
 \begin{center}
 \tickTackToe{}{}{}{}{}{}{}{}{player X} \to \tickTackToe{X}{}{}{}{}{}{}{}{player O} \to \tickTackToe{X}{O}{}{}{}{}{}{}{player X} \to \tickTackToe{X}{O}{}{}{X}{}{}{}{player O} \to \tickTackToe{X}{O}{}{O}{X}{}{}{}{player X} \to \tickTackToe{X}{O}{}{O}{X}{}{}{X}{}
-\end{center}
+\end{center}\newpage\noindent
 Since player \(X\) won the game, the reward for every state \(s\in g\cap X\) is \(R(s, a_s) = 1\) and the reward for every state \(s\in g\cap O\) is \(R(s, a_s) = -1\). The reward for the entire game is:
 \begin{center}
 \tickTackToe{}{}{}{}{}{}{}{}{} \rewardArrow{X}{1} \tickTackToe{X}{}{}{}{}{}{}{}{} \rewardArrow{O}{-1} \tickTackToe{X}{O}{}{}{}{}{}{}{} \rewardArrow{X}{1} \tickTackToe{X}{O}{}{}{X}{}{}{}{} \rewardArrow{O}{-1} \tickTackToe{X}{O}{}{O}{X}{}{}{}{} \rewardArrow{X}{1} \tickTackToe{X}{O}{}{O}{X}{}{}{X}{}
 \end{center}
 \begin{memoBox}
-The important thing to keep in mind is that reinforcement learning algorithms encourage actions that lead to a positive feedback and discourage actions that lead to a negative feedback.
+The important thing to keep in mind is that reinforcement learning algorithms encourage actions that lead to positive feedback and discourage actions that lead to negative feedback.
 \end{memoBox}
 \subsection{Game}
 In order to train a reinforcement learning AI, it must interact with an environment. In Alpha Zero the game is the environment. The game consists of a series of constant unchanging game states. Every game state consists of a game board and a player. An end game state is a state at which the game is over. Every game ends in an end game state. At an end game state, one player won or the game ended in a tie. Together, the successive states form a directed graph. Any possible path through this graph starting from a root state (the inital state of the board) and ending in any end game state, is a possible game. From an end game state, there is nowhere left to go.
@@ -184,7 +184,7 @@ Let \(\mathbb{G}_{done} \subset \mathbb G\) be the set of all game states for wh
 More generally, \(\phi(s) = 1\) if the first player (the player that starts the game) is at turn and \(\phi(s) = -1\) if the other player is a turn.
 
 \subsubsection{Game Board}
-Board games consist of placing stones of different types on a board with a certain amount of fields. Many games, like Go, Chess and Connect4, arrange their fields in a rectangular pattern. These games have two distinct stones. We can represent these game boards as a stack of binary layers. Every layer is associated with one kind of stone. Each layer contains a one, where the board has a stone of the appropriate type and zeros everywhere else. For instance, the following tic tac toe game board can be represented by the following binary layers stack.\[
+Board games consist of placing stones of different types on a board with a certain amount of fields. Many games, like Go, Chess and Connect4, arrange their fields in a rectangular pattern. These games have multiple distinct stones. We can represent these game boards as a stack of binary layers. Every layer is associated with one kind of stone. Each layer contains a one, where the board has a stone of the appropriate type and zeros everywhere else. For instance, the following tic tac toe game board can be represented by the following binary layers stack.\[
 \ticTacToe{}{X}{O}{O}{X}{}{O}{}{X}\to
 \left[ 
 \begin{bmatrix}
@@ -199,46 +199,14 @@ Board games consist of placing stones of different types on a board with a certa
 \end{bmatrix}
 \right]
 \] 
-Internally, the game board is represented by a flat vector. The conversion from a game state \(s  \in \mathbb G\) to a vector is defined as \(vec(T_s(s))\). Where \(T_s(s):\mathbb G \to \mathbb R^{\cdots}\) is the board's 3-dimensional board tensor. The \(vec\) function is defined in \sectionref{sec:ref:vectorization:tensor}.
-\begin{equation}
-vec
-\left(\left[ 
-\begin{bmatrix}
-a_{111} & \cdots & a_{11o} \\
-\vdots & \ddots & \vdots \\
-a_{1n1} & \cdots & a_{1no} \\
-\end{bmatrix}
-\cdots
-\begin{bmatrix}
-a_{m11} & \cdots &  a_{m1o} \\
-\vdots   & \ddots & \vdots   \\
-a_{mn1} & \cdots & a_{mno}  \\
-\end{bmatrix}
-\right]\right) = \left(\begin{matrix}
-a_{111}      \\
-\vdots        \\
-a_{11o}      \\
-\vdots        \\
-a_{1n1}      \\
-\vdots        \\
-a_{1no}      \\
-\vdots        \\
-a_{m11}     \\
-\vdots        \\
-a_{m1o}     \\
-\vdots        \\
- a_{mn1}    \\
-\vdots        \\
- a_{mno}    \\
-\end{matrix}\right)
-\end{equation}
+Internally, the game board is represented by a flat vector. The conversion from a game state \(s  \in \mathbb G\) to a vector is defined as \(vec(T_s(s))\). Where \(T_s(s):\mathbb G \to \mathbb R^{\cdots}\) is the board's 3-dimensional board tensor. The \(vec\) function is defined in \sectionref{sec:ref:vectorization:tensor}. \\
 This operation for the tic tac toe board from above would look like this:
 \begin{equation}
 vec\left(T_s\left(\ticTacToe{}{X}{O}{O}{X}{}{O}{}{X}\right)\right) = 
 [0\,1\,0\,0\,1\,0\,0\,0\,1\,0 \,0 \,1\,1\,0\,0\,1\,0\,0]^T
 \end{equation}
 \subsubsection{Actions}
-Actions are numbers used to identify changes to the game. Every game has a set of all possible actions represented by numbers \(\mathbb{A}_{possible} \subset \mathbb{N}_0\). In connect4, the set of all possible actions for the current player is \(\mathbb{A}_{possible} = [0, 41]\cap\mathbb N\). There is no need to have actions for the player, that is not at turn as these will never be taken. Every number is associated with a position on the game board. The mapping of actions to game fields is as follows for connect4:
+Actions are numbers used to identify changes to the game. Every game has a set of all possible actions represented by numbers \(\mathbb{A}_{possible} \subset \mathbb{N}_0\). In connect4, the set of all possible actions for the current player is \(\mathbb{A}_{possible} = [0, 41]\cap\mathbb N\). There is no need to have actions for the player, that is not at turn as these will never be taken.\newpage\noindent Every number is associated with a position on the game board. The mapping of actions to game fields is as follows for connect4:
 \begin{center}
 \begin{tabular}{| c | c | c | c | c | c | c |}
  \hline
@@ -262,20 +230,21 @@ Let \(\mathbb{A}(s)\) be the set of all legal actions for a given state  \(s \in
 then player \(X\) is allowed to place a stone in any empy field \(\implies\mathbb A(s) = \left\{ 2, 3, 4, 5, 6, 7, 8 \right\}\). Therefore, \(\mathcal A(s, a)\) is valid if \(a \in \mathbb A(s)\) and otherwise invalid.
 
 \subsection{MCTS \cite{chaslot2008parallel}\cite{silver2018general}}
-A Monte Carlo tree search (MCTS) is a tree search algorithm that can be used to find sequences of actions leading to a desirable outcome. This is done by procedurally generating a directed graph of possible successor states to the current state or root state. In Alpha Zero it is used to improve the neural network's prediction.
+A Monte Carlo tree search (MCTS) is a tree search algorithm that can be used to find sequences of actions leading to a desirable outcome. This is done by procedurally generating a directed graph of possible successor states to the current state or root state. In Alpha Zero, it is used to improve the neural network's prediction.
 Because an MCTS changes during simulation, indices are used to specify which simulation step the tree is in. An MCTS simulation consists of three phases: \nameref{sec:Methods:MCTS:Leaf_selection}, \nameref{sec:Methods:MCTS:Node Evaluation and Expansion} as well as \nameref{sec:Methods:MCTS:Backfill}.
 
-A MCTS graph consists of nodes and edges. Nodes represent game states and edges represent actions. As in the game, edges connect nodes to each other.
+An MCTS graph consists of nodes and edges. Nodes represent game states and edges represent actions. As in the game, edges connect nodes to each other.
 The amount of nodes and structure of the MCTS is changed by the algorithm itself during simulation. During the first simulation, the tree contains only the root node \(n_0\). The root node is the starting point of the simulation. Let \(l \in \mathbb L\) be the index of the current simulation step. Let \(\mathbb L = \mathbb [0, S]\cap\mathbb N\) be the set of all \(l\), where \(S\) is a constant defined in the algorithm's configuration file. Let \(\mathbb{M}_l \subseteq \mathbb{G}\) be the set of all nodes in the tree at step \(l\in\mathbb L\). That implies \(\mathbb M_0 = \left\{n_0\right\}\).
 
- Every node \(n_l \in \mathbb{M}_l\) has a set of edges \(\mathbb{E}_l(n_l)\) at step \(l\) that point from it to another node. Let \(\mathbb{E}_l\) be the set of all edges in the current graph. The function \(\mathcal{N}_{to_l}~:~\mathbb{E}_{l}\to\mathbb{M}_l\) maps an edge to the node it is pointing to while \(\mathcal{N}_{from_l}~:~\mathbb{E}_{l}\to\mathbb{M}_l\) is used to find the node an edge is pointing from.
-Furthermore, it is useful to distinguish expanded nodes from leaf nodes. Leaf nodes are nodes that don't have edges leading out of them. Let \(\mathbb{M}_{leaf_l} \subseteq \mathbb{M}_l\) be the set of leafnodes. For every node \(n_l\in \mathbb{M}_{leaf_l}\), the following is true by definition \(\mathbb{E}_l(n_l) = \emptyset\). Expanded nodes have edges leading out of them.
+ Every node \(n_l \in \mathbb{M}_l\) has a set of edges \(\mathbb{E}_l(n_l)\) at step \(l\) that point from it to another node. Let \(\mathbb{E}_l\) be the set of all edges in the graph \(\mathbb M_l\). The function \(\mathcal{N}_{to_l}~:~\mathbb{E}_{l}\to\mathbb{M}_l\) maps an edge to the node it is pointing to while \(\mathcal{N}_{from_l}~:~\mathbb{E}_{l}\to\mathbb{M}_l\) is used to find the node an edge is pointing from.
+Furthermore, it is useful to distinguish expanded nodes from leaf nodes. Leaf nodes are nodes that don't have edges leading out of them. Let \(\mathbb{M}_{leaf_l} \subseteq \mathbb{M}_l\) be the set of leaf nodes. For every node \(n_l\in \mathbb{M}_{leaf_l}\), the following is true by definition \(\mathbb{E}_l(n_l) = \emptyset\). Expanded nodes have edges leading out of them.
 
 \begin{figure}[H]
   \centering
   \includesvg[height=.25\textheight]{images/mctsExample}
   \captionsetup{width=.9\linewidth}
-  \caption{This is a possible MCTS graph. In this exampel the set of all nodes is \(\mathbb M = \{n_1, n_2,\hdots,n_8\}\), the set of all leaf nodes is \(\mathbb M_{leaf} =  \{n_3, n_5, n_6, n_7, n_8\}\). The set  \(\mathbb E(n)\) of a node \(n\), beeing the set of edges pointing away from that node, for node \(n_1\) is \(\mathbb E(n_1) = \{e_1, e_2,e_3\}\). The same for all other nodes. \(\mathcal N_{to}(e)\) is the node an edge \(e\) points to. This means that \(\mathcal N_{to}(e_1) = n_3\), \(\mathcal N_{to}(e_2) = n_2\), etc. In contrast \(\mathcal N_{from}(e)\) is the node an edge \(e\) points from. Therefore, \(\mathcal N_{from}(e_1) = n_1, \mathcal N_{from}(e_2) = n_1\), etc.}
+  \caption{This is a possible MCTS graph. In this example the set of all nodes is \(\mathbb M = \{n_1, n_2,\hdots,n_8\}\), the set of all leaf nodes is \(\mathbb M_{leaf} =  \{n_3, n_5, n_6, n_7, n_8\}\). The set  \(\mathbb E(n)\) of a node \(n\), beeing the set of edges pointing away from that node\(\implies\)for node \(n_1\) is \(\mathbb E(n_1) = \{e_1, e_2,e_3\}\). The same for all other nodes. \(\mathcal N_{to}(e)\) is the node an edge \(e\) points to. This means that \(\mathcal N_{to}(e_1) = n_3\), \(\mathcal N_{to}(e_2) = n_2\), etc. In contrast \(\mathcal N_{from}(e)\) is the node an edge \(e\) points from.\\
+  Therefore, \(\mathcal N_{from}(e_1) = n_1\), \(\mathcal N_{from}(e_2) = n_1\), etc.}
 	\label{fig:mcts:example}
 \end{figure}
 
@@ -295,7 +264,7 @@ In a classic MCTS this is all that would be required. However, Alpha Zero uses a
 where \(N_{mean}\) is the average \(N_S\) over all previous simulations.
 
 \subsubsection{Leaf Selection} \label{sec:Methods:MCTS:Leaf_selection}
-MCTS's evaluation starts by simulating future moves within the tree. This is done by selecting an edge and then following that edge to a new node. From there, the next edge and node are selected. This is repeated until a leaf node is reached. To select an edge and thus a node from the current node \(n_l\in \mathbb{M}_l\) the selection function \(\sigma_l~:~\mathbb M_l \to\mathbb E_l\) is used. To define \(\sigma_l\) we must first define the edge evaluation function \(u_l~:~\mathbb{E}_{l}\to\mathbb{R}\). \(u_l\) is defined as:
+MCTS's evaluation starts by simulating future moves within the tree starting from \(n_0\). This is done by selecting an edge and then following that edge to a new node. From there, the next edge and node are selected. This is repeated until a leaf node is reached. To select an edge and thus a node from the current node \(n_l\in \mathbb{M}_l\) the selection function \(\sigma_l~:~\mathbb M_l \to\mathbb E_l\) is used. To define \(\sigma_l\) we must first define the edge evaluation function \(u_l~:~\mathbb{E}_{l}\to\mathbb{R}\). \(u_l\) is defined as:
 \begin{equation}
 u_l(e) = Q_l(e) + c \cdot P_l(e)\cdot\frac{\sqrt{\Sigma_{b\in\mathbb{E}(\mathcal{N}_{from_l}(e))}N_l(b)}}{1+N_l(e)}
 \end{equation}
@@ -374,7 +343,7 @@ W_l(e)
 The ``\(\phi\) multiplication'' \(\phi(n_{L_l})\phi(\mathcal N_{from}(e)) = \pm 1\) is needed to reward the moves of the winning player and  to punish the moves of the other player.
 
 
-\noindent\(Q_{l+1}\) is already defined according to \quckeq{eq:Ql}. In contrast to \cite{silver2018general}, this implementation stores the MCTS simulation values in the edges to allow for the fact that actions from two different nodes leading to the same node are not identical and therefore should not be treated as such. But nodes of the same game state are identical and should be treated as such.\\\\
+\noindent\(Q_{l+1}\) is already defined according to \quckeq{eq:Ql}. In contrast to \cite{silver2018general}, this implementation stores the MCTS simulation values in the edges to allow for the fact that actions from two different nodes leading to the same node are not identical and therefore should not be treated as such. But nodes of the same game state are identical and should be treated accordingly.\newpage
 %-------------------------------------------------------------------------
 \subsection{Neural Network}
 Search algorithms like MCTS are able to find advantageous action sequences. Traditionally, like in ``stockfish 8'' for example, the search algorithm is improved by using evaluation functions. These functions are generally created using human master knowledge. In the Alpha Zero algorithm, this evaluation function is instead a biheaded deep convolutional neural network trained by information gathered from MCTS simulations. In order to understand the training process, one must first understand how the neural network functions.
@@ -455,13 +424,14 @@ The same is done for \(\Lambda(I)_{121}\), \(\Lambda(I)_{211}\) and \(\Lambda(I)
 \end{bmatrix}
 \]
 \paragraph{Activation Function}
-All neural network layers are linear functions. Thus, given two layer evaluation functions \(f_1(x) = ax + b\) and \(f_2(x) = cx + d\), the chained function \(f(x) = f_1(f_2(x))\) is also linear.
-In order to represent non linear functions, a non linear activation function \(f_a\) is added between two neural network layers. Thus, the chained function becomes \(c(x) = f_1(f_a(f_2(x)))\). In this neural network, three different activation functions are used: \(tanh\), \(softmax\), and \(LeakyReLU\). These functions are defined as follows:
+All neural network layers are linear functions. Thus, given two layer evaluation functions \(f_1(x)\) and \(f_2(x)\), the chained function \(f(x) = f_1(f_2(x))\) is also linear.
+In order to represent non linear functions, a non linear activation function \(f_a\) is added between two neural network layers. Thus, the chained function becomes \(c(x) = f_1(f_a(f_2(x)))\). In this neural network, three different activation functions are used: \(tanh\), \(softmax\), and \(LeakyReLU\). 
+\newpage\noindent These functions are defined as follows:
 \subparagraph*{tanh:}\(\mathbb{R}\to \mathbb{R}\)
 
 \begin{center}
 \includesvg[width=0.9\columnwidth]{images/tanh}
-\captionof{figure}{tanh function in blue and the tanh's derivative is in orange}
+\captionof{figure}{tanh function in blue and the tanh's derivative in orange}
 \end{center}
 
 \begin{align} \label{eq:NN:tanh}
@@ -483,7 +453,7 @@ tanh(v_n)
 For simple use later on, the derivative of \(tanh(v)\), \(tanh'(v) \in \mathbb R^{n \times n}\) shall be a \(n \times n\) dimensional matrix, defined as
 \begin{equation}
 tanh'(v)_{ij} = \left\{\begin{matrix}
-tanh'(v_{ij}) & i = j \\
+tanh'(v_{i}) & i = j \\
 0
 \end{matrix}\right.
 \end{equation}
@@ -577,7 +547,7 @@ Therefore, for a given vector \(v \in \mathbb R^n\), \(\text{LeakyReLU}(v)\) sha
 For simple use later on, the derivative shall be a \(n \times n\) dimensional matrix, defined as
 \begin{equation}
 \text{LeakyReLU}'(v)_{ij} = \left\{\begin{matrix}
-g(v_{ij}) & i = j \\
+g(v_{j}) & i = j \\
 0
 \end{matrix}\right.
 \end{equation}
@@ -602,7 +572,7 @@ In general, \(f_j\) is always followed by an activation function \(f_{a_j}\). Le
 \begin{equation}\label{eq:NN:deltaA}
 \Delta A_j = f_{a_j}'(A_j)\Delta Y_j
 \end{equation}
-Next comes the update to the weight matrix \(w_j\). Let \(\Delta w_j\) describe the change to \(w_j\) and let \(X_j\) be the input vector of the layer. \(\Delta w_j\) is than defined as:
+Next comes the update to the weight matrix \(w_j\). Let \(\Delta w_j\) describe the change to \(w_j\) and let \(X_j\) be the input vector of the layer. \(\Delta w_j\) is then defined as:
 \begin{equation}\label{eq:NN:deltaW}
 \Delta w_j = \Delta A_j \cdot X_j^T
 \end{equation}
@@ -612,12 +582,12 @@ The layer's bias vector is updated in the direction of \(\Delta A_j\):
 \end{equation}
 Lastly, the change to the output of the previous layer \(\Delta Y_{j-1}\) is computed.
 \begin{equation} \label{eq:NN:deltaA_lastLayer}
-\Delta Y_{j-1} = \Delta A_a \cdot w_j^T
+\Delta Y_{j-1} = \Delta A_j \cdot w_j^T
 \end{equation}
 This process is repeated until the foremost layer of the neural network is reached. This layer has the index \(j=0\). At the end, the changes are scaled by the learning rate \(l_r\) and added to their appropriate values.\\
 
 \subsubsection{Network used by Alpha Zero}
-The neural network in Alpha Zero is used to estimate the value \(v\) and policy \(p\) for any node \(n\). \(v\) is the neural network's estimation of the state's expected reward. The policy \(p \in\mathbb{R}^{|\mathbb{A}|}\) of a game state \(n\) represents the advantageousness of every action \(a\in\mathbb{A}\), as estimated by the neural network.
+The neural network in Alpha Zero is used to estimate the value \(v\) and policy \(p\) for any node \(n\). \(v\) is the neural network's estimation of the state's expected reward. The policy \(\pi \in\mathbb{R}^{|\mathbb{A}|}\) of a game state \(n\) represents the advantageousness of every action \(a\in\mathbb{A}\), as estimated by the neural network.
 \paragraph{Neural Network input}\label{sec:neuralNetworkInput}
 The neural network's input is a game state or node \(n\) represented by two \mbox{7 x 6} binary images stacked on top of each other. One image \(X\) represents the stones belonging to the current player. While the second image \(Y\) represents the stones belonging to the other player. In both images, the pixel values are one where a stone belonging to the player they represent is located and zero if the field is empty or a stone belonging to the other player is located there. \(X\) and \(Y\) are then stacked on top of each other in the third dimension to form the input tensor \(i_n = [X, Y] \in \mathbb{R}^{7 \times 6 \times 2}\).
 Consider the following Connect4 board \imgRef{fig:connect4ImageOne}.
@@ -667,13 +637,13 @@ i_n = \left[
 \paragraph{Neural Network Architecture} 
 \label{sec:NeruralNetworkArchitecture}
 The neural network used by Alpha Zero consists of three main sub-modules, namely the residual tower, the value head and the policy head. The residual tower's purpose is to preprocess the data for the two heads. The value head determines the value \(v\) from the output of the residual tower. While the policy head computes the policy \(p\). The residual tower consists of a convolutional block followed by six residual blocks.\\
-In my code, the convolutional block consists of the following: 
+In my code, I chose the convolutional block to consist of the following: 
 \begin{enumerate}
 \item A convolutional layer consisting of 75 filters with a kernel size of 3 x 3
 \item Batch normalization \cite{ioffe2015batch}
 \item A non-linear rectifier (LeakyReLU).
 \end{enumerate}
-Every residual block consists of the following modules:
+For every residual block, I chose the following modules:
 \begin{enumerate}
 \item A convolutional layer consisting of 75 filters with a kernel size of 3 x 3
 \item Batch normalization
@@ -734,7 +704,7 @@ v_a =
 p_{pre_a} &
 \end{cases}
 \end{equation}
-\(\mathbb A(g)\) is the set of all legal actions. \(p_{pre}\) is defined in \sectionref{sec:NeruralNetworkArchitecture}, and is used for all non legal actions. \(P\) is defined in \equationref{eq:ActionSelection:Probabilistic}.
+\(\mathbb A(g)\) is the set of all legal actions. \(p_{pre}\) is defined in \sectionref{sec:NeruralNetworkArchitecture}, and is used for all non legal actions. \(\mathcal P\) is defined in \equationref{eq:ActionSelection:Probabilistic}.
 
 \paragraph{Memory update}\label{sec:memoryUpdate}
 Once the game is over, the winning player is determined and the value \(r\) of every memory element in the temporary memory is updated. \(r\) is 1 if the player taking an action at that state won, -1 if he lost and 0 if the game ended in a draw. The updated states are then passed to memory.
@@ -745,10 +715,12 @@ Once the memory size exceeds 30'000 states, the self-playing stops. Batches of \
 \subsubsection{Model evaluation}\label{sec:modelEvaluation}
 In order to train the neural network, the "best player" generates data used to train the current network.
 After every time the current neural network has been updated, it plays \(20\) games against the best player. If it wins more than \(1.3\) times as often as the current best player, it is considered better. If this is the case, the neural network of the "current player" is saved to file and the old "best player" is replaced with the "current player" to become the new "best player". It is advantageous to force the network to win \(1.3\) times as often as that reduces the chance of the network just getting lucky. 
+
+\newpage
 \section{Evaluation}\label{sec:evaluation}
 To give us an idea of how good a player is, it would be useful to express performance using a single number. This number should not only give us a ranking but also allow for predictions of the winner of a game between two players and thus give us a measure of the relative strength of the players. One such rating method is the so called elo-rating method. \cite{elo1978rating}
 \subsection{Elo-rating} \label{sec:Evaluation:elo-rating}
-The elo-rating system assigns every player \(p\) a number \(r_p \in \mathbb{R}\). In general, the larger \(r_p\) the better the player. More specifically, given two players \(a\) and \(b\) with elo-ratings \(r_a\) and \(r_b\), the expected chance \(E\) of \(a\) winning against \(b\) is \cite{silver2018general}:
+The elo-rating system assigns a number \(r_p \in \mathbb{R}\) to every player \(p\). In general, the larger \(r_p\) the better the player. More specifically, given two players \(a\) and \(b\) with elo-ratings \(r_a\) and \(r_b\), the expected chance \(E\) of \(a\) winning against \(b\) is \cite{silver2018general}:
 \begin{equation} \label{eq:elo_pred}
 E = \frac{1}{1 + e^{(r_b-r_a)/400}}
 \end{equation}
@@ -756,7 +728,9 @@ E = \frac{1}{1 + e^{(r_b-r_a)/400}}
 \includesvg[width=0.8\columnwidth]{images/elo}
 \captionof{figure}{elo-rating win probability for \(r_b = 0\)}
 \end{center}
-This function describes a sigmoid curve. This makes sense, because if the players have major strength discrepancies \(E\) converges to \(1\) or \(0\). When \(a\) and \(b\) play a game against each other, \(a\)'s elo rating is updated as follows\cite{elo1978rating}:
+This function describes a sigmoid curve. This makes sense, because if the players have major strength discrepancies \(E\) converges to \(1\) or \(0\). 
+\newpage\noindent
+When \(a\) and \(b\) play a game against each other, \(a\)'s elo rating is updated as follows\cite{elo1978rating}:
 
 \begin{equation} \label{eq:elo_update}
 r_{a_{n+1}} = r_{a_n} + K(W - E)
@@ -789,6 +763,8 @@ r_a = r_b - ln\left(\frac{1-s_a}{s_a}\right) \cdot 400
 \captionof{figure}{elo inverse function for \(r_b = 0\)}
 \label{fig:eloInv}
 \end{figure}
+
+\noindent
 Since a ranking of all the agents already exists (see \sectionref{sec:modelEvaluation}), an agent's elo-rating can be computed by playing against an older version and then using equation \ref{eq:elo_back} to determine its elo-rating. 
 \subsubsection{Relativity of the Elo-rating}
 The only problem is that elo is a relative rating. The rating of any other agent depends on its performance against other agents and their elo-ratings. Therefore, one must give the system a base rating for at least one predefined agent. In this case, there are no previously known elo-rated agents I could find, so I defined the untrained agent's elo-rating as 100. All other elo-ratings are relative to that.
@@ -847,10 +823,12 @@ Collected data shows this to be true \imgRef{img:eloByVersion}. The same data sh
 	\label{img:eloByVersion}
 \end{center}
 
+\newpage
 \section{Implementation}
-I began by implementing the MCTS and neural network seperately. First, I tried using Tensorflow for the neural network evaluation, but its C++ API is nearly undocumented and very complicated to use. So I setteled for Pytorch. With that solved, I implemented the basic training loop and ran the algorithm. This is when the problem of insufficent computational resources occurred. In an attempt to solve this, I ran the program over google cloud platform and moved model evaluation to the GPU. Furthermore, I made game simulation and data generation asynchronous to avoid CPU/GPU downtime while the other is computing. Additionally, I created two python GUI's and one C++ UI that comunicate with a C++ AI server to allow humans to play against the AI. Because the AI server was turned off most of the time but I still wanted to access the elo data and game logs, I created a dedicated data server to store this information. Then, because the AI server running on google cloud platform changes IP a lot, I created a webpage on a webserver, to redirect the clients to the right server. When I aquired a computer capable of handling the AI, a lot of this work became redundant. I also implemented a neural network in numpy and created supervised and unsupervised learning examples.
+I began by implementing the MCTS and neural network seperately. First, I tried using Tensorflow for the neural network evaluation, but its C++ API is nearly undocumented and very complicated to use. So, I settled for Pytorch. With that solved, I implemented the basic training loop and ran the algorithm. This is when the problem of insufficent computational resources occurred. In an attempt to solve this, I ran the program over google cloud platform and moved model evaluation to the GPU. Furthermore, I made game simulation and data generation asynchronous to avoid CPU/GPU downtime while the other is computing. Additionally, I created two python GUI's and one C++ UI that comunicate with a C++ AI server to allow humans to play against the AI. Because the AI server was turned off most of the time but I still wanted to access the elo data and game logs, I created a dedicated data server to store this information. Then, because the AI server running on google cloud platform changes IP a lot, I created a webpage on a webserver, to redirect the clients to the right server. When I aquired a computer capable of handling the AI, a lot of this work became redundant. I also implemented a neural network in numpy and created supervised and unsupervised learning examples.
+
+\newpage
 \section{Conclusion}
-%In conclusion the algorythem works, and is able to learn to play connect4 at a level better than any human I could find. Some improvements can still be made, but in generall, Im rather happy with the results. If I were to ever do this again, I would stick with python.
 I very much enjoyed the development of the AI as well as deriving the mathematics behind neural networks. Coding was a lot of fun though the endless debugging was painful. Performance issues were a major part of my concern. Solving these was an interesting experience. Working on asynchronous programs of this scale was a new experience for me, and it worked quite well.
 As a result, I successfully developed an AI-based computer program that plays connect4, and has beaten every human so far that it played against.
 I am very happy with the results. However, if I were ever to do this again, I would stick to python.
@@ -861,17 +839,7 @@ Some improvements could be made - like the following
 \item The algorithm could be completely rewritten to allow for training on TPU's (tensor processing units).
 \item Process distribution could be improved to allow for training of the AI on multiple GPU's.
 \item The algorithm could be tested for different games and other configurations.
-\item Since most of the time is spent on running neural network simulations, process efficiency could be improved by not only updating MCTS graphs to the current node, but all the way back to the root. Furthermore, not only updating the path but every possible path back would increase efficency even further - at least in theory. 
-\end{itemize}
-
-\newpage
-\bibliographystyle{plain}
-\bibliography{bibliography}
-
-\newpage
-\section*{Acknowledgements}
-\begin{itemize}
-\item Leonie Scheck, Frederik Ott, Nico Steiner, Wolfgang Wandhoven for assisting in evaluating the AI against human players and providing feedback.
+\item Since most of the time is spent on running neural network simulations, process efficiency could be improved by not only updating MCTS graphs to the current node, but all the way back to the game's root. Furthermore, not only updating the path but every possible path back would increase efficency even further - at least in theory. 
 \end{itemize}
 
 \newpage
@@ -1015,9 +983,21 @@ u_{n_u}\\
 \subsection{Source Code Locations}
 The source code can be found in the following github repositories:
 \begin{itemize}
-\item AI, AI-Server, data server and UI's: \url{https://github.com/JulianWww/AlphaZero} 
-\item Supervised and unsupervised learning demos: \url{https://github.com/JulianWww/Matura-AlphaZero-demos}
+\item AI, AI-Server, data server and UI's: \\\url{https://github.com/JulianWww/AlphaZero} 
+\item Supervised and unsupervised learning demos: \\\url{https://github.com/JulianWww/Matura-AlphaZero-demos}
 \item Neural network in python: \url{https://github.com/JulianWww/NeuralNetwork}
 \item This Document: \url{https://github.com/JulianWww/MaturArbeitAlphaZero}
 \end{itemize}
+
+\newpage
+\section*{Acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements}
+\begin{itemize}
+\item Leonie Scheck, Frederik Ott, Nico Steiner, Wolfgang Wandhoven for assisting in evaluating the AI against human players and providing feedback.
+\end{itemize}
+
+\newpage
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{plain}
+\bibliography{bibliography}
 \end{document}
