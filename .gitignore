@@ -2,7 +2,7 @@
 *.aux
 *.log
 *.out
-*.pdf
+svg-inkscape/*.pdf
 *.synctex(busy)
 *.toc
 demos/
